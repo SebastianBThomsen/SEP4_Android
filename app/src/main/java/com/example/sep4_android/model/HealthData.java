@@ -2,6 +2,7 @@ package com.example.sep4_android.model;
 
 public class HealthData {
     private String name, climate, gravity;
+    //private double temperature, co2, humidity;
     //TODO: TIMESTAMP
 
 
