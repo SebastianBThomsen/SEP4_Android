@@ -1,7 +1,10 @@
 package com.example.sep4_android.ui.healthInspection;
 
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
 
-public class HealthInspectionViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
+import com.example.sep4_android.model.HealthData;
+
+public interface HealthInspectionViewModel {
+    LiveData<HealthData> getRandomData();
+    void findRandomHealthData();
 }
