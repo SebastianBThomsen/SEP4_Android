@@ -16,7 +16,7 @@ import com.example.sep4_android.R;
 
 public class SettingsFragment extends Fragment {
 
-    private SettingsViewModel mViewModel;
+    private SettingsViewModelImpl mViewModel;
 
     public static SettingsFragment newInstance() {
         return new SettingsFragment();
@@ -31,7 +31,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(SettingsViewModelImpl.class);
         // TODO: Use the ViewModel
     }
 
