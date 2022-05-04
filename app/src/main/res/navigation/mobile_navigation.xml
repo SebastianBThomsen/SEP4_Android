@@ -12,19 +12,13 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.sep4_android.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.sep4_android.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-    <fragment
         android:id="@+id/nav_healthInspection"
         android:name="com.example.sep4_android.ui.healthInspection.HealthInspection"
         android:label="fragment_health_inspection"
         tools:layout="@layout/fragment_health_inspection" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.sep4_android.ui.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
