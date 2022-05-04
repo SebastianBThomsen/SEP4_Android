@@ -34,7 +34,7 @@ public class HealthRepository {
 
     public void findRandomHealthData() {
         Log.i("Retrofit", "Start (searchForHealthData) - url: ");
-        Call<HealthData> call = healthAPI.getRandomTemperature(1);
+        Call<HealthData> call = healthAPI.getRandomHealthData("415e3406-630b-48d4-b65b-bd2a8093bbbc");
         Log.i("Retrofit", "(searchForHealthData) - Call: " + call);
         call.enqueue(new Callback<HealthData>() {
             @Override

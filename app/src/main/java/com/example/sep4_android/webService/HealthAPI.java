@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 
 public interface HealthAPI {
     @GET("api/planets/{search}")
-    Call<HealthData> getRandomTemperature(@Path("search") int search);
+    Call<HealthData> getRandomHealthData(@Path("search") String search);
 
 
 
