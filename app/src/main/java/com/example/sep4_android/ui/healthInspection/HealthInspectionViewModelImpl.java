@@ -22,6 +22,6 @@ public class HealthInspectionViewModelImpl extends ViewModel implements HealthIn
 
     @Override
     public void findRandomHealthData() {
-        healthRepository.searchForHealthData("a85b58c4-24d7-4379-9ed9-b78f5d346a29");
+        healthRepository.searchForHealthData("6f64b188-00ea-44b3-abaa-387588645afa");
     }
 }

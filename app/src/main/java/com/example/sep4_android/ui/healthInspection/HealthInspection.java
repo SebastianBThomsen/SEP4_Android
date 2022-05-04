@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.sep4_android.databinding.FragmentHealthInspectionBinding;
 
 public class HealthInspection extends Fragment {
@@ -26,7 +27,6 @@ public class HealthInspection extends Fragment {
     private TextView tv_temperature, tv_co2, tv_humidity;
 
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -37,13 +37,31 @@ public class HealthInspection extends Fragment {
         View root = binding.getRoot();
 
         bindings();
-
+        observers();
         onClickListeners();
 
         return root;
     }
 
+    private void observers() {
+        viewModel.getRandomData().observe(getViewLifecycleOwner(), healthData -> {
+            tv_temperature.setText(String.valueOf(healthData.getTemperature()));
+            tv_co2.setText(String.valueOf(healthData.getCo2()));
+            tv_humidity.setText(String.valueOf(healthData.getHumidity()));
+
+            /* Glide.with(this).load(dog.getImageURL()).into(imageView);
+            name.setText(dog.getName());
+            lifespan.setText(dog.getLifeSpan());
+            temperament.setText(dog.getTemperament());
+
+             */
+        });
+    }
+
     private void onClickListeners() {
+        btn_findRandomTemperature.setOnClickListener(view -> {
+            viewModel.findRandomHealthData();
+        });
 
         /*
         //mobile_navigation.xml

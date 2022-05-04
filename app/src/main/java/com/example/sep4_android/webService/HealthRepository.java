@@ -38,6 +38,7 @@ public class HealthRepository {
         call.enqueue(new Callback<HealthData>() {
             @Override
             public void onResponse(Call<HealthData> call, Response<HealthData> response) {
+                Log.i("Retrofit", "Reponse: " + response);
                 if (response.isSuccessful()) {
                     HealthData healthData = response.body();
                     Log.i("Retrofit", "SUCCESS!\nHealth Data: " + healthData);
