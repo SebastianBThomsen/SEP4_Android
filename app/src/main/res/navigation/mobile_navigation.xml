@@ -22,4 +22,9 @@
         android:name="com.example.sep4_android.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/healthInspection"
+        android:name="com.example.sep4_android.ui.healthInspection.HealthInspection"
+        android:label="fragment_health_inspection"
+        tools:layout="@layout/fragment_health_inspection" />
 </navigation>
