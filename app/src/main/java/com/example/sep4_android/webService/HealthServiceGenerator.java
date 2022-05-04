@@ -9,7 +9,7 @@ public class HealthServiceGenerator {
     public static HealthAPI getHealthAPI() {
         if (healthAPI == null) {
             healthAPI = new Retrofit.Builder()
-                    .baseUrl("https://run.mocky.io")
+                    .baseUrl("https://swapi.dev")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
                     .create(HealthAPI.class);

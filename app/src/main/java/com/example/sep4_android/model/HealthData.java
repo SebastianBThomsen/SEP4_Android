@@ -1,36 +1,37 @@
 package com.example.sep4_android.model;
 
 public class HealthData {
-    private double temperature, co2, humidity;
+    private String name, climate, gravity;
     //TODO: TIMESTAMP
 
-    public HealthData(double temperature, double co2, double humidity) {
-        this.temperature = temperature;
-        this.co2 = co2;
-        this.humidity = humidity;
+
+    public String getName() {
+        return name;
     }
 
-    public double getTemperature() {
-        return temperature;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setTemperature(double temperature) {
-        this.temperature = temperature;
+    public String getClimate() {
+        return climate;
     }
 
-    public double getCo2() {
-        return co2;
+    public void setClimate(String climate) {
+        this.climate = climate;
     }
 
-    public void setCo2(double co2) {
-        this.co2 = co2;
+    public String getGravity() {
+        return gravity;
     }
 
-    public double getHumidity() {
-        return humidity;
+    public void setGravity(String gravity) {
+        this.gravity = gravity;
     }
 
-    public void setHumidity(double humidity) {
-        this.humidity = humidity;
+    public HealthData(String name, String climate, String gravity) {
+        this.name = name;
+        this.climate = climate;
+        this.gravity = gravity;
     }
 }

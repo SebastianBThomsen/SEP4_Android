@@ -7,9 +7,17 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-//https://run.mocky.io/                 v3/6f64b188-00ea-44b3-abaa-387588645afa
+//https://run.mocky.io/                 v3/01cae4fa-6f20-4ae7-9800-12a47935ae25
 
 public interface HealthAPI {
-    @GET("v3/{search}")
-    Call<HealthData> getRandomTemperature(@Path("search") String search);
+    @GET("api/planets/{search}")
+    Call<HealthData> getRandomTemperature(@Path("search") int search);
+
+
+
+    /*
+    //https://run.mocky.io/v3/?search=6f64b188-00ea-44b3-abaa-387588645afa
+    @GET("v3/")
+    Call<HealthData> getRandomTemperature(@Query("search") String search);
+     */
 }

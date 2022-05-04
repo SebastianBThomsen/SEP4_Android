@@ -32,9 +32,10 @@ public class HealthRepository {
         return randomHealthData;
     }
 
-    public void searchForHealthData(String url) {
-        Log.i("Retrofit", "Start (searchForHealthData) - url: " +  url);
-        Call<HealthData> call = healthAPI.getRandomTemperature(url);
+    public void findRandomHealthData() {
+        Log.i("Retrofit", "Start (searchForHealthData) - url: ");
+        Call<HealthData> call = healthAPI.getRandomTemperature(1);
+        Log.i("Retrofit", "(searchForHealthData) - Call: " + call);
         call.enqueue(new Callback<HealthData>() {
             @Override
             public void onResponse(Call<HealthData> call, Response<HealthData> response) {
@@ -42,6 +43,7 @@ public class HealthRepository {
                 if (response.isSuccessful()) {
                     HealthData healthData = response.body();
                     Log.i("Retrofit", "SUCCESS!\nHealth Data: " + healthData);
+                    randomHealthData.setValue(healthData);
                 }
             }
             @Override
