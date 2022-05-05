@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 //https://run.mocky.io/                 v3/01cae4fa-6f20-4ae7-9800-12a47935ae25
 
 public interface HealthAPI {
-    @GET("api/planets/{search}")
+    @GET("v3/{search}")
     Call<HealthData> getRandomHealthData(@Path("search") String search);
 
 
