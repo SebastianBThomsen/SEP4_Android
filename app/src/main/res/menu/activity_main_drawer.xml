@@ -18,5 +18,10 @@
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Settings" />
+
+        <item
+            android:id="@+id/nav_graph"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Graphs" />
     </group>
 </menu>

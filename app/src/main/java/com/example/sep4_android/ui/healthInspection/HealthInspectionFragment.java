@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.sep4_android.databinding.FragmentHealthInspectionBinding;
 
-public class HealthInspection extends Fragment {
+public class HealthInspectionFragment extends Fragment {
 
     private HealthInspectionViewModelImpl viewModel;
 
@@ -78,5 +78,10 @@ public class HealthInspection extends Fragment {
         tv_humidity = binding.textViewHumidity;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 
 }
