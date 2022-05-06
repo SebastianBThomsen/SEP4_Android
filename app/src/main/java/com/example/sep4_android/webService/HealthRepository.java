@@ -34,20 +34,21 @@ public class HealthRepository {
 
     public void findRandomHealthData() {
         Log.i("Retrofit", "Start (searchForHealthData) - url: ");
-        Call<HealthData> call = healthAPI.getRandomHealthData("a318c566-f59b-4cc5-9738-66335c703cd1");
+        Call<HealthData[]> call = healthAPI.getRandomHealthData(2);
         Log.i("Retrofit", "(searchForHealthData) - Call: " + call);
-        call.enqueue(new Callback<HealthData>() {
+        call.enqueue(new Callback<HealthData[]>() {
             @Override
-            public void onResponse(Call<HealthData> call, Response<HealthData> response) {
+            public void onResponse(Call<HealthData[]> call, Response<HealthData[]> response) {
                 Log.i("Retrofit", "Reponse: " + response);
                 if (response.isSuccessful()) {
-                    HealthData healthData = response.body();
+                    //Tager første data i array om healthData
+                    HealthData healthData = response.body()[0];
                     Log.i("Retrofit", "SUCCESS!\nHealth Data: " + healthData);
                     randomHealthData.setValue(healthData);
                 }
             }
             @Override
-            public void onFailure(Call<HealthData> call, Throwable t) {
+            public void onFailure(Call<HealthData[]> call, Throwable t) {
                 Log.i("Retrofit", "FAILURE (searchForHealthData)"
                         +"\nError Message: " + t.getMessage());
             }
