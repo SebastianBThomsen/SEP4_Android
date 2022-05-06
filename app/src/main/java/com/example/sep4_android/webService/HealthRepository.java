@@ -49,7 +49,7 @@ public class HealthRepository {
             }
             @Override
             public void onFailure(Call<HealthData[]> call, Throwable t) {
-                Log.i("Retrofit", "FAILURE (searchForHealthData)"
+                Log.i("Retrofit", "FAILURE (searchForHealthData)" + call
                         +"\nError Message: " + t.getMessage());
             }
         });
