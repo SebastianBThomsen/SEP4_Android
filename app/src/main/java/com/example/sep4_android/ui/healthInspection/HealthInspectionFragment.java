@@ -24,7 +24,7 @@ public class HealthInspectionFragment extends Fragment {
     private FragmentHealthInspectionBinding binding;
 
     private Button btn_findRandomTemperature;
-    private TextView tv_temperature, tv_co2, tv_humidity;
+    private TextView tv_temperature, tv_co2, tv_humidity, tv_date;
 
 
     @Override
@@ -48,12 +48,12 @@ public class HealthInspectionFragment extends Fragment {
             tv_temperature.setText(String.valueOf(healthData.getTemperature()));
             tv_co2.setText(String.valueOf(healthData.getCo2()));
             tv_humidity.setText(String.valueOf(healthData.getHumidity()));
+            tv_date.setText(healthData.getTimestamp());
 
             /* Glide.with(this).load(dog.getImageURL()).into(imageView);
             name.setText(dog.getName());
             lifespan.setText(dog.getLifeSpan());
             temperament.setText(dog.getTemperament());
-
              */
         });
     }
@@ -76,6 +76,7 @@ public class HealthInspectionFragment extends Fragment {
         tv_temperature = binding.textViewTemperature;
         tv_co2 = binding.textViewCo2;
         tv_humidity = binding.textViewHumidity;
+        tv_date = binding.textViewDate;
     }
 
     @Override

@@ -5,13 +5,23 @@ public class HealthData {
     //https://run.mocky.io/v3/139a8f39-d5dd-4826-a5a8-237ed5de88f6
     //GET Measurements endpoint: http://sep4webapi-env.eba-2fmcgiei.eu-west-1.elasticbeanstalk.com/api/v1/rooms/2/measurements
     private double temperature, co2, humidity;
-    //TODO: TIMESTAMP
+    private String timestamp;
+    //FIXME: TIMESTAMP --> Skal dette være et timestamp eller er String fint nok?
 
 
-    public HealthData(double temperature, double co2, double humidity) {
+    public HealthData(double temperature, double co2, double humidity, String timestamp) {
         this.temperature = temperature;
         this.co2 = co2;
         this.humidity = humidity;
+        this.timestamp = timestamp;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public double getTemperature() {
