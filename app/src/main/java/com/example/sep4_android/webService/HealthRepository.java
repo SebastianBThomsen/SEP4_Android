@@ -16,19 +16,18 @@ public class HealthRepository {
     private final MutableLiveData<HealthData> randomHealthData;
     private HealthAPI healthAPI;
 
-    public HealthRepository(){
+    public HealthRepository() {
         randomHealthData = new MutableLiveData<>();
         healthAPI = HealthServiceGenerator.getHealthAPI();
     }
 
-    public static synchronized HealthRepository getInstance()
-    {
+    public static synchronized HealthRepository getInstance() {
         if (instance == null)
             instance = new HealthRepository();
         return instance;
     }
 
-    public LiveData<HealthData> getRandomHealthData(){
+    public LiveData<HealthData> getRandomHealthData() {
         return randomHealthData;
     }
 
@@ -47,10 +46,11 @@ public class HealthRepository {
                     randomHealthData.setValue(healthData);
                 }
             }
+
             @Override
             public void onFailure(Call<HealthData[]> call, Throwable t) {
                 Log.i("Retrofit", "FAILURE (searchForHealthData)" + call
-                        +"\nError Message: " + t.getMessage());
+                        + "\nError Message: " + t.getMessage());
             }
         });
     }
