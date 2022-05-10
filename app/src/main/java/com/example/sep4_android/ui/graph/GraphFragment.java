@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentGraphBinding;
+import com.patrykandpatryk.vico.core.chart.Chart;
+import com.patrykandpatryk.vico.view.chart.ChartView;
 
 public class GraphFragment extends Fragment {
 
@@ -24,6 +26,7 @@ public class GraphFragment extends Fragment {
 
     private TextView tv_test;
     private Button btn_edit;
+    private ChartView graph;
 
     private FragmentGraphBinding binding;
 
@@ -37,6 +40,8 @@ public class GraphFragment extends Fragment {
         tv_test.setText("Hej");
 
         onClickListeners();
+        //TODO: Hvordan får vi vores data ind i grafen? - Med Labels
+        //graph
 
         return root;
 
@@ -49,17 +54,10 @@ public class GraphFragment extends Fragment {
         });
     }
 
-
-
-
-
-
-
-
-
     private void binding() {
         tv_test = binding.graphTv;
         btn_edit= binding.button;
+        graph = binding.graphGraph;
     }
 
 
