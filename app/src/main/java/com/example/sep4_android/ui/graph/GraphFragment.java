@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentGraphBinding;
 
-public class GraphFragment extends Fragment implements View.OnClickListener {
+public class GraphFragment extends Fragment {
 
     private GraphViewModelImpl mViewModel;
 
@@ -35,18 +35,20 @@ public class GraphFragment extends Fragment implements View.OnClickListener {
         View root = binding.getRoot();
         binding();
         tv_test.setText("Hej");
+
+        onClickListeners();
+
         return root;
 
 
     }
-//Fixme; Vi skal finde ud af hvordan vi får ID på en binding
-    @Override
-    public void onClick(View view) {
-        Log.i("ClickTestOnGraph", "onClick:- before if ");
-if (binding.button.callOnClick())
-    Log.i("ClickTestOnGraph", "onClick: - in if  ");
-        tv_test.setText("Ole er sej");
-}
+
+    private void onClickListeners() {
+        btn_edit.setOnClickListener(view -> {
+            tv_test.setText("Blahblah");
+        });
+    }
+
 
 
 
