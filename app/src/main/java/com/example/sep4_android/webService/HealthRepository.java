@@ -27,13 +27,13 @@ public class HealthRepository {
         return instance;
     }
 
-    public LiveData<Device> getRandomHealthData() {
+    public LiveData<Device> getAllHealthDataByDevice() {
         return randomHealthData;
     }
 
-    public void findRandomHealthData() {
+    public void findAllHealthDataByDevice() {
         Log.i("Retrofit", "Start (searchForHealthData) - url: ");
-        Call<Device> call = healthAPI.getRandomHealthData("b4830343-c4fe-4107-bae6-d229ccf8190c");
+        Call<Device> call = healthAPI.getAllHealthDataByDevice("b4830343-c4fe-4107-bae6-d229ccf8190c");
         Log.i("Retrofit", "(searchForHealthData) - Call: " + call);
         call.enqueue(new Callback<Device>() {
             @Override

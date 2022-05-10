@@ -16,7 +16,7 @@ public interface HealthAPI {
 
 
     @GET("v3/{roomNo}")
-    Call<Device> getRandomHealthData(@Path("roomNo") String roomNo);
+    Call<Device> getAllHealthDataByDevice(@Path("roomNo") String roomNo);
 
 
 

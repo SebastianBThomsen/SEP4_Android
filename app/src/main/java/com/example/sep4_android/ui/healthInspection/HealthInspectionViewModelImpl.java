@@ -16,12 +16,12 @@ public class HealthInspectionViewModelImpl extends ViewModel implements HealthIn
 
 
     @Override
-    public LiveData<Device> getRandomData() {
-        return healthRepository.getRandomHealthData();
+    public LiveData<Device> getAllHealthDataByDevice() {
+        return healthRepository.getAllHealthDataByDevice();
     }
 
     @Override
-    public void findRandomHealthData() {
-        healthRepository.findRandomHealthData();
+    public void findAllHealthDataByDevice() {
+        healthRepository.findAllHealthDataByDevice();
     }
 }
