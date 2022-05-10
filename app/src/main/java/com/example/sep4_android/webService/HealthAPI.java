@@ -1,17 +1,22 @@
 package com.example.sep4_android.webService;
 
-import com.example.sep4_android.model.HealthData;
+import com.example.sep4_android.model.Device;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 //https://run.mocky.io/                 v3/01cae4fa-6f20-4ae7-9800-12a47935ae25
 
 public interface HealthAPI {
+    /*
     @GET("api/v1/rooms/{roomNo}/measurements")
     Call<HealthData[]> getRandomHealthData(@Path("roomNo") int roomNo);
+     */
+
+
+    @GET("v3/{roomNo}")
+    Call<Device> getRandomHealthData(@Path("roomNo") String roomNo);
 
 
 

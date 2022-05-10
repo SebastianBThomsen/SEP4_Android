@@ -45,10 +45,10 @@ public class HealthInspectionFragment extends Fragment {
 
     private void observers() {
         viewModel.getRandomData().observe(getViewLifecycleOwner(), healthData -> {
-            tv_temperature.setText(String.valueOf(healthData.getTemperature()));
-            tv_co2.setText(String.valueOf(healthData.getCo2()));
-            tv_humidity.setText(String.valueOf(healthData.getHumidity()));
-            tv_date.setText(healthData.getTimestamp());
+            tv_temperature.setText(String.valueOf(healthData.getMeasurements().get(0).getTemperature()));
+            tv_co2.setText(String.valueOf(healthData.getMeasurements().get(0).getCo2()));
+            tv_humidity.setText(String.valueOf(healthData.getMeasurements().get(0).getHumidity()));
+            tv_date.setText(healthData.getMeasurements().get(0).getTimestamp());
 
             /* Glide.with(this).load(dog.getImageURL()).into(imageView);
             name.setText(dog.getName());

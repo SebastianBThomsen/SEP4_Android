@@ -3,7 +3,7 @@ package com.example.sep4_android.ui.healthInspection;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.sep4_android.model.HealthData;
+import com.example.sep4_android.model.Device;
 import com.example.sep4_android.webService.HealthRepository;
 
 public class HealthInspectionViewModelImpl extends ViewModel implements HealthInspectionViewModel {
@@ -16,7 +16,7 @@ public class HealthInspectionViewModelImpl extends ViewModel implements HealthIn
 
 
     @Override
-    public LiveData<HealthData> getRandomData() {
+    public LiveData<Device> getRandomData() {
         return healthRepository.getRandomHealthData();
     }
 
