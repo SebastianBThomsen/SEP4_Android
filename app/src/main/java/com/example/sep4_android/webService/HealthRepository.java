@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.sep4_android.model.HealthData;
+import com.example.sep4_android.model.Device;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -13,7 +13,7 @@ import retrofit2.Response;
 
 public class HealthRepository {
     private static HealthRepository instance;
-    private final MutableLiveData<HealthData> randomHealthData;
+    private final MutableLiveData<Device> randomHealthData;
     private HealthAPI healthAPI;
 
     public HealthRepository() {
@@ -27,28 +27,28 @@ public class HealthRepository {
         return instance;
     }
 
-    public LiveData<HealthData> getRandomHealthData() {
+    public LiveData<Device> getAllHealthDataByDevice() {
         return randomHealthData;
     }
 
-    public void findRandomHealthData() {
+    public void findAllHealthDataByDevice() {
         Log.i("Retrofit", "Start (searchForHealthData) - url: ");
-        Call<HealthData[]> call = healthAPI.getRandomHealthData(2);
+        Call<Device> call = healthAPI.getAllHealthDataByDevice("b4830343-c4fe-4107-bae6-d229ccf8190c");
         Log.i("Retrofit", "(searchForHealthData) - Call: " + call);
-        call.enqueue(new Callback<HealthData[]>() {
+        call.enqueue(new Callback<Device>() {
             @Override
-            public void onResponse(Call<HealthData[]> call, Response<HealthData[]> response) {
+            public void onResponse(Call<Device> call, Response<Device> response) {
                 Log.i("Retrofit", "Reponse: " + response);
                 if (response.isSuccessful()) {
                     //Tager første data i array om healthData
-                    HealthData healthData = response.body()[0];
-                    Log.i("Retrofit", "SUCCESS!\nHealth Data: " + healthData);
-                    randomHealthData.setValue(healthData);
+                    Device device = response.body();
+                    Log.i("Retrofit", "SUCCESS!\nHealth Data: " + device);
+                    randomHealthData.setValue(device);
                 }
             }
 
             @Override
-            public void onFailure(Call<HealthData[]> call, Throwable t) {
+            public void onFailure(Call<Device> call, Throwable t) {
                 Log.i("Retrofit", "FAILURE (searchForHealthData)" + call
                         + "\nError Message: " + t.getMessage());
             }
