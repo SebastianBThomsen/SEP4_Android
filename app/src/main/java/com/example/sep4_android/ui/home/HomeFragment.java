@@ -28,6 +28,8 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         //FIXME: FIREBASE SKAL INDSÆTTES ET ELLER ANDET STED! - wupwup
+        //FIXME: Display Average Temp, Co2, humidity between 2 timestamps!
+        //viewModel.getHealthDataBetweenTimeStamps()
 
         bindings();
         setText();
