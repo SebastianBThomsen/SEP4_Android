@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph;
+package com.example.sep4_android.ui.graph.standardGraph;
 
 import static com.patrykandpatryk.vico.core.entry.EntryListExtensionsKt.entryModelOf;
 
@@ -10,22 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentGraphBinding;
 
-import com.patrykandpatryk.vico.core.chart.Chart;
 import com.patrykandpatryk.vico.core.entry.ChartEntryModel;
 import com.patrykandpatryk.vico.view.chart.ChartView;
 import com.patrykandpatryk.vico.view.chart.ComposedChartView;
-
-import java.util.ArrayList;
 
 public class GraphFragment extends Fragment {
 

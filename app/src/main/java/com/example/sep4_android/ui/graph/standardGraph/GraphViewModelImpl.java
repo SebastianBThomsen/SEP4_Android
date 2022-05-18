@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph;
+package com.example.sep4_android.ui.graph.standardGraph;
 
 import androidx.lifecycle.ViewModel;
 
