@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.sep4_android.databinding.FragmentLinechartBinding;
 import com.example.sep4_android.model.Device;
+import com.example.sep4_android.model.Measurement;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -43,7 +44,6 @@ public class LineFragment extends Fragment {
         observers();
         Log.e("observers", "After Observers " + tmp);
         viewModel.findAllHealthDataByDevice();
-        inputs();
 
 
 
@@ -53,24 +53,19 @@ public class LineFragment extends Fragment {
 
     private void observers() {
         viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), device -> {
-           device.getMeasurements().get(0).getTemperature();
-           device.getMeasurements().get(0).getTimestamp();
-        });
-    }
+            if (device.getMeasurements() != null) {
+                ArrayList<Entry> tempMesurements = new ArrayList<>();
+                int i =0;
+                for (Measurement measurement:device.getMeasurements()) {
+                    i++;
+                    tempMesurements.add(new Entry(i, (float) measurement.getTemperature()));
+                }
+                inputDataToChart(tempMesurements);
+                //fixme Timestamp skal bruges på x istedet for 1 ,2 og 3
+        }
+    });}
 
-    private void inputs(){
 
-        test.add(new Entry(1, 60));
-        test.add(new Entry(2, 60));
-        test.add(new Entry(3, 30));
-        test.add(new Entry(4, 40));
-        LineDataSet lineDataSet = new LineDataSet(test,"Test");
-        lineDataSet.setValueTextSize(16f);
-        LineData lineData = new LineData(lineDataSet);
-        lineChart.setData(lineData);
-        lineChart.animateY(5000);
-        lineChart.animateX(5000);
-    }
 
 
 
@@ -80,4 +75,12 @@ public class LineFragment extends Fragment {
     }
 
 
+
+    private void inputDataToChart(ArrayList<Entry> test) {
+        LineDataSet lineDataSet = new LineDataSet(test,"Test");
+        lineDataSet.setValueTextSize(16f);
+        LineData lineData = new LineData(lineDataSet);
+        lineChart.setData(lineData);
+
+    }
 }

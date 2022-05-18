@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sep4_android.databinding.FragmentHumidityBinding;
+import com.example.sep4_android.model.Measurement;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -26,7 +27,7 @@ public class humidityFragment extends Fragment {
     private HumidityViewModelImpl viewModel;
     private FragmentHumidityBinding binding;
     private LineChart lineChart;
-    private ArrayList<Entry> test = new ArrayList<>();
+
     double tmp =0;
 
     public static humidityFragment newInstance() {
@@ -42,17 +43,36 @@ public class humidityFragment extends Fragment {
         bindings();
         Log.e("observers", "Before Observers " + tmp);
         observers();
-        Log.e("observers", "After Observers " + tmp);
+        Log.e("observers", "After Observers " );
         viewModel.findAllHealthDataByDevice();
-        inputs();
+
         return root;
         }
 
     private void observers() {
         viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), device -> {
-            device.getMeasurements().get(0).getHumidity();
-            device.getMeasurements().get(0).getTimestamp();
+            if (device.getMeasurements() != null) {
+                ArrayList<Entry> test = new ArrayList<>();
+                int i =0;
+                for (Measurement measurement:device.getMeasurements()) {
+                    i++;
+                    test.add(new Entry(i, (float) measurement.getHumidity()));
+                }
+                inputDataToChart(test);
+
+
+            }
+            //fixme Timestamp skal bruges på x istedet for 1 ,2 og 3
+
     });
+    }
+
+    private void inputDataToChart(ArrayList<Entry> test) {
+        LineDataSet lineDataSet = new LineDataSet(test, "Test");
+        lineDataSet.setValueTextSize(16f);
+        LineData lineData = new LineData(lineDataSet);
+        lineChart.setData(lineData);
+
     }
 
     private void bindings() {
@@ -60,19 +80,6 @@ public class humidityFragment extends Fragment {
         }
 
 
-    private void inputs(){
-
-        test.add(new Entry(1, 60));
-        test.add(new Entry(2, 60));
-        test.add(new Entry(3, 30));
-        test.add(new Entry(4, 40));
-        LineDataSet lineDataSet = new LineDataSet(test,"Test");
-        lineDataSet.setValueTextSize(16f);
-        LineData lineData = new LineData(lineDataSet);
-        lineChart.setData(lineData);
-        lineChart.animateY(5000);
-        lineChart.animateX(5000);
-    }
 
 
 }
