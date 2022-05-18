@@ -1,8 +1,7 @@
-package com.example.sep4_android.ui.barchart;
+package com.example.sep4_android.ui.graph.barchart;
 
 import androidx.lifecycle.ViewModelProvider;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,30 +12,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentBarchartBinding;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class barchartFragment extends Fragment {
+public class BarchartFragment extends Fragment {
 
-    private BarchartViewModel mViewModel;
+    private BarchartViewModel viewModel;
     private FragmentBarchartBinding binding;
     private BarChart barChart;
-
-    public static barchartFragment newInstance() {
-        return new barchartFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = new ViewModelProvider(this).get(BarchartViewModel.class);
+        viewModel = new ViewModelProvider(this).get(BarchartViewModel.class);
         binding = FragmentBarchartBinding.inflate(inflater, container,false);
         View root = binding.getRoot();
         bindings();

@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.piechart;
+package com.example.sep4_android.ui.graph.piechart;
 
 import androidx.lifecycle.ViewModel;
 

@@ -16,6 +16,5 @@ public class HealthServiceGenerator {
                     .create(HealthAPI.class);
         }
         return healthAPI;
-
     }
 }

@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.radarchart;
+package com.example.sep4_android.ui.graph.radarchart;
 
 import androidx.lifecycle.ViewModel;
 

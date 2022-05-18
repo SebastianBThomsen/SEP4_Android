@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.piechart;
+package com.example.sep4_android.ui.graph.radarchart;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,24 +14,25 @@ import android.view.ViewGroup;
 
 import com.example.sep4_android.R;
 
-public class PieChartFragment extends Fragment {
+public class RadarChartFragment extends Fragment {
 
-    private PieChartViewModel mViewModel;
+    private RadarChartViewModel mViewModel;
+    private FragmentB
 
-    public static PieChartFragment newInstance() {
-        return new PieChartFragment();
+    public static RadarChartFragment newInstance() {
+        return new RadarChartFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_pie_chart, container, false);
+        return inflater.inflate(R.layout.radar_chart_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(PieChartViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(RadarChartViewModel.class);
         // TODO: Use the ViewModel
     }
 
