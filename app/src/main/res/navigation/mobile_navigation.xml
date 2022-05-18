@@ -44,8 +44,18 @@
         tools:layout="@layout/radar_chart_fragment" />
     <fragment
         android:id="@+id/lineFragment"
-        android:name="com.example.sep4_android.ui.graph.lineChart.LineFragment"
+        android:name="com.example.sep4_android.ui.graph.lineChartForTemp.LineFragment"
         android:label="fragment_linechart"
         tools:layout="@layout/fragment_linechart" />
+    <fragment
+        android:id="@+id/co2Fragment"
+        android:name="com.example.sep4_android.ui.lineChartForCo2.co2Fragment"
+        android:label="fragment_co2"
+        tools:layout="@layout/fragment_co2" />
+    <fragment
+        android:id="@+id/humidityFragment"
+        android:name="com.example.sep4_android.ui.graph.lineChartForHumidity.humidityFragment"
+        android:label="fragment_humidity"
+        tools:layout="@layout/fragment_humidity" />
 
 </navigation>

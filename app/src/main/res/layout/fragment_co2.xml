@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.graph.lineChartForTemp.LineFragment">
+    tools:context=".ui.lineChartForCo2.co2Fragment">
 
-   <com.github.mikephil.charting.charts.LineChart
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/LineChartForTemp"/>
+    <com.github.mikephil.charting.charts.LineChart
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/LineChartForCo2"/>
 
 </FrameLayout>

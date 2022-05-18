@@ -1,5 +1,7 @@
 package com.example.sep4_android.model;
 
+import com.github.mikephil.charting.data.Entry;
+
 public class Measurement {
     private double temperature, co2, humidity;
     private String timestamp;

@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph.lineChart;
+package com.example.sep4_android.ui.graph.lineChartForTemp;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,9 @@ public class LineFragment extends Fragment {
     private FragmentLinechartBinding binding;
     private LineChart lineChart;
     private Device device;
-    private double tmp;
+    private ArrayList<Entry> test = new ArrayList<>();
+    double tmp =0;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -36,18 +39,12 @@ public class LineFragment extends Fragment {
         binding = FragmentLinechartBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
         bindings();
+        Log.e("observers", "Before Observers " + tmp);
         observers();
+        Log.e("observers", "After Observers " + tmp);
         viewModel.findAllHealthDataByDevice();
-        ArrayList<Entry> test = new ArrayList<>();
+        inputs();
 
-        test.add(new Entry(1, (float) tmp));
-
-        LineDataSet lineDataSet = new LineDataSet(test,"Test");
-        lineDataSet.setValueTextSize(16f);
-        LineData lineData = new LineData(lineDataSet);
-        lineChart.setData(lineData);
-        lineChart.animateY(5000);
-        lineChart.animateX(8000);
 
 
 
@@ -56,15 +53,30 @@ public class LineFragment extends Fragment {
 
     private void observers() {
         viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), device -> {
-          tmp = device.getMeasurements().get(0).getTemperature();
+           device.getMeasurements().get(0).getTemperature();
+           device.getMeasurements().get(0).getTimestamp();
         });
+    }
+
+    private void inputs(){
+
+        test.add(new Entry(1, 60));
+        test.add(new Entry(2, 60));
+        test.add(new Entry(3, 30));
+        test.add(new Entry(4, 40));
+        LineDataSet lineDataSet = new LineDataSet(test,"Test");
+        lineDataSet.setValueTextSize(16f);
+        LineData lineData = new LineData(lineDataSet);
+        lineChart.setData(lineData);
+        lineChart.animateY(5000);
+        lineChart.animateX(5000);
     }
 
 
 
 
     private void bindings() {
-        lineChart= binding.LineChart;
+        lineChart= binding.LineChartForTemp;
     }
 
 

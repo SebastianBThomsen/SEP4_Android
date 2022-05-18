@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph.lineChart;
+package com.example.sep4_android.ui.lineChartForCo2;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel;
 import com.example.sep4_android.model.Device;
 import com.example.sep4_android.webService.HealthRepository;
 
-public class LineViewModelImpl extends ViewModel {
+public class Co2ViewModelImpl extends ViewModel {
     private HealthRepository healthRepository;
 
-    public LineViewModelImpl() {
+    public Co2ViewModelImpl() {
         this.healthRepository = HealthRepository.getInstance();
     }
 
@@ -20,5 +20,4 @@ public class LineViewModelImpl extends ViewModel {
     public void findAllHealthDataByDevice() {
         healthRepository.findAllHealthDataByDevice();
     }
-
 }

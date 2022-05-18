@@ -12,10 +12,13 @@
         <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/drawable/spacer.xml" value="0.196" />
         <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/app_bar_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/blank_fragment.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_barchart.xml" value="0.1" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_co2.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_gallery.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_graph.xml" value="0.22" />
         <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_health_inspection.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_humidity.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_line.xml" value="0.13541666666666666" />
         <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_linechart.xml" value="0.1" />
         <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_pie_chart.xml" value="0.36666666666666664" />

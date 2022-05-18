@@ -43,7 +43,17 @@
         <item
             android:id="@+id/lineFragment"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="LineChart"
+            android:title="See Tempature"
+            />
+        <item
+            android:id="@+id/humidityFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="See Humidity"
+            />
+        <item
+            android:id="@+id/co2Fragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="See Co2"
             />
 
 
