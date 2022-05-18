@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4_android.model.Device;
 
+import java.sql.Timestamp;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,5 +60,11 @@ public class HealthRepositoryImpl implements HealthRepository {
     @Override
     public void sendHealthSettings() {
         //TODO: Vi mangler end point fra DAI + at tilføje DeviceID eller Location?
+    }
+
+    @Override
+    public LiveData<Device> getHealthDataBetweenTimeStamps(Timestamp timeStart, Timestamp timeEnd) {
+        //TODO: dette skal bruge RIGTIG data!
+        return randomHealthData;
     }
 }

@@ -13,9 +13,15 @@ import com.example.sep4_android.model.Repository;
 
 import java.util.List;
 
-public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel {
+import com.example.sep4_android.model.Device;
+import com.example.sep4_android.webService.HealthRepository;
+import com.example.sep4_android.webService.HealthRepositoryImpl;
 
+import java.sql.Timestamp;
+
+public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel {
     private final MutableLiveData<String> mText;
+    private HealthRepository repository;
 
     //Test lort pls slet
     Measurement m = new Measurement(29.2, 0.1, 99.99, "2022-05-02 15:22");
@@ -26,6 +32,8 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
         r = Repository.getInstance(application);
 
         mText = new MutableLiveData<>();
+        repository = HealthRepositoryImpl.getInstance();
+
         mText.setValue("This is home fragment");
 
         r.insert(m);
@@ -37,5 +45,10 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
 
     public LiveData<String> getText() {
         return mText;
+    }
+
+    @Override
+    public LiveData<Device> getHealthDataBetweenTimeStamps(Timestamp timeStart, Timestamp timeEnd) {
+        return repository.getHealthDataBetweenTimeStamps(timeStart, timeEnd);
     }
 }
