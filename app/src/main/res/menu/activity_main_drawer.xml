@@ -40,6 +40,12 @@
             android:title="RaderChart"
             />
 
+        <item
+            android:id="@+id/lineFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="LineChart"
+            />
+
 
 
     </group>

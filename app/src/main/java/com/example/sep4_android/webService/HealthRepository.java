@@ -16,7 +16,7 @@ public class HealthRepository {
     private final MutableLiveData<Device> randomHealthData;
     private HealthAPI healthAPI;
 
-    public HealthRepository() {
+    private HealthRepository() {
         randomHealthData = new MutableLiveData<>();
         healthAPI = HealthServiceGenerator.getHealthAPI();
     }
@@ -27,7 +27,7 @@ public class HealthRepository {
         return instance;
     }
 
-    public LiveData<Device> getAllHealthDataByDevice() {
+    public MutableLiveData<Device> getAllHealthDataByDevice() {
         return randomHealthData;
     }
 

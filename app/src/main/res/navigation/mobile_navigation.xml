@@ -42,5 +42,10 @@
         android:name="com.example.sep4_android.ui.radarchart.RadarChartFragment"
         android:label="radar_chart_fragment"
         tools:layout="@layout/radar_chart_fragment" />
+    <fragment
+        android:id="@+id/lineFragment"
+        android:name="com.example.sep4_android.ui.graph.lineChart.LineFragment"
+        android:label="fragment_linechart"
+        tools:layout="@layout/fragment_linechart" />
 
 </navigation>
