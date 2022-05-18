@@ -8,10 +8,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentHomeBinding;
+import com.example.sep4_android.model.Measurement;
 import com.example.sep4_android.ui.healthInspection.HealthInspectionViewModelImpl;
+
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -19,6 +23,8 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private TextView textView;
+
+    private LiveData<List<Measurement>> meassu;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -35,7 +41,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void setText() {
-        textView.setText("Virker jeg?");
+        viewModel.getMeasures().observe(getViewLifecycleOwner(), measurements -> {
+            if(measurements == null) return;
+            textView.setText(""+measurements.get(0).getTimestamp());
+        });
     }
 
     private void bindings() {

@@ -1,6 +1,14 @@
 package com.example.sep4_android.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "measurements_table")
 public class Measurement {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    private long date;
+
     private double temperature, co2, humidity;
     private String timestamp;
     //FIXME: TIMESTAMP --> Skal dette være et timestamp eller er String fint nok?
@@ -10,6 +18,22 @@ public class Measurement {
         this.co2 = co2;
         this.humidity = humidity;
         this.timestamp = timestamp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
     }
 
     public double getTemperature() {
