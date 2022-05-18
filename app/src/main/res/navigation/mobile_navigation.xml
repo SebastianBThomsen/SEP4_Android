@@ -27,5 +27,20 @@
         android:label="Graph"
         tools:layout="@layout/fragment_graph"
         />
+    <fragment
+        android:id="@+id/barchartFragment"
+        android:name="com.example.sep4_android.ui.barchart.barchartFragment"
+        android:label="fragment_barchart"
+        tools:layout="@layout/fragment_barchart" />
+    <fragment
+        android:id="@+id/pieChartFragment"
+        android:name="com.example.sep4_android.ui.piechart.PieChartFragment"
+        android:label="fragment_pie_chart"
+        tools:layout="@layout/fragment_pie_chart" />
+    <fragment
+        android:id="@+id/radarChartFragment"
+        android:name="com.example.sep4_android.ui.radarchart.RadarChartFragment"
+        android:label="radar_chart_fragment"
+        tools:layout="@layout/radar_chart_fragment" />
 
 </navigation>
