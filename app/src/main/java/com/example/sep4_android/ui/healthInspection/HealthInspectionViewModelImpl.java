@@ -7,7 +7,7 @@ import com.example.sep4_android.model.Device;
 import com.example.sep4_android.webService.HealthRepository;
 
 public class HealthInspectionViewModelImpl extends ViewModel implements HealthInspectionViewModel {
-    HealthRepository healthRepository;
+    private HealthRepository healthRepository;
 
     public HealthInspectionViewModelImpl()
     {

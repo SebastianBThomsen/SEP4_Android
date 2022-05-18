@@ -7,8 +7,11 @@ import com.example.sep4_android.model.Device;
 import com.example.sep4_android.webService.HealthRepository;
 
 public class LineViewModelImpl extends ViewModel {
-    HealthRepository healthRepository;
+    private HealthRepository healthRepository;
 
+    public LineViewModelImpl() {
+        this.healthRepository = HealthRepository.getInstance();
+    }
 
     public LiveData<Device> getAllHealthDataByDevice() {
         return healthRepository.getAllHealthDataByDevice();

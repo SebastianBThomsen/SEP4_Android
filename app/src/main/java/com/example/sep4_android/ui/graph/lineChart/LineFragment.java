@@ -23,25 +23,21 @@ import java.util.ArrayList;
 
 public class LineFragment extends Fragment {
 
-    private LineViewModelImpl mViewModel;
+    private LineViewModelImpl viewModel;
     private FragmentLinechartBinding binding;
     private LineChart lineChart;
     private Device device;
     private double tmp;
 
-    public static LineFragment newInstance() {
-        return new LineFragment();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = new ViewModelProvider(this).get(LineViewModelImpl.class);
+        viewModel = new ViewModelProvider(this).get(LineViewModelImpl.class);
         binding = FragmentLinechartBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
         bindings();
         observers();
-        mViewModel.findAllHealthDataByDevice();
+        viewModel.findAllHealthDataByDevice();
         ArrayList<Entry> test = new ArrayList<>();
 
         test.add(new Entry(1, (float) tmp));
@@ -59,7 +55,7 @@ public class LineFragment extends Fragment {
     }
 
     private void observers() {
-        mViewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), device -> {
+        viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), device -> {
           tmp = device.getMeasurements().get(0).getTemperature();
         });
     }
