@@ -25,7 +25,7 @@
             android:title="Graphs"
             />
         <item
-            android:id="@+id/nav_barchart"
+            android:id="@+id/nav_barchartFragment"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="BarChart"
             />

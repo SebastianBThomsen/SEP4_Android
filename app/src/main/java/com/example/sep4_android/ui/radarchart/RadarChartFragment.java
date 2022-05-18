@@ -17,6 +17,7 @@ import com.example.sep4_android.R;
 public class RadarChartFragment extends Fragment {
 
     private RadarChartViewModel mViewModel;
+    private FragmentB
 
     public static RadarChartFragment newInstance() {
         return new RadarChartFragment();

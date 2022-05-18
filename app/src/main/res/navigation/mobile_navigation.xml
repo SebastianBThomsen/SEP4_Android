@@ -28,7 +28,7 @@
         tools:layout="@layout/fragment_graph"
         />
     <fragment
-        android:id="@+id/barchartFragment"
+        android:id="@+id/nav_barchartFragment"
         android:name="com.example.sep4_android.ui.barchart.barchartFragment"
         android:label="fragment_barchart"
         tools:layout="@layout/fragment_barchart" />
