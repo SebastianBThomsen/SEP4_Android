@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.barchart;
+package com.example.sep4_android.ui.graph.barchart;
 
 import androidx.lifecycle.ViewModel;
 

@@ -6,7 +6,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-//https://run.mocky.io/                 v3/01cae4fa-6f20-4ae7-9800-12a47935ae25
+//https://run.mocky.io/v3/01cae4fa-6f20-4ae7-9800-12a47935ae25
 
 public interface HealthAPI {
     /*

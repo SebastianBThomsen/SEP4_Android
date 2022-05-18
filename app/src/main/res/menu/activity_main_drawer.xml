@@ -35,7 +35,7 @@
             android:title="PieChart"
             />
         <item
-            android:id="@+id/nav_raderchart"
+            android:id="@+id/nav_radarchart"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="RaderChart"
             />
