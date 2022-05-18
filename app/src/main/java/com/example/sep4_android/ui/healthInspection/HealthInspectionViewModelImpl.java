@@ -4,24 +4,24 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.sep4_android.model.Device;
-import com.example.sep4_android.webService.HealthRepository;
+import com.example.sep4_android.webService.HealthRepositoryImpl;
 
 public class HealthInspectionViewModelImpl extends ViewModel implements HealthInspectionViewModel {
-    HealthRepository healthRepository;
+    HealthRepositoryImpl healthRepositoryImpl;
 
     public HealthInspectionViewModelImpl()
     {
-        healthRepository = HealthRepository.getInstance();
+        healthRepositoryImpl = HealthRepositoryImpl.getInstance();
     }
 
 
     @Override
     public LiveData<Device> getAllHealthDataByDevice() {
-        return healthRepository.getAllHealthDataByDevice();
+        return healthRepositoryImpl.getAllHealthDataByDevice();
     }
 
     @Override
     public void findAllHealthDataByDevice() {
-        healthRepository.findAllHealthDataByDevice();
+        healthRepositoryImpl.findAllHealthDataByDevice();
     }
 }

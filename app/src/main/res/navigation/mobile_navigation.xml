@@ -25,8 +25,7 @@
         android:id="@+id/nav_graph"
         android:name="com.example.sep4_android.ui.graph.standardGraph.GraphFragment"
         android:label="Graph"
-        tools:layout="@layout/fragment_graph"
-        />
+        tools:layout="@layout/fragment_graph" />
     <fragment
         android:id="@+id/nav_barchart"
         android:name="com.example.sep4_android.ui.graph.barchart.BarchartFragment"
