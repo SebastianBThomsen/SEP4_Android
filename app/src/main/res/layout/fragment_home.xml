@@ -36,40 +36,25 @@
     <!-- Start Time-->
 
     <TextView
-        android:id="@+id/textStart"
+        android:id="@+id/tv_startTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="startTime"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
         app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
-    <EditText
-        android:id="@+id/editText_startTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/textStart"
-        app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft" />
-
     <!-- End Time-->
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="endTime"
-        app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/textStart" />
-
-    <EditText
-        android:id="@+id/editText_endTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft" />
 
     <!-- Health Data header-->
+    <TextView
+        android:id="@+id/tv_endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="endTime"
+        app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
+        app:layout_constraintTop_toBottomOf="@+id/tv_startTime" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -162,4 +147,35 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
+
+    <Button
+        android:id="@+id/btn_endDate"
+        android:layout_width="82dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="136dp"
+        android:text="Button"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_submit"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.107"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btn_startDate"
+        android:layout_width="82dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="136dp"
+        android:text="Button"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_submit"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04"
+        tools:ignore="TouchTargetSizeCheck" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

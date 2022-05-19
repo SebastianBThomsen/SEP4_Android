@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
+import com.example.sep4_android.model.DateHandler;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.model.HealthRepositoryLocal;
 
@@ -50,7 +51,8 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
     }
 
     @Override
-    public LiveData<List<Measurement>> getHealthDataBetweenTimestampsLocal(String start, String end) {
+    public LiveData<List<Measurement>> getHealthDataBetweenTimestampsLocal(long start, long end) {
+        /*
         long startTime = 0;
         long endTime = 0;
         try{
@@ -61,7 +63,11 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
             Log.i("HomeViewModelImpl", "Parsing startTime and endTime to long failed!");
         }
 
-        return healthRepositoryLocal.getHealthDataBetweenTimestamps(startTime,endTime);
+         */
+        Log.i("homeViewModelImpl", "Start time: " + start + "\n" + DateHandler.fromLongToString(start));
+        Log.i("homeViewModelImpl", "Start time: " + end + "\n" + DateHandler.fromLongToString(end));
+
+        return healthRepositoryLocal.getHealthDataBetweenTimestamps(start,end);
     }
 
     public LiveData<Measurement> getAverageMeasurement(){
