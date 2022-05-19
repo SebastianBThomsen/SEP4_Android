@@ -17,6 +17,9 @@ import com.example.sep4_android.databinding.FragmentLinechartBinding;
 import com.example.sep4_android.model.Device;
 import com.example.sep4_android.model.Measurement;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -80,6 +83,22 @@ public class LineFragment extends Fragment {
         LineDataSet lineDataSet = new LineDataSet(test,"Test");
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
+
+
+
+
+        LimitLine llXAxis = new LimitLine(43f, "Index 10");
+        llXAxis.setLineWidth(4f);
+        llXAxis.enableDashedLine(10f, 10f, 0f);
+        llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+        llXAxis.setTextSize(10f);
+
+
+
+        YAxis xAxis = lineChart.getAxisLeft();
+        xAxis.addLimitLine(llXAxis); // add x-axis limit line
+        xAxis.enableGridDashedLine(10f, 10f, 0f);
+
         lineChart.setData(lineData);
 
     }
