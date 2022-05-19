@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import com.example.sep4_android.databinding.FragmentHumidityBinding;
 import com.example.sep4_android.model.Measurement;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -62,7 +64,14 @@ public class humidityFragment extends Fragment {
 
                 }
 
-                average(sum,test.size());
+                LimitLine llXAxis = new LimitLine((float) average(sum,i), "Average");
+                llXAxis.setLineWidth(4f);
+                llXAxis.enableDashedLine(10f, 10f, 0f);
+                llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+                llXAxis.setTextSize(10f);
+                YAxis xAxis = lineChart.getAxisLeft();
+                xAxis.addLimitLine(llXAxis); // add x-axis limit line
+                xAxis.enableGridDashedLine(10f, 10f, 0f);
                 inputDataToChart(test);
 
 
@@ -85,10 +94,11 @@ public class humidityFragment extends Fragment {
             lineChart= binding.LineChartForHumidity;
         }
 
-    private void average(double b,int a )
+    private double average(double b,int a )
     {
         double avg = b/a;
         System.out.println("Her får vi average fra metoden average fra humidity "+avg);
+        return avg;
     }
 
 

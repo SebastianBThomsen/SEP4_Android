@@ -68,14 +68,11 @@ public class LineFragment extends Fragment {
                     tempMesurements.add(new Entry(i, (float) measurement.getTemperature()));
                 }
                 inputDataToChart(tempMesurements);
-                LimitLine llXAxis = new LimitLine((float) average(sum,i), "Index 10");
+                LimitLine llXAxis = new LimitLine((float) average(sum,i), "Average");
                 llXAxis.setLineWidth(4f);
                 llXAxis.enableDashedLine(10f, 10f, 0f);
                 llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
                 llXAxis.setTextSize(10f);
-
-
-
                 YAxis xAxis = lineChart.getAxisLeft();
                 xAxis.addLimitLine(llXAxis); // add x-axis limit line
                 xAxis.enableGridDashedLine(10f, 10f, 0f);
