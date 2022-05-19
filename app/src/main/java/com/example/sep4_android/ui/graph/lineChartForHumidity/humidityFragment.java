@@ -82,13 +82,14 @@ public class humidityFragment extends Fragment {
     }
 
     private void inputDataToChart(ArrayList<Entry> test) {
-        LineDataSet lineDataSet = new LineDataSet(test, "Test");
+        LineDataSet lineDataSet = new LineDataSet(test, "Humidity");
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         lineChart.fitScreen();
         lineChart.setDrawGridBackground(false);
         lineChart.setScaleEnabled(true);
+        lineChart.getDescription().setText("Dette Chart indholder Humidity");
 
 
     }

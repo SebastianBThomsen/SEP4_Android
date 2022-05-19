@@ -1,12 +1,11 @@
 package com.example.sep4_android.ui.graph.lineChartOverview;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -59,7 +58,6 @@ private Button btn_Co2,btn_Temp,btn_Humidity;
         cardView_Co2 = binding.cardViewCo2;
         cardView_humidity = binding.cardViewHumidity;
         cardView_temp = binding.cardViewTemp;
-
         btn_Co2 = binding.btnCo2;
         btn_Humidity = binding.btnHumidity;
         btn_Temp = binding.btnTemp;

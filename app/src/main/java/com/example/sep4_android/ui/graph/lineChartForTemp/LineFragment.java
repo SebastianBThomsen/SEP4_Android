@@ -84,13 +84,14 @@ public class LineFragment extends Fragment {
 
 
     private void inputDataToChart(ArrayList<Entry> test) {
-        LineDataSet lineDataSet = new LineDataSet(test,"Test");
+        LineDataSet lineDataSet = new LineDataSet(test,"Tempature");
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         lineChart.fitScreen();
         lineChart.setScaleEnabled(true);
         lineChart.setDrawGridBackground(false);
+        lineChart.getDescription().setText("Dette Chart indholder Tempature");
 
 
 

@@ -4,19 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.graph.lineChartOverview.FrontpageFragment"
     android:background="#252424"
-    >
+    tools:context=".ui.graph.lineChartOverview.FrontpageFragment">
 
 
     <androidx.cardview.widget.CardView
-        android:layout_margin="3dp"
         android:id="@+id/cardViewHumidity"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewCo2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.054">
@@ -37,20 +36,21 @@
         <Button
             android:id="@+id/btn_Humidity"
             android:layout_width="20dp"
-            android:layout_height="20dp" />
+            android:layout_height="20dp"
+          />
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_margin="3dp"
         android:id="@+id/cardViewCo2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewTemp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewHumidity"
         app:layout_constraintVertical_bias="0.499">
 
         <androidx.fragment.app.FragmentContainerView
@@ -72,13 +72,13 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_margin="3dp"
         android:id="@+id/cardViewTemp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:layout_margin="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardViewCo2"
         app:layout_constraintVertical_bias="0.598"
@@ -100,43 +100,9 @@
         <Button
             android:id="@+id/btn_Temp"
             android:layout_width="20dp"
-            android:layout_height="20dp" />
+            android:layout_height="20dp"
+           />
     </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="9dp"
-        android:text="Co2"
-        app:layout_constraintBottom_toTopOf="@+id/cardViewCo2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewHumidity" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6dp"
-        android:text="Humidity"
-        app:layout_constraintBottom_toTopOf="@+id/cardViewHumidity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="11dp"
-        android:text="Temp"
-        app:layout_constraintBottom_toTopOf="@+id/cardViewTemp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewCo2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -82,7 +82,9 @@ public class co2Fragment extends Fragment {
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         lineChart.setScaleEnabled(true);
+        lineChart.setBackgroundColor(0);
         lineChart.setDrawGridBackground(false);
+        lineChart.getDescription().setText("Dette Chart indholder Co2");
     }
 
     private double average(double b, int a) {
