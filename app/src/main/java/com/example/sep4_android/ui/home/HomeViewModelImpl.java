@@ -13,6 +13,7 @@ import com.example.sep4_android.model.DateHandler;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.model.HealthRepositoryLocal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.sep4_android.model.persistence.entities.Device;
@@ -27,7 +28,7 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
     private HealthRepositoryLocal healthRepositoryLocal;
 
     private LiveData<List<Measurement>> measurementsByTimestamp;
-    private MutableLiveData<Long> filterTimestamp = new MutableLiveData<>();
+    private MutableLiveData<List<Long>> filterTimestamp = new MutableLiveData<>();
 
 
     public HomeViewModelImpl(@NonNull Application application) {
@@ -37,7 +38,7 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
 
         measurementsByTimestamp = Transformations.switchMap(
                 filterTimestamp,
-                timestamp -> healthRepositoryLocal.getHealthDataBetweenTimestamps(timestamp, timestamp)
+                timestamp -> healthRepositoryLocal.getHealthDataBetweenTimestamps(timestamp.get(0), timestamp.get(1))
         );
     }
 
@@ -50,26 +51,6 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
         return healthRepositoryWeb.getHealthDataBetweenTimeStamps(timeStart, timeEnd);
     }
 
-    @Override
-    public LiveData<List<Measurement>> getHealthDataBetweenTimestampsLocal(long start, long end) {
-        /*
-        long startTime = 0;
-        long endTime = 0;
-        try{
-            startTime = Long.parseLong(start);
-            endTime = Long.parseLong(end);
-        }
-        catch (Exception e){
-            Log.i("HomeViewModelImpl", "Parsing startTime and endTime to long failed!");
-        }
-
-         */
-        Log.i("homeViewModelImpl", "Start time: " + start + "\n" + DateHandler.fromLongToString(start));
-        Log.i("homeViewModelImpl", "Start time: " + end + "\n" + DateHandler.fromLongToString(end));
-
-        return healthRepositoryLocal.getHealthDataBetweenTimestamps(start,end);
-    }
-
     public LiveData<Measurement> getAverageMeasurement(){
         return healthRepositoryLocal.getAverageMeasurement();
     }
@@ -79,8 +60,17 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
         return measurementsByTimestamp;
     }
 
-    void setTimestamp(String timestamp) {
-        //filterTimestamp.setValue(timestamp);
+    public void setTimestamp(Long start, Long end) {
+        ArrayList<Long> timestamps = new ArrayList<>();
+        timestamps.add(start/1000);
+        timestamps.add(end/1000);
+        Log.i("HomeViewModelImpl", "setTimestamp + Start: " + start + " - END: " + end);
+        Boolean isStartBefore = start<1652948247;
+        Boolean isEndAfter = end>1652948247;
+
+        Log.i("HomeViewModelImpl", "setTimestamp is start before: " + isStartBefore);
+        Log.i("HomeViewModelImpl", "setTimestamp is end after: " + isEndAfter);
+        filterTimestamp.postValue(timestamps);
     }
 
 }

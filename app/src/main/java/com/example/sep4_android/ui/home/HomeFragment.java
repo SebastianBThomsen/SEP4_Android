@@ -55,11 +55,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void observers() {
-        viewModel.getHealthDataBetweenTimestampsLocal(1652876333, 1652876666).observe(getViewLifecycleOwner(), measurements -> {
+        viewModel.getTestMeasurements().observe(getViewLifecycleOwner(), measurements -> {
             if(measurements!=null){
                 String co2 = "";
                 for (Measurement measurement: measurements) {
-                    co2 += measurement.getCo2();
+                    co2 += measurement.getCo2() + ", ";
                 }
                 tv_co2.setText(co2);
             }
@@ -120,7 +120,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void submitTime(View view) {
-        viewModel.getHealthDataBetweenTimestampsLocal(startDate, endDate);
+        viewModel.setTimestamp(startDate, endDate);
     }
 
     @Override

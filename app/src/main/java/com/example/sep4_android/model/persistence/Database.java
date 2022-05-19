@@ -27,13 +27,17 @@ public abstract class Database extends RoomDatabase {
                             super.onCreate(db);
                             //FIXME: Testing purposes, prepoulate data!
                             ExecutorService executorService = Executors.newFixedThreadPool(2);
-                            Measurement measurement1 = new Measurement(29, 0.1, 32, 1652876333);
-                            Measurement measurement2 = new Measurement(27, 0.2, 30, 1652876666);
-                            Measurement measurement3 = new Measurement(25, 0.3, 28, 1652876999);
+                            Measurement measurement1 = new Measurement(25, 1, 35, 1652948247);
+                            Measurement measurement2 = new Measurement(30, 2, 40, 1652937447);
+                            Measurement measurement3 = new Measurement(35, 3, 45, 1652872647);
+                            Measurement measurement4 = new Measurement(40, 4, 50, 1652786247);
+                            Measurement measurement5 = new Measurement(45, 5, 55, 1652699847);
                             executorService.execute(() -> {
                                 getInstance(context).measurementDAO().insert(measurement1);
                                 getInstance(context).measurementDAO().insert(measurement2);
                                 getInstance(context).measurementDAO().insert(measurement3);
+                                getInstance(context).measurementDAO().insert(measurement4);
+                                getInstance(context).measurementDAO().insert(measurement5);
                             });
                         }
                     })
