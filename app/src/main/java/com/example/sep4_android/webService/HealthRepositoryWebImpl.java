@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.sep4_android.model.Device;
+import com.example.sep4_android.model.persistence.entities.Device;
 
 import java.sql.Timestamp;
 

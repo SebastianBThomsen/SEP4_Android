@@ -1,7 +1,6 @@
 package com.example.sep4_android.ui.home;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentHomeBinding;
-import com.example.sep4_android.model.Measurement;
+import com.example.sep4_android.model.persistence.entities.Measurement;
 
 public class HomeFragment extends Fragment {
 
@@ -46,15 +45,24 @@ public class HomeFragment extends Fragment {
     }
 
     private void observers() {
-        viewModel.getMeasurements().observe(getViewLifecycleOwner(), measurements -> {
-            if(measurements == null) return;
-            textView.setText(""+measurements.get(0).getTimestamp());
-        });
+        viewModel.getHealthDataBetweenTimestampsLocal("1652876333", "1652876666").observe(getViewLifecycleOwner(), measurements -> {
+            if(measurements!=null){
+                String co2 = "";
+                for (Measurement measurement: measurements) {
+                    co2 += measurement.getCo2();
+                }
+                tv_co2.setText(co2);
+            }
 
-        viewModel.getAverageMeasurement().observe(getViewLifecycleOwner(), measurement -> {
-            tv_co2.setText("" + measurement.getCo2());
+            //Average Temp
+            //Observe på dennne under i stedet!
+            //viewModel.getAverageMeasurement()
+            /* tv_co2.setText("" + measurement.getCo2());
             tv_humidity.setText("" + measurement.getHumidity());
             tv_temperature.setText("" + measurement.getTemperature());
+            textView.setText(measurement.getTimestampString());
+
+             */
         });
     }
 

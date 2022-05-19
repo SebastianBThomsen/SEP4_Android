@@ -6,8 +6,9 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.sep4_android.model.persistence.MeasurementDAO;
 import com.example.sep4_android.model.persistence.Database;
+import com.example.sep4_android.model.persistence.MeasurementDAO;
+import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -24,7 +25,7 @@ public class HealthRepositoryLocal {
     private MutableLiveData<Measurement> averageMeasurement;
 
 
-    private HealthRepositoryLocal(Application application){
+    private HealthRepositoryLocal(Application application) {
         Database database = Database.getInstance(application);
         executor = Executors.newFixedThreadPool(2);
 
@@ -50,37 +51,32 @@ public class HealthRepositoryLocal {
 
     private void setAverageMeasurement() {
         allMeasurements.observeForever(measurements -> {
-            double co2=0, temp=0, humidity=0;
-            if(measurements.size()>0)
-            {
-                for (Measurement measurement: measurements) {
+            double co2 = 0, temp = 0, humidity = 0;
+            if (measurements.size() > 0) {
+                for (Measurement measurement : measurements) {
                     co2 += measurement.getCo2();
                     temp += measurement.getTemperature();
                     humidity += measurement.getHumidity();
                 }
-                co2 = co2/measurements.size();
-                temp = temp/measurements.size();
-                humidity = humidity/measurements.size();
+                co2 = co2 / measurements.size();
+                temp = temp / measurements.size();
+                humidity = humidity / measurements.size();
             }
-            averageMeasurement.setValue(new Measurement(temp, co2, humidity, 0));
-        } );
-    }
-
-    public LiveData<List<Measurement>> getAllMeasurements(){
-        return allMeasurements;
-    }
-
-    public LiveData<List<Measurement>> getHealthDataBetweenTimestamps(long start, long end){
-        Log.i("HealthRepositoryLocal", "getHealthDataBetweenTimestamps" + measurementDAO.getHealthDataBetweenTimestamps(start, end));
-        return measurementDAO.getHealthDataBetweenTimestamps(start, end);
-    }
-
-    public void insert(Measurement measu){
-        executor.execute(() -> {
-            //measurementDAO.deleteAllNotes();
-            measurementDAO.insert(measu);
+            averageMeasurement.setValue(new Measurement(temp, co2, humidity, System.currentTimeMillis()));
         });
     }
 
+    public LiveData<List<Measurement>> getAllMeasurements() {
+        return allMeasurements;
+    }
 
+    public LiveData<List<Measurement>> getHealthDataBetweenTimestamps(long start, long end) {
+        //FIXME: Dette virker ikke :((
+        //measurementList = measurementDAO.getHealthDataBetweenTimestamps(start, end)
+        //measurementList.setvalue(measurementDAO.getHealthDataBetweenTimestamps(start, end))
+
+        //Tilføj en getter til measurementList uden parametre! --> Så den kan observes i fragment!
+        Log.i("HealthRepositoryLocal", "getHealthDataBetweenTimestamps" + measurementDAO.getHealthDataBetweenTimestamps(start, end));
+        return measurementDAO.getHealthDataBetweenTimestamps(start, end);
+    }
 }

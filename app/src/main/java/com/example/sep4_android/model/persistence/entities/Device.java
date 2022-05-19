@@ -1,4 +1,4 @@
-package com.example.sep4_android.model;
+package com.example.sep4_android.model.persistence.entities;
 
 import java.util.ArrayList;
 

@@ -2,7 +2,7 @@ package com.example.sep4_android.webService;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.sep4_android.model.Device;
+import com.example.sep4_android.model.persistence.entities.Device;
 
 import java.sql.Timestamp;
 

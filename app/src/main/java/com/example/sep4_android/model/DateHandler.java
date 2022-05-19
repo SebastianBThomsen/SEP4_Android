@@ -1,4 +1,4 @@
-package com.example.sep4_android.model.persistence;
+package com.example.sep4_android.model;
 
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointBackward;
@@ -13,7 +13,7 @@ public class DateHandler {
     public static String fromLongToString(long ms){
         Date date = new Date(ms);
         //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy - hh:mm:ss");
         return dateFormat.format(date);
     }
 

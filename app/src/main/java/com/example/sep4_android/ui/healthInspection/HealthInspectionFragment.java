@@ -48,12 +48,6 @@ public class HealthInspectionFragment extends Fragment {
             tv_co2.setText(String.valueOf(device.getMeasurements().get(0).getCo2()));
             tv_humidity.setText(String.valueOf(device.getMeasurements().get(0).getHumidity()));
             tv_date.setText(""+device.getMeasurements().get(0).getTimestamp());
-
-            /* Glide.with(this).load(dog.getImageURL()).into(imageView);
-            name.setText(dog.getName());
-            lifespan.setText(dog.getLifeSpan());
-            temperament.setText(dog.getTemperament());
-             */
         });
     }
 

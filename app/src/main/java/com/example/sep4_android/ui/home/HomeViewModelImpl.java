@@ -7,12 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.sep4_android.model.Measurement;
+import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.model.HealthRepositoryLocal;
 
 import java.util.List;
 
-import com.example.sep4_android.model.Device;
+import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.webService.HealthRepositoryWeb;
 import com.example.sep4_android.webService.HealthRepositoryWebImpl;
 

@@ -1,7 +1,11 @@
-package com.example.sep4_android.model;
+package com.example.sep4_android.model.persistence.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.example.sep4_android.model.DateHandler;
+
+import java.text.DateFormat;
 
 @Entity(tableName = "measurements_table")
 public class Measurement {
@@ -16,6 +20,11 @@ public class Measurement {
         this.co2 = co2;
         this.humidity = humidity;
         this.timestamp = timestamp;
+    }
+
+    //Getting timestamp in string format
+    public String getTimestampString(){
+        return DateHandler.fromLongToString(timestamp);
     }
 
     @Override
