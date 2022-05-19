@@ -27,6 +27,6 @@ public interface MeasurementDAO {
     @Query("DELETE FROM measurements_table")
     void deleteAllNotes();
 
-    @Query("SELECT * FROM measurements_table ORDER BY date DESC")
+    @Query("SELECT * FROM measurements_table ORDER BY timestamp DESC")
     LiveData<List<Measurement>> getAllMeasurements();
 }

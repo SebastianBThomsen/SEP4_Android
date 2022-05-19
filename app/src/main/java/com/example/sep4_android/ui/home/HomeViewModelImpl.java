@@ -24,7 +24,7 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
     private HealthRepository repository;
 
     //Test lort pls slet
-    Measurement m = new Measurement(29.2, 0.1, 99.99, "2022-05-02 15:22");
+    Measurement m = new Measurement(29.2, 0.1, 99.99, 1652879877);
     Repository r;
 
     public HomeViewModelImpl(@NonNull Application application) {

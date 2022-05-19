@@ -7,13 +7,12 @@ import androidx.room.PrimaryKey;
 public class Measurement {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private long date;
 
     private double temperature, co2, humidity;
-    private String timestamp;
+    private long timestamp;
     //FIXME: TIMESTAMP --> Skal dette være et timestamp eller er String fint nok?
 
-    public Measurement(double temperature, double co2, double humidity, String timestamp) {
+    public Measurement(double temperature, double co2, double humidity, long timestamp) {
         this.temperature = temperature;
         this.co2 = co2;
         this.humidity = humidity;
@@ -26,14 +25,6 @@ public class Measurement {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public long getDate() {
-        return date;
-    }
-
-    public void setDate(long date) {
-        this.date = date;
     }
 
     public double getTemperature() {
@@ -60,11 +51,11 @@ public class Measurement {
         this.humidity = humidity;
     }
 
-    public String getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 }

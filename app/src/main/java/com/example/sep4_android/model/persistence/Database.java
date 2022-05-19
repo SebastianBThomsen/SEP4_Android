@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.sep4_android.model.Measurement;
 
-@androidx.room.Database(entities = {Measurement.class}, version =1)
+@androidx.room.Database(entities = {Measurement.class}, version =2)
 public abstract class Database extends RoomDatabase {
     private static Database instance;
     public abstract MeasurementDAO measurementDAO();
