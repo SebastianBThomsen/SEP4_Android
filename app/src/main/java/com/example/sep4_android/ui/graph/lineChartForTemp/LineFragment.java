@@ -12,17 +12,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.sep4_android.databinding.FragmentLinechartBinding;
 import com.example.sep4_android.model.Device;
 import com.example.sep4_android.model.Measurement;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -31,7 +33,7 @@ public class LineFragment extends Fragment {
     private LineViewModelImpl viewModel;
     private FragmentLinechartBinding binding;
     private LineChart lineChart;
-    private Device device;
+    private TextView tv_avg;
     private ArrayList<Entry> test = new ArrayList<>();
     double tmp =0;
 
@@ -59,11 +61,24 @@ public class LineFragment extends Fragment {
             if (device.getMeasurements() != null) {
                 ArrayList<Entry> tempMesurements = new ArrayList<>();
                 int i =0;
+                double sum =0;
                 for (Measurement measurement:device.getMeasurements()) {
                     i++;
+                    sum= measurement.getTemperature() + sum;
                     tempMesurements.add(new Entry(i, (float) measurement.getTemperature()));
                 }
                 inputDataToChart(tempMesurements);
+                LimitLine llXAxis = new LimitLine((float) average(sum,i), "Index 10");
+                llXAxis.setLineWidth(4f);
+                llXAxis.enableDashedLine(10f, 10f, 0f);
+                llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+                llXAxis.setTextSize(10f);
+
+
+
+                YAxis xAxis = lineChart.getAxisLeft();
+                xAxis.addLimitLine(llXAxis); // add x-axis limit line
+                xAxis.enableGridDashedLine(10f, 10f, 0f);
                 //fixme Timestamp skal bruges på x istedet for 1 ,2 og 3
         }
     });}
@@ -75,6 +90,7 @@ public class LineFragment extends Fragment {
 
     private void bindings() {
         lineChart= binding.LineChartForTemp;
+        tv_avg = binding.tvAvgTemp;
     }
 
 
@@ -87,19 +103,18 @@ public class LineFragment extends Fragment {
 
 
 
-        LimitLine llXAxis = new LimitLine(43f, "Index 10");
-        llXAxis.setLineWidth(4f);
-        llXAxis.enableDashedLine(10f, 10f, 0f);
-        llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        llXAxis.setTextSize(10f);
 
-
-
-        YAxis xAxis = lineChart.getAxisLeft();
-        xAxis.addLimitLine(llXAxis); // add x-axis limit line
-        xAxis.enableGridDashedLine(10f, 10f, 0f);
 
         lineChart.setData(lineData);
 
+
+    }
+    private double average(double b,int a )
+    {
+        double avg = b/a;
+        System.out.println("Her får vi average fra metoden average fra temp  "+avg);
+        lineChart.setAlpha((float) avg);
+        tv_avg.setText(String.valueOf(avg));
+        return avg;
     }
 }

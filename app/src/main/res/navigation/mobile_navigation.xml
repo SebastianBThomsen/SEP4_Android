@@ -49,7 +49,7 @@
         tools:layout="@layout/fragment_linechart" />
     <fragment
         android:id="@+id/co2Fragment"
-        android:name="com.example.sep4_android.ui.lineChartForCo2.co2Fragment"
+        android:name="com.example.sep4_android.ui.graph.lineChartForCo2.co2Fragment"
         android:label="fragment_co2"
         tools:layout="@layout/fragment_co2" />
     <fragment

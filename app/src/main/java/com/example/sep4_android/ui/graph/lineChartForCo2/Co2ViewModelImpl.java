@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.lineChartForCo2;
+package com.example.sep4_android.ui.graph.lineChartForCo2;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;

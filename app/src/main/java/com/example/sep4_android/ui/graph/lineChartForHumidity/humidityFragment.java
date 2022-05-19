@@ -54,10 +54,15 @@ public class humidityFragment extends Fragment {
             if (device.getMeasurements() != null) {
                 ArrayList<Entry> test = new ArrayList<>();
                 int i =0;
+                double sum =0;
                 for (Measurement measurement:device.getMeasurements()) {
                     i++;
+                    sum = measurement.getHumidity() + sum;
                     test.add(new Entry(i, (float) measurement.getHumidity()));
+
                 }
+
+                average(sum,test.size());
                 inputDataToChart(test);
 
 
@@ -73,13 +78,18 @@ public class humidityFragment extends Fragment {
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
 
+
     }
 
     private void bindings() {
             lineChart= binding.LineChartForHumidity;
         }
 
-
+    private void average(double b,int a )
+    {
+        double avg = b/a;
+        System.out.println("Her får vi average fra metoden average fra humidity "+avg);
+    }
 
 
 }
