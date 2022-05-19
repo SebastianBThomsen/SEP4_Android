@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentHomeBinding;
+import com.example.sep4_android.model.DateHandler;
 import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.google.android.material.datepicker.MaterialDatePicker;
 
 public class HomeFragment extends Fragment {
 
@@ -23,10 +24,16 @@ public class HomeFragment extends Fragment {
     private TextView textView;
 
     //Display data between timestamps
-    private EditText startTime, endTime;
+    private TextView startTime, endTime;
     private TextView tv_co2, tv_humidity, tv_temperature;
 
     private Button btn_submitTime;
+
+    //DatePickers
+    private MaterialDatePicker materialDatePickerStart, materialDatePickerEnd;
+    private Button btn_startDate, btn_endDate;
+    private long startDate, endDate;
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -39,13 +46,16 @@ public class HomeFragment extends Fragment {
         //FIXME: FIREBASE SKAL INDSÆTTES ET ELLER ANDET STED! - wupwup
         //FIXME: Display Average Temp, Co2, humidity between 2 timestamps!
 
+        materialDatePickerStart = DateHandler.getMaterialDatePicker();
+        materialDatePickerEnd = DateHandler.getMaterialDatePicker();
+
         bindings();
         observers();
         return root;
     }
 
     private void observers() {
-        viewModel.getHealthDataBetweenTimestampsLocal("1652876333", "1652876666").observe(getViewLifecycleOwner(), measurements -> {
+        viewModel.getHealthDataBetweenTimestampsLocal(1652876333, 1652876666).observe(getViewLifecycleOwner(), measurements -> {
             if(measurements!=null){
                 String co2 = "";
                 for (Measurement measurement: measurements) {
@@ -74,15 +84,43 @@ public class HomeFragment extends Fragment {
         tv_temperature = binding.tvTemperatures;
         tv_humidity = binding.tvHumidity;
 
-        startTime = binding.editTextStartTime;
-        endTime = binding.editTextEndTime;
+        startTime = binding.tvStartTime;
+        endTime = binding.tvEndTime;
 
         btn_submitTime = binding.btnSubmit;
         btn_submitTime.setOnClickListener(this::submitTime);
+
+        btn_startDate = binding.btnStartDate;
+        btn_endDate = binding.btnEndDate;
+
+        btn_startDate.setOnClickListener(this::setStartDate);
+        btn_endDate.setOnClickListener(this::setEndDate);
+
+
+    }
+
+    private void setStartDate(View view) {
+        materialDatePickerStart.show(getActivity().getSupportFragmentManager(), "test");
+
+        //When accepting chosen date, display in view!
+        materialDatePickerStart.addOnPositiveButtonClickListener(selection -> {
+            startDate = (Long) selection;
+            startTime.setText(DateHandler.fromLongToString((Long) selection));
+        });
+    }
+
+    private void setEndDate(View view) {
+        materialDatePickerEnd.show(getActivity().getSupportFragmentManager(), "test");
+
+        //When accepting chosen date, display in view!
+        materialDatePickerEnd.addOnPositiveButtonClickListener(selection -> {
+            endDate = (Long) selection;
+            endTime.setText(DateHandler.fromLongToString((Long) selection));
+        });
     }
 
     private void submitTime(View view) {
-        viewModel.getHealthDataBetweenTimestampsLocal(startTime.getText().toString(), endTime.getText().toString());
+        viewModel.getHealthDataBetweenTimestampsLocal(startDate, endDate);
     }
 
     @Override

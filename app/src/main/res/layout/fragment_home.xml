@@ -36,7 +36,7 @@
     <!-- Start Time-->
 
     <TextView
-        android:id="@+id/textStart"
+        android:id="@+id/tv_startTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="startTime"
@@ -47,13 +47,13 @@
 
     <!-- Health Data header-->
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tv_endTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="endTime"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/textStart" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_startTime" />
 
     <TextView
         android:layout_width="wrap_content"
