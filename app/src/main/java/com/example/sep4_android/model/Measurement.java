@@ -10,13 +10,23 @@ public class Measurement {
 
     private double temperature, co2, humidity;
     private long timestamp;
-    //FIXME: TIMESTAMP --> Skal dette være et timestamp eller er String fint nok?
 
     public Measurement(double temperature, double co2, double humidity, long timestamp) {
         this.temperature = temperature;
         this.co2 = co2;
         this.humidity = humidity;
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Measurement{" +
+                "id=" + id +
+                ", temperature=" + temperature +
+                ", co2=" + co2 +
+                ", humidity=" + humidity +
+                ", timestamp=" + timestamp +
+                '}';
     }
 
     public int getId() {

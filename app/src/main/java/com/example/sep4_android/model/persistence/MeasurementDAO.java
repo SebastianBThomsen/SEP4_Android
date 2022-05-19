@@ -3,6 +3,7 @@ package com.example.sep4_android.model.persistence;
 import android.icu.util.Measure;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -29,4 +30,7 @@ public interface MeasurementDAO {
 
     @Query("SELECT * FROM measurements_table ORDER BY timestamp DESC")
     LiveData<List<Measurement>> getAllMeasurements();
+
+    @Query("SELECT * FROM measurements_table WHERE timestamp BETWEEN :start AND :end ORDER BY timestamp DESC")
+    LiveData<List<Measurement>> getHealthDataBetweenTimestamps(long start, long end);
 }

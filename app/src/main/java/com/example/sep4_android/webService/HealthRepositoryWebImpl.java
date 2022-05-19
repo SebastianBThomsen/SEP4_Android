@@ -13,19 +13,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HealthRepositoryImpl implements HealthRepository {
-    private static HealthRepositoryImpl instance;
+public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
+    private static HealthRepositoryWebImpl instance;
     private final MutableLiveData<Device> randomHealthData;
     private HealthAPI healthAPI;
 
-    public HealthRepositoryImpl() {
+    public HealthRepositoryWebImpl() {
         randomHealthData = new MutableLiveData<>();
         healthAPI = HealthServiceGenerator.getHealthAPI();
     }
 
-    public static synchronized HealthRepositoryImpl getInstance() {
+    public static synchronized HealthRepositoryWebImpl getInstance() {
         if (instance == null)
-            instance = new HealthRepositoryImpl();
+            instance = new HealthRepositoryWebImpl();
         return instance;
     }
 
@@ -58,9 +58,10 @@ public class HealthRepositoryImpl implements HealthRepository {
     }
 
     @Override
-    public void sendHealthSettings() {
-        //TODO: Vi mangler end point fra DAI + at tilføje DeviceID eller Location?
+    public void sendHealthSettings(int desiredTemp, int desiredCO2, int desiredHumidity) {
+        //TODO: Send data to DAI endpoint --> Device location!
     }
+
 
     @Override
     public LiveData<Device> getHealthDataBetweenTimeStamps(Timestamp timeStart, Timestamp timeEnd) {

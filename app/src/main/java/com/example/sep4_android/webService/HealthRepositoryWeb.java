@@ -6,9 +6,9 @@ import com.example.sep4_android.model.Device;
 
 import java.sql.Timestamp;
 
-public interface HealthRepository {
+public interface HealthRepositoryWeb {
     LiveData<Device> getAllHealthDataByDevice();
     void findAllHealthDataByDevice();
-    void sendHealthSettings();
+    void sendHealthSettings(int desiredTemp, int desiredCO2, int desiredHumidity);
     LiveData<Device> getHealthDataBetweenTimeStamps(Timestamp timeStart, Timestamp timeEnd);
 }

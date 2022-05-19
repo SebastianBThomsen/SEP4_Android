@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.sep4_android.model.Device;
-import com.example.sep4_android.webService.HealthRepositoryImpl;
+import com.example.sep4_android.webService.HealthRepositoryWebImpl;
 
 public class HealthInspectionViewModelImpl extends ViewModel implements HealthInspectionViewModel {
-    HealthRepositoryImpl healthRepositoryImpl;
+    HealthRepositoryWebImpl healthRepositoryImpl;
 
     public HealthInspectionViewModelImpl()
     {
-        healthRepositoryImpl = HealthRepositoryImpl.getInstance();
+        healthRepositoryImpl = HealthRepositoryWebImpl.getInstance();
     }
 
 
