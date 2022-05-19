@@ -19,7 +19,7 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Settings" />
 
-        <item
+    <!--    <item
             android:id="@+id/nav_graph"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Graphs"
@@ -54,6 +54,11 @@
             android:id="@+id/co2Fragment"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="See Co2"
+            />-->
+        <item
+            android:id="@+id/frontpageFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Test rn"
             />
 
 

@@ -33,7 +33,7 @@ public class HealthRepository {
 
     public void findAllHealthDataByDevice() {
         Log.i("Retrofit", "Start (searchForHealthData) - url: ");
-        Call<Device> call = healthAPI.getAllHealthDataByDevice("b4830343-c4fe-4107-bae6-d229ccf8190c");
+        Call<Device> call = healthAPI.getAllHealthDataByDevice("9479d1c2-bdf0-4ca4-9ff5-5c9d080ab019");
         Log.i("Retrofit", "(searchForHealthData) - Call: " + call);
         call.enqueue(new Callback<Device>() {
             @Override

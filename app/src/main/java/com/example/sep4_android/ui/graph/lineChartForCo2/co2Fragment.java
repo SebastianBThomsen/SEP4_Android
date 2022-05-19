@@ -30,15 +30,7 @@ import java.util.ArrayList;
 public class co2Fragment extends Fragment {
     private Co2ViewModelImpl viewModel;
     private FragmentCo2Binding binding;
-    private TextView tv_Average;
     private LineChart lineChart;
-    private ArrayList<Entry> test = new ArrayList<>();
-    double avg;
-
-
-    public static co2Fragment newInstance() {
-        return new co2Fragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -47,9 +39,7 @@ public class co2Fragment extends Fragment {
         binding = FragmentCo2Binding.inflate(inflater, container, false);
         View root = binding.getRoot();
         bindings();
-
         observers();
-
         viewModel.findAllHealthDataByDevice();
         return root;
     }
@@ -66,40 +56,39 @@ public class co2Fragment extends Fragment {
                     sum = measurement.getCo2() + sum;
                     co2Mesurements.add(new Entry(i, (float) measurement.getCo2()));
                 }
-                inputDataToChart(co2Mesurements);
-                average(sum, i);
                 LimitLine llXAxis = new LimitLine((float) average(sum, i), "Average");
                 llXAxis.setLineWidth(4f);
                 llXAxis.enableDashedLine(10f, 10f, 0f);
                 llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-                llXAxis.setTextSize(10f);
+                llXAxis.setTextSize(15f);
                 YAxis xAxis = lineChart.getAxisLeft();
                 xAxis.addLimitLine(llXAxis); // add x-axis limit line
                 xAxis.enableGridDashedLine(10f, 10f, 0f);
+                inputDataToChart(co2Mesurements);
                 //fixme Timestamp skal bruges på x istedet for 1 ,2 og 3
             }
 
 
         });
     }
-
     private void bindings() {
         lineChart = binding.LineChartForCo2;
-        tv_Average = binding.txtAvg;
+
     }
 
-    private void inputDataToChart(ArrayList<Entry> co2Mesurements) {
+    private void inputDataToChart(ArrayList<Entry> test) {
         LineDataSet lineDataSet = new LineDataSet(test, "Co2");
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
-        lineChart.fitScreen();
+        lineChart.setScaleEnabled(true);
+        lineChart.setDrawGridBackground(false);
     }
 
     private double average(double b, int a) {
         double avg = b / a;
         System.out.println("Her får vi average fra metoden average fra co2 " + avg);
-        lineChart.setY((float) avg);
+        lineChart.setAlpha((float) avg);
         return avg;
     }
 

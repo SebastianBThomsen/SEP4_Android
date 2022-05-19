@@ -86,6 +86,9 @@ public class humidityFragment extends Fragment {
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
+        lineChart.fitScreen();
+        lineChart.setDrawGridBackground(false);
+        lineChart.setScaleEnabled(true);
 
 
     }

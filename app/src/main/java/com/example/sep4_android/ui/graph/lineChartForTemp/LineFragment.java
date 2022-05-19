@@ -33,10 +33,6 @@ public class LineFragment extends Fragment {
     private LineViewModelImpl viewModel;
     private FragmentLinechartBinding binding;
     private LineChart lineChart;
-    private TextView tv_avg;
-    private ArrayList<Entry> test = new ArrayList<>();
-    double tmp =0;
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -45,14 +41,8 @@ public class LineFragment extends Fragment {
         binding = FragmentLinechartBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
         bindings();
-        Log.e("observers", "Before Observers " + tmp);
         observers();
-        Log.e("observers", "After Observers " + tmp);
         viewModel.findAllHealthDataByDevice();
-
-
-
-
         return root;
     }
 
@@ -62,20 +52,21 @@ public class LineFragment extends Fragment {
                 ArrayList<Entry> tempMesurements = new ArrayList<>();
                 int i =0;
                 double sum =0;
-                for (Measurement measurement:device.getMeasurements()) {
+                for (Measurement measurement:device.getMeasurements())
+                {
                     i++;
                     sum= measurement.getTemperature() + sum;
                     tempMesurements.add(new Entry(i, (float) measurement.getTemperature()));
                 }
-                inputDataToChart(tempMesurements);
                 LimitLine llXAxis = new LimitLine((float) average(sum,i), "Average");
                 llXAxis.setLineWidth(4f);
                 llXAxis.enableDashedLine(10f, 10f, 0f);
                 llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-                llXAxis.setTextSize(10f);
+                llXAxis.setTextSize(15f);
                 YAxis xAxis = lineChart.getAxisLeft();
                 xAxis.addLimitLine(llXAxis); // add x-axis limit line
                 xAxis.enableGridDashedLine(10f, 10f, 0f);
+                inputDataToChart(tempMesurements);
                 //fixme Timestamp skal bruges på x istedet for 1 ,2 og 3
         }
     });}
@@ -87,7 +78,7 @@ public class LineFragment extends Fragment {
 
     private void bindings() {
         lineChart= binding.LineChartForTemp;
-        tv_avg = binding.tvAvgTemp;
+
     }
 
 
@@ -96,13 +87,11 @@ public class LineFragment extends Fragment {
         LineDataSet lineDataSet = new LineDataSet(test,"Test");
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
-
-
-
-
-
-
         lineChart.setData(lineData);
+        lineChart.fitScreen();
+        lineChart.setScaleEnabled(true);
+        lineChart.setDrawGridBackground(false);
+
 
 
     }
@@ -111,7 +100,6 @@ public class LineFragment extends Fragment {
         double avg = b/a;
         System.out.println("Her får vi average fra metoden average fra temp  "+avg);
         lineChart.setAlpha((float) avg);
-        tv_avg.setText(String.valueOf(avg));
         return avg;
     }
 }
