@@ -15,4 +15,7 @@ public interface HomeViewModel {
     LiveData<List<Measurement>> getHealthDataBetweenTimestampsLocal(String start, String end);
     LiveData<List<Measurement>> getMeasurements();
     LiveData<Measurement> getAverageMeasurement();
+
+    //TEST
+    LiveData<List<Measurement>> getTestMeasurements();
 }

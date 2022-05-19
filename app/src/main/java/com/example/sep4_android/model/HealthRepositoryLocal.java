@@ -20,7 +20,6 @@ public class HealthRepositoryLocal {
     private ExecutorService executor;
 
     private LiveData<List<Measurement>> allMeasurements;
-    private LiveData<List<Measurement>> measurementsTimestamps;
 
     private MutableLiveData<Measurement> averageMeasurement;
 
@@ -36,6 +35,8 @@ public class HealthRepositoryLocal {
 
         //Observe average temps
         setAverageMeasurement();
+
+
     }
 
     public static synchronized HealthRepositoryLocal getInstance(Application application) {

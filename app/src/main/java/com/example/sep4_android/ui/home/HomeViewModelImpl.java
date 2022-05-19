@@ -6,6 +6,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.model.HealthRepositoryLocal;
@@ -23,10 +25,19 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
     private HealthRepositoryWeb healthRepositoryWeb;
     private HealthRepositoryLocal healthRepositoryLocal;
 
+    private LiveData<List<Measurement>> measurementsByTimestamp;
+    private MutableLiveData<Long> filterTimestamp = new MutableLiveData<>();
+
+
     public HomeViewModelImpl(@NonNull Application application) {
         super(application);
         healthRepositoryLocal = HealthRepositoryLocal.getInstance(application);
         healthRepositoryWeb = HealthRepositoryWebImpl.getInstance();
+
+        measurementsByTimestamp = Transformations.switchMap(
+                filterTimestamp,
+                timestamp -> healthRepositoryLocal.getHealthDataBetweenTimestamps(timestamp, timestamp)
+        );
     }
 
     public LiveData<List<Measurement>> getMeasurements(){
@@ -55,6 +66,15 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
 
     public LiveData<Measurement> getAverageMeasurement(){
         return healthRepositoryLocal.getAverageMeasurement();
+    }
+
+    @Override
+    public LiveData<List<Measurement>> getTestMeasurements() {
+        return measurementsByTimestamp;
+    }
+
+    void setTimestamp(String timestamp) {
+        //filterTimestamp.setValue(timestamp);
     }
 
 }
