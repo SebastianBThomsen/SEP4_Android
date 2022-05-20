@@ -10,13 +10,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.repositories.HealthRepositoryLocal;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.repositories.HealthRepositoryWeb;
 import com.example.sep4_android.repositories.Repository;
 import com.example.sep4_android.repositories.RouteRepository;
 
@@ -34,18 +31,18 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
 
         measurementsByTimestamp = Transformations.switchMap(
                 filterTimestamp,
-                timestamp -> repository.getHealthDataBetweenTimestamps(timestamp.get(0), timestamp.get(1))
+                timestamp -> repository.getMeasurementsBetweenTimestamps(timestamp.get(0), timestamp.get(1))
         );
     }
 
     @Override
     public LiveData<List<Measurement>> getHealthDataBetweenTimeStamps(long start, long end) {
-        return repository.getHealthDataBetweenTimestamps(start, end);
+        return repository.getMeasurementsBetweenTimestamps(start, end);
     }
 
     @Override
     public LiveData<List<Measurement>> getAllHealthDataByDevice(String deviceId) {
-        return repository.getAllHealthDataByDevice(deviceId);
+        return repository.getAllMeasurementsByDevice(deviceId);
     }
 
     /*

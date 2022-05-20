@@ -4,15 +4,11 @@ import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RouteRepository implements Repository {
@@ -36,27 +32,29 @@ public class RouteRepository implements Repository {
     }
 
     @Override
-    public LiveData<List<Measurement>> getHealthDataBetweenTimestamps(long start, long end) {
-        //if (isOnline()) {
-          //  return repositoryWeb.getHealthDataBetweenTimestamps(start, end);
-        //}
-        return repositoryLocal.getHealthDataBetweenTimestamps(start, end);
+    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
+//        if (isOnline()) {
+//            return repositoryWeb.getHealthDataBetweenTimestamps(start, end);
+        //Store api call data
+        //Check if id's exsist
+//        }
+        return repositoryLocal.getMeasurementsBetweenTimestamps(start, end);
     }
 
     @Override
-    public LiveData<List<Measurement>> getAllHealthDataByDevice(String deviceID) {
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceID) {
         if (isOnline()) {
-            return repositoryWeb.getAllHealthDataByDevice(deviceID);
+            return repositoryWeb.getAllMeasurementsByDevice(deviceID);
         }
-        return repositoryLocal.getAllHealthDataByDevice(deviceID);
+        return repositoryLocal.getAllMeasurementsByDevice(deviceID);
     }
 
     @Override
-    public void findAllHealthDataByDevice(String deviceId) {
+    public void findAllMeasurementsByDevice(String deviceId) {
         if (isOnline())
-            repositoryWeb.findAllHealthDataByDevice(deviceId);
+            repositoryWeb.findAllMeasurementsByDevice(deviceId);
         else
-            repositoryLocal.findAllHealthDataByDevice(deviceId);
+            repositoryLocal.findAllMeasurementsByDevice(deviceId);
     }
 
     @Override

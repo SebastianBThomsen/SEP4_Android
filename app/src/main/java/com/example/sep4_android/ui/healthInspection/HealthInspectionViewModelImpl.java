@@ -5,10 +5,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.repositories.HealthRepositoryWeb;
 import com.example.sep4_android.repositories.Repository;
 import com.example.sep4_android.repositories.RouteRepository;
 
@@ -25,11 +23,11 @@ public class HealthInspectionViewModelImpl extends AndroidViewModel implements H
 
     @Override
     public LiveData<List<Measurement>> getAllHealthDataByDevice(String deviceId) {
-        return repository.getAllHealthDataByDevice(deviceId);
+        return repository.getAllMeasurementsByDevice(deviceId);
     }
 
     @Override
     public void findAllHealthDataByDevice(String deviceId) {
-        repository.findAllHealthDataByDevice(deviceId);
+        repository.findAllMeasurementsByDevice(deviceId);
     }
 }

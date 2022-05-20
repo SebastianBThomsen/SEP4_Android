@@ -67,7 +67,7 @@ public class HealthRepositoryLocal implements Repository {
         });
     }
 
-    public LiveData<List<Measurement>> getHealthDataBetweenTimestamps(long start, long end) {
+    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
         //FIXME: Dette virker ikke :((
         //measurementList = measurementDAO.getHealthDataBetweenTimestamps(start, end)
         //measurementList.setvalue(measurementDAO.getHealthDataBetweenTimestamps(start, end))
@@ -78,12 +78,12 @@ public class HealthRepositoryLocal implements Repository {
     }
 
     @Override
-    public LiveData<List<Measurement>> getAllHealthDataByDevice(String deviceId) {
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId) {
         return null;
     }
 
     @Override
-    public void findAllHealthDataByDevice(String deviceId) {
+    public void findAllMeasurementsByDevice(String deviceId) {
 
     }
 

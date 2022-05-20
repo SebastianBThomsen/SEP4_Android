@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@androidx.room.Database(entities = {Measurement.class, Device.class}, version = 5)
+@androidx.room.Database(entities = {Measurement.class, Device.class}, version = 6)
 @TypeConverters({Converters.class})
 public abstract class Database extends RoomDatabase {
     private static Database instance;
