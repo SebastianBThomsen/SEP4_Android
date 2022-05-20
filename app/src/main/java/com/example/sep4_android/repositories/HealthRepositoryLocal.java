@@ -8,6 +8,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4_android.model.persistence.Database;
 import com.example.sep4_android.model.persistence.MeasurementDAO;
+import com.example.sep4_android.model.persistence.entities.Device;
+import com.example.sep4_android.model.persistence.entities.DeviceDAO;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
@@ -17,9 +19,11 @@ import java.util.concurrent.Executors;
 public class HealthRepositoryLocal implements Repository {
     private static HealthRepositoryLocal instance;
     private MeasurementDAO measurementDAO;
+    private DeviceDAO deviceDAO;
     private ExecutorService executor;
 
     private LiveData<List<Measurement>> allMeasurements;
+    private LiveData<List<Device>> allDevice;
 
     private MutableLiveData<Measurement> averageMeasurement;
 
@@ -31,6 +35,7 @@ public class HealthRepositoryLocal implements Repository {
         averageMeasurement = new MutableLiveData<>();
 
         measurementDAO = database.measurementDAO();
+        deviceDAO = database.deviceDAO();
         allMeasurements = measurementDAO.getAllMeasurements();
 
         //Observe average temps
@@ -82,10 +87,17 @@ public class HealthRepositoryLocal implements Repository {
         return null;
     }
 
+    //Er det ikke en duplicate?
     @Override
     public void findAllMeasurementsByDevice(String deviceId) {
 
     }
+
+    public LiveData<List<Device>> getAllDevices(){
+        return deviceDAO.getAllDevices();
+    }
+
+
 
     @Override
     public void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity) {

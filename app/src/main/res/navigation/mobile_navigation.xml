@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_selectRoomFragment">
 
     <fragment
         android:id="@+id/nav_home"
@@ -41,5 +41,12 @@
         android:name="com.example.sep4_android.ui.graph.radarchart.RadarChartFragment"
         android:label="radar_chart_fragment"
         tools:layout="@layout/radar_chart_fragment" />
+
+    <fragment
+        android:id="@+id/nav_selectRoomFragment"
+        android:name="com.example.sep4_android.ui.selectRoom.SelectRoomFragment"
+        android:label="SelectRoomFragment"
+        tools:layout="@layout/fragment_select_room" />
+    />
 
 </navigation>

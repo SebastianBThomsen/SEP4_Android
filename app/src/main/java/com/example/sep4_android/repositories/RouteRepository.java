@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
@@ -47,6 +48,14 @@ public class RouteRepository implements Repository {
             return repositoryWeb.getAllMeasurementsByDevice(deviceID);
         }
         return repositoryLocal.getAllMeasurementsByDevice(deviceID);
+    }
+
+    public LiveData<List<Device>> getAllDevices(){
+//        if(isOnline()){
+//
+//        }
+
+        return repositoryLocal.getAllDevices();
     }
 
     @Override
