@@ -2,6 +2,7 @@ package com.example.sep4_android.ui.graph.lineChartForHumidity;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.util.ArrayList;
 
@@ -63,18 +65,7 @@ public class humidityFragment extends Fragment {
                     test.add(new Entry(i, (float) measurement.getHumidity()));
 
                 }
-
-                LimitLine llXAxis = new LimitLine((float) average(sum,i), "Average");
-                llXAxis.setLineWidth(4f);
-                llXAxis.enableDashedLine(10f, 10f, 0f);
-                llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-                llXAxis.setTextSize(10f);
-                YAxis xAxis = lineChart.getAxisLeft();
-                xAxis.addLimitLine(llXAxis); // add x-axis limit line
-                xAxis.enableGridDashedLine(10f, 10f, 0f);
                 inputDataToChart(test);
-
-
             }
             //fixme Timestamp skal bruges på x istedet for 1 ,2 og 3
 
@@ -87,12 +78,33 @@ public class humidityFragment extends Fragment {
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         lineChart.fitScreen();
-        lineChart.setDrawGridBackground(false);
         lineChart.setScaleEnabled(true);
-        lineChart.getDescription().setText("Dette Chart indholder Humidity");
+        lineChart.getDescription().setEnabled(false);
+        lineData.setDrawValues(false);
+        lineDataSet.setDrawFilled(true);
+        lineDataSet.setDrawCircles(false);
+        lineDataSet.setLineWidth(2f);
+        lineDataSet.setColor(Color.rgb(76,175,80));
+        lineDataSet.setFillColor(Color.rgb(76,175,80));
+        lineChart.setBackgroundColor(Color.rgb(37, 36, 36));//Set as a gray
+        lineChart.getXAxis().setDrawGridLines(false);
+        lineChart.getAxisLeft().setDrawGridLines(false);
+        lineChart.getAxisRight().setDrawGridLines(false);
+        YAxis yAxis = lineChart.getAxisLeft(); // Show left y-axis line
+        yAxis.setDrawGridLines(false); // Hide y-axis (horizontal) grid lines
+        lineChart.getAxisLeft().setTextColor(Color.parseColor("#ffffff")); // left y-axis
+        lineChart.getAxisRight().setTextColor(Color.parseColor("#ffffff"));
+        lineChart.getXAxis().setTextColor(Color.parseColor("#ffffff"));
+        lineChart.getLegend().setTextColor(Color.parseColor("#ffffff"));
+        lineChart.getDescription().setTextColor(Color.parseColor("#ffffff"));
+        lineChart.getData().setValueTextColor(Color.parseColor("#ffffff"));
+
 
 
     }
+
+
+
 
     private void bindings() {
             lineChart= binding.LineChartForHumidity;

@@ -56,7 +56,6 @@ private Button btn_Co2,btn_Temp,btn_Humidity;
 
     private void bindings() {
         cardView_Co2 = binding.cardViewCo2;
-        cardView_humidity = binding.cardViewHumidity;
         cardView_temp = binding.cardViewTemp;
         btn_Co2 = binding.btnCo2;
         btn_Humidity = binding.btnHumidity;
