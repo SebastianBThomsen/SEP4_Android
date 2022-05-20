@@ -16,6 +16,8 @@ public class Measurement {
     private double temperature, co2, humidity;
 
     public Measurement(String deviceId, int measurementId , double temperature, double co2, double humidity, long timestamp) {
+        this.deviceId = deviceId;
+        this.measurementId = measurementId;
         this.temperature = temperature;
         this.co2 = co2;
         this.humidity = humidity;

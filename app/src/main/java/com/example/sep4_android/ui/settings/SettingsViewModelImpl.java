@@ -1,21 +1,26 @@
 package com.example.sep4_android.ui.settings;
 
 
-import androidx.lifecycle.ViewModel;
+import android.app.Application;
 
-import com.example.sep4_android.repositories.HealthRepositoryWeb;
-import com.example.sep4_android.repositories.HealthRepositoryWebImpl;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 
-public class SettingsViewModelImpl extends ViewModel implements SettingsViewModel {
-    private HealthRepositoryWeb repository;
+import com.example.sep4_android.repositories.Repository;
+import com.example.sep4_android.repositories.RouteRepository;
 
-    public SettingsViewModelImpl() {
-        this.repository = HealthRepositoryWebImpl.getInstance();
+public class SettingsViewModelImpl extends AndroidViewModel implements SettingsViewModel {
+    private Repository repository;
+
+    public SettingsViewModelImpl(@NonNull Application application) {
+        super(application);
+        repository = RouteRepository.getInstance(application);
     }
+
 
     @Override
     public void sendSettings(int desiredTemp, int desiredCO2, int desiredHumidity) {
-        repository.sendHealthSettings(desiredTemp, desiredCO2, desiredHumidity);
+        repository.sendMaxHealthSettingsValues("bobTest", desiredTemp, desiredCO2, desiredHumidity);
     }
     // TODO: Implement the ViewModel
 }

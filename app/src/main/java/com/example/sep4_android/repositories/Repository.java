@@ -8,12 +8,12 @@ import com.example.sep4_android.model.persistence.entities.Measurement;
 import java.util.List;
 
 public interface Repository {
-    LiveData<List<Measurement>> getAllMeasurements();
+
+
     LiveData<List<Measurement>> getHealthDataBetweenTimestamps(long start, long end);
 
-    LiveData<Device> getAllHealthDataByDevice();
+    LiveData<List<Measurement>> getAllHealthDataByDevice(String deviceId);
     void findAllHealthDataByDevice(String deviceId);
 
-    void sendHealthSettings(int deviceId, int desiredTemp, int desiredCO2, int desiredHumidity);
-    LiveData<Device> getHealthDataBetweenTimeStamps(long start, long end);
+    void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity);
 }

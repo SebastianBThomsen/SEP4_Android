@@ -1,51 +1,75 @@
 package com.example.sep4_android.repositories;
 
 import android.app.Application;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 
-import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RouteRepository implements Repository {
+
+    private static RouteRepository instance;
+
     private HealthRepositoryWeb repositoryWeb;
     private HealthRepositoryLocal repositoryLocal;
+    private Application application;
 
     public RouteRepository(Application application) {
-        repositoryWeb = HealthRepositoryWebImpl.getInstance();
+        this.application = application;
+        repositoryWeb = HealthRepositoryWeb.getInstance();
         repositoryLocal = HealthRepositoryLocal.getInstance(application);
     }
 
-
-    @Override
-    public LiveData<List<Measurement>> getAllMeasurements() {
-        return null;
+    public static synchronized RouteRepository getInstance(Application application) {
+        if (instance == null)
+            instance = new RouteRepository(application);
+        return instance;
     }
 
     @Override
     public LiveData<List<Measurement>> getHealthDataBetweenTimestamps(long start, long end) {
-        return null;
+        //if (isOnline()) {
+          //  return repositoryWeb.getHealthDataBetweenTimestamps(start, end);
+        //}
+        return repositoryLocal.getHealthDataBetweenTimestamps(start, end);
     }
 
     @Override
-    public LiveData<Device> getAllHealthDataByDevice() {
-        return null;
+    public LiveData<List<Measurement>> getAllHealthDataByDevice(String deviceID) {
+        if (isOnline()) {
+            return repositoryWeb.getAllHealthDataByDevice(deviceID);
+        }
+        return repositoryLocal.getAllHealthDataByDevice(deviceID);
     }
 
     @Override
     public void findAllHealthDataByDevice(String deviceId) {
-
+        if (isOnline())
+            repositoryWeb.findAllHealthDataByDevice(deviceId);
+        else
+            repositoryLocal.findAllHealthDataByDevice(deviceId);
     }
 
     @Override
-    public void sendHealthSettings(int deviceId, int desiredTemp, int desiredCO2, int desiredHumidity) {
-
+    public void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity) {
+        if (isOnline())
+            repositoryWeb.sendMaxHealthSettingsValues(deviceId, desiredTemp, desiredCO2, desiredHumidity);
+        repositoryLocal.sendMaxHealthSettingsValues(deviceId, desiredTemp, desiredCO2, desiredHumidity);
     }
 
-    @Override
-    public LiveData<Device> getHealthDataBetweenTimeStamps(long start, long end) {
-        return null;
+
+    private boolean isOnline() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

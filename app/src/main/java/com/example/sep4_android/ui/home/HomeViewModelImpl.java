@@ -17,14 +17,12 @@ import java.util.List;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.repositories.HealthRepositoryWeb;
-import com.example.sep4_android.repositories.HealthRepositoryWebImpl;
-
-import java.sql.Timestamp;
+import com.example.sep4_android.repositories.Repository;
+import com.example.sep4_android.repositories.RouteRepository;
 
 public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel {
 
-    private HealthRepositoryWeb healthRepositoryWeb;
-    private HealthRepositoryLocal healthRepositoryLocal;
+    private Repository repository;
 
     private LiveData<List<Measurement>> measurementsByTimestamp;
     private MutableLiveData<List<Long>> filterTimestamp = new MutableLiveData<>();
@@ -32,27 +30,31 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
 
     public HomeViewModelImpl(@NonNull Application application) {
         super(application);
-        healthRepositoryLocal = HealthRepositoryLocal.getInstance(application);
-        healthRepositoryWeb = HealthRepositoryWebImpl.getInstance();
+        repository = RouteRepository.getInstance(application);
 
         measurementsByTimestamp = Transformations.switchMap(
                 filterTimestamp,
-                timestamp -> healthRepositoryLocal.getHealthDataBetweenTimestamps(timestamp.get(0), timestamp.get(1))
+                timestamp -> repository.getHealthDataBetweenTimestamps(timestamp.get(0), timestamp.get(1))
         );
     }
 
-    public LiveData<List<Measurement>> getMeasurements(){
-        return healthRepositoryLocal.getAllMeasurements();
+    @Override
+    public LiveData<List<Measurement>> getHealthDataBetweenTimeStamps(long start, long end) {
+        return repository.getHealthDataBetweenTimestamps(start, end);
     }
 
     @Override
-    public LiveData<Device> getHealthDataBetweenTimeStamps(long start, long end) {
-        return healthRepositoryWeb.getHealthDataBetweenTimeStamps(start, end);
+    public LiveData<List<Measurement>> getAllHealthDataByDevice(String deviceId) {
+        return repository.getAllHealthDataByDevice(deviceId);
     }
 
-    public LiveData<Measurement> getAverageMeasurement(){
-        return healthRepositoryLocal.getAverageMeasurement();
+    /*
+    @Override
+    public LiveData<Measurement> getAverageMeasurement(String deviceId){
+        return repository.getAverageMeasurement(deviceId);
     }
+
+     */
 
     @Override
     public LiveData<List<Measurement>> getTestMeasurements() {

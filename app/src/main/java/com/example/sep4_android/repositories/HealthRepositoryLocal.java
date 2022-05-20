@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class HealthRepositoryLocal {
+public class HealthRepositoryLocal implements Repository {
     private static HealthRepositoryLocal instance;
     private MeasurementDAO measurementDAO;
     private ExecutorService executor;
@@ -67,10 +67,6 @@ public class HealthRepositoryLocal {
         });
     }
 
-    public LiveData<List<Measurement>> getAllMeasurements() {
-        return allMeasurements;
-    }
-
     public LiveData<List<Measurement>> getHealthDataBetweenTimestamps(long start, long end) {
         //FIXME: Dette virker ikke :((
         //measurementList = measurementDAO.getHealthDataBetweenTimestamps(start, end)
@@ -79,5 +75,20 @@ public class HealthRepositoryLocal {
         //Tilføj en getter til measurementList uden parametre! --> Så den kan observes i fragment!
         Log.i("HealthRepositoryLocal", "getHealthDataBetweenTimestamps" + measurementDAO.getHealthDataBetweenTimestamps(start, end));
         return measurementDAO.getHealthDataBetweenTimestamps(start, end);
+    }
+
+    @Override
+    public LiveData<List<Measurement>> getAllHealthDataByDevice(String deviceId) {
+        return null;
+    }
+
+    @Override
+    public void findAllHealthDataByDevice(String deviceId) {
+
+    }
+
+    @Override
+    public void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity) {
+
     }
 }

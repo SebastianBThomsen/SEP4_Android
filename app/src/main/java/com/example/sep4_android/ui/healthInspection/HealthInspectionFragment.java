@@ -43,7 +43,8 @@ public class HealthInspectionFragment extends Fragment {
     }
 
     private void observers() {
-        viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), device -> {
+        //FIXME: DeviceID er sat her, skal ikke?
+        viewModel.getAllHealthDataByDevice("bobTest").observe(getViewLifecycleOwner(), device -> {
             /*
             tv_temperature.setText(String.valueOf(device.getMeasurements().get(0).getTemperature()));
             tv_co2.setText(String.valueOf(device.getMeasurements().get(0).getCo2()));
@@ -56,7 +57,8 @@ public class HealthInspectionFragment extends Fragment {
 
     private void onClickListeners() {
         btn_findRandomTemperature.setOnClickListener(view -> {
-            viewModel.findAllHealthDataByDevice();
+            //FIXME: deviceID skal ikke sættes her!
+            viewModel.findAllHealthDataByDevice("bobTest");
         });
 
         /*

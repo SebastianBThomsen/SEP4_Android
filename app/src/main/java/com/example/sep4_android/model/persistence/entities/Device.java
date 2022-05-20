@@ -21,6 +21,7 @@ public class Device {
 
 
     public Device(String deviceId, String deviceRoom) {
+        this.deviceRoom = deviceRoom;
         this.deviceId = deviceId;
     }
 
