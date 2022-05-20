@@ -1,4 +1,4 @@
-package com.example.sep4_android.webService;
+package com.example.sep4_android.repositories;
 
 import androidx.lifecycle.LiveData;
 
@@ -10,5 +10,5 @@ public interface HealthRepositoryWeb {
     LiveData<Device> getAllHealthDataByDevice();
     void findAllHealthDataByDevice();
     void sendHealthSettings(int desiredTemp, int desiredCO2, int desiredHumidity);
-    LiveData<Device> getHealthDataBetweenTimeStamps(Timestamp timeStart, Timestamp timeEnd);
+    LiveData<Device> getHealthDataBetweenTimeStamps(long start, long end);
 }

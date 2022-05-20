@@ -1,4 +1,4 @@
-package com.example.sep4_android.model;
+package com.example.sep4_android.repositories;
 
 import android.app.Application;
 import android.util.Log;
@@ -63,7 +63,7 @@ public class HealthRepositoryLocal {
                 temp = temp / measurements.size();
                 humidity = humidity / measurements.size();
             }
-            averageMeasurement.setValue(new Measurement(temp, co2, humidity, System.currentTimeMillis()));
+            averageMeasurement.setValue(new Measurement("averageReturn",1, temp, co2, humidity, System.currentTimeMillis()));
         });
     }
 

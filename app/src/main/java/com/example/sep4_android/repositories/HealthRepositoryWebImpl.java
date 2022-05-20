@@ -1,4 +1,4 @@
-package com.example.sep4_android.webService;
+package com.example.sep4_android.repositories;
 
 import android.util.Log;
 
@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4_android.model.persistence.entities.Device;
+import com.example.sep4_android.webService.HealthAPI;
+import com.example.sep4_android.webService.HealthServiceGenerator;
 
 import java.sql.Timestamp;
 
@@ -64,7 +66,7 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
 
 
     @Override
-    public LiveData<Device> getHealthDataBetweenTimeStamps(Timestamp timeStart, Timestamp timeEnd) {
+    public LiveData<Device> getHealthDataBetweenTimeStamps(long start, long end) {
         //TODO: dette skal bruge RIGTIG data!
         return randomHealthData;
     }

@@ -1,27 +1,26 @@
 package com.example.sep4_android.model.persistence.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import com.example.sep4_android.model.DateHandler;
 
-import java.text.DateFormat;
-
-@Entity(tableName = "measurements_table")
+@Entity(tableName = "measurements_table", primaryKeys = {"deviceId", "measurementId"})
 public class Measurement {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    private int measurementId;
 
-    private double temperature, co2, humidity;
+    @NonNull
+    private String deviceId;
     private long timestamp;
 
-    public Measurement(double temperature, double co2, double humidity, long timestamp) {
+    private double temperature, co2, humidity;
+
+    public Measurement(String deviceId, int measurementId , double temperature, double co2, double humidity, long timestamp) {
         this.temperature = temperature;
         this.co2 = co2;
         this.humidity = humidity;
         this.timestamp = timestamp;
     }
-
     //Getting timestamp in string format
     public String getTimestampString(){
         return DateHandler.fromLongToString(timestamp);
@@ -30,20 +29,29 @@ public class Measurement {
     @Override
     public String toString() {
         return "Measurement{" +
-                "id=" + id +
+                "measurementId=" + measurementId +
+                ", deviceId='" + deviceId + '\'' +
+                ", timestamp=" + timestamp +
                 ", temperature=" + temperature +
                 ", co2=" + co2 +
                 ", humidity=" + humidity +
-                ", timestamp=" + timestamp +
                 '}';
     }
 
-    public int getId() {
-        return id;
+    public int getMeasurementId() {
+        return measurementId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMeasurementId(int measurementId) {
+        this.measurementId = measurementId;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 
     public double getTemperature() {

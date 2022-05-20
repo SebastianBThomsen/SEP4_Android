@@ -44,10 +44,13 @@ public class HealthInspectionFragment extends Fragment {
 
     private void observers() {
         viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), device -> {
+            /*
             tv_temperature.setText(String.valueOf(device.getMeasurements().get(0).getTemperature()));
             tv_co2.setText(String.valueOf(device.getMeasurements().get(0).getCo2()));
             tv_humidity.setText(String.valueOf(device.getMeasurements().get(0).getHumidity()));
             tv_date.setText(""+device.getMeasurements().get(0).getTimestamp());
+
+             */
         });
     }
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.webService.HealthRepositoryWebImpl;
+import com.example.sep4_android.repositories.HealthRepositoryWebImpl;
 
 public class HealthInspectionViewModelImpl extends ViewModel implements HealthInspectionViewModel {
     HealthRepositoryWebImpl healthRepositoryImpl;

@@ -9,16 +9,15 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.example.sep4_android.model.DateHandler;
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.model.HealthRepositoryLocal;
+import com.example.sep4_android.repositories.HealthRepositoryLocal;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.webService.HealthRepositoryWeb;
-import com.example.sep4_android.webService.HealthRepositoryWebImpl;
+import com.example.sep4_android.repositories.HealthRepositoryWeb;
+import com.example.sep4_android.repositories.HealthRepositoryWebImpl;
 
 import java.sql.Timestamp;
 
@@ -47,8 +46,8 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
     }
 
     @Override
-    public LiveData<Device> getHealthDataBetweenTimeStamps(Timestamp timeStart, Timestamp timeEnd) {
-        return healthRepositoryWeb.getHealthDataBetweenTimeStamps(timeStart, timeEnd);
+    public LiveData<Device> getHealthDataBetweenTimeStamps(long start, long end) {
+        return healthRepositoryWeb.getHealthDataBetweenTimeStamps(start, end);
     }
 
     public LiveData<Measurement> getAverageMeasurement(){
