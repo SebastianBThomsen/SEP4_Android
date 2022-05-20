@@ -37,6 +37,7 @@ public class HealthRepositoryLocal implements Repository {
         measurementDAO = database.measurementDAO();
         deviceDAO = database.deviceDAO();
         allMeasurements = measurementDAO.getAllMeasurements();
+        allDevice = deviceDAO.getAllDevices();
 
         //Observe average temps
         setAverageMeasurement();
@@ -72,14 +73,20 @@ public class HealthRepositoryLocal implements Repository {
         });
     }
 
-    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
+    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(String deviceId, long start, long end) {
         //FIXME: Dette virker ikke :((
         //measurementList = measurementDAO.getHealthDataBetweenTimestamps(start, end)
         //measurementList.setvalue(measurementDAO.getHealthDataBetweenTimestamps(start, end))
 
         //Tilføj en getter til measurementList uden parametre! --> Så den kan observes i fragment!
-        Log.i("HealthRepositoryLocal", "getHealthDataBetweenTimestamps" + measurementDAO.getHealthDataBetweenTimestamps(start, end));
-        return measurementDAO.getHealthDataBetweenTimestamps(start, end);
+        Log.i("HealthRepositoryLocal", "getHealthDataBetweenTimestamps" + measurementDAO.getHealthDataBetweenTimestamps(deviceId, start, end));
+        return measurementDAO.getHealthDataBetweenTimestamps(deviceId, start, end);
+    }
+
+    @Override
+    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
+        //bruger den ikke ^^
+        return null;
     }
 
     @Override
@@ -94,7 +101,7 @@ public class HealthRepositoryLocal implements Repository {
     }
 
     public LiveData<List<Device>> getAllDevices(){
-        return deviceDAO.getAllDevices();
+        return allDevice;
     }
 
 

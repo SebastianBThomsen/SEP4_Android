@@ -14,6 +14,5 @@ public interface Repository {
 
     LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId);
     void findAllMeasurementsByDevice(String deviceId);
-
     void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity);
 }

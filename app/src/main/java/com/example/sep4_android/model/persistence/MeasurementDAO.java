@@ -30,8 +30,6 @@ public interface MeasurementDAO {
     @Query("SELECT * FROM measurements_table ORDER BY timestamp DESC")
     LiveData<List<Measurement>> getAllMeasurements();
 
-
-
-    @Query("SELECT * FROM measurements_table WHERE timestamp BETWEEN :start AND :end ORDER BY timestamp DESC")
-    LiveData<List<Measurement>> getHealthDataBetweenTimestamps(long start, long end);
+    @Query("SELECT * FROM measurements_table WHERE deviceId = :deviceId AND timestamp BETWEEN :start AND :end ORDER BY timestamp DESC")
+    LiveData<List<Measurement>> getHealthDataBetweenTimestamps(String deviceId, long start, long end);
 }

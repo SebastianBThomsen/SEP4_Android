@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.sep4_android.repositories.Repository;
-import com.example.sep4_android.repositories.RouteRepository;
+import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
 public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel {
 
@@ -27,7 +27,7 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
 
     public HomeViewModelImpl(@NonNull Application application) {
         super(application);
-        repository = RouteRepository.getInstance(application);
+        repository = RouteRepositoryImpl.getInstance(application);
 
         measurementsByTimestamp = Transformations.switchMap(
                 filterTimestamp,
