@@ -8,104 +8,114 @@
     tools:context=".ui.graph.lineChartOverview.FrontpageFragment">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Humidity"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/cardViewHumidity"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardViewCo2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.054">
+        app:layout_constraintTop_toBottomOf="@+id/btn_Humidity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentHumudity"
             android:name="com.example.sep4_android.ui.graph.lineChartForHumidity.humidityFragment"
-            android:layout_width="456dp"
-            android:layout_height="131dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="#B8B8B8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.468"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.61" />
 
-        <Button
-            android:id="@+id/btn_Humidity"
-            android:layout_width="95dp"
-            android:layout_height="51dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginBottom="16dp"
-            android:text="See more"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.043"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragmentHumudity" />
+    </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="76dp"
-            android:layout_height="44dp"
-            android:layout_marginEnd="56dp"
-            android:gravity="center"
-            android:text="20*C"
-            android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/btn_Humidity"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.897" />
+    <Button
+        android:id="@+id/btn_Humidity"
+        android:layout_width="118dp"
+        android:layout_height="38dp"
+        android:text="Show more"
+        app:layout_constraintBottom_toBottomOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView6" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Co2 Condition"
+        android:textColor="#FDFDFD"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_Co2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_Co2" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewCo2"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardViewTemp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewHumidity"
-        app:layout_constraintVertical_bias="0.499">
+        app:layout_constraintTop_toBottomOf="@+id/btn_Co2">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentCo2"
             android:name="com.example.sep4_android.ui.graph.lineChartForCo2.co2Fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#00B8B8B8"
+            android:background="#B8B8B8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.146" />
 
-        <Button
-            android:id="@+id/btn_Co2"
-            android:layout_width="20dp"
-            android:layout_height="20dp" />
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_Co2"
+        android:layout_width="118dp"
+        android:layout_height="38dp"
+        android:text="Show more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewHumidity" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewTemp"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="405dp"
+        android:layout_height="154dp"
         android:layout_margin="3dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewCo2"
-        app:layout_constraintVertical_bias="0.598"
 
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Temp">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmenttemp"
@@ -119,12 +129,31 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.359" />
 
-        <Button
-            android:id="@+id/btn_Temp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-           />
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btn_Temp"
+        android:layout_width="118dp"
+        android:layout_height="38dp"
+        android:text="Show more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewCo2" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temperature"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_Temp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_Co2"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_Temp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
