@@ -49,6 +49,9 @@ public class HomeFragment extends Fragment {
         materialDatePickerStart = DateHandler.getMaterialDatePicker();
         materialDatePickerEnd = DateHandler.getMaterialDatePicker();
 
+        //TEST!
+        viewModel.findAllHealthDataByDevice();
+
         bindings();
         observers();
         return root;

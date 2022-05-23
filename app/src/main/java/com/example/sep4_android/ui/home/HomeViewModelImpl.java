@@ -14,12 +14,16 @@ import com.example.sep4_android.model.persistence.entities.Measurement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.sep4_android.repositories.HealthRepositoryWeb;
 import com.example.sep4_android.repositories.Repository;
-import com.example.sep4_android.repositories.RouteRepository;
+import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
 public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel {
 
     private Repository repository;
+
+    //TEST WEBAPI
+    private HealthRepositoryWeb healthRepositoryWeb;
 
     private LiveData<List<Measurement>> measurementsByTimestamp;
     private MutableLiveData<List<Long>> filterTimestamp = new MutableLiveData<>();
@@ -27,7 +31,8 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
 
     public HomeViewModelImpl(@NonNull Application application) {
         super(application);
-        repository = RouteRepository.getInstance(application);
+        repository = RouteRepositoryImpl.getInstance(application);
+        healthRepositoryWeb = HealthRepositoryWeb.getInstance();
 
         measurementsByTimestamp = Transformations.switchMap(
                 filterTimestamp,
@@ -69,6 +74,11 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
         Log.i("HomeViewModelImpl", "setTimestamp is start before: " + isStartBefore);
         Log.i("HomeViewModelImpl", "setTimestamp is end after: " + isEndAfter);
         filterTimestamp.postValue(timestamps);
+    }
+
+    @Override
+    public void findAllHealthDataByDevice() {
+        healthRepositoryWeb.findAllHealthDataByDevice();
     }
 
 }

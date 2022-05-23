@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.selectRoom.SelectRoomFragment">
+
+    <!-- Button Submit-->
+
+    <!-- Start Time-->
+
+    <!-- End Time-->
+
+    <!-- Health Data header-->
+
+
+    <!-- Temperature -->
+
+    <!-- CO2 -->
+
+
+    <!-- Humiditiy -->
+
+
+    <!-- Guidelines -->
+
+    <TextView
+        android:layout_width="296dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="Velkommen til holdøjemedrum"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/firstHorizontalTop"
+        app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="297dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Vælg hvilket rum du vil se oversigt over"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
+        app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/firstVerticalLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10462287" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/secondVerticalLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.37" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/firstHorizontalTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.21" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="298dp"
+        android:layout_height="504dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
+        app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

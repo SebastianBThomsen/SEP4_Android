@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.repositories.Repository;
-import com.example.sep4_android.repositories.RouteRepository;
+import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class HealthInspectionViewModelImpl extends AndroidViewModel implements H
 
     public HealthInspectionViewModelImpl(@NonNull Application application) {
         super(application);
-        repository = RouteRepository.getInstance(application);
+        repository = RouteRepositoryImpl.getInstance(application);
     }
 
 

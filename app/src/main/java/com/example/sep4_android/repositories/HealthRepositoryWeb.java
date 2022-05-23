@@ -9,6 +9,7 @@ import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.webService.HealthAPI;
 import com.example.sep4_android.webService.HealthServiceGenerator;
+import com.example.sep4_android.webService.MeasurementsByRoomResponse;
 
 import java.util.List;
 
@@ -53,32 +54,32 @@ public class HealthRepositoryWeb implements Repository {
     }
 
     public void findAllHealthDataByDevice() {
-        /*
-        FIXME: Skal have fundet løsning med vores nye model klasser!
-        - Evt. HealthDataReponses?
+        //FIXME: Skal have fundet løsning med vores nye model klasser!
+        //- Evt. HealthDataReponses?
 
         Log.i("Retrofit", "Start (searchForHealthData) - url: ");
-        Call<Device> call = healthAPI.getAllHealthDataByDevice("b4830343-c4fe-4107-bae6-d229ccf8190c");
+        //localMockup
+        //Call<MeasurementsByRoomResponse[]> call = healthAPI.getAllMeasurementsByRoom("d9384c83-1dd6-40b2-9c83-fa4f7ba54b15");
+        Call<MeasurementsByRoomResponse[]> call = healthAPI.getAllMeasurementsByRoom("c02_02");
         Log.i("Retrofit", "(searchForHealthData) - Call: " + call);
-        call.enqueue(new Callback<Device>() {
+        call.enqueue(new Callback<MeasurementsByRoomResponse[]>() {
             @Override
-            public void onResponse(Call<Device> call, Response<Device> response) {
+            public void onResponse(Call<MeasurementsByRoomResponse[]> call, Response<MeasurementsByRoomResponse[]> response) {
                 Log.i("Retrofit", "Reponse: " + response);
                 if (response.isSuccessful()) {
                     //Tager første data i array om healthData
-                    Device device = response.body();
-                    Log.i("Retrofit", "SUCCESS!\nHealth Data: " + device);
-                    randomHealthData.setValue(device);
+                    MeasurementsByRoomResponse measurementsByRoomResponse = response.body()[0];
+                    Log.i("Retrofit", "SUCCESS!\nHealth Data: " + measurementsByRoomResponse);
+                    //randomHealthData.setValue(device);
                 }
             }
 
             @Override
-            public void onFailure(Call<Device> call, Throwable t) {
+            public void onFailure(Call<MeasurementsByRoomResponse[]> call, Throwable t) {
                 Log.i("Retrofit", "FAILURE (searchForHealthData)" + call
                         + "\nError Message: " + t.getMessage());
             }
         });
 
-         */
     }
 }

@@ -7,14 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.example.sep4_android.repositories.Repository;
-import com.example.sep4_android.repositories.RouteRepository;
+import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
 public class SettingsViewModelImpl extends AndroidViewModel implements SettingsViewModel {
     private Repository repository;
 
     public SettingsViewModelImpl(@NonNull Application application) {
         super(application);
-        repository = RouteRepository.getInstance(application);
+        repository = RouteRepositoryImpl.getInstance(application);
     }
 
 
