@@ -26,25 +26,26 @@
     <!-- Guidelines -->
 
     <TextView
+        android:id="@+id/textView10"
         android:layout_width="296dp"
         android:layout_height="33dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
         android:text="Velkommen til holdøjemedrum"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/firstHorizontalTop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/secondVerticalLeft"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
+        tools:layout_editor_absoluteY="73dp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="297dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="16dp"
         android:text="Vælg hvilket rum du vil se oversigt over"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/rv"
-        app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/firstVerticalLeft"
@@ -54,11 +55,18 @@
         app:layout_constraintGuide_percent="0.10462287" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/secondVerticalLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/firstHorizontalTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.21" />
+        app:layout_constraintGuide_begin="63dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
@@ -69,11 +77,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
-        android:layout_width="298dp"
-        android:layout_height="504dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
+        android:layout_width="380dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/secondVerticalLeft"
+        app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
