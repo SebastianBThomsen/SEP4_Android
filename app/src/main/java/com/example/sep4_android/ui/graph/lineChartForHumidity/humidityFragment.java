@@ -29,13 +29,9 @@ public class humidityFragment extends Fragment {
     private HumidityViewModelImpl viewModel;
     private FragmentHumidityBinding binding;
     private LineChart lineChart;
-
-    double tmp =0;
-
     public static humidityFragment newInstance() {
         return new humidityFragment();
     }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -43,9 +39,7 @@ public class humidityFragment extends Fragment {
         binding = FragmentHumidityBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
         bindings();
-        Log.e("observers", "Before Observers " + tmp);
         observers();
-        Log.e("observers", "After Observers " );
         viewModel.findAllHealthDataByDevice();
 
         return root;
@@ -65,12 +59,11 @@ public class humidityFragment extends Fragment {
                 }
                 inputDataToChart(test);
             }
-            //fixme Timestamp skal bruges på x istedet for 1 ,2 og 3
-
     });
     }
 
     private void inputDataToChart(ArrayList<Entry> test) {
+        //todo add design classen efter vi har fået det op at kører
         LineDataSet lineDataSet = new LineDataSet(test, "Humidity");
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
@@ -96,7 +89,6 @@ public class humidityFragment extends Fragment {
         lineChart.getLegend().setTextColor(Color.parseColor("#ffffff"));
         lineChart.getDescription().setTextColor(Color.parseColor("#ffffff"));
         lineChart.getData().setValueTextColor(Color.parseColor("#ffffff"));
-
 
 
     }

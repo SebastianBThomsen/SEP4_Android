@@ -22,10 +22,10 @@ public class HumidityViewModelImpl extends AndroidViewModel {
 
 
     public LiveData<List<Measurement>> getAllHealthDataByDevice() {
-        return repository.getAllMeasurementsByDevice("bobtest");
+        return repository.getAllMeasurementsByDevice("bobTest");
     }
 
     public void findAllHealthDataByDevice() {
-        repository.findAllMeasurementsByDevice("bobtest");
+        repository.findAllMeasurementsByDevice("bobTest");
     }
 }

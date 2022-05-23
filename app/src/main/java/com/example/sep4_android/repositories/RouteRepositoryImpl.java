@@ -59,10 +59,10 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceID) {
-        if (isOnline()) {
-            return repositoryWeb.getAllMeasurementsByDevice(deviceID);
-        }
-        return repositoryLocal.getAllMeasurementsByDevice(deviceID);
+//        if (isOnline()) {
+//            return repositoryWeb.getAllMeasurementsByDevice(deviceID);
+//        }
+        return repositoryLocal.getAllMeasurementsByDevice(selectedDevice.getDeviceId());
     }
 
     public LiveData<List<Device>> getAllDevices(){
@@ -75,7 +75,7 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public void findAllMeasurementsByDevice(String deviceId) {
-        if (isOnline())
+     if (isOnline())
             repositoryWeb.findAllMeasurementsByDevice(deviceId);
         else
             repositoryLocal.findAllMeasurementsByDevice(deviceId);

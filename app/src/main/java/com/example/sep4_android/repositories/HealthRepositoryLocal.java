@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import retrofit2.Call;
+
 public class HealthRepositoryLocal implements Repository {
     private static HealthRepositoryLocal instance;
     private MeasurementDAO measurementDAO;
@@ -90,13 +92,17 @@ public class HealthRepositoryLocal implements Repository {
     }
 
     @Override
-    public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId) {
-        return null;
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId)
+    {
+//Returner her en liste af alle Measurements, da den førhen bare returnet null
+return allMeasurements;
+
     }
 
     //Er det ikke en duplicate?
     @Override
-    public void findAllMeasurementsByDevice(String deviceId) {
+    public void findAllMeasurementsByDevice(String deviceId)
+    {
 
     }
 

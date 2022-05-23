@@ -42,15 +42,15 @@ private Button btn_Co2,btn_Temp,btn_Humidity;
     private void onClickListeners() {
         btn_Temp.setOnClickListener(view -> {
             System.out.println("Test virker knappen?");
-            Navigation.findNavController(view).navigate(R.id.lineFragment);
+            Navigation.findNavController(view).navigate(R.id.tempatureDeatilFragment);
         });
         btn_Co2.setOnClickListener(view -> {
             System.out.println("Test virker knappen?");
-            Navigation.findNavController(view).navigate(R.id.co2Fragment);
+            Navigation.findNavController(view).navigate(R.id.co2DeatilFragment);
         });
         btn_Humidity.setOnClickListener(view -> {
             System.out.println("Test virker knappen?");
-            Navigation.findNavController(view).navigate(R.id.humidityFragment);
+            Navigation.findNavController(view).navigate(R.id.humidityDeatilFragment);
         });
     }
 
