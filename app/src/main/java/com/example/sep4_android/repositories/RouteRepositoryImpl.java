@@ -15,7 +15,7 @@ import com.example.sep4_android.model.persistence.entities.Measurement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RouteRepositoryImpl implements Repository, RouteRepository {
+public class RouteRepositoryImpl implements RouteRepository {
 
     private static RouteRepositoryImpl instance;
 
