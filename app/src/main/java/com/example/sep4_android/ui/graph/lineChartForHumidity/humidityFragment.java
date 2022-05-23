@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.sep4_android.databinding.FragmentHumidityBinding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.ui.graph.DesignForGraph.Design;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -29,6 +30,7 @@ public class humidityFragment extends Fragment {
     private HumidityViewModelImpl viewModel;
     private FragmentHumidityBinding binding;
     private LineChart lineChart;
+    private Design design;
     public static humidityFragment newInstance() {
         return new humidityFragment();
     }
@@ -38,6 +40,7 @@ public class humidityFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(HumidityViewModelImpl.class);
         binding = FragmentHumidityBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
+        design = new Design();
         bindings();
         observers();
         viewModel.findAllHealthDataByDevice();
@@ -68,28 +71,9 @@ public class humidityFragment extends Fragment {
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
-        lineChart.fitScreen();
-        lineChart.setScaleEnabled(true);
-        lineChart.getDescription().setEnabled(false);
-        lineData.setDrawValues(false);
-        lineDataSet.setDrawFilled(true);
-        lineDataSet.setDrawCircles(false);
-        lineDataSet.setLineWidth(2f);
-        lineDataSet.setColor(Color.rgb(76,175,80));
-        lineDataSet.setFillColor(Color.rgb(76,175,80));
-        lineChart.setBackgroundColor(Color.rgb(37, 36, 36));//Set as a gray
-        lineChart.getXAxis().setDrawGridLines(false);
-        lineChart.getAxisLeft().setDrawGridLines(false);
-        lineChart.getAxisRight().setDrawGridLines(false);
-        YAxis yAxis = lineChart.getAxisLeft(); // Show left y-axis line
-        yAxis.setDrawGridLines(false); // Hide y-axis (horizontal) grid lines
-        lineChart.getAxisLeft().setTextColor(Color.parseColor("#ffffff")); // left y-axis
-        lineChart.getAxisRight().setTextColor(Color.parseColor("#ffffff"));
-        lineChart.getXAxis().setTextColor(Color.parseColor("#ffffff"));
-        lineChart.getLegend().setTextColor(Color.parseColor("#ffffff"));
-        lineChart.getDescription().setTextColor(Color.parseColor("#ffffff"));
-        lineChart.getData().setValueTextColor(Color.parseColor("#ffffff"));
-
+        design.lineChartDesign(lineChart);
+        design.lineData(lineData);
+        design.lineDataSet(lineDataSet);
 
     }
 

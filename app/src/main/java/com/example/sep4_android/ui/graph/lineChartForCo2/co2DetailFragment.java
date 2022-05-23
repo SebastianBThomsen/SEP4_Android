@@ -47,17 +47,17 @@ public class co2DetailFragment extends Fragment {
     private void observers() {
         viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), measurements -> {
             if (measurements != null) {
-                ArrayList<Entry> tempMesurements = new ArrayList<>();
+                ArrayList<Entry> co2Mesurements = new ArrayList<>();
                 int i =0;
                 double sum =0;
                 for (Measurement measurement:measurements)
                 {
                     i++;
                     sum= measurement.getTemperature() + sum;
-                    tempMesurements.add(new Entry(i, (float) measurement.getTemperature()));
+                    co2Mesurements.add(new Entry(i, (float) measurement.getCo2()));
                 }
                 design.setAvg(lineChart, (float) average(sum,i));
-                inputDataToChart(tempMesurements);
+                inputDataToChart(co2Mesurements);
                 //fixme Timestamp skal bruges på x istedet for 1 ,2 og 3
             }
         });}
@@ -73,9 +73,13 @@ public class co2DetailFragment extends Fragment {
 
 
     private void inputDataToChart(ArrayList<Entry> test) {
-        LineDataSet lineDataSet = new LineDataSet(test, "Humidity");
+        LineDataSet lineDataSet = new LineDataSet(test, "Co2");
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
+        design.lineChartDesign(lineChart);
+        design.lineDataSet(lineDataSet);
+        lineDataSet.setDrawCircles(true);
+
 
 
 

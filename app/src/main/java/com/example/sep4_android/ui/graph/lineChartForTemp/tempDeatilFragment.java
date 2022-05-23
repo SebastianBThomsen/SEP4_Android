@@ -72,9 +72,12 @@ public class tempDeatilFragment extends Fragment {
 
 
     private void inputDataToChart(ArrayList<Entry> test) {
-        LineDataSet lineDataSet = new LineDataSet(test, "Humidity");
+        LineDataSet lineDataSet = new LineDataSet(test, "Tempature");
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
+        design.lineChartDesign(lineChart);
+        design.lineDataSet(lineDataSet);
+        lineDataSet.setDrawCircles(true);
 
 
 
