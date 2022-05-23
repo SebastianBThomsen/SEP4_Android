@@ -16,60 +16,14 @@
             android:title="@string/menu_home" />
 
         <item
-            android:id="@+id/nav_healthInspection"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Health Inspection" />
-
-        <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Settings" />
 
-    <!--    <item
-            android:id="@+id/nav_graph"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Graphs"
-            />
-        <item
-            android:id="@+id/nav_barchartFragment"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="BarChart"
-            />
-        <item
-            android:id="@+id/nav_piechart"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="PieChart"
-            />
-        <item
-            android:id="@+id/nav_radarchart"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="RaderChart"
-            />
-
-        <item
-            android:id="@+id/lineFragment"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="See Tempature"
-            />
-        <item
-            android:id="@+id/humidityFragment"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="See Humidity"
-            />
-        <item
-            android:id="@+id/co2Fragment"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="See Co2"
-            />-->
         <item
             android:id="@+id/frontpageFragment"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Test rn"
             />
-
-
-
-
-
     </group>
 </menu>

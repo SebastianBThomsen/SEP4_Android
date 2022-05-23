@@ -7,14 +7,14 @@ import android.net.NetworkInfo;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class RouteRepositoryImpl implements RouteRepository {
 
@@ -24,12 +24,16 @@ public class RouteRepositoryImpl implements RouteRepository {
     private HealthRepositoryLocal repositoryLocal;
     private Application application;
 
+    ExecutorService executorService;
+
     private Device selectedDevice;
 
     public RouteRepositoryImpl(Application application) {
         this.application = application;
         repositoryWeb = HealthRepositoryWeb.getInstance(application);
         repositoryLocal = HealthRepositoryLocal.getInstance(application);
+
+        executorService = Executors.newFixedThreadPool(2);
     }
 
     public static synchronized RouteRepositoryImpl getInstance(Application application) {
@@ -59,15 +63,15 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceID) {
-//        if (isOnline()) {
-//            return repositoryWeb.getAllMeasurementsByDevice(deviceID);
-//        }
-        //FIXME: TEST
-        Log.i("getAllMeasurementsByDevice", "DeviceId: " + selectedDevice.getDeviceId());
+        executorService.execute(() -> {
+            if (isOnline()) {
+                repositoryWeb.getAllMeasurementsByDevice(selectedDevice.getDeviceId());
+            }
+        });
         return repositoryLocal.getAllMeasurementsByDevice(selectedDevice.getDeviceId());
     }
 
-    public LiveData<List<Device>> getAllDevices(){
+    public LiveData<List<Device>> getAllDevices() {
 //        if(isOnline()){
 //
 //        }
@@ -77,7 +81,7 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public void findAllMeasurementsByDevice(String deviceId) {
-     if (isOnline())
+        if (isOnline())
             repositoryWeb.findAllMeasurementsByDevice(selectedDevice.getDeviceId());
         else
             repositoryLocal.findAllMeasurementsByDevice(selectedDevice.getDeviceId());
