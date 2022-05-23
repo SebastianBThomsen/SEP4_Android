@@ -41,10 +41,12 @@ public abstract class Database extends RoomDatabase {
                             Device device = new Device("bobTest", "C02.04");
                             Device device2 = new Device("bobTest2", "A03.12");
                             Device device3 = new Device("bobTest3", "B04.17");
+                            Device device4 = new Device("bob1", "A01.01");
                             executorService.execute(() -> {
                                 getInstance(context).deviceDAO().insert(device);
                                 getInstance(context).deviceDAO().insert(device2);
                                 getInstance(context).deviceDAO().insert(device3);
+                                getInstance(context).deviceDAO().insert(device4);
 
                                 getInstance(context).measurementDAO().insert(measurement1);
                                 getInstance(context).measurementDAO().insert(measurement2);
