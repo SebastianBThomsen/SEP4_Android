@@ -25,7 +25,7 @@ public class DateHandler {
         long milliseconds = 0;
         try {
             Date d = f.parse(date);
-            milliseconds = d.getTime();
+            milliseconds = d.getTime()/1000;
         } catch (ParseException e) {
             e.printStackTrace();
         }
