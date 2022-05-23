@@ -18,18 +18,5 @@ public class ExampleUnitTest {
     }
 
 
-
-
-
-
-
-    //DEVICE Test
-    public void deviceTest() {
-        Device testDevice = new Device("Device101", "CO.2");
-        assertTrue(testDevice.getDeviceId() == "Device101");
-
-
-    }
-
 }
 
