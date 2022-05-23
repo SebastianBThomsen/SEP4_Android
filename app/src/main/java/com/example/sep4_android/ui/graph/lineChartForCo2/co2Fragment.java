@@ -8,18 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.sep4_android.databinding.FragmentCo2Binding;
-import com.example.sep4_android.databinding.FragmentHumidityBinding;
-import com.example.sep4_android.model.Measurement;
+import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -46,12 +42,12 @@ public class co2Fragment extends Fragment {
 
 
     private void observers() {
-        viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), device -> {
-            if (device.getMeasurements() != null) {
+        viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), measurements -> {
+            if (measurements != null) {
                 ArrayList<Entry> co2Mesurements = new ArrayList<>();
                 int i = 0;
                 double sum = 0;
-                for (Measurement measurement : device.getMeasurements()) {
+                for (Measurement measurement : measurements) {
                     i++;
                     sum = measurement.getCo2() + sum;
                     co2Mesurements.add(new Entry(i, (float) measurement.getCo2()));

@@ -1,24 +1,34 @@
 package com.example.sep4_android.ui.graph.lineChartForTemp;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.sep4_android.model.Device;
+import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.webService.HealthRepository;
 
-public class LineViewModelImpl extends ViewModel {
-    private HealthRepository healthRepository;
+import java.util.List;
 
-    public LineViewModelImpl() {
-        this.healthRepository = HealthRepository.getInstance();
+public class LineViewModelImpl extends AndroidViewModel {
+    private RouteRepository repository;
+
+    public LineViewModelImpl(@NonNull Application application) {
+        super(application);
+        repository = RouteRepository.getInstance(application);
     }
 
-    public LiveData<Device> getAllHealthDataByDevice() {
-        return healthRepository.getAllHealthDataByDevice();
+
+    public LiveData<List<Measurement>> getAllHealthDataByDevice() {
+        return repository.getAllMeasurementsByDevice();
     }
 
     public void findAllHealthDataByDevice() {
-        healthRepository.findAllHealthDataByDevice();
+        repository.findAllMeasurementsByDevice();
     }
 
 }

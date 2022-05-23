@@ -9,23 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.sep4_android.databinding.FragmentLinechartBinding;
-import com.example.sep4_android.model.Device;
-import com.example.sep4_android.model.Measurement;
+import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -48,12 +43,12 @@ public class LineFragment extends Fragment {
     }
 
     private void observers() {
-        viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), device -> {
-            if (device.getMeasurements() != null) {
+        viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), measurements -> {
+            if (measurements != null) {
                 ArrayList<Entry> tempMesurements = new ArrayList<>();
                 int i =0;
                 double sum =0;
-                for (Measurement measurement:device.getMeasurements())
+                for (Measurement measurement: measurements)
                 {
                     i++;
                     sum= measurement.getTemperature() + sum;

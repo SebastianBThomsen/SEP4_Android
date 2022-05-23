@@ -1,23 +1,30 @@
 package com.example.sep4_android.ui.graph.lineChartForHumidity;
 
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
-import com.example.sep4_android.model.Device;
-import com.example.sep4_android.webService.HealthRepository;
+import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.repositories.RouteRepository;
 
-public class HumidityViewModelImpl extends ViewModel {
-    private HealthRepository healthRepository;
+import java.util.List;
 
-    public HumidityViewModelImpl() {
-        this.healthRepository = HealthRepository.getInstance();
+public class HumidityViewModelImpl extends AndroidViewModel {
+    private RouteRepository repository;
+
+    public HumidityViewModelImpl(@NonNull Application application) {
+        super(application);
+        repository = RouteRepository.getInstance(application);
     }
 
-    public LiveData<Device> getAllHealthDataByDevice() {
-        return healthRepository.getAllHealthDataByDevice();
+
+    public LiveData<List<Measurement>> getAllHealthDataByDevice() {
+        return repository.getAllMeasurementsByDevice();
     }
 
     public void findAllHealthDataByDevice() {
-        healthRepository.findAllHealthDataByDevice();
+        repository.findAllMeasurementsByDevice();
     }
 }

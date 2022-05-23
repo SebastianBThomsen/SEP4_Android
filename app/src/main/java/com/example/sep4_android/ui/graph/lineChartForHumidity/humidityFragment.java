@@ -15,14 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sep4_android.databinding.FragmentHumidityBinding;
-import com.example.sep4_android.model.Measurement;
+import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.util.ArrayList;
 
@@ -54,12 +52,12 @@ public class humidityFragment extends Fragment {
         }
 
     private void observers() {
-        viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), device -> {
-            if (device.getMeasurements() != null) {
+        viewModel.getAllHealthDataByDevice().observe(getViewLifecycleOwner(), measurements -> {
+            if (measurements != null) {
                 ArrayList<Entry> test = new ArrayList<>();
                 int i =0;
                 double sum =0;
-                for (Measurement measurement:device.getMeasurements()) {
+                for (Measurement measurement: measurements) {
                     i++;
                     sum = measurement.getHumidity() + sum;
                     test.add(new Entry(i, (float) measurement.getHumidity()));
