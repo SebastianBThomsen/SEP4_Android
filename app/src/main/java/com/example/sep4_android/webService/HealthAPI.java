@@ -1,12 +1,19 @@
 package com.example.sep4_android.webService;
 
 import com.example.sep4_android.model.persistence.entities.Device;
+import com.example.sep4_android.model.persistence.entities.Measurement;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
+//Old Mockup
 //https://run.mocky.io/v3/01cae4fa-6f20-4ae7-9800-12a47935ae25
+
+//mockup
+//https://run.mocky.io/v3/d9384c83-1dd6-40b2-9c83-fa4f7ba54b15
 
 public interface HealthAPI {
     /*
@@ -16,7 +23,7 @@ public interface HealthAPI {
 
 
     @GET("v3/{roomNo}")
-    Call<Device> getAllHealthDataByDevice(@Path("roomNo") String roomNo);
+    Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
 
 
 

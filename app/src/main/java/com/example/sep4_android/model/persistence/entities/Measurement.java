@@ -2,6 +2,7 @@ package com.example.sep4_android.model.persistence.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 
 import com.example.sep4_android.model.DateHandler;
 
@@ -17,6 +18,16 @@ public class Measurement {
 
     public Measurement(String deviceId, int measurementId , double temperature, double co2, double humidity, long timestamp) {
         this.deviceId = deviceId;
+        this.measurementId = measurementId;
+        this.temperature = temperature;
+        this.co2 = co2;
+        this.humidity = humidity;
+        this.timestamp = timestamp;
+    }
+
+    //WEBAPI Reponse!
+    @Ignore
+    public Measurement(int measurementId , double temperature, double co2, double humidity, long timestamp) {
         this.measurementId = measurementId;
         this.temperature = temperature;
         this.co2 = co2;
