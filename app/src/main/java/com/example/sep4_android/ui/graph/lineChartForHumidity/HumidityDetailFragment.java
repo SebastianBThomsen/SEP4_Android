@@ -55,8 +55,8 @@ public class HumidityDetailFragment extends Fragment {
                 for (Measurement measurement:measurements)
                 {
                     i++;
-                    sum= measurement.getTemperature() + sum;
-                    HumMesurements.add(new Entry(i, (float) measurement.getTemperature()));
+                    sum= measurement.getHumidity() + sum;
+                    HumMesurements.add(new Entry(i, (float) measurement.getHumidity()));
                 }
                 design.setAvg(lineChart, (float) average(sum,i));
                 inputDataToChart(HumMesurements);
@@ -77,6 +77,9 @@ lineChart = binding.lcDetailHumidity;
         LineDataSet lineDataSet = new LineDataSet(test, "Humidity");
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
+        design.lineChartDesign(lineChart);
+        design.lineDataSet(lineDataSet);
+        lineDataSet.setDrawCircles(true);
 
 
 

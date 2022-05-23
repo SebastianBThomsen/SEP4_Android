@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.sep4_android.databinding.FragmentCo2Binding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.ui.graph.DesignForGraph.Design;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.YAxis;
@@ -27,6 +28,7 @@ public class co2Fragment extends Fragment {
     private Co2ViewModelImpl viewModel;
     private FragmentCo2Binding binding;
     private LineChart lineChart;
+    private Design design;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -35,6 +37,7 @@ public class co2Fragment extends Fragment {
         binding = FragmentCo2Binding.inflate(inflater, container, false);
         View root = binding.getRoot();
         bindings();
+        design = new Design();
         observers();
         viewModel.findAllHealthDataByDevice();
         return root;
@@ -52,14 +55,6 @@ public class co2Fragment extends Fragment {
                     sum = measurement.getCo2() + sum;
                     co2Mesurements.add(new Entry(i, (float) measurement.getCo2()));
                 }
-                LimitLine llXAxis = new LimitLine((float) average(sum, i), "Average");
-                llXAxis.setLineWidth(4f);
-                llXAxis.enableDashedLine(10f, 10f, 0f);
-                llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-                llXAxis.setTextSize(15f);
-                YAxis xAxis = lineChart.getAxisLeft();
-                xAxis.addLimitLine(llXAxis); // add x-axis limit line
-                xAxis.enableGridDashedLine(10f, 10f, 0f);
                 inputDataToChart(co2Mesurements);
                 //fixme Timestamp skal bruges på x istedet for 1 ,2 og 3
             }
@@ -77,10 +72,9 @@ public class co2Fragment extends Fragment {
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
-        lineChart.setScaleEnabled(true);
-        lineChart.setBackgroundColor(0);
-        lineChart.setDrawGridBackground(false);
-        lineChart.getDescription().setText("Dette Chart indholder Co2");
+        design.lineChartDesign(lineChart);
+        design.lineData(lineData);
+        design.lineDataSet(lineDataSet);
     }
 
     private double average(double b, int a) {
