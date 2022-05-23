@@ -20,6 +20,7 @@ public class Design {
         llXAxis.enableDashedLine(10f, 10f, 0f);
         llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
         llXAxis.setTextSize(15f);
+        llXAxis.setTextColor(Color.rgb(255,255,255));
         YAxis xAxis = lineChart.getAxisLeft();
         xAxis.addLimitLine(llXAxis); // add x-axis limit line
         xAxis.enableGridDashedLine(10f, 10f, 0f);
@@ -30,7 +31,7 @@ public class Design {
 
     public void lineDataSet(LineDataSet lineDataSet) {
         lineDataSet.setValueTextSize(16f);
-        lineDataSet.setColor((Color.rgb(255,255,255)));
+
         lineDataSet.setDrawFilled(true);
         lineDataSet.setDrawCircles(false);
         lineDataSet.setLineWidth(2f);
