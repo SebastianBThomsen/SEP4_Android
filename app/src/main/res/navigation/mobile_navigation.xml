@@ -23,9 +23,9 @@
         tools:layout="@layout/fragment_frontpage" />
     <fragment
         android:id="@+id/co2DeatilFragment"
-        android:name="com.example.sep4_android.ui.graph.lineChartForCo2.co2DetailFragment"
+        android:name="com.example.sep4_android.ui.graph.lineChartForCO2.CO2DetailFragment"
         android:label="fragment_co2Detail"
-        tools:layout="@layout/fragment_co2detail"/>
+        tools:layout="@layout/fragment_co2_detail"/>
     <fragment
         android:id="@+id/humidityDeatilFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartForHumidity.HumidityDetailFragment"
@@ -33,9 +33,9 @@
         tools:layout="@layout/fragment_humidity_detail"/>
     <fragment
         android:id="@+id/tempatureDeatilFragment"
-        android:name="com.example.sep4_android.ui.graph.lineChartForTemp.tempDeatilFragment"
+        android:name="com.example.sep4_android.ui.graph.lineChartForTemp.TempDetailFragment"
         android:label="Detail"
-        tools:layout="@layout/fragment_temp_deatil"/>
+        tools:layout="@layout/fragment_temp_detail"/>
 
     <fragment
         android:id="@+id/nav_selectRoomFragment"

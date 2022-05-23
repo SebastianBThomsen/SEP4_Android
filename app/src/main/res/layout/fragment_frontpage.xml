@@ -35,7 +35,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentHumudity"
-            android:name="com.example.sep4_android.ui.graph.lineChartForHumidity.humidityFragment"
+            android:name="com.example.sep4_android.ui.graph.lineChartForHumidity.HumidityFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#B8B8B8"
@@ -85,7 +85,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentCo2"
-            android:name="com.example.sep4_android.ui.graph.lineChartForCo2.co2Fragment"
+            android:name="com.example.sep4_android.ui.graph.lineChartForCO2.CO2Fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#B8B8B8"

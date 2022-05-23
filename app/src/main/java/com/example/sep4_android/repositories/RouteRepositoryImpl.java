@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -12,7 +11,6 @@ import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,8 +18,8 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     private static RouteRepositoryImpl instance;
 
-    private HealthRepositoryWeb repositoryWeb;
-    private HealthRepositoryLocal repositoryLocal;
+    private HealthHealthRepositoryWeb repositoryWeb;
+    private HealthHealthRepositoryLocal repositoryLocal;
     private Application application;
 
     ExecutorService executorService;
@@ -30,8 +28,8 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     public RouteRepositoryImpl(Application application) {
         this.application = application;
-        repositoryWeb = HealthRepositoryWeb.getInstance(application);
-        repositoryLocal = HealthRepositoryLocal.getInstance(application);
+        repositoryWeb = HealthHealthRepositoryWeb.getInstance(application);
+        repositoryLocal = HealthHealthRepositoryLocal.getInstance(application);
 
         executorService = Executors.newFixedThreadPool(2);
     }
@@ -52,46 +50,40 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
-//        if (isOnline()) {
-//            return repositoryWeb.getHealthDataBetweenTimestamps(start, end);
-        //Store api call data
-        //Check if id's exsist
-//        }
+        if (isOnline())
+            repositoryWeb.getMeasurementsBetweenTimestamps(selectedDevice, start, end);
+        //Stores data in Room
 
-        return repositoryLocal.getMeasurementsBetweenTimestamps(selectedDevice.getDeviceId(), start, end);
+        //Gets data from Room
+        return repositoryLocal.getMeasurementsBetweenTimestamps(selectedDevice, start, end);
     }
 
     @Override
-    public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceID) {
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice() {
         executorService.execute(() -> {
             if (isOnline()) {
-                repositoryWeb.getAllMeasurementsByDevice(selectedDevice.getDeviceId());
+                //FIXME: Er dette en fin metode til at cache data? --> Gemmer alt data i Room! --> får derefter data via LocalRepo!
+                //stores data in room from WebAPI
+                repositoryWeb.getAllMeasurementsByDevice(selectedDevice);
             }
         });
-        return repositoryLocal.getAllMeasurementsByDevice(selectedDevice.getDeviceId());
+        //returns Room Data
+        return repositoryLocal.getAllMeasurementsByDevice(selectedDevice);
     }
 
     public LiveData<List<Device>> getAllDevices() {
-//        if(isOnline()){
-//
-//        }
+        if(isOnline()) {
+            repositoryWeb.getAllDevices();
+        }
 
         return repositoryLocal.getAllDevices();
     }
 
     @Override
-    public void findAllMeasurementsByDevice(String deviceId) {
+    public void sendMaxHealthSettingsValues(int desiredTemp, int desiredCO2, int desiredHumidity) {
         if (isOnline())
-            repositoryWeb.findAllMeasurementsByDevice(selectedDevice.getDeviceId());
-        else
-            repositoryLocal.findAllMeasurementsByDevice(selectedDevice.getDeviceId());
-    }
-
-    @Override
-    public void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity) {
-        if (isOnline())
-            repositoryWeb.sendMaxHealthSettingsValues(deviceId, desiredTemp, desiredCO2, desiredHumidity);
-        repositoryLocal.sendMaxHealthSettingsValues(deviceId, desiredTemp, desiredCO2, desiredHumidity);
+            repositoryWeb.sendMaxHealthSettingsValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
+        repositoryLocal.sendMaxHealthSettingsValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
     }
 
 

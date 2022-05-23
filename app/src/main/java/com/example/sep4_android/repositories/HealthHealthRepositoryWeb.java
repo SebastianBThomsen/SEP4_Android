@@ -14,7 +14,6 @@ import com.example.sep4_android.webService.HealthAPI;
 import com.example.sep4_android.webService.HealthServiceGenerator;
 import com.example.sep4_android.webService.MeasurementsByRoomResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,8 +22,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HealthRepositoryWeb implements Repository {
-    private static HealthRepositoryWeb instance;
+public class HealthHealthRepositoryWeb implements HealthRepository {
+    private static HealthHealthRepositoryWeb instance;
     private final MutableLiveData<List<Measurement>> randomHealthData;
     private HealthAPI healthAPI;
 
@@ -32,7 +31,7 @@ public class HealthRepositoryWeb implements Repository {
     private final MeasurementDAO measurementDAO;
     private final ExecutorService executorService;
 
-    public HealthRepositoryWeb(Application application) {
+    public HealthHealthRepositoryWeb(Application application) {
         randomHealthData = new MutableLiveData<>();
         healthAPI = HealthServiceGenerator.getHealthAPI();
 
@@ -42,34 +41,33 @@ public class HealthRepositoryWeb implements Repository {
         executorService = Executors.newFixedThreadPool(2);
     }
 
-    public static synchronized HealthRepositoryWeb getInstance(Application application) {
+    public static synchronized HealthHealthRepositoryWeb getInstance(Application application) {
         if (instance == null)
-            instance = new HealthRepositoryWeb(application);
+            instance = new HealthHealthRepositoryWeb(application);
         return instance;
     }
 
+
     @Override
-    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
+    public LiveData<List<Device>> getAllDevices() {
+        //TODO: Mangler endpoint fra DAI
         return null;
     }
 
     @Override
-    public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId) {
+    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(Device device, long start, long end) {
+        //TODO: Mangler endpoint fra DAI
         return null;
     }
 
     @Override
-    public void findAllMeasurementsByDevice(String deviceId) {
-
+    public void sendMaxHealthSettingsValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity) {
+        //TODO: Mangler endpoint fra DAI
     }
 
     @Override
-    public void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity) {
-
-    }
-
-    public void findAllHealthDataByDevice() {
-        //FIXME: Skal have fundet løsning med vores nye model klasser!
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device) {
+        //FIXME: Tjek MeasurementsByRoomResponse!
         //- Evt. HealthDataReponses?
 
         Log.i("Retrofit", "Start (searchForHealthData) - url: ");
@@ -86,12 +84,12 @@ public class HealthRepositoryWeb implements Repository {
                     MeasurementsByRoomResponse measurementsByRoomResponse = response.body()[0];
                     Log.i("Retrofit", "SUCCESS!\nHealth Data: " + measurementsByRoomResponse);
                     //randomHealthData.setValue(device);
+                    //TODO: Kasper, er dette en fin måde at gemme data til cache på?
                     executorService.execute(() -> {
-                        for (Measurement measurement: measurementsByRoomResponse.getMeasurements()) {
+                        for (Measurement measurement : measurementsByRoomResponse.getMeasurements()) {
                             measurementDAO.insert(measurement);
                         }
                     });
-
                 }
             }
 
@@ -101,6 +99,7 @@ public class HealthRepositoryWeb implements Repository {
                         + "\nError Message: " + t.getMessage());
             }
         });
-
+        //FIXME: lidt skørt, måske bare lave et seperat interface til RepositoryWeb i stedet? --> og kald denne findMeasurementsByDevice?
+        return null;
     }
 }

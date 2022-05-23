@@ -26,6 +26,7 @@ public class MeasurementsByRoomResponse {
         //Converting WebAPI measurements to right format
         for (MeasurementResponse measurement: measurements) {
 
+            //FIXME: Er dette en dum måde at gøre det på?
             Measurement measurementReturn = new Measurement(deviceId,
                     measurement.getMeasurementId(),
                     measurement.getTemperature(),

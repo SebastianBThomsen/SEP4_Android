@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.repositories.Repository;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
 

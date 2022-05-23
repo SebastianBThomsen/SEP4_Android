@@ -31,7 +31,6 @@ public class SettingsFragment extends Fragment {
 
         bindings();
 
-
         return root;
     }
 
@@ -53,5 +52,9 @@ public class SettingsFragment extends Fragment {
                 Integer.parseInt(editHumidity.getText().toString()));
     }
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

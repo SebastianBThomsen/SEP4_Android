@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph.lineChartForCo2;
+package com.example.sep4_android.ui.graph.lineChartForCO2;
 
 
 import android.app.Application;
@@ -10,23 +10,20 @@ import androidx.lifecycle.LiveData;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
+import com.example.sep4_android.ui.graph.GraphViewModel;
 
 import java.util.List;
 
-public class Co2ViewModelImpl extends AndroidViewModel {
+public class CO2ViewModelImpl extends AndroidViewModel implements GraphViewModel {
     private RouteRepository repository;
 
-    public Co2ViewModelImpl(@NonNull Application application) {
+    public CO2ViewModelImpl(@NonNull Application application) {
         super(application);
         repository = RouteRepositoryImpl.getInstance(application);
     }
 
-
-    public LiveData<List<Measurement>> getAllHealthDataByDevice() {
-        return repository.getAllMeasurementsByDevice("bobTest");
-    }
-
-    public void findAllHealthDataByDevice() {
-        repository.findAllMeasurementsByDevice("bobTest");
+    @Override
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice() {
+        return repository.getAllMeasurementsByDevice();
     }
 }

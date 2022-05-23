@@ -34,8 +34,6 @@ public class HomeFragment extends Fragment {
     private Button btn_startDate, btn_endDate;
     private long startDate, endDate;
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         viewModel = new ViewModelProvider(this).get(HomeViewModelImpl.class);
@@ -49,11 +47,9 @@ public class HomeFragment extends Fragment {
         materialDatePickerStart = DateHandler.getMaterialDatePicker();
         materialDatePickerEnd = DateHandler.getMaterialDatePicker();
 
-        //TEST!
-        viewModel.findAllHealthDataByDevice();
-
         bindings();
         observers();
+
         return root;
     }
 
@@ -74,7 +70,6 @@ public class HomeFragment extends Fragment {
             tv_humidity.setText("" + measurement.getHumidity());
             tv_temperature.setText("" + measurement.getTemperature());
             textView.setText(measurement.getTimestampString());
-
              */
         });
     }

@@ -16,11 +16,11 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class HealthRepositoryLocal implements Repository {
-    private static HealthRepositoryLocal instance;
+public class HealthHealthRepositoryLocal implements HealthRepository {
+    private static HealthHealthRepositoryLocal instance;
     private MeasurementDAO measurementDAO;
     private DeviceDAO deviceDAO;
-    private ExecutorService executor;
+    private ExecutorService executorService;
 
     //skal denne bruges?
     private MutableLiveData<List<Measurement>> allMeasurementsByDevice;
@@ -29,9 +29,11 @@ public class HealthRepositoryLocal implements Repository {
     private MutableLiveData<Measurement> averageMeasurement;
 
 
-    private HealthRepositoryLocal(Application application) {
+    private HealthHealthRepositoryLocal(Application application) {
         Database database = Database.getInstance(application);
-        executor = Executors.newFixedThreadPool(2);
+
+        //Bruges denne overhovedet?
+        executorService = Executors.newFixedThreadPool(2);
 
         averageMeasurement = new MutableLiveData<>();
 
@@ -42,18 +44,15 @@ public class HealthRepositoryLocal implements Repository {
         deviceDAO = database.deviceDAO();
         allDevice = deviceDAO.getAllDevices();
 
-        //Observe average temps
+        //Observe average temps //FIXME: skal dette gøres her?
         setAverageMeasurement();
-
-
     }
 
-    public static synchronized HealthRepositoryLocal getInstance(Application application) {
+    public static synchronized HealthHealthRepositoryLocal getInstance(Application application) {
         if (instance == null)
-            instance = new HealthRepositoryLocal(application);
+            instance = new HealthHealthRepositoryLocal(application);
         return instance;
     }
-
 
     public MutableLiveData<Measurement> getAverageMeasurement() {
         return averageMeasurement;
@@ -76,42 +75,32 @@ public class HealthRepositoryLocal implements Repository {
         });
     }
 
-    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(String deviceId, long start, long end) {
-        //FIXME: Dette virker ikke :((
-        //measurementList = measurementDAO.getHealthDataBetweenTimestamps(start, end)
-        //measurementList.setvalue(measurementDAO.getHealthDataBetweenTimestamps(start, end))
-
+    @Override
+    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(Device device, long start, long end) {
         //Tilføj en getter til measurementList uden parametre! --> Så den kan observes i fragment!
-        Log.i("HealthRepositoryLocal", "getHealthDataBetweenTimestamps" + measurementDAO.getHealthDataBetweenTimestamps(deviceId, start, end));
-        return measurementDAO.getHealthDataBetweenTimestamps(deviceId, start, end);
+        // --> HomeViewModel
+        /*
+         measurementsByTimestamp = Transformations.switchMap(
+                filterTimestamp,
+                timestamp -> repository.getMeasurementsBetweenTimestamps(timestamp.get(0), timestamp.get(1))
+        );
+         */
+        Log.i("HealthRepositoryLocal", "getHealthDataBetweenTimestamps" + measurementDAO.getHealthDataBetweenTimestamps(device.getDeviceId(), start, end));
+        return measurementDAO.getHealthDataBetweenTimestamps(device.getDeviceId(), start, end);
     }
 
     @Override
-    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
-        //bruger den ikke ^^ //FIXME: Dette er fra REPO, skal være med deviceId, når vi går til Local og Web! dog ikke op til RouteRepo!
-        return null;
-    }
-
-    @Override
-    public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId) {
-//Returner her en liste af alle Measurements, da den førhen bare returnet null
-        return measurementDAO.getAllMeasurementsByDevice(deviceId);
-
-    }
-
-    //Er det ikke en duplicate?
-    @Override
-    public void findAllMeasurementsByDevice(String deviceId) {
-
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device) {
+        //Returner her en liste af alle Measurements, da den førhen bare returnet null
+        return measurementDAO.getAllMeasurementsByDevice(device.getDeviceId());
     }
 
     public LiveData<List<Device>> getAllDevices() {
         return allDevice;
     }
 
-
     @Override
-    public void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity) {
-
+    public void sendMaxHealthSettingsValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity) {
+        //TODO: Skal der sendes maxhealthsettings Til Room?? --> Måske noget med hvis internet er gået, så sender den med det samme internet kommer tilbage?
     }
 }

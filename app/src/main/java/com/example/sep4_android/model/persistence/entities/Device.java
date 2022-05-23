@@ -10,14 +10,10 @@ import java.util.ArrayList;
 
 @Entity(tableName = "device_table")
 public class Device {
-    //GET Measurements endpoint: http://sep4webapi-env.eba-2fmcgiei.eu-west-1.elasticbeanstalk.com/api/v1/rooms/2/measurements
-
-
     @NonNull
     @PrimaryKey()
     private String deviceId;
     private String deviceRoom;
-
 
     public Device(String deviceId, String deviceRoom) {
         this.deviceRoom = deviceRoom;

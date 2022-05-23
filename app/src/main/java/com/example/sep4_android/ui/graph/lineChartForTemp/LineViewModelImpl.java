@@ -5,15 +5,15 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
+
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
-
+import com.example.sep4_android.ui.graph.GraphViewModel;
 
 import java.util.List;
 
-public class LineViewModelImpl extends AndroidViewModel {
+public class LineViewModelImpl extends AndroidViewModel implements GraphViewModel {
     private RouteRepository repository;
 
     public LineViewModelImpl(@NonNull Application application) {
@@ -21,13 +21,8 @@ public class LineViewModelImpl extends AndroidViewModel {
         repository = RouteRepositoryImpl.getInstance(application);
     }
 
-
-    public LiveData<List<Measurement>> getAllHealthDataByDevice() {
-        return repository.getAllMeasurementsByDevice("bobTest");
+    @Override
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice() {
+        return repository.getAllMeasurementsByDevice();
     }
-
-    public void findAllHealthDataByDevice() {
-        repository.findAllMeasurementsByDevice("bobTest");
-    }
-
 }

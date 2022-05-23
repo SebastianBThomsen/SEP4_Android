@@ -61,8 +61,15 @@ public class SelectRoomFragment extends Fragment {
     }
 
     private void bindings() {
+        //FIXME: Denne bruges ikke?
         //Select Room
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
 }

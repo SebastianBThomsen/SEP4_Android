@@ -12,7 +12,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 
-public class Design {
+public class GraphDesign {
 
     public void setAvg(LineChart lineChart, Float sum1) {
         LimitLine llXAxis = new LimitLine(sum1,"Average");
@@ -26,9 +26,6 @@ public class Design {
         xAxis.enableGridDashedLine(10f, 10f, 0f);
     }
 
-
-
-
     public void lineDataSet(LineDataSet lineDataSet) {
         lineDataSet.setValueTextSize(16f);
 
@@ -37,12 +34,10 @@ public class Design {
         lineDataSet.setLineWidth(2f);
         lineDataSet.setColor(Color.rgb(76, 175, 80));
         lineDataSet.setFillColor(Color.rgb(76, 175, 80));
-
     }
 
     public void lineData(LineData lineData) {
         lineData.setDrawValues(false);
-
     }
 
     public void lineChartDesign(LineChart lineChart) {
@@ -60,10 +55,6 @@ public class Design {
         lineChart.getDescription().setTextColor(Color.parseColor("#ffffff"));
         lineChart.getData().setValueTextColor(Color.parseColor("#ffffff"));
         lineChart.setBackgroundColor(Color.rgb(37, 36, 36));//Set as a gray
-
-
     }
-
-
 }
 

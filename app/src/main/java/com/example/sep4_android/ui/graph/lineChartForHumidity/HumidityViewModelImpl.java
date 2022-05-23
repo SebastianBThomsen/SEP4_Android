@@ -9,10 +9,11 @@ import androidx.lifecycle.LiveData;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
+import com.example.sep4_android.ui.graph.GraphViewModel;
 
 import java.util.List;
 
-public class HumidityViewModelImpl extends AndroidViewModel {
+public class HumidityViewModelImpl extends AndroidViewModel implements GraphViewModel {
     private RouteRepository repository;
 
     public HumidityViewModelImpl(@NonNull Application application) {
@@ -21,11 +22,8 @@ public class HumidityViewModelImpl extends AndroidViewModel {
     }
 
 
-    public LiveData<List<Measurement>> getAllHealthDataByDevice() {
-        return repository.getAllMeasurementsByDevice("bobTest");
-    }
-
-    public void findAllHealthDataByDevice() {
-        repository.findAllMeasurementsByDevice("bobTest");
+    @Override
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice() {
+        return repository.getAllMeasurementsByDevice();
     }
 }

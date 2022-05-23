@@ -1,18 +1,17 @@
 package com.example.sep4_android.ui.graph.lineChartOverview;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentFrontpageBinding;
@@ -21,8 +20,9 @@ public class FrontpageFragment extends Fragment {
 
     private FrontpageViewModel mViewModel;
     private FragmentFrontpageBinding binding;
-    private CardView cardView_Co2,cardView_temp,cardView_humidity;
-private Button btn_Co2,btn_Temp,btn_Humidity;
+    private CardView cardView_Co2, cardView_temp, cardView_humidity;
+    private Button btn_Co2, btn_Temp, btn_Humidity;
+
     public static FrontpageFragment newInstance() {
         return new FrontpageFragment();
     }
@@ -31,15 +31,18 @@ private Button btn_Co2,btn_Temp,btn_Humidity;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mViewModel = new ViewModelProvider(this).get(FrontpageViewModel.class);
-        binding = FragmentFrontpageBinding.inflate(inflater, container,false);
+        binding = FragmentFrontpageBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
         bindings();
         //observers();
         onClickListeners();
+
         return root;
-           }
+    }
 
     private void onClickListeners() {
+        //FIXME: Sout Fjernes, når knappen virker? - Hvem end der har lavet
         btn_Temp.setOnClickListener(view -> {
             System.out.println("Test virker knappen?");
             Navigation.findNavController(view).navigate(R.id.tempatureDeatilFragment);
@@ -60,8 +63,12 @@ private Button btn_Co2,btn_Temp,btn_Humidity;
         btn_Co2 = binding.btnCo2;
         btn_Humidity = binding.btnHumidity;
         btn_Temp = binding.btnTemp;
-
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 
 }
