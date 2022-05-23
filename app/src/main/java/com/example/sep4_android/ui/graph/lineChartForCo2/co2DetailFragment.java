@@ -53,7 +53,7 @@ public class co2DetailFragment extends Fragment {
                 for (Measurement measurement:measurements)
                 {
                     i++;
-                    sum= measurement.getTemperature() + sum;
+                    sum= measurement.getCo2() + sum;
                     co2Mesurements.add(new Entry(i, (float) measurement.getCo2()));
                 }
                 design.setAvg(lineChart, (float) average(sum,i));

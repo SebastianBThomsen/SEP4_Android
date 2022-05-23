@@ -30,6 +30,7 @@ public class Design {
 
     public void lineDataSet(LineDataSet lineDataSet) {
         lineDataSet.setValueTextSize(16f);
+        lineDataSet.setColor((Color.rgb(255,255,255)));
         lineDataSet.setDrawFilled(true);
         lineDataSet.setDrawCircles(false);
         lineDataSet.setLineWidth(2f);
