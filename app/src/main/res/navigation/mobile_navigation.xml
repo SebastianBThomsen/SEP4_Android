@@ -22,24 +22,24 @@
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
-        android:id="@+id/nav_graph"
-        android:name="com.example.sep4_android.ui.graph.standardGraph.GraphFragment"
-        android:label="Graph"
-        tools:layout="@layout/fragment_graph" />
+        android:id="@+id/lineFragment"
+        android:name="com.example.sep4_android.ui.graph.lineChartForTemp.LineFragment"
+        android:label="fragment_linechart"
+        tools:layout="@layout/fragment_linechart" />
     <fragment
-        android:id="@+id/nav_barchart"
-        android:name="com.example.sep4_android.ui.graph.barchart.BarchartFragment"
-        android:label="fragment_barchart"
-        tools:layout="@layout/fragment_barchart" />
+        android:id="@+id/co2Fragment"
+        android:name="com.example.sep4_android.ui.graph.lineChartForCo2.co2Fragment"
+        android:label="fragment_co2"
+        tools:layout="@layout/fragment_co2" />
     <fragment
-        android:id="@+id/nav_piechart"
-        android:name="com.example.sep4_android.ui.graph.piechart.PieChartFragment"
-        android:label="fragment_pie_chart"
-        tools:layout="@layout/fragment_pie_chart" />
+        android:id="@+id/humidityFragment"
+        android:name="com.example.sep4_android.ui.graph.lineChartForHumidity.humidityFragment"
+        android:label="fragment_humidity"
+        tools:layout="@layout/fragment_humidity" />
     <fragment
-        android:id="@+id/nav_radarchart"
-        android:name="com.example.sep4_android.ui.graph.radarchart.RadarChartFragment"
-        android:label="radar_chart_fragment"
-        tools:layout="@layout/radar_chart_fragment" />
+        android:id="@+id/frontpageFragment"
+        android:name="com.example.sep4_android.ui.graph.lineChartOverview.FrontpageFragment"
+        android:label="fragment_frontpage"
+        tools:layout="@layout/fragment_frontpage" />
 
 </navigation>
