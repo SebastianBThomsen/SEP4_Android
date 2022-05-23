@@ -22,10 +22,10 @@ public class Co2ViewModelImpl extends AndroidViewModel {
 
 
     public LiveData<List<Measurement>> getAllHealthDataByDevice() {
-        return repository.getAllMeasurementsByDevice();
+        return repository.getAllMeasurementsByDevice("bobtest");
     }
 
     public void findAllHealthDataByDevice() {
-        repository.findAllMeasurementsByDevice();
+        repository.findAllMeasurementsByDevice("bobtest");
     }
 }

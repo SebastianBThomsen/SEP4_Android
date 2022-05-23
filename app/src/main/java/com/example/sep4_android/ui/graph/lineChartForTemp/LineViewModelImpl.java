@@ -7,10 +7,9 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.sep4_android.model.Device;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.repositories.RouteRepository;
-import com.example.sep4_android.webService.HealthRepository;
+
 
 import java.util.List;
 
@@ -24,11 +23,11 @@ public class LineViewModelImpl extends AndroidViewModel {
 
 
     public LiveData<List<Measurement>> getAllHealthDataByDevice() {
-        return repository.getAllMeasurementsByDevice();
+        return repository.getAllMeasurementsByDevice("bobtest");
     }
 
     public void findAllHealthDataByDevice() {
-        repository.findAllMeasurementsByDevice();
+        repository.findAllMeasurementsByDevice("bobtest");
     }
 
 }
