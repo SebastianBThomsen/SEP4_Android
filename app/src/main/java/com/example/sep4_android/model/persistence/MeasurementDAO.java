@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -15,17 +16,13 @@ import java.util.List;
 
 @Dao
 public interface MeasurementDAO {
-    @Insert
+
+    //Adding onClictIgnore --> So if data from API is already stored, IGNORE it!
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Measurement measurement);
 
     @Update
     void update(Measurement measurement);
-
-    @Delete
-    void Delete(Measurement measurement);
-
-    @Query("DELETE FROM measurements_table")
-    void deleteAllNotes();
 
     @Query("SELECT * FROM measurements_table WHERE deviceId = :deviceId ORDER BY timestamp DESC")
     LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId);

@@ -22,7 +22,7 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
 
     private Repository repository;
 
-    //TEST WEBAPI
+    //FIXME: TEST WEBAPI - Dette skal IKKE være her!
     private HealthRepositoryWeb healthRepositoryWeb;
 
     private LiveData<List<Measurement>> measurementsByTimestamp;
@@ -32,7 +32,7 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
     public HomeViewModelImpl(@NonNull Application application) {
         super(application);
         repository = RouteRepositoryImpl.getInstance(application);
-        healthRepositoryWeb = HealthRepositoryWeb.getInstance();
+        healthRepositoryWeb = HealthRepositoryWeb.getInstance(application);
 
         measurementsByTimestamp = Transformations.switchMap(
                 filterTimestamp,

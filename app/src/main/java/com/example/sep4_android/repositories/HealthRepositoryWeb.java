@@ -1,17 +1,23 @@
 package com.example.sep4_android.repositories;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.sep4_android.model.persistence.Database;
+import com.example.sep4_android.model.persistence.MeasurementDAO;
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.webService.HealthAPI;
 import com.example.sep4_android.webService.HealthServiceGenerator;
 import com.example.sep4_android.webService.MeasurementsByRoomResponse;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,14 +28,23 @@ public class HealthRepositoryWeb implements Repository {
     private final MutableLiveData<List<Measurement>> randomHealthData;
     private HealthAPI healthAPI;
 
-    public HealthRepositoryWeb() {
+    //Denne skal nok ikke være her! - Data Persistance fra WEBAPI!
+    private final MeasurementDAO measurementDAO;
+    private final ExecutorService executorService;
+
+    public HealthRepositoryWeb(Application application) {
         randomHealthData = new MutableLiveData<>();
         healthAPI = HealthServiceGenerator.getHealthAPI();
+
+        Database database = Database.getInstance(application);
+        measurementDAO = database.measurementDAO();
+
+        executorService = Executors.newFixedThreadPool(2);
     }
 
-    public static synchronized HealthRepositoryWeb getInstance() {
+    public static synchronized HealthRepositoryWeb getInstance(Application application) {
         if (instance == null)
-            instance = new HealthRepositoryWeb();
+            instance = new HealthRepositoryWeb(application);
         return instance;
     }
 
@@ -71,6 +86,12 @@ public class HealthRepositoryWeb implements Repository {
                     MeasurementsByRoomResponse measurementsByRoomResponse = response.body()[0];
                     Log.i("Retrofit", "SUCCESS!\nHealth Data: " + measurementsByRoomResponse);
                     //randomHealthData.setValue(device);
+                    executorService.execute(() -> {
+                        for (Measurement measurement: measurementsByRoomResponse.getMeasurements()) {
+                            measurementDAO.insert(measurement);
+                        }
+                    });
+
                 }
             }
 

@@ -31,7 +31,7 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     public RouteRepositoryImpl(Application application) {
         this.application = application;
-        repositoryWeb = HealthRepositoryWeb.getInstance();
+        repositoryWeb = HealthRepositoryWeb.getInstance(application);
         repositoryLocal = HealthRepositoryLocal.getInstance(application);
 
         selectedDeviceLive = new MutableLiveData<>();
