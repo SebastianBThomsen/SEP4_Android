@@ -24,16 +24,6 @@ public class Measurement {
         this.humidity = humidity;
         this.timestamp = timestamp;
     }
-
-    //WEBAPI Reponse!
-    @Ignore
-    public Measurement(int measurementId , double temperature, double co2, double humidity, long timestamp) {
-        this.measurementId = measurementId;
-        this.temperature = temperature;
-        this.co2 = co2;
-        this.humidity = humidity;
-        this.timestamp = timestamp;
-    }
     //Getting timestamp in string format
     public String getTimestampString(){
         return DateHandler.fromLongToString(timestamp);

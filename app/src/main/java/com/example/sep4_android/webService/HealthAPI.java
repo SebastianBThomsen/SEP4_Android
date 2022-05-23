@@ -22,9 +22,12 @@ public interface HealthAPI {
      */
 
 
+    /*
     @GET("v3/{roomNo}")
     Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
-
+*/
+    @GET("api/v1/rooms/{roomNo}/measurements")
+    Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
 
 
     /*

@@ -58,7 +58,9 @@ public class HealthRepositoryWeb implements Repository {
         //- Evt. HealthDataReponses?
 
         Log.i("Retrofit", "Start (searchForHealthData) - url: ");
-        Call<MeasurementsByRoomResponse[]> call = healthAPI.getAllMeasurementsByRoom("b4830343-c4fe-4107-bae6-d229ccf8190c");
+        //localMockup
+        //Call<MeasurementsByRoomResponse[]> call = healthAPI.getAllMeasurementsByRoom("d9384c83-1dd6-40b2-9c83-fa4f7ba54b15");
+        Call<MeasurementsByRoomResponse[]> call = healthAPI.getAllMeasurementsByRoom("c02_02");
         Log.i("Retrofit", "(searchForHealthData) - Call: " + call);
         call.enqueue(new Callback<MeasurementsByRoomResponse[]>() {
             @Override

@@ -5,6 +5,7 @@ import com.google.android.material.datepicker.DateValidatorPointBackward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,6 +16,20 @@ public class DateHandler {
         //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy - hh:mm:ss");
         return dateFormat.format(date);
+    }
+
+    public static long fromStringToLong(String date)
+    {
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
+
+        long milliseconds = 0;
+        try {
+            Date d = f.parse(date);
+            milliseconds = d.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return milliseconds;
     }
 
     public static MaterialDatePicker getMaterialDatePicker(){
