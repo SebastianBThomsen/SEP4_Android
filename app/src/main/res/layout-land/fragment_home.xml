@@ -24,34 +24,39 @@
 
     <!-- Start Time-->
 
+    <!-- End Time-->
+
+
+    <!-- Health Data header-->
+
     <Button
         android:id="@+id/btn_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.426" />
+        app:layout_constraintVertical_bias="0.898" />
 
     <TextView
         android:id="@+id/tv_startTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="startTime"
+        android:width="275dp"
+        android:text="Start Time:"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
         app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
-    <!-- End Time-->
-
-    <!-- Health Data header-->
     <TextView
         android:id="@+id/tv_endTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="endTime"
+        android:width="275dp"
+        android:text="End Time:"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
         app:layout_constraintTop_toBottomOf="@+id/tv_startTime" />
 
@@ -70,6 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Temperatures: "
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
         app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
 
@@ -88,6 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="CO2: "
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
         app:layout_constraintTop_toBottomOf="@+id/textTemperature" />
 
@@ -107,6 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Humidities: "
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
         app:layout_constraintTop_toBottomOf="@+id/textCO2" />
 
@@ -132,14 +140,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_begin="391dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/firstHorizontalTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.21" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
@@ -150,25 +158,24 @@
 
     <Button
         android:id="@+id/btn_endDate"
-        android:layout_width="82dp"
-        android:layout_height="39dp"
-        android:layout_marginEnd="32dp"
-        android:text="Button"
-        android:textSize="10sp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="SET"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_endTime"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft"
         app:layout_constraintTop_toTopOf="@+id/tv_endTime"
+        app:layout_constraintVertical_bias="0.444"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btn_startDate"
-        android:layout_width="82dp"
-        android:layout_height="39dp"
-        android:layout_marginEnd="32dp"
-        android:text="Button"
-        android:textSize="10sp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="SET"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_startTime"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft"
         app:layout_constraintTop_toTopOf="@+id/tv_startTime"
         tools:ignore="TouchTargetSizeCheck" />
 

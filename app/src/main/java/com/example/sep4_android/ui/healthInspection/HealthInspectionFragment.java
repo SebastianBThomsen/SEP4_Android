@@ -36,7 +36,7 @@ public class HealthInspectionFragment extends Fragment {
         View root = binding.getRoot();
 
         bindings();
-        observers();
+        //observers();
         onClickListeners();
 
         return root;

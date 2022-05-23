@@ -1,5 +1,6 @@
 package com.example.sep4_android;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -36,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //Orientation
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            System.out.println("!!!!!!!!!PORTRAIT!!!!!!!!!!!");
+        } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            System.out.println("!!!!!!!!!LANDSCAPE!!!!!!!!!!!");
+        }
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -47,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
+
     }
 
     @Override
