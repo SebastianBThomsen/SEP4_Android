@@ -22,8 +22,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HealthHealthRepositoryWeb implements HealthRepository {
-    private static HealthHealthRepositoryWeb instance;
+public class HealthRepositoryWeb implements HealthRepository {
+    private static HealthRepositoryWeb instance;
     private final MutableLiveData<List<Measurement>> randomHealthData;
     private HealthAPI healthAPI;
 
@@ -31,7 +31,7 @@ public class HealthHealthRepositoryWeb implements HealthRepository {
     private final MeasurementDAO measurementDAO;
     private final ExecutorService executorService;
 
-    public HealthHealthRepositoryWeb(Application application) {
+    public HealthRepositoryWeb(Application application) {
         randomHealthData = new MutableLiveData<>();
         healthAPI = HealthServiceGenerator.getHealthAPI();
 
@@ -41,9 +41,9 @@ public class HealthHealthRepositoryWeb implements HealthRepository {
         executorService = Executors.newFixedThreadPool(2);
     }
 
-    public static synchronized HealthHealthRepositoryWeb getInstance(Application application) {
+    public static synchronized HealthRepositoryWeb getInstance(Application application) {
         if (instance == null)
-            instance = new HealthHealthRepositoryWeb(application);
+            instance = new HealthRepositoryWeb(application);
         return instance;
     }
 

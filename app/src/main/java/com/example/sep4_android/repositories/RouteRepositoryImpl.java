@@ -18,8 +18,8 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     private static RouteRepositoryImpl instance;
 
-    private HealthHealthRepositoryWeb repositoryWeb;
-    private HealthHealthRepositoryLocal repositoryLocal;
+    private HealthRepositoryWeb repositoryWeb;
+    private HealthRepositoryLocal repositoryLocal;
     private Application application;
 
     private ExecutorService executorService;
@@ -28,8 +28,8 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     public RouteRepositoryImpl(Application application) {
         this.application = application;
-        repositoryWeb = HealthHealthRepositoryWeb.getInstance(application);
-        repositoryLocal = HealthHealthRepositoryLocal.getInstance(application);
+        repositoryWeb = HealthRepositoryWeb.getInstance(application);
+        repositoryLocal = HealthRepositoryLocal.getInstance(application);
 
         executorService = Executors.newFixedThreadPool(2);
     }

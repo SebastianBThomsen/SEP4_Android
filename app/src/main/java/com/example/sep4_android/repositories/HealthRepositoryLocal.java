@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class HealthHealthRepositoryLocal implements HealthRepository {
-    private static HealthHealthRepositoryLocal instance;
+public class HealthRepositoryLocal implements HealthRepository {
+    private static HealthRepositoryLocal instance;
     private MeasurementDAO measurementDAO;
     private DeviceDAO deviceDAO;
     private ExecutorService executorService;
@@ -29,7 +29,7 @@ public class HealthHealthRepositoryLocal implements HealthRepository {
     private MutableLiveData<Measurement> averageMeasurement;
 
 
-    private HealthHealthRepositoryLocal(Application application) {
+    private HealthRepositoryLocal(Application application) {
         Database database = Database.getInstance(application);
 
         //Bruges denne overhovedet?
@@ -48,9 +48,9 @@ public class HealthHealthRepositoryLocal implements HealthRepository {
         setAverageMeasurement();
     }
 
-    public static synchronized HealthHealthRepositoryLocal getInstance(Application application) {
+    public static synchronized HealthRepositoryLocal getInstance(Application application) {
         if (instance == null)
-            instance = new HealthHealthRepositoryLocal(application);
+            instance = new HealthRepositoryLocal(application);
         return instance;
     }
 
