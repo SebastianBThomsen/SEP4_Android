@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -97,8 +98,21 @@ public class HealthRepositoryWeb implements HealthRepository {
 
     @Override
     public void updateClassroom(Device device) {
-        //TODO: Mangler endpoint
+        Call<ResponseBody> call = healthAPI.putClassroomName(device.getRoomName(), device.getClimateDeviceId());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.i("Retrofit", "Response: "+response);
+                if(response.isSuccessful()){
+                    Log.i("Retrofit", "Success response: "+response.body());
+                }
+            }
 
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
         //Noget i stil af dette kald
         //healthAPI.setDeviceRoom(device.getRoomName(), device);
     }

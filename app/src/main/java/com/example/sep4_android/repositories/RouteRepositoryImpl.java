@@ -101,10 +101,10 @@ public class RouteRepositoryImpl implements RouteRepository {
         selectedUnregistedDevice.setRoomName(classroom);
 
         if(isOnline()){
-
+            repositoryWeb.updateClassroom(selectedUnregistedDevice);
         }
-
         repositoryLocal.updateClassroom(selectedUnregistedDevice);
+
         selectedUnregistedDevice = null;
     }
 

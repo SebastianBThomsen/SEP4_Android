@@ -114,7 +114,7 @@ public class HealthRepositoryLocal implements HealthRepository {
     public void updateClassroom(Device device){
         executorService.execute(
                 () -> {
-                    deviceDAO.updateClassroom(device.getDeviceId(), device.getDeviceRoom());
+                    deviceDAO.updateClassroom(device.getClimateDeviceId(), device.getRoomName());
                 }
         );
     }
