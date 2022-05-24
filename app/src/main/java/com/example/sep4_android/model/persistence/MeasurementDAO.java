@@ -27,8 +27,8 @@ public interface MeasurementDAO {
     @Query("DELETE FROM measurements_table")
     void deleteAllNotes();
 
-    @Query("SELECT * FROM measurements_table ORDER BY timestamp DESC")
-    LiveData<List<Measurement>> getAllMeasurements();
+    @Query("SELECT * FROM measurements_table WHERE deviceId = :deviceId ORDER BY timestamp DESC")
+    LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId);
 
     @Query("SELECT * FROM measurements_table WHERE deviceId = :deviceId AND timestamp BETWEEN :start AND :end ORDER BY timestamp DESC")
     LiveData<List<Measurement>> getHealthDataBetweenTimestamps(String deviceId, long start, long end);

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -25,11 +26,26 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     private Device selectedDevice;
 
+    //TEST
+    private MutableLiveData<Device> selectedDeviceLive;
+
     public RouteRepositoryImpl(Application application) {
         this.application = application;
         repositoryWeb = HealthRepositoryWeb.getInstance();
         repositoryLocal = HealthRepositoryLocal.getInstance(application);
 
+        selectedDeviceLive = new MutableLiveData<>();
+
+        foreverObserverDeviceIdChange();
+
+    }
+
+    private void foreverObserverDeviceIdChange() {
+        selectedDeviceLive.observeForever(selectedDeviceLive -> {
+                //FIXME: TEST
+                selectedDevice = selectedDeviceLive;
+                getAllMeasurementsByDevice(selectedDevice.getDeviceId());
+        });
     }
 
     public static synchronized RouteRepositoryImpl getInstance(Application application) {
@@ -44,6 +60,7 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     public void setSelectedDevice(Device selectedDevice) {
         this.selectedDevice = selectedDevice;
+        selectedDeviceLive.setValue(selectedDevice);
     }
 
     @Override
@@ -62,6 +79,8 @@ public class RouteRepositoryImpl implements RouteRepository {
 //        if (isOnline()) {
 //            return repositoryWeb.getAllMeasurementsByDevice(deviceID);
 //        }
+        //FIXME: TEST
+        Log.i("getAllMeasurementsByDevice", "DeviceId: " + selectedDevice.getDeviceId());
         return repositoryLocal.getAllMeasurementsByDevice(selectedDevice.getDeviceId());
     }
 

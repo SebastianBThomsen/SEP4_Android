@@ -16,15 +16,14 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import retrofit2.Call;
-
 public class HealthRepositoryLocal implements Repository {
     private static HealthRepositoryLocal instance;
     private MeasurementDAO measurementDAO;
     private DeviceDAO deviceDAO;
     private ExecutorService executor;
 
-    private LiveData<List<Measurement>> allMeasurements;
+    //skal denne bruges?
+    private MutableLiveData<List<Measurement>> allMeasurementsByDevice;
     private LiveData<List<Device>> allDevice;
 
     private MutableLiveData<Measurement> averageMeasurement;
@@ -36,9 +35,11 @@ public class HealthRepositoryLocal implements Repository {
 
         averageMeasurement = new MutableLiveData<>();
 
+        //Skal denne bruges?
+        allMeasurementsByDevice = new MutableLiveData<>();
+
         measurementDAO = database.measurementDAO();
         deviceDAO = database.deviceDAO();
-        allMeasurements = measurementDAO.getAllMeasurements();
         allDevice = deviceDAO.getAllDevices();
 
         //Observe average temps
@@ -59,7 +60,7 @@ public class HealthRepositoryLocal implements Repository {
     }
 
     private void setAverageMeasurement() {
-        allMeasurements.observeForever(measurements -> {
+        allMeasurementsByDevice.observeForever(measurements -> {
             double co2 = 0, temp = 0, humidity = 0;
             if (measurements.size() > 0) {
                 for (Measurement measurement : measurements) {
@@ -71,7 +72,7 @@ public class HealthRepositoryLocal implements Repository {
                 temp = temp / measurements.size();
                 humidity = humidity / measurements.size();
             }
-            averageMeasurement.setValue(new Measurement("averageReturn",1, temp, co2, humidity, System.currentTimeMillis()));
+            averageMeasurement.setValue(new Measurement("averageReturn", 1, temp, co2, humidity, System.currentTimeMillis()));
         });
     }
 
@@ -87,29 +88,26 @@ public class HealthRepositoryLocal implements Repository {
 
     @Override
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
-        //bruger den ikke ^^
+        //bruger den ikke ^^ //FIXME: Dette er fra REPO, skal være med deviceId, når vi går til Local og Web! dog ikke op til RouteRepo!
         return null;
     }
 
     @Override
-    public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId)
-    {
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId) {
 //Returner her en liste af alle Measurements, da den førhen bare returnet null
-return allMeasurements;
+        return measurementDAO.getAllMeasurementsByDevice(deviceId);
 
     }
 
     //Er det ikke en duplicate?
     @Override
-    public void findAllMeasurementsByDevice(String deviceId)
-    {
+    public void findAllMeasurementsByDevice(String deviceId) {
 
     }
 
-    public LiveData<List<Device>> getAllDevices(){
+    public LiveData<List<Device>> getAllDevices() {
         return allDevice;
     }
-
 
 
     @Override

@@ -38,17 +38,23 @@ public abstract class Database extends RoomDatabase {
                             Measurement measurement3 = new Measurement("bobTest",3,35, 3, 45, 1652872647);
                             Measurement measurement4 = new Measurement("bobTest",4,40, 4, 50, 1652786247);
                             Measurement measurement5 = new Measurement("bobTest",5,45, 5, 55, 1652699847);
+                            Measurement measurement6 = new Measurement("bobTest2",6,45, 5, 55, 1652699847);
+                            Measurement measurement7 = new Measurement("bobTest2",7,50, 10, 35, 1652699847);
                             Device device = new Device("bobTest", "C02.04");
                             Device device2 = new Device("bobTest2", "A03.12");
+                            Device device3 = new Device("bobTest3", "B04.17");
                             executorService.execute(() -> {
                                 getInstance(context).deviceDAO().insert(device);
                                 getInstance(context).deviceDAO().insert(device2);
+                                getInstance(context).deviceDAO().insert(device3);
 
                                 getInstance(context).measurementDAO().insert(measurement1);
                                 getInstance(context).measurementDAO().insert(measurement2);
                                 getInstance(context).measurementDAO().insert(measurement3);
                                 getInstance(context).measurementDAO().insert(measurement4);
                                 getInstance(context).measurementDAO().insert(measurement5);
+                                getInstance(context).measurementDAO().insert(measurement6);
+                                getInstance(context).measurementDAO().insert(measurement7);
                             });
                         }
                     })
