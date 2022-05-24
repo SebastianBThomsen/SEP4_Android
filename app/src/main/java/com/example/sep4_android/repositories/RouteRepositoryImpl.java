@@ -25,6 +25,7 @@ public class RouteRepositoryImpl implements RouteRepository {
     private ExecutorService executorService;
 
     private Device selectedDevice;
+    private Device selectedUnregistedDevice;
 
     public RouteRepositoryImpl(Application application) {
         this.application = application;
@@ -47,6 +48,9 @@ public class RouteRepositoryImpl implements RouteRepository {
     public void setSelectedDevice(Device selectedDevice) {
         this.selectedDevice = selectedDevice;
     }
+
+    public Device getSelectedUnregistedDevice() { return selectedUnregistedDevice; }
+    public void setSelectedUnregistedDevice(Device selectedUnregistedDevice) { this.selectedUnregistedDevice = selectedUnregistedDevice; }
 
     @Override
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
@@ -91,6 +95,17 @@ public class RouteRepositoryImpl implements RouteRepository {
                 });
         //FIXME: Måske tilføj noget logik, der venter til device er online i en sekundær thread og så sender når dette er tilfældet?
         repositoryLocal.sendMaxHealthSettingsValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
+    }
+
+    public void updateClassroom(String classroom) {
+        selectedUnregistedDevice.setDeviceRoom(classroom);
+
+        if(isOnline()){
+
+        }
+
+        repositoryLocal.updateClassroom(selectedUnregistedDevice);
+        selectedUnregistedDevice = null;
     }
 
     private boolean isOnline() {

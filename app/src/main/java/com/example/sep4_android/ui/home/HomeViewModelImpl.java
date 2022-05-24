@@ -1,6 +1,7 @@
 package com.example.sep4_android.ui.home;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -39,6 +40,7 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
         return repository.getMeasurementsBetweenTimestamps(start, end);
     }
 
+    @Override
     public LiveData<List<Measurement>> getAllHealthDataByDevice() {
         return repository.getAllMeasurementsByDevice();
     }

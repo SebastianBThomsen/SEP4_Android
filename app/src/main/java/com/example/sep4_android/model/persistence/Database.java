@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.sep4_android.model.persistence.entities.Device;
@@ -29,7 +30,7 @@ public abstract class Database extends RoomDatabase {
                         @Override
                         public void onCreate(@NonNull SupportSQLiteDatabase db) {
                             super.onCreate(db);
-                            //FIXME: Testing purposes, prepoulate data to database!
+                            //FIXME: Testing purposes, prepoulate data!
                             ExecutorService executorService = Executors.newFixedThreadPool(2);
                             Measurement measurement1 = new Measurement("bobTest",1,25, 1, 35, 1652948247);
                             Measurement measurement2 = new Measurement("bobTest",2,30, 2, 40, 1652937447);

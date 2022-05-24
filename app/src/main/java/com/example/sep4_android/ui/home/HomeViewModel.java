@@ -11,11 +11,14 @@ import com.example.sep4_android.model.persistence.entities.Device;
 import java.sql.Timestamp;
 
 public interface HomeViewModel {
-    LiveData<List<Measurement>> getHealthDataBetweenTimeStamps(long start, long end); //Bruges ikke --> getTestMeasurements + setTimestamp
+    LiveData<List<Measurement>> getHealthDataBetweenTimeStamps(long start, long end);
     LiveData<List<Measurement>> getAllHealthDataByDevice();
     //LiveData<Measurement> getAverageMeasurement();
 
     //TEST
     LiveData<List<Measurement>> getTestMeasurements();
     void setTimestamp(Long start, Long end);
+
+
+
 }

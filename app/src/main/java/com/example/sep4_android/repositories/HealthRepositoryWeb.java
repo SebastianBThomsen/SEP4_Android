@@ -66,6 +66,14 @@ public class HealthRepositoryWeb implements HealthRepository {
     }
 
     @Override
+    public void updateClassroom(Device device) {
+        //TODO: Mangler endpoint
+    }
+
+    public void updateClassroom(String deviceId, String classroom) {
+        //TODO
+    }
+    @Override
     public LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device) {
         //FIXME: Tjek MeasurementsByRoomResponse!
         //- Evt. HealthDataReponses?

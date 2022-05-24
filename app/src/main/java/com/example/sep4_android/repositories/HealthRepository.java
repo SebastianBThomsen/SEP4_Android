@@ -14,4 +14,6 @@ public interface HealthRepository {
     LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(Device device, long start, long end);
     LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device);
     void sendMaxHealthSettingsValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity);
+    void updateClassroom(Device device);
+
 }
