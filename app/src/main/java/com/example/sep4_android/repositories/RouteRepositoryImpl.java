@@ -22,7 +22,7 @@ public class RouteRepositoryImpl implements RouteRepository {
     private HealthHealthRepositoryLocal repositoryLocal;
     private Application application;
 
-    ExecutorService executorService;
+    private ExecutorService executorService;
 
     private Device selectedDevice;
 
@@ -50,9 +50,11 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
-        if (isOnline())
-            repositoryWeb.getMeasurementsBetweenTimestamps(selectedDevice, start, end);
-        //Stores data in Room
+        executorService.execute(() -> {
+            if (isOnline())
+                repositoryWeb.getMeasurementsBetweenTimestamps(selectedDevice, start, end);
+            //Stores data in Room
+        });
 
         //Gets data from Room
         return repositoryLocal.getMeasurementsBetweenTimestamps(selectedDevice, start, end);
@@ -72,20 +74,24 @@ public class RouteRepositoryImpl implements RouteRepository {
     }
 
     public LiveData<List<Device>> getAllDevices() {
-        if(isOnline()) {
-            repositoryWeb.getAllDevices();
-        }
+        executorService.execute(() -> {
+            if (isOnline()) {
+                repositoryWeb.getAllDevices();
+            }
+        });
 
         return repositoryLocal.getAllDevices();
     }
 
     @Override
     public void sendMaxHealthSettingsValues(int desiredTemp, int desiredCO2, int desiredHumidity) {
-        if (isOnline())
-            repositoryWeb.sendMaxHealthSettingsValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
+        executorService.execute(() -> {
+                    if (isOnline())
+                        repositoryWeb.sendMaxHealthSettingsValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
+                });
+        //FIXME: Måske tilføj noget logik, der venter til device er online i en sekundær thread og så sender når dette er tilfældet?
         repositoryLocal.sendMaxHealthSettingsValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
     }
-
 
     private boolean isOnline() {
         ConnectivityManager connectivityManager = (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
