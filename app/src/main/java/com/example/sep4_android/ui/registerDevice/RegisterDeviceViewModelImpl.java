@@ -17,7 +17,7 @@ public class RegisterDeviceViewModelImpl extends AndroidViewModel {
         repository = RouteRepositoryImpl.getInstance(application);
     }
 
-    public void Register(String className){
+    public void register(String className){
         repository.updateClassroom(className);
     }
 }

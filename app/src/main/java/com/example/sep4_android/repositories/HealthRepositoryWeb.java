@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.sep4_android.model.persistence.Database;
 import com.example.sep4_android.model.persistence.MeasurementDAO;
 import com.example.sep4_android.model.persistence.entities.Device;
+import com.example.sep4_android.model.persistence.entities.DeviceDAO;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.webService.HealthAPI;
 import com.example.sep4_android.webService.HealthServiceGenerator;
@@ -29,6 +30,7 @@ public class HealthRepositoryWeb implements HealthRepository {
 
     //Denne skal nok ikke være her! - Data Persistance fra WEBAPI!
     private final MeasurementDAO measurementDAO;
+    private final DeviceDAO deviceDAO;
     private final ExecutorService executorService;
 
     public HealthRepositoryWeb(Application application) {
@@ -37,6 +39,7 @@ public class HealthRepositoryWeb implements HealthRepository {
 
         Database database = Database.getInstance(application);
         measurementDAO = database.measurementDAO();
+        deviceDAO = database.deviceDAO();
 
         executorService = Executors.newFixedThreadPool(2);
     }
@@ -50,7 +53,34 @@ public class HealthRepositoryWeb implements HealthRepository {
 
     @Override
     public LiveData<List<Device>> getAllDevices() {
-        //TODO: Mangler endpoint fra DAI
+        Call<Device[]> call = healthAPI.getAllDevices();
+        Log.i("Retrofit", "(getAllDevices) - Call: " + call);
+        call.enqueue(new Callback<Device[]>() {
+            @Override
+            public void onResponse(Call<Device[]> call, Response<Device[]> response) {
+                Log.i("Retrofit", "(getAllDevices) Reponse: " + response);
+                if (response.isSuccessful()) {
+                    //Tager første data i array om healthData
+                    Device[] devices = response.body();
+                    Log.i("Retrofit", "SUCCESS!\nAmount of devices" + devices.length + "\ngetAllDevices: " + devices + "\nFirst Device: " + devices[0]);
+                    //randomHealthData.setValue(device);
+                    //TODO: Kasper, er dette en fin måde at gemme data til cache på?
+                    executorService.execute(() -> {
+                        //FIXME: Dette gemmer kun measurements fra første MeasurementByRoomResponse eller?? --> Første device!
+                        for (Device device : devices) {
+                            deviceDAO.insert(device);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Device[]> call, Throwable t) {
+                Log.i("Retrofit", "FAILURE (searchForHealthData)" + call
+                        + "\nError Message: " + t.getMessage());
+            }
+        });
+        //FIXME: lidt skørt, måske bare lave et seperat interface til RepositoryWeb i stedet? --> og kald denne findMeasurementsByDevice?
         return null;
     }
 
@@ -61,28 +91,28 @@ public class HealthRepositoryWeb implements HealthRepository {
     }
 
     @Override
-    public void sendMaxHealthSettingsValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity) {
+    public void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity) {
         //TODO: Mangler endpoint fra DAI
     }
 
     @Override
     public void updateClassroom(Device device) {
         //TODO: Mangler endpoint
+
+        //Noget i stil af dette kald
+        //healthAPI.setDeviceRoom(device.getRoomName(), device);
     }
 
-    public void updateClassroom(String deviceId, String classroom) {
-        //TODO
-    }
     @Override
     public LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device) {
         //FIXME: Tjek MeasurementsByRoomResponse!
         //- Evt. HealthDataReponses?
 
-        Log.i("Retrofit", "Start (searchForHealthData) - url: ");
+        Log.i("Retrofit", "Start (getAllMeasurementsByDevice) - url: ");
         //localMockup
         //Call<MeasurementsByRoomResponse[]> call = healthAPI.getAllMeasurementsByRoom("d9384c83-1dd6-40b2-9c83-fa4f7ba54b15");
         Call<MeasurementsByRoomResponse[]> call = healthAPI.getAllMeasurementsByRoom("c02_02");
-        Log.i("Retrofit", "(searchForHealthData) - Call: " + call);
+        Log.i("Retrofit", "(getAllMeasurementsByDevice) - Call: " + call);
         call.enqueue(new Callback<MeasurementsByRoomResponse[]>() {
             @Override
             public void onResponse(Call<MeasurementsByRoomResponse[]> call, Response<MeasurementsByRoomResponse[]> response) {
@@ -90,10 +120,11 @@ public class HealthRepositoryWeb implements HealthRepository {
                 if (response.isSuccessful()) {
                     //Tager første data i array om healthData
                     MeasurementsByRoomResponse measurementsByRoomResponse = response.body()[0];
-                    Log.i("Retrofit", "SUCCESS!\nHealth Data: " + measurementsByRoomResponse);
+                    Log.i("Retrofit", "SUCCESS!\nMeasurements: " + measurementsByRoomResponse);
                     //randomHealthData.setValue(device);
                     //TODO: Kasper, er dette en fin måde at gemme data til cache på?
                     executorService.execute(() -> {
+                        //FIXME: Dette gemmer kun measurements fra første MeasurementByRoomResponse eller?? --> Første device!
                         for (Measurement measurement : measurementsByRoomResponse.getMeasurements()) {
                             measurementDAO.insert(measurement);
                         }

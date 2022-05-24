@@ -36,7 +36,7 @@ public class UnregisterdDeviceAdapter extends RecyclerView.Adapter<UnregisterdDe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.className.setText(devices.get(position).getDeviceId());
+        holder.className.setText(devices.get(position).getClimateDeviceId());
     }
 
     @Override

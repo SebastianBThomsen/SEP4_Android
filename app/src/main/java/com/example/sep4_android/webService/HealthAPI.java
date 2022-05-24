@@ -1,12 +1,11 @@
 package com.example.sep4_android.webService;
 
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.model.persistence.entities.Measurement;
-
-import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 //Old Mockup
@@ -29,6 +28,12 @@ public interface HealthAPI {
     @GET("api/v1/rooms/{roomNo}/measurements")
     Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
 
+    @GET("api/v1/devices")
+    Call<Device[]> getAllDevices();
+
+    //Vi skal lige finde ud af hvordan denne skal se ud, når vi vil sende body i noget json format?
+    @POST("api/v1/setRoom/{roomNo}")
+    void setDeviceRoom(@Path("roomNo") String roomNo, @Body Device device);
 
     /*
     //https://run.mocky.io/v3/?search=6f64b188-00ea-44b3-abaa-387588645afa

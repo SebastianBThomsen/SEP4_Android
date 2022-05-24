@@ -88,14 +88,14 @@ public class HealthRepositoryLocal implements HealthRepository {
                 timestamp -> repository.getMeasurementsBetweenTimestamps(timestamp.get(0), timestamp.get(1))
         );
          */
-        Log.i("HealthRepositoryLocal", "getHealthDataBetweenTimestamps" + measurementDAO.getHealthDataBetweenTimestamps(device.getDeviceId(), start, end));
-        return measurementDAO.getHealthDataBetweenTimestamps(device.getDeviceId(), start, end);
+        Log.i("HealthRepositoryLocal", "getHealthDataBetweenTimestamps" + measurementDAO.getHealthDataBetweenTimestamps(device.getClimateDeviceId(), start, end));
+        return measurementDAO.getHealthDataBetweenTimestamps(device.getClimateDeviceId(), start, end);
     }
 
     @Override
     public LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device) {
         //Returner her en liste af alle Measurements, da den førhen bare returnet null
-        return measurementDAO.getAllMeasurementsByDevice(device.getDeviceId());
+        return measurementDAO.getAllMeasurementsByDevice(device.getClimateDeviceId());
     }
 
     public LiveData<List<Device>> getAllDevices() {
@@ -105,7 +105,7 @@ public class HealthRepositoryLocal implements HealthRepository {
 
 
     @Override
-    public void sendMaxHealthSettingsValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity) {
+    public void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity) {
         //TODO: Skal der sendes maxhealthsettings Til Room?? --> Måske noget med hvis internet er gået, så sender den med det samme internet kommer tilbage?
 
     }
@@ -114,7 +114,7 @@ public class HealthRepositoryLocal implements HealthRepository {
     public void updateClassroom(Device device){
 
         new Thread(() ->{
-            deviceDAO.updateClassroom(device.getDeviceId(), device.getDeviceRoom());
+            deviceDAO.updateClassroom(device.getClimateDeviceId(), device.getRoomName());
         }).start();
     }
 }

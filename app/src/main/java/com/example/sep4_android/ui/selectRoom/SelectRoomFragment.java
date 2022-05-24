@@ -59,7 +59,7 @@ public class SelectRoomFragment extends Fragment {
         repo.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
             List tmp = new ArrayList();
             for (Device i:devices) {
-                if(i.getDeviceRoom() != null && !(i.getDeviceRoom().equals(""))){
+                if(i.getRoomName() != null && !(i.getRoomName().equals(""))){
                     tmp.add(i);
                 }
             }
