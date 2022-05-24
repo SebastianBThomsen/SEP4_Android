@@ -20,6 +20,5 @@ public interface HomeViewModel {
     void setTimestamp(Long start, Long end);
 
 
-    //TestWebAPI
-    void findAllHealthDataByDevice();
+
 }

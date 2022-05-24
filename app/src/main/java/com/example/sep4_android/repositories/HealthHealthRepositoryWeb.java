@@ -1,5 +1,6 @@
 package com.example.sep4_android.repositories;
 
+import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -63,6 +64,12 @@ public class HealthHealthRepositoryWeb implements HealthRepository {
     public void sendMaxHealthSettingsValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity) {
         //TODO: Mangler endpoint fra DAI
     }
+
+    @Override
+    public void updateClassroom(Device device) {
+        //TODO: Mangler endpoint
+    }
+
     public void updateClassroom(String deviceId, String classroom) {
         //TODO
     }

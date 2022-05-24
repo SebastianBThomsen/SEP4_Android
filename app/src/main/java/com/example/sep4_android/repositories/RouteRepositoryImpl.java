@@ -98,10 +98,14 @@ public class RouteRepositoryImpl implements RouteRepository {
     }
 
     public void updateClassroom(String classroom) {
+        selectedUnregistedDevice.setDeviceRoom(classroom);
+
         if(isOnline()){
 
         }
-        repositoryLocal.updateClassroom(selectedUnregistedDevice.getDeviceId(), classroom);
+
+        repositoryLocal.updateClassroom(selectedUnregistedDevice);
+        selectedUnregistedDevice = null;
     }
 
     private boolean isOnline() {
