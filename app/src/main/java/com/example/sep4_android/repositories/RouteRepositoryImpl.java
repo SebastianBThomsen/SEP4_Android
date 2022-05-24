@@ -76,9 +76,9 @@ public class RouteRepositoryImpl implements RouteRepository {
     @Override
     public void findAllMeasurementsByDevice(String deviceId) {
      if (isOnline())
-            repositoryWeb.findAllMeasurementsByDevice(deviceId);
+            repositoryWeb.findAllMeasurementsByDevice(selectedDevice.getDeviceId());
         else
-            repositoryLocal.findAllMeasurementsByDevice(deviceId);
+            repositoryLocal.findAllMeasurementsByDevice(selectedDevice.getDeviceId());
     }
 
     @Override
