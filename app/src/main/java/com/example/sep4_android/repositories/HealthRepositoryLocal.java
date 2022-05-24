@@ -84,12 +84,6 @@ public class HealthRepositoryLocal implements Repository {
     }
 
     @Override
-    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
-        //bruger den ikke ^^
-        return null;
-    }
-
-    @Override
     public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId) {
         return null;
     }
@@ -109,5 +103,11 @@ public class HealthRepositoryLocal implements Repository {
     @Override
     public void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity) {
 
+    }
+
+    public void updateClassroom(String deviceId, String classroom){
+        new Thread(() ->{
+            deviceDAO.updateClassroom(deviceId, classroom);
+        }).start();
     }
 }

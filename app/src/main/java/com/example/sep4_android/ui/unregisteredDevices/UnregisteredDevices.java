@@ -1,32 +1,38 @@
-package com.example.sep4_android.ui.selectRoom;
+package com.example.sep4_android.ui.unregisteredDevices;
+
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.sep4_android.R;
 
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentSelectRoomBinding;
+import com.example.sep4_android.databinding.FragmentUnregisteredDevicesFragmentBinding;
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
 import com.example.sep4_android.ui.RoomRecycler.DeviceAdapter;
+import com.example.sep4_android.ui.RoomRecycler.UnregisterdDeviceAdapter;
+import com.example.sep4_android.ui.selectRoom.SelectRoomViewModel;
+import com.example.sep4_android.ui.selectRoom.SelectRoomViewModelImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectRoomFragment extends Fragment {
+public class UnregisteredDevices extends Fragment {
 
-    private SelectRoomViewModel viewModel;
-    private FragmentSelectRoomBinding binding;
+    private UnregisteredDevicesViewModelImpl viewModel;
+    private FragmentUnregisteredDevicesFragmentBinding binding;
     private RecyclerView recyclerView;
     private RouteRepositoryImpl repo;
 
@@ -35,31 +41,28 @@ public class SelectRoomFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(SelectRoomViewModelImpl.class);
-        binding = FragmentSelectRoomBinding.inflate(inflater, container, false);
+        viewModel = new ViewModelProvider(this).get(UnregisteredDevicesViewModelImpl.class);
+        binding = FragmentUnregisteredDevicesFragmentBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
         repo = RouteRepositoryImpl.getInstance(getActivity().getApplication());
 
-        bindings();
         setText();
-
 
         return root;
     }
 
     private void setText(){
-        recyclerView = binding.rv;
+        recyclerView = binding.rvUnregisteredList;
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        //Soter devies uden rum fra
         MutableLiveData<List<Device>> liste = new MutableLiveData();
 
         repo.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
             List tmp = new ArrayList();
-            for (Device i:devices) {
-                if(i.getDeviceRoom() != null && !(i.getDeviceRoom().equals(""))){
+            for (Device i: devices) {
+                if(i.getDeviceRoom() == null || i.getDeviceRoom().equals("")){
                     tmp.add(i);
                 }
             }
@@ -67,19 +70,16 @@ public class SelectRoomFragment extends Fragment {
         });
 
         liste.observe(getViewLifecycleOwner(), devices -> {
-            DeviceAdapter adapter = new DeviceAdapter(devices);
+            UnregisterdDeviceAdapter adapter = new UnregisterdDeviceAdapter(devices);
             recyclerView.setAdapter(adapter);
 
             adapter.setOnClickListener(device ->{
-                viewModel.setSelectedDevice(device);
-                Navigation.findNavController(root).navigate(R.id.nav_home);
+                //TODO: Brug viewmodel
+                repo.setSelectedUnregistedDevice(device);
+                Navigation.findNavController(root).navigate(R.id.nav_register_device);
             });
         });
 
-    }
-
-    private void bindings() {
-        //Select Room
 
     }
 

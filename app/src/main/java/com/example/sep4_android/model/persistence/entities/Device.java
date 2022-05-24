@@ -2,6 +2,7 @@ package com.example.sep4_android.model.persistence.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.jetbrains.annotations.NonNls;
@@ -21,6 +22,11 @@ public class Device {
 
     public Device(String deviceId, String deviceRoom) {
         this.deviceRoom = deviceRoom;
+        this.deviceId = deviceId;
+    }
+
+    @Ignore
+    public Device(String deviceId){
         this.deviceId = deviceId;
     }
 

@@ -11,22 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sep4_android.R;
 import com.example.sep4_android.model.persistence.entities.Device;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder> {
+public class UnregisterdDeviceAdapter extends RecyclerView.Adapter<UnregisterdDeviceAdapter.ViewHolder> {
 
     private List<Device> devices;
     private OnClickListener listener;
 
-    public DeviceAdapter(List<Device> devices){
+    public UnregisterdDeviceAdapter(List<Device> devices){
         this.devices = devices;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_unregistered, parent, false);;
         ViewHolder viewH = new ViewHolder(view);
         return viewH;
     }
@@ -37,8 +36,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.className.setText(devices.get(position).getDeviceRoom());
-        holder.classAvg.setText(""+32+" \u2103");
+        holder.className.setText(devices.get(position).getDeviceId());
     }
 
     @Override
@@ -48,12 +46,10 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
 
     class ViewHolder extends RecyclerView.ViewHolder{
         private final TextView className;
-        private final TextView classAvg;
 
         ViewHolder(View itemView){
             super(itemView);
-            className = itemView.findViewById(R.id.rvRoom_text);
-            classAvg = itemView.findViewById(R.id.rvRoom_avg);
+            className = itemView.findViewById(R.id.rvUnregisterd);
             itemView.setOnClickListener(v ->{
                 listener.onClick(devices.get(getBindingAdapterPosition()));
             });

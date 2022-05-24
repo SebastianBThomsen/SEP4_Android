@@ -34,7 +34,7 @@ public class HealthRepositoryWeb implements Repository {
     }
 
     @Override
-    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
+    public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(String deviceId, long start, long end) {
         return null;
     }
 
@@ -51,6 +51,10 @@ public class HealthRepositoryWeb implements Repository {
     @Override
     public void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity) {
 
+    }
+
+    public void updateClassroom(String deviceId, String classroom) {
+        //TODO
     }
 
     public void findAllHealthDataByDevice() {

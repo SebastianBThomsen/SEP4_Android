@@ -15,7 +15,7 @@ import com.example.sep4_android.model.persistence.entities.Measurement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RouteRepositoryImpl implements Repository, RouteRepository {
+public class RouteRepositoryImpl implements RouteRepository {
 
     private static RouteRepositoryImpl instance;
 
@@ -24,6 +24,7 @@ public class RouteRepositoryImpl implements Repository, RouteRepository {
     private Application application;
 
     private Device selectedDevice;
+    private Device selectedUnregistedDevice;
 
     public RouteRepositoryImpl(Application application) {
         this.application = application;
@@ -41,10 +42,12 @@ public class RouteRepositoryImpl implements Repository, RouteRepository {
     public Device getSelectedDevice() {
         return selectedDevice;
     }
-
     public void setSelectedDevice(Device selectedDevice) {
         this.selectedDevice = selectedDevice;
     }
+
+    public Device getSelectedUnregistedDevice() { return selectedUnregistedDevice; }
+    public void setSelectedUnregistedDevice(Device selectedUnregistedDevice) { this.selectedUnregistedDevice = selectedUnregistedDevice; }
 
     @Override
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
@@ -58,11 +61,11 @@ public class RouteRepositoryImpl implements Repository, RouteRepository {
     }
 
     @Override
-    public LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceID) {
+    public LiveData<List<Measurement>> getAllMeasurementsByDevice() {
         if (isOnline()) {
-            return repositoryWeb.getAllMeasurementsByDevice(deviceID);
+            return repositoryWeb.getAllMeasurementsByDevice(selectedDevice.getDeviceId());
         }
-        return repositoryLocal.getAllMeasurementsByDevice(deviceID);
+        return repositoryLocal.getAllMeasurementsByDevice(selectedDevice.getDeviceId());
     }
 
     public LiveData<List<Device>> getAllDevices(){
@@ -88,6 +91,12 @@ public class RouteRepositoryImpl implements Repository, RouteRepository {
         repositoryLocal.sendMaxHealthSettingsValues(deviceId, desiredTemp, desiredCO2, desiredHumidity);
     }
 
+    public void updateClassroom(String classroom) {
+        if(isOnline()){
+
+        }
+        repositoryLocal.updateClassroom(selectedUnregistedDevice.getDeviceId(), classroom);
+    }
 
     private boolean isOnline() {
         ConnectivityManager connectivityManager = (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);

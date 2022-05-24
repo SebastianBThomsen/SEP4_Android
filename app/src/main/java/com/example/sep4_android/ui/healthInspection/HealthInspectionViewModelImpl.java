@@ -8,12 +8,13 @@ import androidx.lifecycle.LiveData;
 
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.repositories.Repository;
+import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
 import java.util.List;
 
 public class HealthInspectionViewModelImpl extends AndroidViewModel implements HealthInspectionViewModel {
-    Repository repository;
+    RouteRepository repository;
 
     public HealthInspectionViewModelImpl(@NonNull Application application) {
         super(application);
@@ -23,7 +24,8 @@ public class HealthInspectionViewModelImpl extends AndroidViewModel implements H
 
     @Override
     public LiveData<List<Measurement>> getAllHealthDataByDevice(String deviceId) {
-        return repository.getAllMeasurementsByDevice(deviceId);
+        //TODO: optimering - bruger ikke deviceId
+        return repository.getAllMeasurementsByDevice();
     }
 
     @Override

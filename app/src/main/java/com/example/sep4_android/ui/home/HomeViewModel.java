@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 
 public interface HomeViewModel {
     LiveData<List<Measurement>> getHealthDataBetweenTimeStamps(long start, long end);
-    LiveData<List<Measurement>> getAllHealthDataByDevice(String deviceId);
+    LiveData<List<Measurement>> getAllHealthDataByDevice();
     //LiveData<Measurement> getAverageMeasurement();
 
     //TEST

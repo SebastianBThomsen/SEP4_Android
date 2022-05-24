@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@androidx.room.Database(entities = {Measurement.class, Device.class}, version = 7)
+@androidx.room.Database(entities = {Measurement.class, Device.class}, version = 9)
 @TypeConverters({Converters.class})
 public abstract class Database extends RoomDatabase {
     private static Database instance;
@@ -40,9 +40,11 @@ public abstract class Database extends RoomDatabase {
                             Measurement measurement5 = new Measurement("bobTest",5,45, 5, 55, 1652699847);
                             Device device = new Device("bobTest", "C02.04");
                             Device device2 = new Device("bobTest2", "A03.12");
+                            Device device3 = new Device("bobTest3");
                             executorService.execute(() -> {
                                 getInstance(context).deviceDAO().insert(device);
                                 getInstance(context).deviceDAO().insert(device2);
+                                getInstance(context).deviceDAO().insert(device3);
 
                                 getInstance(context).measurementDAO().insert(measurement1);
                                 getInstance(context).measurementDAO().insert(measurement2);

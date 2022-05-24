@@ -45,8 +45,18 @@
     <fragment
         android:id="@+id/nav_selectRoomFragment"
         android:name="com.example.sep4_android.ui.selectRoom.SelectRoomFragment"
-        android:label="SelectRoomFragment"
+        android:label="@string/menu_selectRoom"
         tools:layout="@layout/fragment_select_room" />
-    />
+    <fragment
+        android:id="@+id/nav_register_device"
+        android:name="com.example.sep4_android.ui.registerDevice.RegisterDevice"
+        android:label="@string/menu_registerDevice"
+        tools:layout="@layout/fragment_register_device" />
+    <fragment
+        android:id="@+id/nav_unregistered_devices"
+        android:name="com.example.sep4_android.ui.unregisteredDevices.UnregisteredDevices"
+        android:label="@string/menu_unregistedList"
+        tools:layout="@layout/fragment_unregistered_devices_fragment" />
+
 
 </navigation>
