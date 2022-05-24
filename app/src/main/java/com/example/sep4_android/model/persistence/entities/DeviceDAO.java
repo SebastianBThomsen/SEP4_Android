@@ -3,19 +3,21 @@ package com.example.sep4_android.model.persistence.entities;
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
 
 @Dao
 public interface DeviceDAO {
-    @Insert
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Device device);
 
-    @Query("Select * FROM device_table ORDER BY deviceRoom DESC")
+    @Query("Select * FROM device_table ORDER BY roomName DESC")
     LiveData<List<Device>> getAllDevices();
 
-    @Query("Update device_table SET deviceRoom = :deviceRoom WHERE deviceId = :deviceId")
+    @Query("Update device_table SET roomName = :deviceRoom WHERE climateDeviceId = :deviceId")
     void updateClassroom(String deviceId, String deviceRoom);
 
 }

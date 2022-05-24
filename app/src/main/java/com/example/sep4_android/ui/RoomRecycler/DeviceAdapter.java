@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sep4_android.R;
 import com.example.sep4_android.model.persistence.entities.Device;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder> {
@@ -37,7 +36,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.className.setText(devices.get(position).getDeviceRoom());
+        holder.className.setText(devices.get(position).getRoomName());
         holder.classAvg.setText(""+32+" \u2103");
     }
 

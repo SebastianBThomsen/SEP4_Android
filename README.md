@@ -12,6 +12,8 @@ Quick rundown video:
 - Landscape mode
 - Advanceret grafer
 - Data live view
+- Login & user management
+
 
 <details>
   idk

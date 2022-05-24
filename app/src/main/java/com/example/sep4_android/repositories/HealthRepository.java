@@ -9,11 +9,15 @@ import java.util.List;
 
 public interface HealthRepository {
 
+    //Get Devices
     LiveData<List<Device>> getAllDevices();
 
+    //Get Measurements
     LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(Device device, long start, long end);
     LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device);
-    void sendMaxHealthSettingsValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity);
+
+    //Setting
+    void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity);
     void updateClassroom(Device device);
 
 }

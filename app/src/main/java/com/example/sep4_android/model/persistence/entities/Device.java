@@ -5,37 +5,41 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import org.jetbrains.annotations.NonNls;
-
-import java.util.ArrayList;
-
 @Entity(tableName = "device_table")
 public class Device {
     @NonNull
     @PrimaryKey()
-    private String deviceId;
-    private String deviceRoom;
+    private String climateDeviceId;
+    private String roomName;
 
-    public Device(String deviceId, String deviceRoom) {
-        this.deviceRoom = deviceRoom;
-        this.deviceId = deviceId;
+    public Device(String climateDeviceId, String roomName) {
+        this.roomName = roomName;
+        this.climateDeviceId = climateDeviceId;
     }
 
     @Ignore
-    public Device(String deviceId){
-        this.deviceId = deviceId;
+    public Device(String climateDeviceId){
+        this.climateDeviceId = climateDeviceId;
+    }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "deviceId='" + climateDeviceId + '\'' +
+                ", deviceRoom='" + roomName + '\'' +
+                '}';
     }
 
     @NonNull
-    public String getDeviceId() {
-        return deviceId;
+    public String getClimateDeviceId() {
+        return climateDeviceId;
     }
 
-    public String getDeviceRoom() {
-        return deviceRoom;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public void setDeviceRoom(String deviceRoom) {
-        this.deviceRoom = deviceRoom;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 }

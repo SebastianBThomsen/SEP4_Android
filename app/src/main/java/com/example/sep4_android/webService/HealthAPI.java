@@ -5,8 +5,10 @@ import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 //Old Mockup
@@ -29,6 +31,11 @@ public interface HealthAPI {
     @GET("api/v1/rooms/{roomNo}/measurements")
     Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
 
+    @GET("api/v1/devices")
+    Call<Device[]> getAllDevices();
+
+    @PUT("api/v1/rooms/{roomName}/devices/{deviceId}")
+    Call<ResponseBody> putClassroomName(@Path("roomName") String classroom, @Path("deviceId") String deviceId);
 
     /*
     //https://run.mocky.io/v3/?search=6f64b188-00ea-44b3-abaa-387588645afa

@@ -17,14 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sep4_android.R;
-import com.example.sep4_android.databinding.FragmentSelectRoomBinding;
 import com.example.sep4_android.databinding.FragmentUnregisteredDevicesFragmentBinding;
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
-import com.example.sep4_android.ui.RoomRecycler.DeviceAdapter;
 import com.example.sep4_android.ui.RoomRecycler.UnregisterdDeviceAdapter;
-import com.example.sep4_android.ui.selectRoom.SelectRoomViewModel;
-import com.example.sep4_android.ui.selectRoom.SelectRoomViewModelImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +58,7 @@ public class UnregisteredDevices extends Fragment {
         repo.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
             List tmp = new ArrayList();
             for (Device i: devices) {
-                if(i.getDeviceRoom() == null || i.getDeviceRoom().equals("")){
+                if(i.getRoomName() == null || i.getRoomName().equals("def")){
                     tmp.add(i);
                 }
             }

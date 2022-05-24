@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +18,7 @@ import android.widget.TextView;
 
 import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentRegisterDeviceBinding;
-import com.example.sep4_android.databinding.FragmentSelectRoomBinding;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
-import com.example.sep4_android.ui.selectRoom.SelectRoomViewModel;
-import com.example.sep4_android.ui.selectRoom.SelectRoomViewModelImpl;
 
 public class RegisterDevice extends Fragment {
 
@@ -59,13 +55,13 @@ public class RegisterDevice extends Fragment {
     }
 
     public void setText(){
-        System.out.println("Test: "+repo.getSelectedUnregistedDevice().getDeviceId());
-        text_deviceName.setText(repo.getSelectedUnregistedDevice().getDeviceId());
+        System.out.println("Test: "+repo.getSelectedUnregistedDevice().getClimateDeviceId());
+        text_deviceName.setText(repo.getSelectedUnregistedDevice().getClimateDeviceId());
 
     }
 
     private void register(View view){
-        viewModel.Register(edit_Classroom.getText().toString());
+        viewModel.register(edit_Classroom.getText().toString());
         Navigation.findNavController(root).navigate(R.id.nav_selectRoomFragment);
     }
 }
