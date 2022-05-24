@@ -26,26 +26,12 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     private Device selectedDevice;
 
-    //TEST
-    private MutableLiveData<Device> selectedDeviceLive;
-
     public RouteRepositoryImpl(Application application) {
         this.application = application;
         repositoryWeb = HealthRepositoryWeb.getInstance();
         repositoryLocal = HealthRepositoryLocal.getInstance(application);
 
-        selectedDeviceLive = new MutableLiveData<>();
 
-        foreverObserverDeviceIdChange();
-
-    }
-
-    private void foreverObserverDeviceIdChange() {
-        selectedDeviceLive.observeForever(selectedDeviceLive -> {
-                //FIXME: TEST
-                selectedDevice = selectedDeviceLive;
-                getAllMeasurementsByDevice(selectedDevice.getDeviceId());
-        });
     }
 
     public static synchronized RouteRepositoryImpl getInstance(Application application) {
@@ -60,7 +46,6 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     public void setSelectedDevice(Device selectedDevice) {
         this.selectedDevice = selectedDevice;
-        selectedDeviceLive.setValue(selectedDevice);
     }
 
     @Override
