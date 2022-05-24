@@ -112,9 +112,10 @@ public class HealthHealthRepositoryLocal implements HealthRepository {
 
     @Override
     public void updateClassroom(Device device){
-
-        new Thread(() ->{
-            deviceDAO.updateClassroom(device.getDeviceId(), device.getDeviceRoom());
-        }).start();
+        executorService.execute(
+                () -> {
+                    deviceDAO.updateClassroom(device.getDeviceId(), device.getDeviceRoom());
+                }
+        );
     }
 }
