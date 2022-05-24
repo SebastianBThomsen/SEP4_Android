@@ -53,11 +53,5 @@
         android:label="@string/menu_unregistedList"
         tools:layout="@layout/fragment_unregistered_devices_fragment" />
 
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.sep4_android.ui.login.LoginFragment"
-        android:label="fragment_login_fragment"
-        tools:layout="@layout/fragment_login_fragment" />
-
 
 </navigation>
