@@ -1,6 +1,6 @@
 package com.example.sep4_android;
 
-
+/*
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -20,7 +20,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
-@RunWith(AndroidJUnit4.class)
+
 public class MainActivityTest3 {
 
     @Rule
@@ -29,8 +29,6 @@ public class MainActivityTest3 {
 
     @Test
     public void mainActivityTest3() {
-        onView(withId(R.id.btn_startDate)).perform(click());
-
-
+        onView(withId(R.id.nav_settings)).perform(click());
     }
-}
+}*/
