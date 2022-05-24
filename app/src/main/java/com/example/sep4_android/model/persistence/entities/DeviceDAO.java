@@ -14,4 +14,8 @@ public interface DeviceDAO {
 
     @Query("Select * FROM device_table ORDER BY deviceRoom DESC")
     LiveData<List<Device>> getAllDevices();
+
+    @Query("Update device_table SET deviceRoom = :deviceRoom WHERE deviceId = :deviceId")
+    void updateClassroom(String deviceId, String deviceRoom);
+
 }

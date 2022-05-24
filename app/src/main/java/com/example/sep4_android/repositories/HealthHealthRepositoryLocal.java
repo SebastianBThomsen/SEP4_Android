@@ -42,10 +42,13 @@ public class HealthHealthRepositoryLocal implements HealthRepository {
 
         measurementDAO = database.measurementDAO();
         deviceDAO = database.deviceDAO();
+        allMeasurements = measurementDAO.getAllMeasurements();
         allDevice = deviceDAO.getAllDevices();
 
         //Observe average temps //FIXME: skal dette gøres her?
         setAverageMeasurement();
+
+
     }
 
     public static synchronized HealthHealthRepositoryLocal getInstance(Application application) {
@@ -99,8 +102,17 @@ public class HealthHealthRepositoryLocal implements HealthRepository {
         return allDevice;
     }
 
+
+
     @Override
-    public void sendMaxHealthSettingsValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity) {
+    public void sendMaxHealthSettingsValues(String deviceId, int desiredTemp, int desiredCO2, int desiredHumidity) {
         //TODO: Skal der sendes maxhealthsettings Til Room?? --> Måske noget med hvis internet er gået, så sender den med det samme internet kommer tilbage?
+
+    }
+
+    public void updateClassroom(String deviceId, String classroom){
+        new Thread(() ->{
+            deviceDAO.updateClassroom(deviceId, classroom);
+        }).start();
     }
 }

@@ -14,4 +14,9 @@ public interface RouteRepository {
     LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end);
     LiveData<List<Measurement>> getAllMeasurementsByDevice();
     void sendMaxHealthSettingsValues(int desiredTemp, int desiredCO2, int desiredHumidity);
+
+    //Sætter dem så vi kan fetche dem i andre views
+    void setSelectedDevice(Device device);
+    void setSelectedUnregistedDevice(Device device);
+    void updateClassroom(String classroom);
 }
