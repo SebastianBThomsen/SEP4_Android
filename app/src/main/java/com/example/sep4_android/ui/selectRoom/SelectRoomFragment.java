@@ -54,7 +54,7 @@ public class SelectRoomFragment extends Fragment {
         viewModel.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
             List tmp = new ArrayList();
             for (Device i : devices) {
-                if (i.getRoomName() != null && !(i.getRoomName().equals(""))) {
+                if (i.getRoomName() != null && !(i.getRoomName().equals("")) && !(i.getRoomName().equals("def"))) {
                     tmp.add(i);
                 }
             }
