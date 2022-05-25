@@ -7,9 +7,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
+import androidx.navigation.Navigation;
 
 import com.example.sep4_android.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.sep4_android.R;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,14 +33,15 @@ public class LoginViewModelImpl extends ViewModel implements LoginViewModel {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            ac.startActivity(new Intent(ac, MainActivity.class));
+                            Intent mainAc = new Intent(ac, MainActivity.class);
+                            ac.startActivity(mainAc);
+
                             Toast.makeText(ac.getApplicationContext(), "User logged in", Toast.LENGTH_SHORT).show();
                             //startActivity(new Intent(LoginViewModelImpl.this, MainActivity.class));
                         } else {
                             Toast.makeText(ac.getApplicationContext(), "Login failed: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             //Toast.makeText(LoginActivity.this, "Login err: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        System.out.println("idk");
                     }
                 });
     }

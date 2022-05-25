@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
