@@ -45,7 +45,7 @@ public class FrontpageFragment extends Fragment {
         //FIXME: Sout Fjernes, når knappen virker? - Hvem end der har lavet
         btn_Temp.setOnClickListener(view -> {
             System.out.println("Test virker knappen?");
-            Navigation.findNavController(view).navigate(R.id.tempatureDeatilFragment);
+            Navigation.findNavController(view).navigate(R.id.temperatureDetailFragment);
         });
         btn_Co2.setOnClickListener(view -> {
             System.out.println("Test virker knappen?");

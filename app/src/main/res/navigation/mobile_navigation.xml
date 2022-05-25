@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/frontpageFragment"
+        android:id="@+id/nav_frontpageFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartOverview.FrontpageFragment"
         android:label="fragment_frontpage"
         tools:layout="@layout/fragment_frontpage" />
@@ -36,7 +36,7 @@
         tools:layout="@layout/fragment_humidity_detail"/>
 
     <fragment
-        android:id="@+id/tempatureDeatilFragment"
+        android:id="@+id/temperatureDetailFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartForTemp.TempDetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_temp_detail"/>
