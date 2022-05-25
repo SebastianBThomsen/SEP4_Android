@@ -57,7 +57,7 @@ public class RegisterDevice extends Fragment {
             roomList.clear();
             for (DeviceRoom room: deviceRooms) {
                 if(!room.getRoomName().equals("def"))
-                roomList.add(room.getRoomName());
+                    roomList.add(room.getRoomName());
             }
             //notifyDataSetChanged after update roomList variable here
             adapter.notifyDataSetChanged();
