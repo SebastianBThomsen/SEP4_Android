@@ -96,6 +96,7 @@ public class HealthRepositoryLocal implements HealthRepository {
     @Override
     public LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device) {
         //Returner her en liste af alle Measurements, da den førhen bare returnet null
+        //FIXME: Device kan være null, og så crasher app!!!!
         return measurementDAO.getAllMeasurementsByDevice(device.getClimateDeviceId());
     }
 

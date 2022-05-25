@@ -66,7 +66,7 @@
         tools:layout="@layout/fragment_create_room" />
     <fragment
         android:id="@+id/nav_compareLineChartFragment"
-        android:name="com.example.sep4_android.ui.graph.compare.compareLineChartFragment"
+        android:name="com.example.sep4_android.ui.graph.compare.CompareLineChartFragment"
         android:label="fragment_line_chartcompare"
         tools:layout="@layout/fragment_line_chartcompare" />
     <fragment
@@ -75,7 +75,7 @@
         android:label="CompareBarChartFragment" />
     <fragment
         android:id="@+id/nav_adminsettingsFragment"
-        android:name="com.example.sep4_android.ui.Choose.chooseFragment"
+        android:name="com.example.sep4_android.ui.Choose.ChooseFragment"
         android:label="fragment_create_user"
         tools:layout="@layout/fragment_choose" />
     <fragment

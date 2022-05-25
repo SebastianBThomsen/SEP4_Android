@@ -1,35 +1,26 @@
 package com.example.sep4_android.ui.Choose;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentChooseBinding;
-import com.example.sep4_android.databinding.FragmentCreateUserBinding;
-import com.example.sep4_android.ui.createUser.CreateUserViewModelImlp;
-import com.google.firebase.auth.FirebaseAuth;
 
-public class chooseFragment extends Fragment {
+public class ChooseFragment extends Fragment {
 
     private ChooseViewModel viewModel;
-    private Button addUser,Desire;
+    private Button addUser, desire;
     private FragmentChooseBinding binding;
 
-    public static chooseFragment newInstance() {
-        return new chooseFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -47,7 +38,7 @@ public class chooseFragment extends Fragment {
         addUser.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.nav_createUserFragment);
         });
-        Desire.setOnClickListener(view -> {
+        desire.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.nav_settings);
         });
 
@@ -56,8 +47,12 @@ public class chooseFragment extends Fragment {
 
     private void bindings() {
         addUser = binding.btnAddUser;
-        Desire = binding.btnDesire;
+        desire = binding.btnDesire;
     }
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

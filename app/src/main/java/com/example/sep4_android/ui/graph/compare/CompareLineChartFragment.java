@@ -16,6 +16,7 @@ import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.ui.graph.DesignForGraph.GraphDesign;
 import com.example.sep4_android.ui.graph.lineChartForTemp.LineViewModelImpl;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -24,10 +25,12 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 
-public class compareLineChartFragment extends Fragment {
+public class CompareLineChartFragment extends Fragment {
     private LineViewModelImpl viewModel;
     private FragmentLineChartcompareBinding binding;
     private LineChart lineChart;
+
+    //FIXME: Disse 2 bliver ikke brugt? - Skal de det?
     private LineChart lineChart1;
     private LineChart lineChart2;
     private GraphDesign design;
@@ -76,26 +79,38 @@ public class compareLineChartFragment extends Fragment {
     }
 
     private void inputDataToChart(ArrayList<Entry> test, ArrayList<Entry> test1, ArrayList<Entry> test2) {
-        LineDataSet lineDataSet = new LineDataSet(test,"Co2");
-        LineDataSet lineDataSet1 = new LineDataSet(test1, "Temperature");
-        LineDataSet lineDataSet2 = new LineDataSet(test2, "Humidity");
+        //FIXME: Beskriv hvad der sker
+        LineDataSet lineDataCO2 = new LineDataSet(test,"Co2");
+        LineDataSet lineDataTemperature = new LineDataSet(test1, "Temperature");
+        LineDataSet lineDataHumidity = new LineDataSet(test2, "Humidity");
+
+        //Sætter CO2 til at have y-aske til højre
+        lineDataCO2.setAxisDependency(YAxis.AxisDependency.RIGHT);
+
+        //Sætter data overview farve (Aner ikke hvorfor dette skal gøres 2 gange??)
+        lineDataCO2.setColor(Color.rgb(255,30,0));
+        lineDataTemperature.setColor(Color.rgb(25,30,255));
+        lineDataHumidity.setColor(Color.rgb(25,255,25));
+
+        //FIXME: Beskriv hvad der sker her @BOBTHEMARK
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-        dataSets.add(lineDataSet);
-        dataSets.add(lineDataSet1);
-        dataSets.add(lineDataSet2);
+        dataSets.add(lineDataCO2);
+        dataSets.add(lineDataTemperature);
+        dataSets.add(lineDataHumidity);
+
+        //FIXME: Beskriv hvad der sker
         LineData data = new LineData(dataSets);
         lineChart.setData(data);
+
+        //FIXME: Beskriv hvad der gøres her @BOBTHEBUILDER
         design.compareLineChartDesign(lineChart);
-        design.compareLineDataSet(lineDataSet);
-        lineDataSet.setColor(Color.rgb(255,30,0));
-        design.compareLineDataSet(lineDataSet1);
-        lineDataSet1.setColor(Color.rgb(25,30,255));
-        design.compareLineDataSet(lineDataSet2);
+        design.compareLineDataSet(lineDataCO2);
+        design.compareLineDataSet(lineDataTemperature);
+        design.compareLineDataSet(lineDataHumidity);
 
-
-
+        //Sætter linjernes farve
+        lineDataTemperature.setColor(Color.rgb(25,30,255));
+        lineDataCO2.setColor(Color.rgb(255,30,0));
+        lineDataHumidity.setColor(Color.rgb(25,255,25));
     }
-
-
-
 }

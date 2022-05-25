@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_choose.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_create_room.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_register_device.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_unregistered_devices_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/menu/activity_main_drawer.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_health_inspection.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_settings.xml" value="0.37604166666666666" />

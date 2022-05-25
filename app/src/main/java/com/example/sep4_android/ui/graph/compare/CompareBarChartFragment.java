@@ -31,11 +31,6 @@ public class CompareBarChartFragment extends Fragment {
     private BarChart barChart;
     private GraphDesign design;
 
-    public static CompareBarChartFragment newInstance() {
-        return new CompareBarChartFragment();
-    }
-
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
