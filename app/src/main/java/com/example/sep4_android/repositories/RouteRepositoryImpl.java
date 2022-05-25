@@ -8,8 +8,8 @@ import android.net.NetworkInfo;
 import androidx.lifecycle.LiveData;
 
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
+import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

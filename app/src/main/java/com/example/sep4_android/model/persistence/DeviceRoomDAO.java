@@ -6,7 +6,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
 
 import java.util.List;

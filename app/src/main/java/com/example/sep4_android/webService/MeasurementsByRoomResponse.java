@@ -1,14 +1,9 @@
 package com.example.sep4_android.webService;
 
-import android.icu.util.Measure;
-
-import androidx.annotation.NonNull;
-
 import com.example.sep4_android.model.DateHandler;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MeasurementsByRoomResponse {
     private String deviceId;

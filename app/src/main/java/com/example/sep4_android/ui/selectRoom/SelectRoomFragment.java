@@ -13,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.sep4_android.R;
 
+import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentSelectRoomBinding;
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;

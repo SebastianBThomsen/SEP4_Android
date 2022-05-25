@@ -11,8 +11,8 @@ import com.example.sep4_android.model.persistence.DeviceDAO;
 import com.example.sep4_android.model.persistence.DeviceRoomDAO;
 import com.example.sep4_android.model.persistence.MeasurementDAO;
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
+import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

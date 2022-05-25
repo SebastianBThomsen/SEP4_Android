@@ -7,11 +7,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
-import androidx.navigation.Navigation;
 
 import com.example.sep4_android.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.example.sep4_android.R;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
