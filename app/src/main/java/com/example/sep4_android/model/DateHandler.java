@@ -40,8 +40,8 @@ public class DateHandler {
         CalendarConstraints.Builder calenderConstraint = new CalendarConstraints.Builder();
         calenderConstraint.setEnd(MaterialDatePicker.todayInUtcMilliseconds());
 
-        //Setting calenderConstraint validator, so a date beyond current date cannot be chosen!
-        CalendarConstraints.DateValidator dateValidatorMax = DateValidatorPointBackward.before(MaterialDatePicker.todayInUtcMilliseconds());
+        //Setting calenderConstraint validator, so a date beyond current date + 1 day cannot be chosen!
+        CalendarConstraints.DateValidator dateValidatorMax = DateValidatorPointBackward.before(MaterialDatePicker.todayInUtcMilliseconds()+86400000);
         calenderConstraint.setValidator(dateValidatorMax);
 
         MaterialDatePicker materialDatePicker =
