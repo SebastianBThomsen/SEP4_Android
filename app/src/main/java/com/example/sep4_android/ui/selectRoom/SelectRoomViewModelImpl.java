@@ -25,9 +25,4 @@ public class SelectRoomViewModelImpl extends AndroidViewModel implements SelectR
     public void setSelectedDevice(Device device){
         repository.setSelectedDevice(device);
     }
-
-    @Override
-    public LiveData<List<DeviceRoom>> getAllRooms() {
-        return repository.getAllRooms();
-    }
 }

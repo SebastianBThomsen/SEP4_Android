@@ -23,4 +23,7 @@ public interface RouteRepository {
     //Add Room
     void addRoom(String roomName);
     LiveData<List<DeviceRoom>> getAllRooms();
+
+    //Device
+    Device getSelectedUnregistedDevice();
 }

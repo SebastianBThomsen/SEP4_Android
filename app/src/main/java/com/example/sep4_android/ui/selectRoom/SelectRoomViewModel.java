@@ -9,5 +9,4 @@ import java.util.List;
 
 public interface SelectRoomViewModel {
     void setSelectedDevice(Device device);
-    LiveData<List<DeviceRoom>> getAllRooms();
 }

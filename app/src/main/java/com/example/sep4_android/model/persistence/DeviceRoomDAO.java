@@ -17,6 +17,6 @@ public interface DeviceRoomDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(DeviceRoom deviceRoom);
 
-    @Query("Select * FROM device_table ORDER BY roomName DESC")
+    @Query("Select * FROM deviceRoom_table ORDER BY roomName DESC")
     LiveData<List<DeviceRoom>> getAllRooms();
 }

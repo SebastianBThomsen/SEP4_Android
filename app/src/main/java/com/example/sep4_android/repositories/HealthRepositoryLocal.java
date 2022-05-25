@@ -31,7 +31,6 @@ public class HealthRepositoryLocal implements HealthRepository {
 
     //FIXME: disse 2 skal lige tjekkes om de bruges, og så cleanes up!
     private MutableLiveData<List<Measurement>> allMeasurementsByDevice;
-
     private MutableLiveData<Measurement> averageMeasurement;
 
 
@@ -50,7 +49,7 @@ public class HealthRepositoryLocal implements HealthRepository {
         allMeasurementsByDevice = new MutableLiveData<>();
 
         //Observe average temps //FIXME: skal dette gøres her? Eller måske ViewModel i stedet?
-        setAverageMeasurement();
+        //setAverageMeasurement();
     }
 
     public static synchronized HealthRepositoryLocal getInstance(Application application) {
