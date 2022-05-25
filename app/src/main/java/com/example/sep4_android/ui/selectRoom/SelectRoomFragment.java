@@ -18,7 +18,7 @@ import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentSelectRoomBinding;
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
-import com.example.sep4_android.ui.RoomRecycler.DeviceAdapter;
+import com.example.sep4_android.ui.roomRecycler.DeviceAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +43,7 @@ public class SelectRoomFragment extends Fragment {
 
         bindings();
         setText();
+
 
 
         return root;

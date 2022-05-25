@@ -16,21 +16,25 @@
         android:name="com.example.sep4_android.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+
     <fragment
         android:id="@+id/frontpageFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartOverview.FrontpageFragment"
         android:label="fragment_frontpage"
         tools:layout="@layout/fragment_frontpage" />
+
     <fragment
         android:id="@+id/co2DeatilFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartForCO2.CO2DetailFragment"
         android:label="fragment_co2Detail"
         tools:layout="@layout/fragment_co2_detail"/>
+
     <fragment
         android:id="@+id/humidityDeatilFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartForHumidity.HumidityDetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_humidity_detail"/>
+
     <fragment
         android:id="@+id/tempatureDeatilFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartForTemp.TempDetailFragment"
@@ -42,16 +46,22 @@
         android:name="com.example.sep4_android.ui.selectRoom.SelectRoomFragment"
         android:label="@string/menu_selectRoom"
         tools:layout="@layout/fragment_select_room" />
+
     <fragment
         android:id="@+id/nav_register_device"
         android:name="com.example.sep4_android.ui.registerDevice.RegisterDevice"
         android:label="@string/menu_registerDevice"
         tools:layout="@layout/fragment_register_device" />
+
     <fragment
         android:id="@+id/nav_unregistered_devices"
         android:name="com.example.sep4_android.ui.unregisteredDevices.UnregisteredDevices"
         android:label="@string/menu_unregistedList"
         tools:layout="@layout/fragment_unregistered_devices_fragment" />
 
-
+    <fragment
+        android:id="@+id/nav_create_room"
+        android:name="com.example.sep4_android.ui.createRoom.CreateRoomFragment"
+        android:label="@string/menu_unregistedList"
+        tools:layout="@layout/fragment_create_room" />
 </navigation>

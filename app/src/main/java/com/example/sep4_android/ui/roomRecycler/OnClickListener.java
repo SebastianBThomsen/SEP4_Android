@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.RoomRecycler;
+package com.example.sep4_android.ui.roomRecycler;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 
