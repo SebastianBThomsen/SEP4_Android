@@ -20,4 +20,7 @@ public interface HealthRepository {
     void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity);
     void updateClassroom(Device device);
 
+    //add room
+    void addRoom(String roomName);
+
 }

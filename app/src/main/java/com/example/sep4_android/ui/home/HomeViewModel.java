@@ -18,7 +18,4 @@ public interface HomeViewModel {
     //TEST
     LiveData<List<Measurement>> getTestMeasurements();
     void setTimestamp(Long start, Long end);
-
-
-
 }

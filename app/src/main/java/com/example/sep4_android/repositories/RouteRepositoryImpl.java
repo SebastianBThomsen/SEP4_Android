@@ -49,8 +49,13 @@ public class RouteRepositoryImpl implements RouteRepository {
         this.selectedDevice = selectedDevice;
     }
 
-    public Device getSelectedUnregistedDevice() { return selectedUnregistedDevice; }
-    public void setSelectedUnregistedDevice(Device selectedUnregistedDevice) { this.selectedUnregistedDevice = selectedUnregistedDevice; }
+    public Device getSelectedUnregistedDevice() {
+        return selectedUnregistedDevice;
+    }
+
+    public void setSelectedUnregistedDevice(Device selectedUnregistedDevice) {
+        this.selectedUnregistedDevice = selectedUnregistedDevice;
+    }
 
     @Override
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
@@ -90,9 +95,9 @@ public class RouteRepositoryImpl implements RouteRepository {
     @Override
     public void sendMaxMeasurementValues(int desiredTemp, int desiredCO2, int desiredHumidity) {
         executorService.execute(() -> {
-                    if (isOnline())
-                        repositoryWeb.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
-                });
+            if (isOnline())
+                repositoryWeb.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
+        });
         //FIXME: Måske tilføj noget logik, der venter til device er online i en sekundær thread og så sender når dette er tilfældet?
         repositoryLocal.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
     }
@@ -100,12 +105,19 @@ public class RouteRepositoryImpl implements RouteRepository {
     public void updateClassroom(String classroom) {
         selectedUnregistedDevice.setRoomName(classroom);
 
-        if(isOnline()){
+        if (isOnline()) {
             repositoryWeb.updateClassroom(selectedUnregistedDevice);
         }
         repositoryLocal.updateClassroom(selectedUnregistedDevice);
 
         selectedUnregistedDevice = null;
+    }
+
+    @Override
+    public void addRoom(String roomName) {
+        //FIXME: kun lavet i RepoWeb
+        if (isOnline())
+            repositoryWeb.addRoom(roomName);
     }
 
     private boolean isOnline() {

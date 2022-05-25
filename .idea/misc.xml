@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/activity_main.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/blahblah.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_barchart.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_create_room.xml" value="0.33" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_graph.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_health_inspection.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_home.xml" value="0.25052083333333336" />

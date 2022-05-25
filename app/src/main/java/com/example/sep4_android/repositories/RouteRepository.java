@@ -18,4 +18,7 @@ public interface RouteRepository {
     void setSelectedDevice(Device device);
     void setSelectedUnregistedDevice(Device device);
     void updateClassroom(String classroom);
+
+    //Add Room
+    void addRoom(String roomName);
 }

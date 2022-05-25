@@ -1,7 +1,6 @@
 package com.example.sep4_android.ui.home;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.repositories.HealthRepositoryWeb;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
@@ -28,7 +28,7 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
         super(application);
         repository = RouteRepositoryImpl.getInstance(application);
 
-        //FIXME: Spørg Kasper om dette? --> Måske i repository i stedet? ELLER en klasse mellem ViewModels og Repository!
+        //RXJava --> mere kompliceret
         measurementsByTimestamp = Transformations.switchMap(
                 filterTimestamp,
                 timestamp -> repository.getMeasurementsBetweenTimestamps(timestamp.get(0), timestamp.get(1))
