@@ -73,4 +73,14 @@
         android:id="@+id/nav_compareBarChartFragment"
         android:name="com.example.sep4_android.ui.graph.compare.CompareBarChartFragment"
         android:label="CompareBarChartFragment" />
+    <fragment
+        android:id="@+id/nav_adminsettingsFragment"
+        android:name="com.example.sep4_android.ui.Choose.chooseFragment"
+        android:label="fragment_create_user"
+        tools:layout="@layout/fragment_choose" />
+    <fragment
+        android:id="@+id/nav_createUserFragment"
+        android:name="com.example.sep4_android.ui.createUser.CreateUserFragment"
+        android:label="fragment_create_user"
+        tools:layout="@layout/fragment_create_user" />
 </navigation>
