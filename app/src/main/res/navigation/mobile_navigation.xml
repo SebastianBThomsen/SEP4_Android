@@ -65,12 +65,12 @@
         android:label="@string/menu_unregistedList"
         tools:layout="@layout/fragment_create_room" />
     <fragment
-        android:id="@+id/compareLineChartFragment"
+        android:id="@+id/nav_compareLineChartFragment"
         android:name="com.example.sep4_android.ui.graph.compare.compareLineChartFragment"
         android:label="fragment_line_chartcompare"
         tools:layout="@layout/fragment_line_chartcompare" />
     <fragment
-        android:id="@+id/compareBarChartFragment"
+        android:id="@+id/nav_compareBarChartFragment"
         android:name="com.example.sep4_android.ui.graph.compare.CompareBarChartFragment"
         android:label="CompareBarChartFragment" />
 </navigation>

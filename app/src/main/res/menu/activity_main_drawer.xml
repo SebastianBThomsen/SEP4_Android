@@ -6,44 +6,49 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
 
         <item
             android:id="@+id/nav_create_room"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_create_24"
             android:title="Create new deviceRoom"
             />
 
         <item
             android:id="@+id/nav_unregistered_devices"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_add_24"
             android:title="Register Device" />
 
         <item
             android:id="@+id/nav_healthInspection"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_health_and_safety_24"
             android:title="Health Inspection" />
 
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_settings_24"
             android:title="Settings" />
 
         <item
-            android:id="@+id/frontpageFragment"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Test rn"
+            android:id="@+id/nav_frontpageFragment"
+            android:icon="@drawable/ic_baseline_auto_graph_24"
+            android:title="Graph"
             />
         <item
-            android:id="@+id/compareLineChartFragment"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Test rn"
+            android:id="@+id/nav_compareLineChartFragment"
+            android:icon="@drawable/ic_baseline_auto_graph_24"
+            android:title="LIneChartCompare"
             />
         <item
-            android:id="@+id/compareBarChartFragment"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Test rn"
+            android:id="@+id/nav_compareBarChartFragment"
+            android:icon="@drawable/ic_baseline_auto_graph_24"
+            android:title="Barchart Compare"
+            />
+        <item
+            android:id="@+id/nav_adminsettingsFragment"
+            android:icon="@drawable/ic_baseline_admin_panel_settings_24"
+            android:title="Admin"
             />
     </group>
 </menu>
