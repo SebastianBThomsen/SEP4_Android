@@ -33,8 +33,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         username = findViewById(R.id.usernameField);
         password = findViewById(R.id.passwordField);
         Button b = findViewById(R.id.loginBtn);
-        Button r = findViewById(R.id.signupBtn);
-        r.setOnClickListener(this);
+//        Button r = findViewById(R.id.signupBtn);
+//        r.setOnClickListener(this);
         b.setOnClickListener(this);
 
         viewModel = new ViewModelProvider(this).get(LoginViewModelImpl.class);
@@ -52,24 +52,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(getApplicationContext(), "User not logged in", Toast.LENGTH_LONG).show();
     }
 
-
-
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.loginBtn:
                 viewModel.login(LoginActivity.this, username.getText().toString(), password.getText().toString());
-
-                //Explicit intent
-                //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-
-                //startActivity(intent);
-
                 break;
-            case R.id.signupBtn:
-                viewModel.signUp(LoginActivity.this, username.getText().toString(), password.getText().toString());
-                break;
+//            case R.id.signupBtn:
+//                viewModel.signUp(LoginActivity.this, username.getText().toString(), password.getText().toString());
+//                break;
         }
     }
 }
