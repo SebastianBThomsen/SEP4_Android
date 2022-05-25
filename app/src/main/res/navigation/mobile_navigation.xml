@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_selectRoomFragment">
+    app:startDestination="@+id/nav_loginActivity">
 
     <fragment
         android:id="@+id/nav_home"
@@ -52,6 +52,11 @@
         android:name="com.example.sep4_android.ui.unregisteredDevices.UnregisteredDevices"
         android:label="@string/menu_unregistedList"
         tools:layout="@layout/fragment_unregistered_devices_fragment" />
+
+    <activity
+        android:id="@+id/nav_loginActivity"
+        android:name="com.example.sep4_android.ui.login.LoginActivity"
+        android:label="LoginActivity" />
 
 
 </navigation>
