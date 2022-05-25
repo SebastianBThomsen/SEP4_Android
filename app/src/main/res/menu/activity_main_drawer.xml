@@ -35,10 +35,15 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Test rn"
             />
-
-
-
-
-
+        <item
+            android:id="@+id/compareLineChartFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Test rn"
+            />
+        <item
+            android:id="@+id/compareBarChartFragment"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Test rn"
+            />
     </group>
 </menu>

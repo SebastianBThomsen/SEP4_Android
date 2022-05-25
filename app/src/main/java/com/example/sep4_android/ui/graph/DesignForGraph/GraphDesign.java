@@ -56,5 +56,16 @@ public class GraphDesign {
         lineChart.getData().setValueTextColor(Color.parseColor("#ffffff"));
         lineChart.setBackgroundColor(Color.rgb(37, 36, 36));//Set as a gray
     }
+
+    public void compareLineChartDesign(LineChart lineChart) {
+        lineChartDesign(lineChart);
+
+    }
+
+    public void compareLineDataSet(LineDataSet lineDataSet) {
+        lineDataSet(lineDataSet);
+        lineDataSet.setDrawFilled(false);
+        lineDataSet.setDrawCircles(true);
+    }
 }
 
