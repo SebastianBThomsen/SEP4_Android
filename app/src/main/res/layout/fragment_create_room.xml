@@ -7,25 +7,103 @@
     tools:context=".ui.createRoom.CreateRoomFragment">
 
     <TextView
-        android:textSize="16sp"
+        android:id="@+id/textView_addRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Room Name: {C04_02}"
-        app:layout_constraintBottom_toTopOf="@+id/guideline8"
-        app:layout_constraintStart_toStartOf="@+id/guideline9" />
+        android:text="Add Room"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline10" />
+
+
+    <!-- Room Details -->
+    <!-- Block Name -->
+    <TextView
+        android:id="@+id/textView_blockName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Block Name: "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
     <EditText
-        android:id="@+id/editText_roomNameAdd"
+        android:id="@+id/editText_blockName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Insert Room Name"
-        app:layout_constraintBottom_toTopOf="@+id/guideline8"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:hint="{A-Z}"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_blockName"
+        app:layout_constraintStart_toStartOf="@+id/guideline12" />
+
+    <!-- Floor -->
+    <TextView
+        android:id="@+id/textView_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Floor: "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView_blockName"
+        app:layout_constraintTop_toBottomOf="@+id/textView_blockName" />
+
+    <EditText
+        android:id="@+id/editText_floor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="{00-99}"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_floor"
+        app:layout_constraintStart_toStartOf="@+id/guideline12" />
+
+    <!-- Room Number -->
+    <TextView
+        android:id="@+id/textView_roomNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Room Number: "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView_blockName"
+        app:layout_constraintTop_toBottomOf="@+id/textView_floor" />
+
+    <EditText
+        android:id="@+id/editText_roomNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="{00-99}"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_roomNumber"
+        app:layout_constraintStart_toStartOf="@+id/guideline12" />
+
+    <!-- Room Letter -->
+    <TextView
+        android:id="@+id/textView_roomLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Room Letter: "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/textView_blockName"
+        app:layout_constraintTop_toBottomOf="@+id/textView_roomNumber" />
+
+    <EditText
+        android:id="@+id/editText_roomLetter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="{a-z}"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView_roomLetter"
+        app:layout_constraintStart_toStartOf="@+id/guideline12" />
+
+    <!-- Submit -->
 
     <Button
         android:id="@+id/btn_addRoom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="276dp"
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +117,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_addRoom" />
 
+    <!-- Guidelines -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"
         android:layout_width="wrap_content"
@@ -52,5 +131,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

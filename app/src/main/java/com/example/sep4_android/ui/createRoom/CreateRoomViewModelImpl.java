@@ -22,10 +22,13 @@ public class CreateRoomViewModelImpl extends AndroidViewModel implements CreateR
     }
 
     @Override
-    public String addRoom(String roomName) {
-        String validate = validateRoomInput(roomName);
+    public String addRoom(String blockName, String floor, String roomNumber, String roomLetter) {
+        String validate = validateRoomInput(blockName, floor, roomNumber, roomLetter);
         if (validate.equals("Valid"))
+        {
+            String roomName = blockName + floor + "_" + roomNumber + roomLetter;
             repository.addRoom(roomName);
+        }
         return validate;
     }
 
@@ -34,11 +37,19 @@ public class CreateRoomViewModelImpl extends AndroidViewModel implements CreateR
         return repository.getAllRooms();
     }
 
-    private String validateRoomInput(String roomName) {
-        if (roomName.length() == 6 || roomName.length() == 7) {
-            //[A-Z][0-9][0-9]_[0-9][0-9][a-z]?$
-            return "Valid";
-        }
-        return "Invalid Input: Use [A-Z][0-9][0-9]_[0-9][0-9][a-z]";
+    private String validateRoomInput(String blockName, String floor, String roomNumber, String roomLetter) {
+        String message = "";
+        if (blockName.length() != 1)
+            message += "Block name invalid!\n";
+        if (floor.length() != 2)
+            message += "Floor invalid!\n";
+        if (roomNumber.length() != 2)
+            message += "Room number invalid!\n";
+        if (roomLetter.length() != 0 && roomLetter.length() != 1)
+            message += "room letter invalid!";
+        if(message.equals(""))
+            message = "Valid";
+        //[A-Z][0-9][0-9]_[0-9][0-9][a-z]?$
+        return message;
     }
 }

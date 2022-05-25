@@ -22,7 +22,7 @@ public class CreateRoomFragment extends Fragment {
     private FragmentCreateRoomBinding binding;
 
     //Fields from xml
-    private EditText editText_roomNameAdd;
+    private EditText editText_blockName, editText_floor, editText_roomNumber, editText_roomLetter;
     private Button btn_submit;
     private TextView tv_validation;
 
@@ -49,14 +49,23 @@ public class CreateRoomFragment extends Fragment {
     }
 
     private void bindings() {
-        editText_roomNameAdd = binding.editTextRoomNameAdd;
+        editText_blockName = binding.editTextBlockName;
+        editText_floor = binding.editTextFloor;
+        editText_roomLetter = binding.editTextRoomLetter;
+        editText_roomNumber = binding.editTextRoomNumber;
+
+
         btn_submit = binding.btnAddRoom;
         tv_validation = binding.tvValidation;
         btn_submit.setOnClickListener(this::addRoom);
     }
 
     private void addRoom(View view) {
-        String addRoomReturn = viewModel.addRoom(editText_roomNameAdd.getText().toString());
+        String addRoomReturn = viewModel.addRoom(
+                editText_blockName.getText().toString(),
+                editText_floor.getText().toString(),
+                editText_roomNumber.getText().toString(),
+                editText_roomLetter.getText().toString());
 
         tv_validation.setText(addRoomReturn);
     }
