@@ -1,35 +1,35 @@
 package com.example.sep4_android.ui.registerDevice;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentRegisterDeviceBinding;
-import com.example.sep4_android.repositories.RouteRepositoryImpl;
+import com.example.sep4_android.model.persistence.entities.DeviceRoom;
+
+import java.util.ArrayList;
 
 public class RegisterDevice extends Fragment {
 
     private RegisterDeviceViewModelImpl viewModel;
     private FragmentRegisterDeviceBinding binding;
-    private RouteRepositoryImpl repo;
     private View root;
 
     private TextView text_deviceName;
-    private EditText edit_Classroom;
     private Button btn_register;
+    private Spinner spinner_selectRoom;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -38,30 +38,48 @@ public class RegisterDevice extends Fragment {
         binding = FragmentRegisterDeviceBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
-        repo = RouteRepositoryImpl.getInstance(getActivity().getApplication());
-
         bindings();
         setText();
+
+        adapterSetup();
 
         return root;
     }
 
-    public void bindings(){
+    private void adapterSetup() {
+        ArrayList<String> roomList = new ArrayList<>();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, roomList);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_selectRoom.setAdapter(adapter);
+
+        viewModel.getAllRooms().observe(getViewLifecycleOwner(), deviceRooms -> {
+            roomList.clear();
+            for (DeviceRoom room: deviceRooms) {
+                if(!room.getRoomName().equals("def"))
+                    roomList.add(room.getRoomName());
+            }
+            //notifyDataSetChanged after update roomList variable here
+            adapter.notifyDataSetChanged();
+        });
+    }
+
+
+    public void bindings() {
         text_deviceName = binding.textDeviceName;
-        edit_Classroom = binding.editClassroom;
         btn_register = binding.btnRegister;
+
+        spinner_selectRoom = binding.spinnerSelectRoom;
 
         btn_register.setOnClickListener(this::register);
     }
 
-    public void setText(){
-        System.out.println("Test: "+repo.getSelectedUnregistedDevice().getClimateDeviceId());
-        text_deviceName.setText(repo.getSelectedUnregistedDevice().getClimateDeviceId());
-
+    public void setText() {
+        text_deviceName.setText(viewModel.getSelectedUnregistedDevice().getClimateDeviceId());
     }
 
-    private void register(View view){
-        viewModel.register(edit_Classroom.getText().toString());
+    private void register(View view) {
+        viewModel.register(spinner_selectRoom.getSelectedItem().toString());
         Navigation.findNavController(root).navigate(R.id.nav_selectRoomFragment);
     }
 }

@@ -8,7 +8,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.model.persistence.entities.DeviceRoom;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
@@ -27,7 +26,7 @@ public class SelectRoomViewModelImpl extends AndroidViewModel implements SelectR
     }
 
     @Override
-    public LiveData<List<DeviceRoom>> getAllRooms() {
-        return repository.getAllRooms();
+    public LiveData<List<Device>> getAllDevices() {
+        return repository.getAllDevices();
     }
 }

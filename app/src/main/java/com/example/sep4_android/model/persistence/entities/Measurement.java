@@ -2,7 +2,6 @@ package com.example.sep4_android.model.persistence.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 
 import com.example.sep4_android.model.DateHandler;
 

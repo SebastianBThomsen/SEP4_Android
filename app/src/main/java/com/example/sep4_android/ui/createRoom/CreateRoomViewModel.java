@@ -7,6 +7,6 @@ import com.example.sep4_android.model.persistence.entities.DeviceRoom;
 import java.util.List;
 
 public interface CreateRoomViewModel {
-    String addRoom(String roomName);
+    String addRoom(String blockName, String floor, String roomNumber, String roomLetter);
     LiveData<List<DeviceRoom>> getAllRooms();
 }

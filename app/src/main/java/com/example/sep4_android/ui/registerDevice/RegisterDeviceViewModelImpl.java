@@ -4,12 +4,16 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
 
+import com.example.sep4_android.model.persistence.entities.Device;
+import com.example.sep4_android.model.persistence.entities.DeviceRoom;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
-public class RegisterDeviceViewModelImpl extends AndroidViewModel {
+import java.util.List;
+
+public class RegisterDeviceViewModelImpl extends AndroidViewModel implements RegisterDeviceViewModel {
     private RouteRepository repository;
 
     public RegisterDeviceViewModelImpl(@NonNull Application application) {
@@ -17,7 +21,18 @@ public class RegisterDeviceViewModelImpl extends AndroidViewModel {
         repository = RouteRepositoryImpl.getInstance(application);
     }
 
-    public void register(String className){
+    @Override
+    public void register(String className) {
         repository.updateClassroom(className);
+    }
+
+    @Override
+    public LiveData<List<DeviceRoom>> getAllRooms() {
+        return repository.getAllRooms();
+    }
+
+    @Override
+    public Device getSelectedUnregistedDevice() {
+        return repository.getSelectedUnregistedDevice();
     }
 }
