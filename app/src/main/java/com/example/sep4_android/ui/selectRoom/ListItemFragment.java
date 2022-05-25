@@ -1,4 +1,4 @@
-package com.example.sep4_android;
+package com.example.sep4_android.ui.selectRoom;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,12 +7,16 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.sep4_android.R;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ListItemFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ListItemFragment extends Fragment {
+//TODO: Hvem end der har lavet denne, forklar til Sebastian hvad her sker :))
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

@@ -18,7 +18,7 @@ import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentUnregisteredDevicesFragmentBinding;
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
-import com.example.sep4_android.ui.roomRecycler.UnregisterdDeviceAdapter;
+import com.example.sep4_android.ui.roomRecycler.UnregisteredDeviceAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +64,7 @@ public class UnregisteredDevices extends Fragment {
         });
 
         liste.observe(getViewLifecycleOwner(), devices -> {
-            UnregisterdDeviceAdapter adapter = new UnregisterdDeviceAdapter(devices);
+            UnregisteredDeviceAdapter adapter = new UnregisteredDeviceAdapter(devices);
             recyclerView.setAdapter(adapter);
 
             adapter.setOnClickListener(device ->{

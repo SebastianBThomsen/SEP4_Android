@@ -13,12 +13,12 @@ import com.example.sep4_android.model.persistence.entities.Device;
 
 import java.util.List;
 
-public class UnregisterdDeviceAdapter extends RecyclerView.Adapter<UnregisterdDeviceAdapter.ViewHolder> {
+public class UnregisteredDeviceAdapter extends RecyclerView.Adapter<UnregisteredDeviceAdapter.ViewHolder> {
 
     private List<Device> devices;
     private OnClickListener listener;
 
-    public UnregisterdDeviceAdapter(List<Device> devices){
+    public UnregisteredDeviceAdapter(List<Device> devices){
         this.devices = devices;
     }
 
@@ -53,7 +53,6 @@ public class UnregisterdDeviceAdapter extends RecyclerView.Adapter<UnregisterdDe
             itemView.setOnClickListener(v ->{
                 listener.onClick(devices.get(getBindingAdapterPosition()));
             });
-
         }
     }
 }
