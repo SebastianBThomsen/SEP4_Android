@@ -20,7 +20,7 @@ import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentUnregisteredDevicesFragmentBinding;
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
-import com.example.sep4_android.ui.RoomRecycler.UnregisterdDeviceAdapter;
+import com.example.sep4_android.ui.roomRecycler.UnregisterdDeviceAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

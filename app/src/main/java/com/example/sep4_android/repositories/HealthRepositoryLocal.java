@@ -7,10 +7,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4_android.model.persistence.Database;
+import com.example.sep4_android.model.persistence.DeviceDAO;
+import com.example.sep4_android.model.persistence.DeviceRoomDAO;
 import com.example.sep4_android.model.persistence.MeasurementDAO;
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.model.persistence.entities.DeviceDAO;
 import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.model.persistence.entities.DeviceRoom;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -18,13 +20,17 @@ import java.util.concurrent.Executors;
 
 public class HealthRepositoryLocal implements HealthRepository {
     private static HealthRepositoryLocal instance;
+
+    //DAOS
     private MeasurementDAO measurementDAO;
     private DeviceDAO deviceDAO;
+    private DeviceRoomDAO deviceRoomDAO;
+
+    //Multithread
     private ExecutorService executorService;
 
-    //skal denne bruges?
+    //FIXME: disse 2 skal lige tjekkes om de bruges, og så cleanes up!
     private MutableLiveData<List<Measurement>> allMeasurementsByDevice;
-    private LiveData<List<Device>> allDevice;
 
     private MutableLiveData<Measurement> averageMeasurement;
 
@@ -32,23 +38,19 @@ public class HealthRepositoryLocal implements HealthRepository {
     private HealthRepositoryLocal(Application application) {
         Database database = Database.getInstance(application);
 
-        //Bruges denne overhovedet?
-        executorService = Executors.newFixedThreadPool(2);
-
-        averageMeasurement = new MutableLiveData<>();
-
-        //Skal denne bruges?
-        allMeasurementsByDevice = new MutableLiveData<>();
-
+        //Initialize DAOs
         measurementDAO = database.measurementDAO();
         deviceDAO = database.deviceDAO();
-//        allMeasurements = measurementDAO.getAllMeasurements();
-        allDevice = deviceDAO.getAllDevices();
+        deviceRoomDAO = database.deviceRoomDAO();
 
-        //Observe average temps //FIXME: skal dette gøres her?
+        executorService = Executors.newFixedThreadPool(2);
+
+        //Skal disse bruges?
+        averageMeasurement = new MutableLiveData<>();
+        allMeasurementsByDevice = new MutableLiveData<>();
+
+        //Observe average temps //FIXME: skal dette gøres her? Eller måske ViewModel i stedet?
         setAverageMeasurement();
-
-
     }
 
     public static synchronized HealthRepositoryLocal getInstance(Application application) {
@@ -99,7 +101,7 @@ public class HealthRepositoryLocal implements HealthRepository {
     }
 
     public LiveData<List<Device>> getAllDevices() {
-        return allDevice;
+        return deviceDAO.getAllDevices();
     }
 
 
@@ -112,13 +114,19 @@ public class HealthRepositoryLocal implements HealthRepository {
     @Override
     public void updateClassroom(Device device) {
         executorService.execute(() -> {
-                    deviceDAO.updateClassroom(device.getClimateDeviceId(), device.getRoomName());
-                }
-        );
+            deviceDAO.updateClassroom(device.getClimateDeviceId(), device.getRoomName());
+        });
     }
 
     @Override
     public void addRoom(String roomName) {
-        //TODO: Implement this!
+        executorService.execute(() -> {
+            deviceRoomDAO.insert(new DeviceRoom(roomName));
+        });
+    }
+
+    @Override
+    public LiveData<List<DeviceRoom>> getAllRooms() {
+        return deviceRoomDAO.getAllRooms();
     }
 }

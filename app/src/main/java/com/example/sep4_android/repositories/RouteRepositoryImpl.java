@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.model.persistence.entities.DeviceRoom;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -115,9 +116,16 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public void addRoom(String roomName) {
-        //FIXME: kun lavet i RepoWeb
         if (isOnline())
             repositoryWeb.addRoom(roomName);
+        repositoryLocal.addRoom(roomName);
+    }
+
+    @Override
+    public LiveData<List<DeviceRoom>> getAllRooms() {
+        if (isOnline())
+            repositoryWeb.getAllRooms();
+        return repositoryLocal.getAllRooms();
     }
 
     private boolean isOnline() {

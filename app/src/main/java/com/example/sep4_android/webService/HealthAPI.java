@@ -1,14 +1,8 @@
 package com.example.sep4_android.webService;
 
-import androidx.room.Room;
-
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.model.persistence.entities.DeviceRoom;
 
-import java.util.List;
-
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -34,17 +28,22 @@ public interface HealthAPI {
     @GET("v3/{roomNo}")
     Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
 */
-    @GET("api/v1/rooms/{roomNo}/measurements")
+    @GET("api/v1/Rooms/{roomNo}/Measurements")
     Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
 
-    @GET("api/v1/devices")
+    @GET("api/v1/Devices")
     Call<Device[]> getAllDevices();
 
-    @PUT("api/v1/rooms/{roomName}/devices/{deviceId}")
+    @GET("api/v1/Rooms")
+    Call<DeviceRoom[]> getAllRooms();
+
+    @PUT("api/v1/Rooms/{roomName}/devices/{deviceId}")
     Call<ResponseBody> putClassroomName(@Path("roomName") String classroom, @Path("deviceId") String deviceId);
 
     @POST("api/v1/Rooms")
-    Call<ResponseBody> addRoom(@Body Classroom classroom);
+    Call<ResponseBody> addRoom(@Body DeviceRoom deviceRoom);
+
+
 
     /*
     //https://run.mocky.io/v3/?search=6f64b188-00ea-44b3-abaa-387588645afa

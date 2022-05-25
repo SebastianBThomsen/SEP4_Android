@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.model.persistence.entities.DeviceRoom;
 
 import java.util.List;
 
@@ -21,4 +22,5 @@ public interface RouteRepository {
 
     //Add Room
     void addRoom(String roomName);
+    LiveData<List<DeviceRoom>> getAllRooms();
 }

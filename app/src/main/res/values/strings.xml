@@ -11,7 +11,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
-    <string name="menu_selectRoom">Select room</string>
+    <string name="menu_selectRoom">Select deviceRoom</string>
     <string name="menu_unregistedList">Uregisterede devices</string>
     <string name="menu_registerDevice">Register device</string>
     <!-- TODO: Remove or change this placeholder text -->
