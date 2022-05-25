@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentSelectRoomBinding;
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.repositories.RouteRepositoryImpl;
 import com.example.sep4_android.ui.roomRecycler.DeviceAdapter;
 
 import java.util.ArrayList;
@@ -28,7 +27,6 @@ public class SelectRoomFragment extends Fragment {
     private SelectRoomViewModel viewModel;
     private FragmentSelectRoomBinding binding;
     private RecyclerView recyclerView;
-    private RouteRepositoryImpl repo;
 
     private View root;
 
@@ -39,17 +37,13 @@ public class SelectRoomFragment extends Fragment {
         binding = FragmentSelectRoomBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
-        repo = RouteRepositoryImpl.getInstance(getActivity().getApplication());
-
         bindings();
         setText();
-
-
 
         return root;
     }
 
-    private void setText(){
+    private void setText() {
         recyclerView = binding.rv;
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -57,10 +51,10 @@ public class SelectRoomFragment extends Fragment {
         //Soter devies uden rum fra
         MutableLiveData<List<Device>> liste = new MutableLiveData();
 
-        repo.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
+        viewModel.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
             List tmp = new ArrayList();
-            for (Device i:devices) {
-                if(i.getRoomName() != null && !(i.getRoomName().equals(""))){
+            for (Device i : devices) {
+                if (i.getRoomName() != null && !(i.getRoomName().equals(""))) {
                     tmp.add(i);
                 }
             }
@@ -71,18 +65,16 @@ public class SelectRoomFragment extends Fragment {
             DeviceAdapter adapter = new DeviceAdapter(devices);
             recyclerView.setAdapter(adapter);
 
-            adapter.setOnClickListener(device ->{
+            adapter.setOnClickListener(device -> {
                 viewModel.setSelectedDevice(device);
                 Navigation.findNavController(root).navigate(R.id.nav_home);
             });
         });
-
     }
 
     private void bindings() {
         //FIXME: Denne bruges ikke?
         //Select Room
-
     }
 
     @Override
@@ -90,5 +82,4 @@ public class SelectRoomFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }
