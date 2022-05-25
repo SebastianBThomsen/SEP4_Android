@@ -11,10 +11,12 @@ import com.example.sep4_android.model.persistence.MeasurementDAO;
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.DeviceDAO;
 import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.webService.Classroom;
 import com.example.sep4_android.webService.HealthAPI;
 import com.example.sep4_android.webService.HealthServiceGenerator;
 import com.example.sep4_android.webService.MeasurementsByRoomResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -77,7 +79,7 @@ public class HealthRepositoryWeb implements HealthRepository {
 
             @Override
             public void onFailure(Call<Device[]> call, Throwable t) {
-                Log.i("Retrofit", "FAILURE (searchForHealthData)" + call
+                Log.i("Retrofit", "FAILURE (getAllDevices)" + call
                         + "\nError Message: " + t.getMessage());
             }
         });
@@ -110,7 +112,8 @@ public class HealthRepositoryWeb implements HealthRepository {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Log.i("Retrofit", "FAILURE (updateClassroom)" + call
+                        + "\nError Message: " + t.getMessage());
             }
         });
         //Noget i stil af dette kald
@@ -133,14 +136,16 @@ public class HealthRepositoryWeb implements HealthRepository {
                 Log.i("Retrofit", "Reponse: " + response);
                 if (response.isSuccessful()) {
                     //Tager første data i array om healthData
-                    MeasurementsByRoomResponse measurementsByRoomResponse = response.body()[0];
-                    Log.i("Retrofit", "SUCCESS!\nMeasurements: " + measurementsByRoomResponse);
+                    MeasurementsByRoomResponse[] measurementsByRoomResponseList = response.body();
+                    Log.i("Retrofit", "SUCCESS!\nMeasurements: " + measurementsByRoomResponseList);
+
                     //randomHealthData.setValue(device);
-                    //TODO: Kasper, er dette en fin måde at gemme data til cache på?
+
                     executorService.execute(() -> {
-                        //FIXME: Dette gemmer kun measurements fra første MeasurementByRoomResponse eller?? --> Første device!
-                        for (Measurement measurement : measurementsByRoomResponse.getMeasurements()) {
-                            measurementDAO.insert(measurement);
+                        for (MeasurementsByRoomResponse measurementByRoom: measurementsByRoomResponseList) {
+                            for (Measurement measurement : measurementByRoom.getMeasurements()) {
+                                measurementDAO.insert(measurement);
+                            }
                         }
                     });
                 }
@@ -148,11 +153,31 @@ public class HealthRepositoryWeb implements HealthRepository {
 
             @Override
             public void onFailure(Call<MeasurementsByRoomResponse[]> call, Throwable t) {
-                Log.i("Retrofit", "FAILURE (searchForHealthData)" + call
+                Log.i("Retrofit", "FAILURE (getAllMeasurementsByDevice)" + call
                         + "\nError Message: " + t.getMessage());
             }
         });
         //FIXME: lidt skørt, måske bare lave et seperat interface til RepositoryWeb i stedet? --> og kald denne findMeasurementsByDevice?
         return null;
+    }
+
+    @Override
+    public void addRoom(String roomName) {
+        Call<ResponseBody> call = healthAPI.addRoom(new Classroom(roomName));
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.i("Retrofit", "Response: "+response);
+                if(response.isSuccessful()){
+                    Log.i("Retrofit", "Success response: "+response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("Retrofit", "FAILURE (addRoom)" + call
+                        + "\nError Message: " + t.getMessage());
+            }
+        });
     }
 }

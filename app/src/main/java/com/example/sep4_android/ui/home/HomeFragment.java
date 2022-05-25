@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.sep4_android.databinding.FragmentHomeBinding;
 import com.example.sep4_android.model.DateHandler;
 import com.example.sep4_android.model.persistence.entities.Measurement;
+import com.example.sep4_android.repositories.HealthRepositoryWeb;
 import com.google.android.material.datepicker.MaterialDatePicker;
 
 public class HomeFragment extends Fragment {

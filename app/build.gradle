@@ -69,7 +69,6 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-
     // Robolectric environment
     testImplementation "org.robolectric:robolectric:4.8"
 

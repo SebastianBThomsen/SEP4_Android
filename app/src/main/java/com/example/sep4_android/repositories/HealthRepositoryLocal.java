@@ -103,7 +103,6 @@ public class HealthRepositoryLocal implements HealthRepository {
     }
 
 
-
     @Override
     public void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity) {
         //TODO: Skal der sendes maxhealthsettings Til Room?? --> Måske noget med hvis internet er gået, så sender den med det samme internet kommer tilbage?
@@ -111,11 +110,15 @@ public class HealthRepositoryLocal implements HealthRepository {
     }
 
     @Override
-    public void updateClassroom(Device device){
-        executorService.execute(
-                () -> {
+    public void updateClassroom(Device device) {
+        executorService.execute(() -> {
                     deviceDAO.updateClassroom(device.getClimateDeviceId(), device.getRoomName());
                 }
         );
+    }
+
+    @Override
+    public void addRoom(String roomName) {
+        //TODO: Implement this!
     }
 }
