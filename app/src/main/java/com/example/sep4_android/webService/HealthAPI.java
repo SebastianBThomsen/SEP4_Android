@@ -19,16 +19,7 @@ import retrofit2.http.Path;
 //https://run.mocky.io/v3/d9384c83-1dd6-40b2-9c83-fa4f7ba54b15
 
 public interface HealthAPI {
-    /*
-    @GET("api/v1/rooms/{roomNo}/measurements")
-    Call<HealthData[]> getRandomHealthData(@Path("roomNo") int roomNo);
-     */
 
-
-    /*
-    @GET("v3/{roomNo}")
-    Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
-*/
     @GET("api/v1/Rooms/{roomNo}/Measurements")
     Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
 

@@ -75,7 +75,7 @@ public class RegisterDevice extends Fragment {
     }
 
     public void setText() {
-        text_deviceName.setText(viewModel.getSelectedUnregistedDevice().getClimateDeviceId());
+        text_deviceName.setText(viewModel.getSelectedUnregisteredDevice().getClimateDeviceId());
     }
 
     private void register(View view) {

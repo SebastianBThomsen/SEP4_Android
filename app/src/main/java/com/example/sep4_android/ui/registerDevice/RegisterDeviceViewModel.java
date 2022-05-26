@@ -10,5 +10,5 @@ import java.util.List;
 public interface RegisterDeviceViewModel {
     void register(String className);
     LiveData<List<DeviceRoom>> getAllRooms();
-    Device getSelectedUnregistedDevice();
+    Device getSelectedUnregisteredDevice();
 }

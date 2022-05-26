@@ -39,8 +39,6 @@ public class UnregisteredDevices extends Fragment {
         binding = FragmentUnregisteredDevicesFragmentBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
-        repo = RouteRepositoryImpl.getInstance(getActivity().getApplication());
-
         setText();
 
         return root;
@@ -53,7 +51,7 @@ public class UnregisteredDevices extends Fragment {
 
         MutableLiveData<List<Device>> liste = new MutableLiveData();
 
-        repo.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
+        viewModel.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
             List tmp = new ArrayList();
             for (Device i: devices) {
                 if(i.getRoomName() == null || i.getRoomName().equals("def")){
@@ -73,8 +71,11 @@ public class UnregisteredDevices extends Fragment {
                 Navigation.findNavController(root).navigate(R.id.nav_register_device);
             });
         });
-
-
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph.DesignForGraph;
+package com.example.sep4_android.ui.graph.design;
 
 import android.graphics.Color;
 

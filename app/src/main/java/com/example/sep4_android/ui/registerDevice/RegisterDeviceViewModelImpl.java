@@ -32,7 +32,7 @@ public class RegisterDeviceViewModelImpl extends AndroidViewModel implements Reg
     }
 
     @Override
-    public Device getSelectedUnregistedDevice() {
+    public Device getSelectedUnregisteredDevice() {
         return repository.getSelectedUnregistedDevice();
     }
 }

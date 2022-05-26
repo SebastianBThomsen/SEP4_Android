@@ -10,12 +10,6 @@
             android:title="Select Room" />
 
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_baseline_home_24"
-            android:title="@string/menu_home" />
-
-
-        <item
             android:id="@+id/nav_healthInspection"
             android:icon="@drawable/ic_baseline_health_and_safety_24"
             android:title="Health Inspection" />
