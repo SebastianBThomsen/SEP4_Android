@@ -1,7 +1,8 @@
 package com.example.sep4_android;
 
+
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
@@ -12,38 +13,40 @@ import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
 public class MeasurementUnitTest {
-    private Measurement measurement;
 
-    @Before
-    public void setUp(){
-        measurement = new Measurement("UnitDevice",15,43.2,10,15,1653308222);
+
+    @Test
+    public void allGettersTest ()
+    {
+        Measurement m = new Measurement("UnitDevice",15,43.2,10,15,1653308222);
+        assertEquals(10,m.getCo2());
+        assertEquals(43.2,m.getTemperature());
+        assertEquals(15.0,m.getHumidity());
+        assertEquals(1653308222,m.getTimestamp());
+        assertEquals(15,m.getMeasurementId());
+        assertEquals("UnitDevice",m.getDeviceId());
     }
 
     @Test
-    public void gettersTest ()
+    public void allSettersTest ()
     {
-        //Her tester vi vores getters for at se om de virker
-        assertEquals(10,measurement.getCo2(),0.0);
-        assertEquals(43.2,measurement.getTemperature(),0.0);
-        assertEquals(15,measurement.getHumidity(),0.0);
-        assertEquals(1653308222,measurement.getTimestamp(),0.0);
-        assertEquals(15,measurement.getMeasurementId(),0.0);
-        assertEquals("UnitDevice",measurement.getDeviceId());
-    }
+        Measurement m = new Measurement("UnitDevice",15,43.2,10,15,1653308222);
+        m.setMeasurementId(99);
+        assertEquals(99, m.getMeasurementId(),0);
 
-    @Test
-    public void settersTest ()
-    {
-        measurement.setMeasurementId(76);
-        assertEquals(76,measurement.getMeasurementId(),0.0);
-        measurement.setCo2(54);
-        assertEquals(54,measurement.getCo2(),0.0);
+        m.setTemperature(98);
+        assertEquals(98, m.getTemperature(),0);
 
-    }
+        m.setCo2(97);
+        assertEquals(97, m.getCo2(),0);
 
+        m.setHumidity(96);
+        assertEquals(96, m.getHumidity(),0);
 
+        m.setTimestamp(94);
+        assertEquals(94, m.getTimestamp());
 
-  
-
+        assertEquals("01/01-1970 - 01:00:00",m.getTimestampString());
+  }
 
 }
