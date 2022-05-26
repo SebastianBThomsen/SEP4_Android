@@ -88,16 +88,22 @@ public class CompareLineChartFragment extends Fragment {
         co2CheckBox.setOnClickListener(view ->
         {
          observers();
+         humidityCheckBox.setChecked(true);
+         tempCheckBox.setChecked(true);
            }
         );
         humidityCheckBox.setOnClickListener(view ->
                 {
                     observers();
+                    tempCheckBox.setChecked(true);
+                    co2CheckBox.setChecked(true);
                 }
         );
         tempCheckBox.setOnClickListener(view ->
                 {
                     observers();
+                    humidityCheckBox.setChecked(true);
+                    co2CheckBox.setChecked(true);
                 }
         );
 
