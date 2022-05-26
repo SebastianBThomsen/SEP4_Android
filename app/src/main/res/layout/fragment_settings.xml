@@ -61,6 +61,15 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/editText_editRoomCO2" />
 
+    <EditText
+        android:id="@+id/editText_editRoomTempMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="100dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/editText_editRoomHumidity" />
+
     <TextView
         android:id="@+id/textView_roomHumidity"
         android:layout_width="wrap_content"
@@ -69,15 +78,22 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/editText_editRoomHumidity"
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
+    <TextView
+        android:id="@+id/textView_tempMargin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desired Temp Margin:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText_editRoomTempMargin"
+        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
     <Button
         android:id="@+id/btn_submitDesiredSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Submit"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/editText_editRoomHumidity" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_editRoomTempMargin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

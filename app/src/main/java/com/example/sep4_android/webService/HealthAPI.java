@@ -2,6 +2,7 @@ package com.example.sep4_android.webService;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
+import com.example.sep4_android.model.persistence.entities.DeviceSettings;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -42,6 +43,9 @@ public interface HealthAPI {
 
     @POST("api/v1/Rooms")
     Call<ResponseBody> addRoom(@Body DeviceRoom deviceRoom);
+
+    @PUT("api/v1/Rooms/{roomName}/settings")
+    Call<ResponseBody> setDeviceSettings(@Body DeviceSettings deviceSettings, @Path("roomName") String roomName);
 
 
 

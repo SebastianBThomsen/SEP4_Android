@@ -19,8 +19,8 @@ public class SettingsViewModelImpl extends AndroidViewModel implements SettingsV
 
 
     @Override
-    public void sendSettings(int desiredTemp, int desiredCO2, int desiredHumidity) {
-        repository.sendMaxMeasurementValues(desiredTemp, desiredCO2, desiredHumidity);
+    public void sendSettings(int desiredTemp, int desiredCO2, int desiredHumidity, int tempMargin) {
+        repository.sendMaxMeasurementValues(desiredTemp, desiredCO2, desiredHumidity, tempMargin);
     }
     // TODO: Implement the ViewModel
 }

@@ -95,13 +95,13 @@ public class RouteRepositoryImpl implements RouteRepository {
     }
 
     @Override
-    public void sendMaxMeasurementValues(int desiredTemp, int desiredCO2, int desiredHumidity) {
+    public void sendMaxMeasurementValues(int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin) {
         executorService.execute(() -> {
             if (isOnline())
-                repositoryWeb.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
+                repositoryWeb.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity, desiredTempMargin);
         });
         //FIXME: Måske tilføj noget logik, der venter til device er online i en sekundær thread og så sender når dette er tilfældet?
-        repositoryLocal.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity);
+        repositoryLocal.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity, desiredTempMargin);
     }
 
     public void updateClassroom(String classroom) {
