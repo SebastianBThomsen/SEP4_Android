@@ -13,7 +13,7 @@ public interface RouteRepository {
 
     LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end);
     LiveData<List<Measurement>> getAllMeasurementsByDevice();
-    void sendMaxMeasurementValues(int desiredTemp, int desiredCO2, int desiredHumidity);
+    void sendMaxMeasurementValues(int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin);
 
     //Sætter dem så vi kan fetche dem i andre views
     void setSelectedDevice(Device device);

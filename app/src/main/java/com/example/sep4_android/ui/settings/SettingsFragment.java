@@ -19,7 +19,7 @@ public class SettingsFragment extends Fragment {
     private SettingsViewModelImpl viewModel;
     private FragmentSettingsBinding binding;
 
-    private EditText editTemp, editCO2, editHumidity;
+    private EditText editTemp, editCO2, editHumidity, editTempMargin;
     private Button btn_submit;
 
     @Override
@@ -39,6 +39,7 @@ public class SettingsFragment extends Fragment {
         editCO2 = binding.editTextEditRoomCO2;
         editHumidity = binding.editTextEditRoomHumidity;
         editTemp = binding.editTextEditRoomTemperature;
+        editTempMargin = binding.editTextEditRoomTempMargin;
 
         //Button
         btn_submit = binding.btnSubmitDesiredSettings;
@@ -49,7 +50,8 @@ public class SettingsFragment extends Fragment {
         viewModel.sendSettings(
                 Integer.parseInt(editTemp.getText().toString()),
                 Integer.parseInt(editCO2.getText().toString()),
-                Integer.parseInt(editHumidity.getText().toString()));
+                Integer.parseInt(editHumidity.getText().toString()),
+                Integer.parseInt(editTempMargin.getText().toString()));
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.example.sep4_android.model.persistence.DeviceRoomDAO;
 import com.example.sep4_android.model.persistence.MeasurementDAO;
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
+import com.example.sep4_android.model.persistence.entities.DeviceSettings;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.webService.HealthAPI;
 import com.example.sep4_android.webService.HealthServiceGenerator;
@@ -97,8 +98,22 @@ public class HealthRepositoryWeb implements HealthRepository {
     }
 
     @Override
-    public void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity) {
-        //TODO: Mangler endpoint fra DAI
+    public void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin) {
+        Call<ResponseBody> call = healthAPI.setDeviceSettings(new DeviceSettings(desiredCO2, desiredHumidity, desiredTemp, desiredTempMargin), device.getRoomName());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.i("Retrofit", "Response (addRoom): "+response);
+                if(response.isSuccessful()){
+                    Log.i("Retrofit", "Success response (addRoom): "+response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.i("Retrofit", "FAILURE (addRoom)" + call
+                        + "\nError Message: " + t.getMessage());
+            }
+        });
     }
 
     @Override
@@ -208,5 +223,9 @@ public class HealthRepositoryWeb implements HealthRepository {
         });
         //FIXME: fjern returtype?
         return null;
+    }
+
+    public void setRoomSettings(DeviceSettings deviceSettings, Device device)
+    {
     }
 }

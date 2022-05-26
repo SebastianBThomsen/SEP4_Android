@@ -18,7 +18,7 @@ public interface HealthRepository {
     LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device);
 
     //Setting
-    void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity);
+    void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin);
     void updateClassroom(Device device);
 
     //add room
