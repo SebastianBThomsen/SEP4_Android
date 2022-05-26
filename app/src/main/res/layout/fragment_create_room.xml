@@ -6,144 +6,161 @@
     android:layout_height="match_parent"
     tools:context=".ui.createRoom.CreateRoomFragment">
 
-    <TextView
-        android:id="@+id/textView_addRoom"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Add Room"
-        android:textSize="25sp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:cardCornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline10" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_addRoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Room"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline10" />
 
 
-    <!-- Room Details -->
-    <!-- Block Name -->
-    <TextView
-        android:id="@+id/textView_blockName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Block Name: "
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/guideline9"
-        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+            <!-- Room Details -->
+            <!-- Block Name -->
+            <TextView
+                android:id="@+id/textView_blockName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Block Name: "
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
-    <EditText
-        android:id="@+id/editText_blockName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="{A-Z}"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView_blockName"
-        app:layout_constraintStart_toStartOf="@+id/guideline12" />
+            <EditText
+                android:id="@+id/editText_blockName"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="{A-Z}"
+                android:textSize="16sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView_blockName"
+                app:layout_constraintStart_toStartOf="@+id/guideline12" />
 
-    <!-- Floor -->
-    <TextView
-        android:id="@+id/textView_floor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Floor: "
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textView_blockName"
-        app:layout_constraintTop_toBottomOf="@+id/textView_blockName" />
+            <!-- Floor -->
+            <TextView
+                android:id="@+id/textView_floor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Floor: "
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/textView_blockName"
+                app:layout_constraintTop_toBottomOf="@+id/textView_blockName" />
 
-    <EditText
-        android:id="@+id/editText_floor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="{00-99}"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView_floor"
-        app:layout_constraintStart_toStartOf="@+id/guideline12" />
+            <EditText
+                android:id="@+id/editText_floor"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="{00-99}"
+                android:textSize="16sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView_floor"
+                app:layout_constraintStart_toStartOf="@+id/guideline12" />
 
-    <!-- Room Number -->
-    <TextView
-        android:id="@+id/textView_roomNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Room Number: "
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textView_blockName"
-        app:layout_constraintTop_toBottomOf="@+id/textView_floor" />
+            <!-- Room Number -->
+            <TextView
+                android:id="@+id/textView_roomNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Room Number: "
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/textView_blockName"
+                app:layout_constraintTop_toBottomOf="@+id/textView_floor" />
 
-    <EditText
-        android:id="@+id/editText_roomNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="{00-99}"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView_roomNumber"
-        app:layout_constraintStart_toStartOf="@+id/guideline12" />
+            <EditText
+                android:id="@+id/editText_roomNumber"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="{00-99}"
+                android:textSize="16sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView_roomNumber"
+                app:layout_constraintStart_toStartOf="@+id/guideline12" />
 
-    <!-- Room Letter -->
-    <TextView
-        android:id="@+id/textView_roomLetter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Room Letter: "
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/textView_blockName"
-        app:layout_constraintTop_toBottomOf="@+id/textView_roomNumber" />
+            <!-- Room Letter -->
+            <TextView
+                android:id="@+id/textView_roomLetter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Room Letter: "
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/textView_blockName"
+                app:layout_constraintTop_toBottomOf="@+id/textView_roomNumber" />
 
-    <EditText
-        android:id="@+id/editText_roomLetter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="{a-z}"
-        android:textSize="16sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView_roomLetter"
-        app:layout_constraintStart_toStartOf="@+id/guideline12" />
+            <EditText
+                android:id="@+id/editText_roomLetter"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:hint="{a-z}"
+                android:textSize="16sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/textView_roomLetter"
+                app:layout_constraintStart_toStartOf="@+id/guideline12" />
 
-    <!-- Submit -->
+            <!-- Submit -->
 
-    <Button
-        android:id="@+id/btn_addRoom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="276dp"
-        android:text="Submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+            <Button
+                android:id="@+id/btn_addRoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="276dp"
+                android:text="Submit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
-    <TextView
-        android:id="@+id/tv_validation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_addRoom" />
+            <TextView
+                android:id="@+id/tv_validation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_addRoom" />
 
-    <!-- Guidelines -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.23" />
+            <!-- Guidelines -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.23" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.15" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.15" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
