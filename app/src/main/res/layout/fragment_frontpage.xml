@@ -13,7 +13,6 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Humidity"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
@@ -109,8 +108,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewTemp"
-        android:layout_width="405dp"
-        android:layout_height="154dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_margin="3dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
