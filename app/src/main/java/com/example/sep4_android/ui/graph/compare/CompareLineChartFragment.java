@@ -113,8 +113,8 @@ public class CompareLineChartFragment extends Fragment {
 
 
     private void inputDataToChart(ArrayList<Entry> test, ArrayList<Entry> test1, ArrayList<Entry> test2) {
-        //FIXME: Beskriv hvad der sker
-        LineDataSet lineDataCO2 = new LineDataSet(test, "Co2");
+        //Linedata sets are created with data and a label
+        LineDataSet lineDataCO2 = new LineDataSet(test, "CO2");
         LineDataSet lineDataTemperature = new LineDataSet(test1, "Temperature");
         LineDataSet lineDataHumidity = new LineDataSet(test2, "Humidity");
 

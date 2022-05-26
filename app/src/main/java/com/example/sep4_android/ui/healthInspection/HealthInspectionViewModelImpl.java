@@ -34,22 +34,11 @@ public class HealthInspectionViewModelImpl extends AndroidViewModel implements H
         );
     }
 
-    @Override
-    public LiveData<List<Measurement>> getHealthDataBetweenTimeStamps(long start, long end) {
-        return repository.getMeasurementsBetweenTimestamps(start, end);
-    }
-
-    @Override
-    public LiveData<List<Measurement>> getAllHealthDataByDevice() {
-        return repository.getAllMeasurementsByDevice();
-    }
-
     /*
     @Override
     public LiveData<Measurement> getAverageMeasurement(String deviceId){
         return repository.getAverageMeasurement(deviceId);
     }
-
      */
 
     @Override

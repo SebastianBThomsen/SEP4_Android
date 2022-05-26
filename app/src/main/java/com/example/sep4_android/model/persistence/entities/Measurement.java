@@ -24,7 +24,6 @@ public class Measurement {
         this.timestamp = timestamp;
     }
 
-    //FIXME: Denne bruges ikke --> Hvis vi gerne vil vise rigtigt timestamp i Fragments!
     //Getting timestamp in string format
     public String getTimestampString(){
         return DateHandler.fromLongToString(timestamp);

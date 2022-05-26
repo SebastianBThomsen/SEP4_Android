@@ -45,9 +45,6 @@ public class HealthInspectionFragment extends Fragment {
         binding = FragmentHealthInspectionBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //FIXME: FIREBASE SKAL INDSÆTTES ET ELLER ANDET STED! - wupwup
-        //FIXME: Display Average Temp, Co2, humidity between 2 timestamps!
-
         materialDatePickerStart = DateHandler.getMaterialDatePicker();
         materialDatePickerEnd = DateHandler.getMaterialDatePicker();
 
@@ -60,7 +57,7 @@ public class HealthInspectionFragment extends Fragment {
     private void observers() {
         viewModel.getTestMeasurements().observe(getViewLifecycleOwner(), measurements -> {
             if(measurements!=null){
-                //Ugly way to get average, max and min!
+                //FIXME: Ugly way to get average, max and min!
                 double co2Avg = 0;
                 double tempAvg = 0;
                 double humidityAvg = 0;

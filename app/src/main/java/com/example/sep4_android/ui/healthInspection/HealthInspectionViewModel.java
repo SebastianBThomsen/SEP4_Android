@@ -8,9 +8,7 @@ import java.util.List;
 
 public interface HealthInspectionViewModel {
 
-    //FIXME: Disse bruges ikke!
-    LiveData<List<Measurement>> getHealthDataBetweenTimeStamps(long start, long end);
-    LiveData<List<Measurement>> getAllHealthDataByDevice();
+    //FIXME: Denne bruges ikke!
     //LiveData<Measurement> getAverageMeasurement();
 
     //TEST

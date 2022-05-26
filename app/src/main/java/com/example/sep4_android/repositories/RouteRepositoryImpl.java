@@ -75,7 +75,6 @@ public class RouteRepositoryImpl implements RouteRepository {
     public LiveData<List<Measurement>> getAllMeasurementsByDevice() {
         executorService.execute(() -> {
             if (isOnline()) {
-                //FIXME: Er dette en fin metode til at cache data? --> Gemmer alt data i Room! --> får derefter data via LocalRepo!
                 //stores data in room from WebAPI
                 repositoryWeb.getAllMeasurementsByDevice(selectedDevice);
             }

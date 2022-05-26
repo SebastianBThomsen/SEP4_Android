@@ -33,6 +33,8 @@ public class MainActivityViewModelImpl extends AndroidViewModel implements MainA
     @Override
     public void DynamicNavigation(Menu navMenu) {
         //Rolecheck (ingen need for at gemme user .getCurrent er singleton og har instans)
+
+        /* FIXME: Dette er udkommenteret, pga. bug, hvor Appen ikke kan åbnes efter man lige har installeret appen? :O (Ingen user cache)
         database.getReference("users").child(mAuth.getCurrentUser().getUid()).child("rank").addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -49,5 +51,7 @@ public class MainActivityViewModelImpl extends AndroidViewModel implements MainA
                 Toast.makeText(getApplication().getApplicationContext(), "Error while checking your user role", Toast.LENGTH_SHORT).show();
             }
         });
+
+         */
     }
 }

@@ -67,7 +67,7 @@ public class SelectRoomFragment extends Fragment {
 
             adapter.setOnClickListener(device -> {
                 viewModel.setSelectedDevice(device);
-                Navigation.findNavController(root).navigate(R.id.nav_home);
+                Navigation.findNavController(root).navigate(R.id.nav_healthInspection);
             });
         });
     }

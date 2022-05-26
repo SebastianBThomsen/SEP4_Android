@@ -26,7 +26,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import java.util.ArrayList;
 
 public class CompareBarChartFragment extends Fragment {
-    private GraphViewModel viewModel; //todo Fix LIneViewMOdelImpl måske bare lav en ny
+    private GraphViewModel viewModel;
     private FragmentBarChartCompareBinding binding;
     private BarChart barChart;
     private GraphDesign design;
