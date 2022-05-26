@@ -26,4 +26,5 @@ public interface RouteRepository {
 
     //Device
     Device getSelectedUnregistedDevice();
+    Device getSelectedDevice();
 }

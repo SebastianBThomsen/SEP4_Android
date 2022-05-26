@@ -1,7 +1,7 @@
 package com.example.sep4_android.ui.Choose;
 
-import androidx.lifecycle.ViewModel;
+import android.widget.Button;
 
-public class ChooseViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
+public interface ChooseViewModel {
+    void checkSelected(Button btn);
 }

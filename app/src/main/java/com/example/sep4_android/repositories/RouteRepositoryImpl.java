@@ -129,6 +129,8 @@ public class RouteRepositoryImpl implements RouteRepository {
         return repositoryLocal.getAllRooms();
     }
 
+
+
     private boolean isOnline() {
         ConnectivityManager connectivityManager = (ConnectivityManager) application.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

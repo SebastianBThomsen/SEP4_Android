@@ -1,4 +1,4 @@
-package com.example.sep4_android;
+package com.example.sep4_android.ui.mainActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,31 +11,42 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.ActivityMainBinding;
 import com.example.sep4_android.ui.login.LoginActivity;
+import com.example.sep4_android.ui.login.LoginViewModelImpl;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private MainActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Signout logik
+        System.out.println("Oncreat INIT ----------------------------------------");
+        //Signout logik (TODO:: Viewmodel maybe)
         FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth mAuth) {
@@ -50,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
         };
         mAuth = FirebaseAuth.getInstance();
         mAuth.addAuthStateListener(authStateListener);
+        //(Vi skal åbenbart have url med i getInstance over en en firebase bug)
+        database = FirebaseDatabase.getInstance("https://sep4-26d6b-default-rtdb.europe-west1.firebasedatabase.app/");
+
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModelImpl.class);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -61,18 +76,20 @@ public class MainActivity extends AppCompatActivity {
         } else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             System.out.println("!!!!!!!!!LANDSCAPE!!!!!!!!!!!");
         }
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_create_room, R.id.nav_selectRoomFragment, R.id.nav_unregistered_devices, R.id.nav_adminsettingsFragment,
+                R.id.nav_selectRoomFragment, R.id.nav_adminsettingsFragment,
                 R.id.nav_frontpageFragment, R.id.nav_compareLineChartFragment, R.id.nav_compareBarChartFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        hideNavItems();
     }
 
 
@@ -97,6 +114,14 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    private void hideNavItems(){
+        //Depending on your role some items will be hidden from the navbar
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu navMenu = navigationView.getMenu();
+        viewModel.DynamicNavigation(navMenu);
+    }
+
 
 
     //Stolen from: https://stackoverflow.com/questions/15412943/hide-soft-keyboard-on-losing-focus

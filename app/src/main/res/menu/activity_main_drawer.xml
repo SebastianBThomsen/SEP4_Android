@@ -14,16 +14,6 @@
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
 
-        <item
-            android:id="@+id/nav_create_room"
-            android:icon="@drawable/ic_baseline_create_24"
-            android:title="Create new room"
-            />
-
-        <item
-            android:id="@+id/nav_unregistered_devices"
-            android:icon="@drawable/ic_baseline_add_24"
-            android:title="Register Device Room" />
 
         <item
             android:id="@+id/nav_healthInspection"

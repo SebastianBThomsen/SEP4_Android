@@ -17,19 +17,20 @@ import com.example.sep4_android.databinding.FragmentChooseBinding;
 
 public class ChooseFragment extends Fragment {
 
-    private ChooseViewModel viewModel;
-    private Button addUser, desire;
+    private ChooseViewModelImpl viewModel;
+    private Button addUser, desire, room, device;
     private FragmentChooseBinding binding;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(ChooseViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ChooseViewModelImpl.class);
         binding = FragmentChooseBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         bindings();
         onClickListeners();
+        checkSelected();
 
         return root;
     }
@@ -41,13 +42,23 @@ public class ChooseFragment extends Fragment {
         desire.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.nav_settings);
         });
-
-
+        room.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.nav_create_room);
+        });
+        device.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.nav_unregistered_devices);
+        });
     }
 
     private void bindings() {
         addUser = binding.btnAddUser;
         desire = binding.btnDesire;
+        room = binding.btnRegRoom;
+        device = binding.btnRegDevice;
+    }
+
+    private void checkSelected(){
+        viewModel.checkSelected(desire);
     }
 
     @Override
