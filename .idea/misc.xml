@@ -3,22 +3,50 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout-land/fragment_home.xml" value="0.1954954954954955" />
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_choose.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_create_room.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_frontpage.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_home.xml" value="0.4" />
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_register_device.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_select_room.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_unregistered_devices_fragment.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/list_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/list_item_unregistered.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Bruger/AndroidStudioProjects/SEP4_Android/app/src/main/res/menu/activity_main_drawer.xml" value="0.4" />
+        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/activity_main.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/blahblah.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_barchart.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_create_room.xml" value="0.33" />
+        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_graph.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_health_inspection.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_settings.xml" value="0.37604166666666666" />
-        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/nav_header_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_home.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_pie_chart.xml" value="0.25052083333333336" />
+        <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/layout/fragment_settings.xml" value="0.25052083333333336" />
         <entry key="..\:/Users/N_i_v/Desktop/SEP/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/app_bar_main.xml" value="0.2234375" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/content_main.xml" value="0.2234375" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_create_user.xml" value="0.1" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_frontpage.xml" value="0.2671875" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_health_inspection.xml" value="0.2671875" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_login_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_pie_chart.xml" value="0.2375" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_register_device.xml" value="0.25" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_register_device_fragment.xml" value="0.3625" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_select_device_fragment.xml" value="0.13240740740740742" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_select_room.xml" value="0.33" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/fragment_unregistered_devices_fragment.xml" value="0.2" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/list_item.xml" value="0.5" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/list_item_unregistered.xml" value="0.2375" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/nav_header_main.xml" value="0.2671875" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/radar_chart_fragment.xml" value="0.2375" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/layout/recyclerRoom_view_items.xml" value="0.2186046511627907" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/menu/activity_main_drawer.xml" value="0.2234375" />
+        <entry key="..\:/Users/andre/Documents/Github/SEP4_Android/app/src/main/res/menu/main.xml" value="0.2234375" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.196" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/drawable/side_nav_bar.xml" value="0.196" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/drawable/spacer.xml" value="0.196" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/app_bar_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_gallery.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_graph.xml" value="0.22" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/fragment_health_inspection.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/layout/nav_header_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/menu/activity_main_drawer.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/markh/AndroidStudioProjects/SEP4_Android/app/src/main/res/menu/main.xml" value="0.18802083333333333" />
       </map>
     </option>
   </component>

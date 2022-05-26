@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class CreateUserFragment extends Fragment {
     EditText fullName,email,password,phone;
     Button registerBtn;
+    CheckBox student, admin;
+
     boolean valid = true;
     private CreateUserViewModel viewModel;
     private FragmentCreateUserBinding binding;
@@ -63,6 +66,9 @@ public class CreateUserFragment extends Fragment {
         password = binding.registerPassword;
         phone = binding.registerPhone;
         registerBtn = binding.registerBtn;
+
+        student = binding.isStudent;
+        admin = binding.isTeacher;
     }
 
 
@@ -79,8 +85,13 @@ public class CreateUserFragment extends Fragment {
 
     private void onClickListeners() {
         registerBtn.setOnClickListener(view -> {
-            viewModel.signUp(email.getText().toString(),password.getText().toString());
-            Toast.makeText(getContext(), "Bla",Toast.LENGTH_SHORT).show();
+            if(admin.isChecked() && !student.isChecked())
+                viewModel.signUp(email.getText().toString(),password.getText().toString(), 1);
+            else if(student.isChecked() && !admin.isChecked())
+                viewModel.signUp(email.getText().toString(),password.getText().toString(), 0);
+            else
+                Toast.makeText(getContext().getApplicationContext(), "Please select only one of the two roles", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "Bla",Toast.LENGTH_SHORT).show();
         });
 
     }
