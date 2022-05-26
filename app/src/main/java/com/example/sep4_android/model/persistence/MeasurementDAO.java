@@ -21,7 +21,7 @@ public interface MeasurementDAO {
     @Update
     void update(Measurement measurement);
 
-    @Query("SELECT * FROM measurements_table WHERE deviceId = :deviceId ORDER BY timestamp DESC")
+    @Query("SELECT * FROM measurements_table WHERE deviceId = :deviceId ORDER BY timestamp ASC")
     LiveData<List<Measurement>> getAllMeasurementsByDevice(String deviceId);
 
     @Query("SELECT * FROM measurements_table WHERE deviceId = :deviceId AND timestamp BETWEEN :start AND :end ORDER BY timestamp DESC")
