@@ -68,7 +68,7 @@ public class CreateUserFragment extends Fragment {
         registerBtn = binding.registerBtn;
 
         student = binding.isStudent;
-        admin = binding.isTeacher;
+        admin = binding.isAdmin;
     }
 
 
