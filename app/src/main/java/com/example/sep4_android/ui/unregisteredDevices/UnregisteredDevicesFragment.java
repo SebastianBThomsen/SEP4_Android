@@ -23,12 +23,11 @@ import com.example.sep4_android.ui.roomRecycler.UnregisteredDeviceAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnregisteredDevices extends Fragment {
+public class UnregisteredDevicesFragment extends Fragment {
 
     private UnregisteredDevicesViewModelImpl viewModel;
     private FragmentUnregisteredDevicesFragmentBinding binding;
     private RecyclerView recyclerView;
-    private RouteRepositoryImpl repo;
 
     private View root;
 
@@ -66,8 +65,7 @@ public class UnregisteredDevices extends Fragment {
             recyclerView.setAdapter(adapter);
 
             adapter.setOnClickListener(device ->{
-                //TODO: Brug viewmodel
-                repo.setSelectedUnregistedDevice(device);
+                viewModel.setSelectedUnregisteredDevice(device);
                 Navigation.findNavController(root).navigate(R.id.nav_register_device);
             });
         });

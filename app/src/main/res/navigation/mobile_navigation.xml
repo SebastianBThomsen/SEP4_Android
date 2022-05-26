@@ -49,13 +49,13 @@
 
     <fragment
         android:id="@+id/nav_register_device"
-        android:name="com.example.sep4_android.ui.registerDevice.RegisterDevice"
+        android:name="com.example.sep4_android.ui.registerDevice.RegisterDeviceFragment"
         android:label="@string/menu_registerDevice"
         tools:layout="@layout/fragment_register_device" />
 
     <fragment
         android:id="@+id/nav_unregistered_devices"
-        android:name="com.example.sep4_android.ui.unregisteredDevices.UnregisteredDevices"
+        android:name="com.example.sep4_android.ui.unregisteredDevices.UnregisteredDevicesFragment"
         android:label="@string/menu_unregistedList"
         tools:layout="@layout/fragment_unregistered_devices_fragment" />
 

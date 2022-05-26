@@ -5,7 +5,6 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.repositories.RouteRepository;
@@ -23,8 +22,8 @@ public class UnregisteredDevicesViewModelImpl extends AndroidViewModel implement
 
 
     @Override
-    public void unregisteredDevice(Device device) {
-        //TODO: Bruges denne?
+    public void setSelectedUnregisteredDevice(Device device) {
+        repository.setSelectedUnregisteredDevice(device);
     }
 
     @Override

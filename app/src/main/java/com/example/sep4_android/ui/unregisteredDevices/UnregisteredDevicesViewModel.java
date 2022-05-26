@@ -7,6 +7,6 @@ import com.example.sep4_android.model.persistence.entities.Device;
 import java.util.List;
 
 public interface UnregisteredDevicesViewModel {
-    void unregisteredDevice(Device device);
+    void setSelectedUnregisteredDevice(Device device);
     LiveData<List<Device>> getAllDevices();
 }

@@ -21,7 +21,7 @@ import com.example.sep4_android.model.persistence.entities.DeviceRoom;
 
 import java.util.ArrayList;
 
-public class RegisterDevice extends Fragment {
+public class RegisterDeviceFragment extends Fragment {
 
     private RegisterDeviceViewModelImpl viewModel;
     private FragmentRegisterDeviceBinding binding;

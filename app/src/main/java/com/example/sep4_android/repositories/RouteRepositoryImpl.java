@@ -51,11 +51,11 @@ public class RouteRepositoryImpl implements RouteRepository {
     }
 
     @Override
-    public Device getSelectedUnregistedDevice() {
+    public Device getSelectedUnregisteredDevice() {
         return selectedUnregistedDevice;
     }
 
-    public void setSelectedUnregistedDevice(Device selectedUnregistedDevice) {
+    public void setSelectedUnregisteredDevice(Device selectedUnregistedDevice) {
         this.selectedUnregistedDevice = selectedUnregistedDevice;
     }
 
