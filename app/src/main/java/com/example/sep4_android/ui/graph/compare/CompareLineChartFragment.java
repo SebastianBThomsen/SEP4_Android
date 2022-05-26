@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.Switch;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,6 +50,7 @@ public class CompareLineChartFragment extends Fragment {
         co2CheckBox.setChecked(true);
         humidityCheckBox.setChecked(true);
 
+
         return root;
     }
 
@@ -81,7 +83,6 @@ public class CompareLineChartFragment extends Fragment {
         co2CheckBox = binding.switchCo2;
         humidityCheckBox = binding.switchHumidity;
         tempCheckBox = binding.switchTemp;
-
     }
 
     private void onClickListeners() {

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.sep4_android.MainActivity;
@@ -71,19 +73,18 @@ public class LoginViewModelImpl extends ViewModel implements LoginViewModel {
         }
     }
 
+
+
     @Override
-    public void signUp(Activity ac, String user, String pass) {
-        mAuth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(
-                new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            login(ac, user, pass);
-                        } else {
-                            Toast.makeText(ac.getApplicationContext(), "Signup failed: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-        );
+    public void checkLoggedIn(Activity ac) {
+        FirebaseUser u = mAuth.getCurrentUser();
+
+        if(u != null){
+            Toast.makeText(ac, "User already logged in", Toast.LENGTH_LONG).show();
+            Intent mainAc = new Intent(ac, MainActivity.class);
+            ac.startActivity(mainAc);
+        }
+            else
+            Toast.makeText(ac, "User not logged in", Toast.LENGTH_LONG).show();
     }
 }

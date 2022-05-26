@@ -44,12 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void onStart() {
         super.onStart();
-
-        FirebaseUser u = mAuth.getCurrentUser();
-        if(u != null)
-            Toast.makeText(getApplicationContext(), "User already logged in", Toast.LENGTH_LONG).show();
-        else
-            Toast.makeText(getApplicationContext(), "User not logged in", Toast.LENGTH_LONG).show();
+        viewModel.checkLoggedIn(LoginActivity.this);
     }
 
     @Override
@@ -58,9 +53,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.loginBtn:
                 viewModel.login(LoginActivity.this, username.getText().toString(), password.getText().toString());
                 break;
-//            case R.id.signupBtn:
-//                viewModel.signUp(LoginActivity.this, username.getText().toString(), password.getText().toString());
-//                break;
         }
     }
 }
