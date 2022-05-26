@@ -27,19 +27,19 @@
         android:id="@+id/co2DeatilFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartForCO2.CO2DetailFragment"
         android:label="fragment_co2Detail"
-        tools:layout="@layout/fragment_co2_detail"/>
+        tools:layout="@layout/fragment_co2_detail" />
 
     <fragment
         android:id="@+id/humidityDeatilFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartForHumidity.HumidityDetailFragment"
         android:label="Detail"
-        tools:layout="@layout/fragment_humidity_detail"/>
+        tools:layout="@layout/fragment_humidity_detail" />
 
     <fragment
         android:id="@+id/temperatureDetailFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartForTemp.TempDetailFragment"
         android:label="Detail"
-        tools:layout="@layout/fragment_temp_detail"/>
+        tools:layout="@layout/fragment_temp_detail" />
 
     <fragment
         android:id="@+id/nav_selectRoomFragment"
@@ -72,7 +72,8 @@
     <fragment
         android:id="@+id/nav_compareBarChartFragment"
         android:name="com.example.sep4_android.ui.graph.compare.CompareBarChartFragment"
-        android:label="CompareBarChartFragment" />
+        android:label="CompareBarChartFragment"
+        tools:layout="@layout/fragment_bar_chart_compare" />
     <fragment
         android:id="@+id/nav_adminsettingsFragment"
         android:name="com.example.sep4_android.ui.Choose.ChooseFragment"

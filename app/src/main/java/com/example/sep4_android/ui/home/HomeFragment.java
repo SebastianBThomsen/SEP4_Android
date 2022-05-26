@@ -16,6 +16,8 @@ import com.example.sep4_android.model.DateHandler;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.google.android.material.datepicker.MaterialDatePicker;
 
+import java.text.DecimalFormat;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel viewModel;
@@ -25,7 +27,9 @@ public class HomeFragment extends Fragment {
 
     //Display data between timestamps
     private TextView startTime, endTime;
-    private TextView tv_co2, tv_humidity, tv_temperature;
+    private TextView tv_avgTemp, tv_avgCO2, tv_avgHumidity;
+    private TextView tv_maxTemp, tv_maxCO2, tv_maxHumidity;
+    private TextView tv_minTemp, tv_minCO2, tv_minHumidity;
 
     private Button btn_submitTime;
 
@@ -56,11 +60,55 @@ public class HomeFragment extends Fragment {
     private void observers() {
         viewModel.getTestMeasurements().observe(getViewLifecycleOwner(), measurements -> {
             if(measurements!=null){
-                String co2 = "";
+                //Ugly way to get average, max and min!
+                double co2Avg = 0;
+                double tempAvg = 0;
+                double humidityAvg = 0;
+
+                double co2Max = measurements.get(0).getCo2();
+                double tempMax = measurements.get(0).getTemperature();
+                double humidityMax = measurements.get(0).getHumidity();
+
+                double co2Min = measurements.get(0).getCo2();
+                double tempMin = measurements.get(0).getTemperature();;
+                double humidityMin = measurements.get(0).getHumidity();;
+
                 for (Measurement measurement: measurements) {
-                    co2 += measurement.getCo2() + ", ";
+                    co2Avg += measurement.getCo2();
+                    tempAvg += measurement.getTemperature();
+                    humidityAvg += measurement.getHumidity();
+
+                    if(measurement.getCo2()>co2Max)
+                        co2Max = measurement.getCo2();
+                    if(measurement.getTemperature()>tempMax)
+                        tempMax = measurement.getTemperature();
+                    if(measurement.getHumidity()>humidityMax)
+                        humidityMax = measurement.getHumidity();
+
+                    if(measurement.getCo2()<co2Min)
+                        co2Min = measurement.getCo2();
+                    if(measurement.getTemperature()<tempMin)
+                        tempMin = measurement.getTemperature();
+                    if(measurement.getHumidity()<humidityMin)
+                        humidityMin = measurement.getHumidity();
                 }
-                tv_co2.setText(co2);
+                //Getting average!
+                co2Avg /= measurements.size();
+                tempAvg /= measurements.size();
+                humidityAvg /= measurements.size();
+
+                DecimalFormat df = new DecimalFormat("##.0");
+                tv_avgCO2.setText(""+df.format(co2Avg));
+                tv_avgHumidity.setText(""+df.format(humidityAvg));
+                tv_avgTemp.setText(""+df.format(tempAvg));
+
+                tv_minCO2.setText(""+co2Min);
+                tv_minHumidity.setText(""+humidityMin);
+                tv_minTemp.setText(""+tempMin);
+
+                tv_maxCO2.setText(""+co2Max);
+                tv_maxHumidity.setText(""+humidityMax);
+                tv_maxTemp.setText(""+tempMax);
             }
 
             //Average Temp
@@ -78,9 +126,20 @@ public class HomeFragment extends Fragment {
         textView = binding.textHome;
 
         //Displaying data between timestamps
-        tv_co2 = binding.tvCo2;
-        tv_temperature = binding.tvTemperatures;
-        tv_humidity = binding.tvHumidity;
+        //Average
+        tv_avgTemp = binding.tvAvgTemp;
+        tv_avgHumidity = binding.tvAvgHumidity;
+        tv_avgCO2 = binding.tvAvgCO2;
+
+        //Max
+        tv_maxTemp = binding.tvMaxTemp;
+        tv_maxHumidity = binding.tvMaxHumidity;
+        tv_maxCO2 = binding.tvMaxCO2;
+
+        //Min
+        tv_minTemp = binding.tvMinTemp;
+        tv_minHumidity = binding.tvMinHumidity;
+        tv_minCO2 = binding.tvMinCO2;
 
         startTime = binding.tvStartTime;
         endTime = binding.tvEndTime;

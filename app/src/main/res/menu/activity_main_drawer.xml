@@ -5,6 +5,11 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_selectRoomFragment"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Select Room" />
+
+        <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
@@ -18,7 +23,7 @@
         <item
             android:id="@+id/nav_unregistered_devices"
             android:icon="@drawable/ic_baseline_add_24"
-            android:title="Register Device" />
+            android:title="Register Device Room" />
 
         <item
             android:id="@+id/nav_healthInspection"
@@ -33,7 +38,7 @@
         <item
             android:id="@+id/nav_compareLineChartFragment"
             android:icon="@drawable/ic_baseline_auto_graph_24"
-            android:title="LIneChartCompare"
+            android:title="LineChartCompare"
             />
         <item
             android:id="@+id/nav_compareBarChartFragment"
