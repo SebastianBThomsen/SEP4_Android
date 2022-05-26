@@ -29,7 +29,7 @@ public class LoginViewModelImpl extends ViewModel implements LoginViewModel {
 
     public LoginViewModelImpl() {
         mAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance("https://sep4-26d6b-default-rtdb.europe-west1.firebasedatabase.app/");
     }
 
     @Override
@@ -69,12 +69,6 @@ public class LoginViewModelImpl extends ViewModel implements LoginViewModel {
                 }
             });
         }
-
-        // Write a message to the database
-        database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");
     }
 
     @Override
