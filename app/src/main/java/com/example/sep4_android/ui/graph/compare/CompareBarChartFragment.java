@@ -13,10 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentBarChartCompareBinding;
-import com.example.sep4_android.databinding.FragmentLineChartcompareBinding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.ui.graph.DesignForGraph.GraphDesign;
-import com.example.sep4_android.ui.graph.lineChartForTemp.LineViewModelImpl;
+import com.example.sep4_android.ui.graph.GraphViewModel;
+import com.example.sep4_android.ui.graph.GraphViewModelImpl;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -26,7 +26,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import java.util.ArrayList;
 
 public class CompareBarChartFragment extends Fragment {
-   private LineViewModelImpl viewModel; //todo Fix LIneViewMOdelImpl måske bare lav en ny
+    private GraphViewModel viewModel; //todo Fix LIneViewMOdelImpl måske bare lav en ny
     private FragmentBarChartCompareBinding binding;
     private BarChart barChart;
     private GraphDesign design;
@@ -35,13 +35,14 @@ public class CompareBarChartFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(LineViewModelImpl.class);
+        viewModel = new ViewModelProvider(this).get(GraphViewModelImpl.class);
         binding = FragmentBarChartCompareBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
         design = new GraphDesign();
+
         bindings();
         observers();
-        viewModel.getAllMeasurementsByDevice();
+
         return root;
     }
 

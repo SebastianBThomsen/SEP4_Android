@@ -18,14 +18,11 @@ import com.example.sep4_android.databinding.FragmentFrontpageBinding;
 
 public class FrontpageFragment extends Fragment {
 
+    //FIXME: Bruges ikke?
     private FrontpageViewModel mViewModel;
     private FragmentFrontpageBinding binding;
     private CardView cardView_Co2, cardView_temp, cardView_humidity;
     private Button btn_Co2, btn_Temp, btn_Humidity;
-
-    public static FrontpageFragment newInstance() {
-        return new FrontpageFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

@@ -1,5 +1,4 @@
-package com.example.sep4_android.ui.graph.lineChartForCO2;
-
+package com.example.sep4_android.ui.graph;
 
 import android.app.Application;
 
@@ -10,14 +9,13 @@ import androidx.lifecycle.LiveData;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
-import com.example.sep4_android.ui.graph.GraphViewModel;
 
 import java.util.List;
 
-public class CO2ViewModelImpl extends AndroidViewModel implements GraphViewModel {
+public class GraphViewModelImpl extends AndroidViewModel implements GraphViewModel {
     private RouteRepository repository;
 
-    public CO2ViewModelImpl(@NonNull Application application) {
+    public GraphViewModelImpl(@NonNull Application application) {
         super(application);
         repository = RouteRepositoryImpl.getInstance(application);
     }
