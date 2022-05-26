@@ -78,7 +78,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/registerPassword" />
 
             <CheckBox
-                android:id="@+id/isTeacher"
+                android:id="@+id/isAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -96,7 +96,7 @@
                 android:text="Register as Student"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/isTeacher"
+                app:layout_constraintStart_toEndOf="@+id/isAdmin"
                 app:layout_constraintTop_toBottomOf="@+id/registerPhone" />
 
             <Button

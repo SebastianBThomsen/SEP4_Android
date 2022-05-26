@@ -80,6 +80,7 @@ public class CreateUserFragment extends Fragment {
     private void onClickListeners() {
         registerBtn.setOnClickListener(view -> {
             viewModel.signUp(email.getText().toString(),password.getText().toString());
+            viewModel.addRank("Ulla");
 //            Toast.makeText(getContext(), "Bla",Toast.LENGTH_SHORT).show();
         });
 

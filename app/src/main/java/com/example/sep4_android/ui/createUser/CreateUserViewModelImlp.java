@@ -43,7 +43,7 @@ public class CreateUserViewModelImlp extends AndroidViewModel implements CreateU
         });
     }
 
-    private void addRank(String UID){
+    public void addRank(String UID){
         DatabaseReference userRank = database.getReference("users").child(UID).child("rank");
         userRank.setValue("Admin");
 

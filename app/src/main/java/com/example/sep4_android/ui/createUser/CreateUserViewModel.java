@@ -5,4 +5,5 @@ import android.app.Activity;
 public interface CreateUserViewModel {
 
     public void signUp(String user, String pass);
+    public void addRank(String UID);
 }

@@ -1,13 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.graph.compare.CompareLineChartFragment">
+    android:orientation="vertical"
+    tools:context=".ui.graph.compare.CompareLineChartFragment"
+    android:background="@color/darkgray"
+    >
+
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal">
+      <CheckBox
+          android:id="@+id/switchCo2"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Co2"
+          android:textColor="@color/white"
+          />
+      <CheckBox
+          android:id="@+id/switchTemp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Temp"
+          android:textColor="@color/white"
+          />
+      <CheckBox
+          android:id="@+id/switchHumidity"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="humidity"
+          android:textColor="@color/white"
+          />
+   </LinearLayout>
 
    <com.github.mikephil.charting.charts.LineChart
+       android:id="@+id/compareLineChartView"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:id="@+id/compareLineChartView"/>
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="1.0" >
+   </com.github.mikephil.charting.charts.LineChart>
 
-</FrameLayout>
+
+
+
+</LinearLayout>
