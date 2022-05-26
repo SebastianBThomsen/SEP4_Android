@@ -65,7 +65,7 @@ public class LineFragment extends Fragment {
 
 
     private void inputDataToChart(ArrayList<Entry> test) {
-        LineDataSet lineDataSet = new LineDataSet(test, "Average");
+        LineDataSet lineDataSet = new LineDataSet(test, "Temperature");
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
