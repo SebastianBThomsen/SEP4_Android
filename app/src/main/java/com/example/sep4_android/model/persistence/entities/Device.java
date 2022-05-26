@@ -13,8 +13,8 @@ public class Device {
     private String roomName;
 
     public Device(String climateDeviceId, String roomName) {
-        this.roomName = roomName;
         this.climateDeviceId = climateDeviceId;
+        this.roomName = roomName;
     }
 
     @Ignore
