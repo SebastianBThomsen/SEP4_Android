@@ -15,21 +15,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateUserViewModelImlp extends AndroidViewModel implements CreateUserViewModel {
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
 
     public CreateUserViewModelImlp(@NonNull Application application) {
         super(application);
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
     }
-
-
-
-
-
-
-
 
     @Override
     public void signUp(String user, String pass) {
@@ -37,14 +34,19 @@ public class CreateUserViewModelImlp extends AndroidViewModel implements CreateU
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    System.out.println("User Created");
-                    System.out.println(user+" Successful");
+                    addRank(task.getResult().getUser().getUid());
                 }
                 else {
-                    System.out.println("User failed");
-                    System.out.println(user);
+                    Toast.makeText(getApplication().getApplicationContext(), "Account creation failed: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void addRank(String UID){
+        DatabaseReference userRank = database.getReference("users").child(UID).child("rank");
+        userRank.setValue("Admin");
+
+        Toast.makeText(getApplication().getApplicationContext(), "Account creation successful!", Toast.LENGTH_SHORT).show();
     }
 }
