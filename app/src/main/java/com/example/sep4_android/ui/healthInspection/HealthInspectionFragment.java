@@ -41,7 +41,7 @@ public class HealthInspectionFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(HealthInspectionViewModelImpl.class);
+         viewModel= new ViewModelProvider(this).get(HealthInspectionViewModelImpl.class);
 
         binding = FragmentHealthInspectionBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -57,8 +57,8 @@ public class HealthInspectionFragment extends Fragment {
 
     private void observers() {
         viewModel.getTestMeasurements().observe(getViewLifecycleOwner(), measurements -> {
-            Log.d("Test!", "observers: Measurements" + measurements);
-            if(measurements.get(0) != null){
+           // Log.d("Test!", "observers - HealthInspectionFragment: " + measurements);
+            if(measurements != null && measurements.size() > 0){
                 //FIXME: Ugly way to get average, max and min!
                 double co2Avg = 0;
                 double tempAvg = 0;
