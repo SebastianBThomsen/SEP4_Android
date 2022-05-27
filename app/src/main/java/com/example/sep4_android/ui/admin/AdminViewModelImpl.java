@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.choose;
+package com.example.sep4_android.ui.admin;
 
 import android.app.Application;
 import android.view.View;
@@ -10,11 +10,11 @@ import androidx.lifecycle.AndroidViewModel;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
-public class ChooseViewModelImpl extends AndroidViewModel {
+public class AdminViewModelImpl extends AndroidViewModel {
 
     RouteRepository repository;
 
-    public ChooseViewModelImpl(@NonNull Application application) {
+    public AdminViewModelImpl(@NonNull Application application) {
         super(application);
         repository = RouteRepositoryImpl.getInstance(application);
     }

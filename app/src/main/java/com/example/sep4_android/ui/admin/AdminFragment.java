@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.choose;
+package com.example.sep4_android.ui.admin;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,20 +13,20 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.sep4_android.R;
-import com.example.sep4_android.databinding.FragmentChooseBinding;
+import com.example.sep4_android.databinding.FragmentAdminBinding;
 
-public class ChooseFragment extends Fragment {
+public class AdminFragment extends Fragment {
 
-    private ChooseViewModelImpl viewModel;
+    private AdminViewModelImpl viewModel;
     private Button addUser, desire, room, device;
-    private FragmentChooseBinding binding;
+    private FragmentAdminBinding binding;
 
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(ChooseViewModelImpl.class);
-        binding = FragmentChooseBinding.inflate(inflater, container, false);
+        viewModel = new ViewModelProvider(this).get(AdminViewModelImpl.class);
+        binding = FragmentAdminBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         bindings();
         onClickListeners();

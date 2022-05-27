@@ -14,13 +14,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.sep4_android.R;
+import com.example.sep4_android.databinding.FragmentLinechartOverviewBinding;
 import com.google.android.material.navigation.NavigationView;
 
-public class FrontpageFragment extends Fragment {
+public class LinechartOverviewFragment extends Fragment {
 
     //FIXME: Bruges ikke?
-    private FrontpageViewModel mViewModel;
-    private FragmentFrontpageBinding binding;
+    private LinechartOverviewViewModel viewModel;
+    private FragmentLinechartOverviewBinding binding;
     private Button btn_Co2, btn_Temp, btn_Humidity;
 private Toolbar mToolbar;
 private NavigationView navigationView;
@@ -30,8 +31,8 @@ private NavigationView navigationView;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mViewModel = new ViewModelProvider(this).get(FrontpageViewModel.class);
-        binding = FragmentFrontpageBinding.inflate(inflater, container, false);
+        viewModel = new ViewModelProvider(this).get(LinechartOverviewViewModel.class);
+        binding = FragmentLinechartOverviewBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
 
