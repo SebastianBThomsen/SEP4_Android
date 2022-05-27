@@ -43,8 +43,6 @@ public class MainActivityViewModelImpl extends AndroidViewModel implements MainA
     public void DynamicNavigation(Menu navMenu) {
         //Rolecheck (ingen need for at gemme user .getCurrent er singleton og har instans)
 
-
-
         if(mAuth.getCurrentUser() == null) return;
         database.getReference("users").child(mAuth.getCurrentUser().getUid()).child("rank").addValueEventListener(new ValueEventListener() {
 

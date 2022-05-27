@@ -1,4 +1,4 @@
-package com.example.sep4_android;
+package com.example.sep4_android.ui.mainActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +21,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.ActivityMainBinding;
 import com.example.sep4_android.ui.login.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
