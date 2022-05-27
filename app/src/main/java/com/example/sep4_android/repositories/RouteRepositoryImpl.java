@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
@@ -25,13 +26,16 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     private ExecutorService executorService;
 
+    private MutableLiveData<Device> selectedDeviceLive;
     private Device selectedDevice;
-    private Device selectedUnregistedDevice;
+    private Device selectedUnregisteredDevice;
 
     public RouteRepositoryImpl(Application application) {
         this.application = application;
         repositoryWeb = HealthRepositoryWeb.getInstance(application);
         repositoryLocal = HealthRepositoryLocal.getInstance(application);
+
+        selectedDeviceLive = new MutableLiveData<>();
 
         executorService = Executors.newFixedThreadPool(2);
     }
@@ -48,15 +52,21 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     public void setSelectedDevice(Device selectedDevice) {
         this.selectedDevice = selectedDevice;
+
+        selectedDeviceLive.postValue(selectedDevice);
+    }
+
+    public MutableLiveData<Device> getSelectedDeviceLive() {
+        return selectedDeviceLive;
     }
 
     @Override
     public Device getSelectedUnregisteredDevice() {
-        return selectedUnregistedDevice;
+        return selectedUnregisteredDevice;
     }
 
     public void setSelectedUnregisteredDevice(Device selectedUnregistedDevice) {
-        this.selectedUnregistedDevice = selectedUnregistedDevice;
+        this.selectedUnregisteredDevice = selectedUnregistedDevice;
     }
 
     @Override
@@ -104,14 +114,14 @@ public class RouteRepositoryImpl implements RouteRepository {
     }
 
     public void updateClassroom(String classroom) {
-        selectedUnregistedDevice.setRoomName(classroom);
+        selectedUnregisteredDevice.setRoomName(classroom);
 
         if (isOnline()) {
-            repositoryWeb.updateClassroom(selectedUnregistedDevice);
+            repositoryWeb.updateClassroom(selectedUnregisteredDevice);
         }
-        repositoryLocal.updateClassroom(selectedUnregistedDevice);
+        repositoryLocal.updateClassroom(selectedUnregisteredDevice);
 
-        selectedUnregistedDevice = null;
+        selectedUnregisteredDevice = null;
     }
 
     @Override

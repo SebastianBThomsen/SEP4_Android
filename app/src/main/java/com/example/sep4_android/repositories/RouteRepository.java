@@ -1,6 +1,7 @@
 package com.example.sep4_android.repositories;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
@@ -25,6 +26,7 @@ public interface RouteRepository {
     LiveData<List<DeviceRoom>> getAllRooms();
 
     //Device
+    MutableLiveData<Device> getSelectedDeviceLive();
     Device getSelectedUnregisteredDevice();
     Device getSelectedDevice();
 }
