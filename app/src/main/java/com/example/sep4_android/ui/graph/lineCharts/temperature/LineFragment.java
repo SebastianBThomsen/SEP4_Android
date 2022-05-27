@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph.lineChartForTemp;
+package com.example.sep4_android.ui.graph.lineCharts.temperature;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,9 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.sep4_android.databinding.FragmentLinechartBinding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.ui.graph.design.GraphDesign;
+import com.example.sep4_android.ui.graph.lineCharts.design.GraphDesign;
 import com.example.sep4_android.ui.graph.GraphViewModel;
 import com.example.sep4_android.ui.graph.GraphViewModelImpl;
 import com.github.mikephil.charting.charts.LineChart;

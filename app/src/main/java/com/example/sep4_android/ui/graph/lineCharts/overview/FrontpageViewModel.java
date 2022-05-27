@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph.lineChartOverview;
+package com.example.sep4_android.ui.graph.lineCharts.overview;
 
 import androidx.lifecycle.ViewModel;
 

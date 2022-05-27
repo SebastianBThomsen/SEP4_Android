@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.graph.lineChartForCO2.CO2Fragment">
+    tools:context=".ui.graph.lineCharts.co2.CO2Fragment">
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/LineChartForCo2"

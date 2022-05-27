@@ -25,11 +25,6 @@
             android:title="Compare data - Linechart"
             />
         <item
-            android:id="@+id/nav_compareBarChartFragment"
-            android:icon="@drawable/ic_baseline_auto_graph_24"
-            android:title="Compare data - Barchart"
-            />
-        <item
             android:id="@+id/nav_adminsettingsFragment"
             android:icon="@drawable/ic_baseline_admin_panel_settings_24"
             android:title="Admin"

@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph.lineChartForHumidity;
+package com.example.sep4_android.ui.graph.lineCharts.humidity;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,9 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.sep4_android.databinding.FragmentHumidityDetailBinding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.ui.graph.design.GraphDesign;
+import com.example.sep4_android.ui.graph.lineCharts.design.GraphDesign;
 import com.example.sep4_android.ui.graph.GraphViewModel;
 import com.example.sep4_android.ui.graph.GraphViewModelImpl;
 import com.github.mikephil.charting.charts.LineChart;
@@ -22,10 +21,10 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 
-public class HumidityDetailFragment extends Fragment {
+public class HumidityFragment extends Fragment {
 
     private GraphViewModel viewModel;
-    private FragmentHumidityDetailBinding binding;
+    private FragmentHumidityBinding binding;
     private LineChart lineChart;
     private GraphDesign graphDesign;
 
@@ -33,7 +32,7 @@ public class HumidityDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         viewModel = new ViewModelProvider(this).get(GraphViewModelImpl.class);
-        binding = FragmentHumidityDetailBinding.inflate(inflater, container, false);
+        binding = FragmentHumidityBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         graphDesign = new GraphDesign();
 
@@ -46,38 +45,38 @@ public class HumidityDetailFragment extends Fragment {
     private void observers() {
         viewModel.getAllMeasurementsByDevice().observe(getViewLifecycleOwner(), measurements -> {
             if (measurements != null) {
-                ArrayList<Entry> HumMesurements = new ArrayList<>();
+                ArrayList<Entry> test = new ArrayList<>();
                 int i = 0;
                 double sum = 0;
                 for (Measurement measurement : measurements) {
                     i++;
                     sum = measurement.getHumidity() + sum;
-                    HumMesurements.add(new Entry(i, (float) measurement.getHumidity()));
+                    test.add(new Entry(i, (float) measurement.getHumidity()));
+
                 }
-                graphDesign.setAvg(lineChart, (float) average(sum, i));
-                inputDataToChart(HumMesurements);
-                //fixme Timestamp skal bruges på x istedet for 1 ,2 og 3
+                inputDataToChart(test);
             }
         });
     }
 
-    private void bindings() {
-        lineChart = binding.lcDetailHumidity;
-    }
-
     private void inputDataToChart(ArrayList<Entry> test) {
+        //todo add design classen efter vi har fået det op at kører
         LineDataSet lineDataSet = new LineDataSet(test, "Humidity");
+        lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         graphDesign.lineChartDesign(lineChart);
+        graphDesign.lineData(lineData);
         graphDesign.lineDataSet(lineDataSet);
-        lineDataSet.setDrawCircles(true);
+    }
+
+    private void bindings() {
+        lineChart = binding.LineChartForHumidity;
     }
 
     private double average(double b, int a) {
         double avg = b / a;
-        System.out.println("Her får vi average fra metoden average fra temp  " + avg);
-        lineChart.setAlpha((float) avg);
+        System.out.println("Her får vi average fra metoden average fra humidity " + avg);
         return avg;
     }
 

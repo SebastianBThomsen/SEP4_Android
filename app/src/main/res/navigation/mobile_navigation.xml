@@ -19,25 +19,25 @@
 
     <fragment
         android:id="@+id/nav_frontpageFragment"
-        android:name="com.example.sep4_android.ui.graph.lineChartOverview.FrontpageFragment"
+        android:name="com.example.sep4_android.ui.graph.lineCharts.overview.FrontpageFragment"
         android:label="@string/menu_graphOverview"
         tools:layout="@layout/fragment_frontpage" />
 
     <fragment
         android:id="@+id/co2DeatilFragment"
-        android:name="com.example.sep4_android.ui.graph.lineChartForCO2.CO2DetailFragment"
+        android:name="com.example.sep4_android.ui.graph.lineCharts.co2.CO2DetailFragment"
         android:label="fragment_co2Detail"
         tools:layout="@layout/fragment_co2_detail" />
 
     <fragment
         android:id="@+id/humidityDeatilFragment"
-        android:name="com.example.sep4_android.ui.graph.lineChartForHumidity.HumidityDetailFragment"
+        android:name="com.example.sep4_android.ui.graph.lineCharts.humidity.HumidityDetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_humidity_detail" />
 
     <fragment
         android:id="@+id/temperatureDetailFragment"
-        android:name="com.example.sep4_android.ui.graph.lineChartForTemp.TempDetailFragment"
+        android:name="com.example.sep4_android.ui.graph.lineCharts.temperature.TempDetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_temp_detail" />
 
@@ -66,14 +66,9 @@
         tools:layout="@layout/fragment_create_room" />
     <fragment
         android:id="@+id/nav_compareLineChartFragment"
-        android:name="com.example.sep4_android.ui.graph.compare.CompareLineChartFragment"
+        android:name="com.example.sep4_android.ui.graph.lineCharts.compare.CompareLineChartFragment"
         android:label="@string/menu_linechart"
         tools:layout="@layout/fragment_line_chartcompare" />
-    <fragment
-        android:id="@+id/nav_compareBarChartFragment"
-        android:name="com.example.sep4_android.ui.graph.compare.CompareBarChartFragment"
-        android:label="@string/menu_barchart"
-        tools:layout="@layout/fragment_bar_chart_compare" />
     <fragment
         android:id="@+id/nav_adminsettingsFragment"
         android:name="com.example.sep4_android.ui.choose.ChooseFragment"

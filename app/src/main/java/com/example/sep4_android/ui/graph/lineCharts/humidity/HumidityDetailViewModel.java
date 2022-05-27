@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph.lineChartForHumidity;
+package com.example.sep4_android.ui.graph.lineCharts.humidity;
 
 import androidx.lifecycle.ViewModel;
 

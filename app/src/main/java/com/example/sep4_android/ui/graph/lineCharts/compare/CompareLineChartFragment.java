@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph.compare;
+package com.example.sep4_android.ui.graph.lineCharts.compare;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentLineChartcompareBinding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.ui.graph.design.GraphDesign;
+import com.example.sep4_android.ui.graph.lineCharts.design.GraphDesign;
 import com.example.sep4_android.ui.graph.GraphViewModel;
 import com.example.sep4_android.ui.graph.GraphViewModelImpl;
 import com.github.mikephil.charting.charts.LineChart;

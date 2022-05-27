@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.graph.lineChartForTemp;
+package com.example.sep4_android.ui.graph.lineCharts.temperature;
 
 import androidx.lifecycle.ViewModel;
 

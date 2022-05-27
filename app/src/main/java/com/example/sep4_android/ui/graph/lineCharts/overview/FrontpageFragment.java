@@ -1,6 +1,5 @@
-package com.example.sep4_android.ui.graph.lineChartOverview;
+package com.example.sep4_android.ui.graph.lineCharts.overview;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +9,11 @@ import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.example.sep4_android.R;
-import com.example.sep4_android.databinding.FragmentFrontpageBinding;
 import com.google.android.material.navigation.NavigationView;
 
 public class FrontpageFragment extends Fragment {
