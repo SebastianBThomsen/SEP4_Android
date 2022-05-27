@@ -3,6 +3,7 @@ package com.example.sep4_android.ui.login;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,7 +34,15 @@ public class LoginViewModelImpl extends ViewModel implements LoginViewModel {
 
     @Override
     public void login(Activity ac, String user, String pass) {
-        mAuth.signInWithEmailAndPassword(user, pass).addOnCompleteListener(
+        if (TextUtils.isEmpty(user)){
+            System.out.println("Username cant be empty");
+        }
+        else if (TextUtils.isEmpty(pass))
+        {
+            System.out.println("password cant be empty");
+        }
+        else
+                    mAuth.signInWithEmailAndPassword(user, pass).addOnCompleteListener(
                 new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -46,6 +55,7 @@ public class LoginViewModelImpl extends ViewModel implements LoginViewModel {
                         } else {
                             Toast.makeText(ac.getApplicationContext(), "Login failed: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             //Toast.makeText(LoginActivity.this, "Login err: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            System.out.println(task.getException().getMessage());
                         }
                     }
                 });
