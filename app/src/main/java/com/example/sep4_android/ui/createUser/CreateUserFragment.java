@@ -19,7 +19,7 @@ import com.example.sep4_android.databinding.FragmentCreateUserBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class CreateUserFragment extends Fragment {
-    EditText fullName,email,password,phone;
+    EditText email,password;
     Button registerBtn;
     CheckBox student, admin;
 
@@ -42,10 +42,8 @@ public class CreateUserFragment extends Fragment {
     }
 
     private void bindings() {
-        fullName = binding.registerName;
         email = binding.registerEmail;
         password = binding.registerPassword;
-        phone = binding.registerPhone;
         registerBtn = binding.registerBtn;
 
         student = binding.isStudent;
