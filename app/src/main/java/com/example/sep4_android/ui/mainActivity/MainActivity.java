@@ -40,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        System.out.println("Oncreat INIT ----------------------------------------");
-
-        //(Vi skal åbenbart have url med i getInstance over en en firebase bug)
+        //(Vi skal åbenbart have url med i getInstance over en en firebase bug (Noget med region lock))
         database = FirebaseDatabase.getInstance("https://sep4-26d6b-default-rtdb.europe-west1.firebasedatabase.app/");
 
         viewModel = new ViewModelProvider(this).get(MainActivityViewModelImpl.class);
@@ -118,6 +116,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu navMenu = navigationView.getMenu();
         viewModel.DynamicNavigation(navMenu);
+
+        viewModel.getSelectedDeviceLive().observe(this, device -> {
+            viewModel.updateGraphNav(device, navMenu);
+        });
     }
 
 
@@ -126,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
     //Method to hide keyboard and lose focus from fields. (EditText etc.), whenever elsewhere clicked!
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
             /**
@@ -154,4 +155,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.dispatchTouchEvent( event );
     }
+
+
 }

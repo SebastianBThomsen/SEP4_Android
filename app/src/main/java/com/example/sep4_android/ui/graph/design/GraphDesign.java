@@ -55,7 +55,7 @@ public class GraphDesign {
 
     public void compareLineChartDesign(LineChart lineChart) {
         lineChartDesign(lineChart);
-
+        lineChart.setNoDataText("Test");
     }
 
     public void compareLineDataSet(LineDataSet lineDataSet) {
