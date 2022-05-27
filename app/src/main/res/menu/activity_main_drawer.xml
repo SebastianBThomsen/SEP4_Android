@@ -16,12 +16,12 @@
 
         <item
             android:id="@+id/nav_admin"
-            android:icon="@drawable/ic_baseline_auto_graph_24"
+            android:icon="@drawable/ic_baseline_auto_awesome_mosaic_24"
             android:title="Total overview"
             />
         <item
             android:id="@+id/nav_compareLineChartFragment"
-            android:icon="@drawable/ic_baseline_auto_graph_24"
+            android:icon="@drawable/ic_baseline_timeline_24"
             android:title="Compare data - Linechart"
             />
         <item
