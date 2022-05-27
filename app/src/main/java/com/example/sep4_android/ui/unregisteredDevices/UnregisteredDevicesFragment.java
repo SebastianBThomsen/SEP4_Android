@@ -23,12 +23,11 @@ import com.example.sep4_android.ui.roomRecycler.UnregisteredDeviceAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UnregisteredDevices extends Fragment {
+public class UnregisteredDevicesFragment extends Fragment {
 
     private UnregisteredDevicesViewModelImpl viewModel;
     private FragmentUnregisteredDevicesFragmentBinding binding;
     private RecyclerView recyclerView;
-    private RouteRepositoryImpl repo;
 
     private View root;
 
@@ -38,8 +37,6 @@ public class UnregisteredDevices extends Fragment {
         viewModel = new ViewModelProvider(this).get(UnregisteredDevicesViewModelImpl.class);
         binding = FragmentUnregisteredDevicesFragmentBinding.inflate(inflater, container, false);
         root = binding.getRoot();
-
-        repo = RouteRepositoryImpl.getInstance(getActivity().getApplication());
 
         setText();
 
@@ -53,7 +50,7 @@ public class UnregisteredDevices extends Fragment {
 
         MutableLiveData<List<Device>> liste = new MutableLiveData();
 
-        repo.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
+        viewModel.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
             List tmp = new ArrayList();
             for (Device i: devices) {
                 if(i.getRoomName() == null || i.getRoomName().equals("def")){
@@ -68,13 +65,15 @@ public class UnregisteredDevices extends Fragment {
             recyclerView.setAdapter(adapter);
 
             adapter.setOnClickListener(device ->{
-                //TODO: Brug viewmodel
-                repo.setSelectedUnregistedDevice(device);
+                viewModel.setSelectedUnregisteredDevice(device);
                 Navigation.findNavController(root).navigate(R.id.nav_register_device);
             });
         });
-
-
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

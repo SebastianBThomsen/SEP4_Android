@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.home;
+package com.example.sep4_android.ui.healthInspection;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,18 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.sep4_android.databinding.FragmentHomeBinding;
+import com.example.sep4_android.databinding.FragmentHealthInspectionBinding;
 import com.example.sep4_android.model.DateHandler;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.text.DecimalFormat;
 
-public class HomeFragment extends Fragment {
+public class HealthInspectionFragment extends Fragment {
 
-    private HomeViewModel viewModel;
+    private HealthInspectionViewModel viewModel;
 
-    private FragmentHomeBinding binding;
+    private FragmentHealthInspectionBinding binding;
     private TextView textView;
 
     //Display data between timestamps
@@ -40,13 +40,10 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(HomeViewModelImpl.class);
+        viewModel = new ViewModelProvider(this).get(HealthInspectionViewModelImpl.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentHealthInspectionBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        //FIXME: FIREBASE SKAL INDSÆTTES ET ELLER ANDET STED! - wupwup
-        //FIXME: Display Average Temp, Co2, humidity between 2 timestamps!
 
         materialDatePickerStart = DateHandler.getMaterialDatePicker();
         materialDatePickerEnd = DateHandler.getMaterialDatePicker();
@@ -60,7 +57,7 @@ public class HomeFragment extends Fragment {
     private void observers() {
         viewModel.getTestMeasurements().observe(getViewLifecycleOwner(), measurements -> {
             if(measurements!=null){
-                //Ugly way to get average, max and min!
+                //FIXME: Ugly way to get average, max and min!
                 double co2Avg = 0;
                 double tempAvg = 0;
                 double humidityAvg = 0;

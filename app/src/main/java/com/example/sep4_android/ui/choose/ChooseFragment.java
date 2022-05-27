@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.Choose;
+package com.example.sep4_android.ui.choose;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

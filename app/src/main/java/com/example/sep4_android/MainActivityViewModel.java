@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.mainActivity;
+package com.example.sep4_android;
 
 import android.view.Menu;
 

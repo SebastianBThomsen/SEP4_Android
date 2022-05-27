@@ -29,7 +29,7 @@ public class MainActivityViewModelImpl extends AndroidViewModel implements MainA
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-    private RouteRepository repo;
+    private RouteRepository repo; //FIXME: Bruges aldrig?
 
     public MainActivityViewModelImpl(Application application) {
         super(application);
@@ -42,6 +42,8 @@ public class MainActivityViewModelImpl extends AndroidViewModel implements MainA
     @Override
     public void DynamicNavigation(Menu navMenu) {
         //Rolecheck (ingen need for at gemme user .getCurrent er singleton og har instans)
+
+
 
         if(mAuth.getCurrentUser() == null) return;
         database.getReference("users").child(mAuth.getCurrentUser().getUid()).child("rank").addValueEventListener(new ValueEventListener() {

@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentLinechartBinding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.ui.graph.DesignForGraph.GraphDesign;
+import com.example.sep4_android.ui.graph.design.GraphDesign;
+import com.example.sep4_android.ui.graph.GraphViewModel;
+import com.example.sep4_android.ui.graph.GraphViewModelImpl;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 
 public class LineFragment extends Fragment {
 
-    private LineViewModelImpl viewModel;
+    private GraphViewModel viewModel;
     private FragmentLinechartBinding binding;
     private LineChart lineChart;
     private GraphDesign graphDesign;
@@ -30,7 +32,7 @@ public class LineFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(LineViewModelImpl.class);
+        viewModel = new ViewModelProvider(this).get(GraphViewModelImpl.class);
         binding = FragmentLinechartBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         graphDesign = new GraphDesign();

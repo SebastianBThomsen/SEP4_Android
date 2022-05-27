@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText username;
     private EditText password;
 
+    //FIXME: Bruges denne?
     private ActivityLoginBinding binding;
 
 

@@ -6,10 +6,10 @@
     app:startDestination="@+id/nav_selectRoomFragment">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.sep4_android.ui.home.HomeFragment"
+        android:id="@+id/nav_healthInspection"
+        android:name="com.example.sep4_android.ui.healthInspection.HealthInspectionFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_health_inspection" />
 
     <fragment
         android:id="@+id/nav_settings"
@@ -49,13 +49,13 @@
 
     <fragment
         android:id="@+id/nav_register_device"
-        android:name="com.example.sep4_android.ui.registerDevice.RegisterDevice"
+        android:name="com.example.sep4_android.ui.registerDevice.RegisterDeviceFragment"
         android:label="@string/menu_registerDevice"
         tools:layout="@layout/fragment_register_device" />
 
     <fragment
         android:id="@+id/nav_unregistered_devices"
-        android:name="com.example.sep4_android.ui.unregisteredDevices.UnregisteredDevices"
+        android:name="com.example.sep4_android.ui.unregisteredDevices.UnregisteredDevicesFragment"
         android:label="@string/menu_unregistedList"
         tools:layout="@layout/fragment_unregistered_devices_fragment" />
 
@@ -76,7 +76,7 @@
         tools:layout="@layout/fragment_bar_chart_compare" />
     <fragment
         android:id="@+id/nav_adminsettingsFragment"
-        android:name="com.example.sep4_android.ui.Choose.ChooseFragment"
+        android:name="com.example.sep4_android.ui.choose.ChooseFragment"
         android:label="fragment_create_user"
         tools:layout="@layout/fragment_choose" />
     <fragment

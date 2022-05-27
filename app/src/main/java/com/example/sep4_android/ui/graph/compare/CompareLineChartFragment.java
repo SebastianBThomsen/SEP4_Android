@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.Switch;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +14,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentLineChartcompareBinding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.ui.graph.DesignForGraph.GraphDesign;
-import com.example.sep4_android.ui.graph.lineChartForTemp.LineViewModelImpl;
+import com.example.sep4_android.ui.graph.design.GraphDesign;
+import com.example.sep4_android.ui.graph.GraphViewModel;
+import com.example.sep4_android.ui.graph.GraphViewModelImpl;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -29,7 +27,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import java.util.ArrayList;
 
 public class CompareLineChartFragment extends Fragment {
-    private LineViewModelImpl viewModel;
+    private GraphViewModel viewModel;
     private FragmentLineChartcompareBinding binding;
     private LineChart lineChart;
     private GraphDesign design;
@@ -38,18 +36,14 @@ public class CompareLineChartFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(LineViewModelImpl.class);
+        viewModel = new ViewModelProvider(this).get(GraphViewModelImpl.class);
         binding = FragmentLineChartcompareBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         design = new GraphDesign();
+
         bindings();
         observers();
-        viewModel.getAllMeasurementsByDevice();
         onClickListeners();
-        tempCheckBox.setChecked(true);
-        co2CheckBox.setChecked(true);
-        humidityCheckBox.setChecked(true);
-
 
         return root;
     }
@@ -83,6 +77,11 @@ public class CompareLineChartFragment extends Fragment {
         co2CheckBox = binding.switchCo2;
         humidityCheckBox = binding.switchHumidity;
         tempCheckBox = binding.switchTemp;
+
+        //set default selected true!
+        tempCheckBox.setChecked(true);
+        co2CheckBox.setChecked(true);
+        humidityCheckBox.setChecked(true);
     }
 
     private void onClickListeners() {
@@ -114,8 +113,8 @@ public class CompareLineChartFragment extends Fragment {
 
 
     private void inputDataToChart(ArrayList<Entry> test, ArrayList<Entry> test1, ArrayList<Entry> test2) {
-        //FIXME: Beskriv hvad der sker
-        LineDataSet lineDataCO2 = new LineDataSet(test, "Co2");
+        //Linedata sets are created with data and a label
+        LineDataSet lineDataCO2 = new LineDataSet(test, "CO2");
         LineDataSet lineDataTemperature = new LineDataSet(test1, "Temperature");
         LineDataSet lineDataHumidity = new LineDataSet(test2, "Humidity");
 

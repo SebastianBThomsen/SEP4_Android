@@ -71,9 +71,8 @@ public class HealthRepositoryWeb implements HealthRepository {
                     Device[] devices = response.body();
                     Log.i("Retrofit", "SUCCESS!\nAmount of devices" + devices.length + "\ngetAllDevices: " + devices + "\nFirst Device: " + devices[0]);
                     //randomHealthData.setValue(device);
-                    //TODO: Kasper, er dette en fin måde at gemme data til cache på?
+                    //FIXME: Måske over i en seperat klasse?
                     executorService.execute(() -> {
-                        //FIXME: Dette gemmer kun measurements fra første MeasurementByRoomResponse eller?? --> Første device!
                         for (Device device : devices) {
                             deviceDAO.insert(device);
                         }
@@ -134,8 +133,6 @@ public class HealthRepositoryWeb implements HealthRepository {
                         + "\nError Message: " + t.getMessage());
             }
         });
-        //Noget i stil af dette kald
-        //healthAPI.setDeviceRoom(device.getRoomName(), device);
     }
 
     @Override
@@ -223,9 +220,5 @@ public class HealthRepositoryWeb implements HealthRepository {
         });
         //FIXME: fjern returtype?
         return null;
-    }
-
-    public void setRoomSettings(DeviceSettings deviceSettings, Device device)
-    {
     }
 }

@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentCo2Binding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.ui.graph.DesignForGraph.GraphDesign;
+import com.example.sep4_android.ui.graph.design.GraphDesign;
+import com.example.sep4_android.ui.graph.GraphViewModel;
+import com.example.sep4_android.ui.graph.GraphViewModelImpl;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -21,7 +23,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 
 public class CO2Fragment extends Fragment {
-    private CO2ViewModelImpl viewModel;
+    private GraphViewModel viewModel;
     private FragmentCo2Binding binding;
     private LineChart lineChart;
     private GraphDesign graphDesign;
@@ -29,7 +31,7 @@ public class CO2Fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(CO2ViewModelImpl.class);
+        viewModel = new ViewModelProvider(this).get(GraphViewModelImpl.class);
         binding = FragmentCo2Binding.inflate(inflater, container, false);
         View root = binding.getRoot();
         graphDesign = new GraphDesign();

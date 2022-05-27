@@ -17,7 +17,7 @@ public interface RouteRepository {
 
     //Sætter dem så vi kan fetche dem i andre views
     void setSelectedDevice(Device device);
-    void setSelectedUnregistedDevice(Device device);
+    void setSelectedUnregisteredDevice(Device device);
     void updateClassroom(String classroom);
 
     //Add Room
@@ -25,6 +25,6 @@ public interface RouteRepository {
     LiveData<List<DeviceRoom>> getAllRooms();
 
     //Device
-    Device getSelectedUnregistedDevice();
+    Device getSelectedUnregisteredDevice();
     Device getSelectedDevice();
 }

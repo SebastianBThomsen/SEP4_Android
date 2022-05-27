@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.home;
+package com.example.sep4_android.ui.healthInspection;
 
 import androidx.lifecycle.LiveData;
 
@@ -6,9 +6,9 @@ import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
 
-public interface HomeViewModel {
-    LiveData<List<Measurement>> getHealthDataBetweenTimeStamps(long start, long end);
-    LiveData<List<Measurement>> getAllHealthDataByDevice();
+public interface HealthInspectionViewModel {
+
+    //FIXME: Denne bruges ikke!
     //LiveData<Measurement> getAverageMeasurement();
 
     //TEST

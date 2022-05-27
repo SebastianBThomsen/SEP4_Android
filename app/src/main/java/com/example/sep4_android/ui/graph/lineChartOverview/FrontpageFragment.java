@@ -18,14 +18,11 @@ import com.example.sep4_android.databinding.FragmentFrontpageBinding;
 
 public class FrontpageFragment extends Fragment {
 
+    //FIXME: Bruges ikke?
     private FrontpageViewModel mViewModel;
     private FragmentFrontpageBinding binding;
     private CardView cardView_Co2, cardView_temp, cardView_humidity;
     private Button btn_Co2, btn_Temp, btn_Humidity;
-
-    public static FrontpageFragment newInstance() {
-        return new FrontpageFragment();
-    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -42,17 +39,13 @@ public class FrontpageFragment extends Fragment {
     }
 
     private void onClickListeners() {
-        //FIXME: Sout Fjernes, når knappen virker? - Hvem end der har lavet
         btn_Temp.setOnClickListener(view -> {
-            System.out.println("Test virker knappen?");
             Navigation.findNavController(view).navigate(R.id.temperatureDetailFragment);
         });
         btn_Co2.setOnClickListener(view -> {
-            System.out.println("Test virker knappen?");
             Navigation.findNavController(view).navigate(R.id.co2DeatilFragment);
         });
         btn_Humidity.setOnClickListener(view -> {
-            System.out.println("Test virker knappen?");
             Navigation.findNavController(view).navigate(R.id.humidityDeatilFragment);
         });
     }

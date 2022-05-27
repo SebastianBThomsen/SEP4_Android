@@ -1,4 +1,4 @@
-package com.example.sep4_android.ui.home;
+package com.example.sep4_android.ui.healthInspection;
 
 import android.app.Application;
 
@@ -15,7 +15,7 @@ import com.example.sep4_android.repositories.RouteRepositoryImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel {
+public class HealthInspectionViewModelImpl extends AndroidViewModel implements HealthInspectionViewModel {
 
     private RouteRepository repository;
 
@@ -23,7 +23,7 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
     private MutableLiveData<List<Long>> filterTimestamp = new MutableLiveData<>();
 
 
-    public HomeViewModelImpl(@NonNull Application application) {
+    public HealthInspectionViewModelImpl(@NonNull Application application) {
         super(application);
         repository = RouteRepositoryImpl.getInstance(application);
 
@@ -34,22 +34,11 @@ public class HomeViewModelImpl extends AndroidViewModel implements HomeViewModel
         );
     }
 
-    @Override
-    public LiveData<List<Measurement>> getHealthDataBetweenTimeStamps(long start, long end) {
-        return repository.getMeasurementsBetweenTimestamps(start, end);
-    }
-
-    @Override
-    public LiveData<List<Measurement>> getAllHealthDataByDevice() {
-        return repository.getAllMeasurementsByDevice();
-    }
-
     /*
     @Override
     public LiveData<Measurement> getAverageMeasurement(String deviceId){
         return repository.getAverageMeasurement(deviceId);
     }
-
      */
 
     @Override

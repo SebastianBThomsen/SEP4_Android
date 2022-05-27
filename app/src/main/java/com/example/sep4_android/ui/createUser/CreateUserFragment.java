@@ -1,6 +1,5 @@
 package com.example.sep4_android.ui.createUser;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,11 +15,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.sep4_android.R;
-import com.example.sep4_android.databinding.FragmentCo2DetailBinding;
 import com.example.sep4_android.databinding.FragmentCreateUserBinding;
-import com.example.sep4_android.ui.graph.DesignForGraph.GraphDesign;
-import com.example.sep4_android.ui.graph.lineChartForTemp.LineViewModelImpl;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class CreateUserFragment extends Fragment {
@@ -31,11 +26,7 @@ public class CreateUserFragment extends Fragment {
     boolean valid = true;
     private CreateUserViewModel viewModel;
     private FragmentCreateUserBinding binding;
-    FirebaseAuth mAuth;
-
-    public static CreateUserFragment newInstance() {
-        return new CreateUserFragment();
-    }
+    private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -73,6 +64,7 @@ public class CreateUserFragment extends Fragment {
 
 
     public boolean checkField(EditText textField){
+        //FIXME: bruges ikke?
         if(textField.getText().toString().isEmpty()){
             textField.setError("Error");
             valid = false;
