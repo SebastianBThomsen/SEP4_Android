@@ -1,6 +1,7 @@
 package com.example.sep4_android.ui.healthInspection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +57,8 @@ public class HealthInspectionFragment extends Fragment {
 
     private void observers() {
         viewModel.getTestMeasurements().observe(getViewLifecycleOwner(), measurements -> {
-            if(measurements!=null){
+            Log.d("Test!", "observers: Measurements" + measurements);
+            if(measurements.get(0) != null){
                 //FIXME: Ugly way to get average, max and min!
                 double co2Avg = 0;
                 double tempAvg = 0;
@@ -67,14 +69,16 @@ public class HealthInspectionFragment extends Fragment {
                 double humidityMax = measurements.get(0).getHumidity();
 
                 double co2Min = measurements.get(0).getCo2();
-                double tempMin = measurements.get(0).getTemperature();;
-                double humidityMin = measurements.get(0).getHumidity();;
+                double tempMin = measurements.get(0).getTemperature();
+                double humidityMin = measurements.get(0).getHumidity();
 
                 for (Measurement measurement: measurements) {
+                    //Find average
                     co2Avg += measurement.getCo2();
                     tempAvg += measurement.getTemperature();
                     humidityAvg += measurement.getHumidity();
 
+                    //Find maximum
                     if(measurement.getCo2()>co2Max)
                         co2Max = measurement.getCo2();
                     if(measurement.getTemperature()>tempMax)
@@ -82,6 +86,7 @@ public class HealthInspectionFragment extends Fragment {
                     if(measurement.getHumidity()>humidityMax)
                         humidityMax = measurement.getHumidity();
 
+                    //Find minimum
                     if(measurement.getCo2()<co2Min)
                         co2Min = measurement.getCo2();
                     if(measurement.getTemperature()<tempMin)
