@@ -46,21 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         System.out.println("Oncreat INIT ----------------------------------------");
-        //Signout logik (TODO:: Viewmodel maybe)
-        FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth mAuth) {
-                if(mAuth.getCurrentUser() == null){
-                    Intent mainAc = new Intent(getApplication(), LoginActivity.class);
-                    startActivity(mainAc);
-                }
-                else {
-                    System.out.println("signout test");
-                }
-            }
-        };
-        mAuth = FirebaseAuth.getInstance();
-        mAuth.addAuthStateListener(authStateListener);
+
         //(Vi skal åbenbart have url med i getInstance over en en firebase bug)
         database = FirebaseDatabase.getInstance("https://sep4-26d6b-default-rtdb.europe-west1.firebasedatabase.app/");
 
@@ -89,6 +75,21 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+//        hideNavItems();
+
+        //Signout logik (TODO:: Viewmodel maybe)
+        FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth mAuth) {
+                if(mAuth.getCurrentUser() == null){
+                    Intent mainAc = new Intent(getApplication(), LoginActivity.class);
+                    startActivity(mainAc);
+                }
+            }
+        };
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.addAuthStateListener(authStateListener);
+
         hideNavItems();
     }
 

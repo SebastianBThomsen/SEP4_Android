@@ -42,10 +42,14 @@ public class MainActivityViewModelImpl extends AndroidViewModel implements MainA
     @Override
     public void DynamicNavigation(Menu navMenu) {
         //Rolecheck (ingen need for at gemme user .getCurrent er singleton og har instans)
+
+        if(mAuth.getCurrentUser() == null) return;
         database.getReference("users").child(mAuth.getCurrentUser().getUid()).child("rank").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(!snapshot.exists()) return;
+                if(snapshot.getValue() == null) return;
                 if(snapshot.getValue().equals("admin")) return;
 
                 navMenu.findItem(R.id.nav_adminsettingsFragment).setVisible(false);
