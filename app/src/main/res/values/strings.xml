@@ -9,16 +9,22 @@
     <string name="nav_header_compareGraphs">"Graph compare"</string>
 
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+<!--    Health inspection = home  (choose, home, frontpage)-->
+    <string name="menu_healthInspection">Health inspection</string>
+    <string name="menu_selectRoom">Select device Room</string>
+    <string name="menu_unregisteredList">Unregistered devices</string>
+    <string name="menu_registerRoom">Register new Room</string>
+    <string name="menu_registerDevice">Register new device</string>
+    <string name="title_activity_login">Login</string>
+    <string name="menu_graphOverview">Total overview</string>
+    <string name="menu_linechart">Compare data linechart</string>
+    <string name="menu_barchart">Compare data barchart</string>
+    <string name="menu_createUser">Create new user</string>
+    <string name="menu_adminSettings">Admin settings</string>
+    <string name="menu_settingsPanel">Settings panel</string>
 
-    <string name="menu_selectRoom">Select deviceRoom</string>
-    <string name="menu_unregistedList">Uregisterede devices</string>
-    <string name="menu_registerDevice">Register device</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
