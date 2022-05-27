@@ -35,18 +35,10 @@ public class CreateRoomFragment extends Fragment {
         View root = binding.getRoot();
 
         bindings();
-        observers();
-
 
         return root;
     }
 
-    private void observers() {
-        viewModel.getAllRooms().observe(getViewLifecycleOwner(), rooms -> {
-            //For at tjekke om listen af rooms opdaterer!
-            Log.i("Retrofit", "List of rooms: " + rooms);
-        });
-    }
 
     private void bindings() {
         editText_blockName = binding.editTextBlockName;
