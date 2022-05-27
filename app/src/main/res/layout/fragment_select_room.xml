@@ -30,7 +30,7 @@
         android:layout_height="33dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="32dp"
-        android:text="Velkommen til holdøjemedrum"
+        android:text="Welcome to the Airdata app"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/firstHorizontalTop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:layout_width="297dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Vælg hvilket rum du vil se oversigt over"
+        android:text="Select one of the following"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/rv"
         app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
