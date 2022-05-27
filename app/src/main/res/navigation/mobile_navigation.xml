@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/nav_frontpageFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartOverview.FrontpageFragment"
-        android:label="fragment_frontpage"
+        android:label="Mangler room name"
         tools:layout="@layout/fragment_frontpage" />
 
     <fragment
