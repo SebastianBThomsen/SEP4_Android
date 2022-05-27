@@ -23,7 +23,6 @@ public class CreateUserFragment extends Fragment {
     Button registerBtn;
     CheckBox student, admin;
 
-    boolean valid = true;
     private CreateUserViewModel viewModel;
     private FragmentCreateUserBinding binding;
     private FirebaseAuth mAuth;
@@ -37,18 +36,9 @@ public class CreateUserFragment extends Fragment {
         View root = binding.getRoot();
         mAuth = FirebaseAuth.getInstance();
         bindings();
-        observers();
         onClickListeners();
 
-        return root;    
-        
-    }
-
-
-
-    private void observers()
-    {
-
+        return root;
     }
 
     private void bindings() {
@@ -62,18 +52,6 @@ public class CreateUserFragment extends Fragment {
         admin = binding.isAdmin;
     }
 
-
-    public boolean checkField(EditText textField){
-        //FIXME: bruges ikke?
-        if(textField.getText().toString().isEmpty()){
-            textField.setError("Error");
-            valid = false;
-        }else {
-            valid = true;
-        }
-
-        return valid;
-    }
 
     private void onClickListeners() {
         registerBtn.setOnClickListener(view -> {
