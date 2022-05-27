@@ -17,17 +17,17 @@
         <item
             android:id="@+id/nav_frontpageFragment"
             android:icon="@drawable/ic_baseline_auto_graph_24"
-            android:title="Graph"
+            android:title="Total overview"
             />
         <item
             android:id="@+id/nav_compareLineChartFragment"
             android:icon="@drawable/ic_baseline_auto_graph_24"
-            android:title="LineChartCompare"
+            android:title="Compare data - Linechart"
             />
         <item
             android:id="@+id/nav_compareBarChartFragment"
             android:icon="@drawable/ic_baseline_auto_graph_24"
-            android:title="Barchart Compare"
+            android:title="Compare data - Barchart"
             />
         <item
             android:id="@+id/nav_adminsettingsFragment"

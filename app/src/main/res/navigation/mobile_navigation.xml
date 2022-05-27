@@ -8,19 +8,19 @@
     <fragment
         android:id="@+id/nav_healthInspection"
         android:name="com.example.sep4_android.ui.healthInspection.HealthInspectionFragment"
-        android:label="@string/menu_home"
+        android:label="@string/menu_healthInspection"
         tools:layout="@layout/fragment_health_inspection" />
 
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.sep4_android.ui.settings.SettingsFragment"
-        android:label="fragment_settings"
+        android:label="@string/menu_settingsPanel"
         tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/nav_frontpageFragment"
         android:name="com.example.sep4_android.ui.graph.lineChartOverview.FrontpageFragment"
-        android:label="Mangler room name"
+        android:label="@string/menu_graphOverview"
         tools:layout="@layout/fragment_frontpage" />
 
     <fragment
@@ -56,32 +56,32 @@
     <fragment
         android:id="@+id/nav_unregistered_devices"
         android:name="com.example.sep4_android.ui.unregisteredDevices.UnregisteredDevicesFragment"
-        android:label="@string/menu_unregistedList"
+        android:label="@string/menu_unregisteredList"
         tools:layout="@layout/fragment_unregistered_devices_fragment" />
 
     <fragment
         android:id="@+id/nav_create_room"
         android:name="com.example.sep4_android.ui.createRoom.CreateRoomFragment"
-        android:label="@string/menu_unregistedList"
+        android:label="@string/menu_registerRoom"
         tools:layout="@layout/fragment_create_room" />
     <fragment
         android:id="@+id/nav_compareLineChartFragment"
         android:name="com.example.sep4_android.ui.graph.compare.CompareLineChartFragment"
-        android:label="fragment_line_chartcompare"
+        android:label="@string/menu_linechart"
         tools:layout="@layout/fragment_line_chartcompare" />
     <fragment
         android:id="@+id/nav_compareBarChartFragment"
         android:name="com.example.sep4_android.ui.graph.compare.CompareBarChartFragment"
-        android:label="CompareBarChartFragment"
+        android:label="@string/menu_barchart"
         tools:layout="@layout/fragment_bar_chart_compare" />
     <fragment
         android:id="@+id/nav_adminsettingsFragment"
         android:name="com.example.sep4_android.ui.choose.ChooseFragment"
-        android:label="fragment_create_user"
+        android:label="@string/menu_adminSettings"
         tools:layout="@layout/fragment_choose" />
     <fragment
         android:id="@+id/nav_createUserFragment"
         android:name="com.example.sep4_android.ui.createUser.CreateUserFragment"
-        android:label="fragment_create_user"
+        android:label="@string/menu_createUser"
         tools:layout="@layout/fragment_create_user" />
 </navigation>
