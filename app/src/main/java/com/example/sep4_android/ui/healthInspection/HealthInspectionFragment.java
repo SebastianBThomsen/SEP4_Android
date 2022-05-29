@@ -1,7 +1,6 @@
 package com.example.sep4_android.ui.healthInspection;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentHealthInspectionBinding;
 import com.example.sep4_android.model.DateHandler;
-import com.example.sep4_android.model.persistence.entities.Measurement;
 import com.google.android.material.datepicker.MaterialDatePicker;
 
 import java.text.DecimalFormat;
@@ -31,6 +29,10 @@ public class HealthInspectionFragment extends Fragment {
     private TextView tv_avgTemp, tv_avgCO2, tv_avgHumidity;
     private TextView tv_maxTemp, tv_maxCO2, tv_maxHumidity;
     private TextView tv_minTemp, tv_minCO2, tv_minHumidity;
+    private TextView tv_latestCO2;
+    private TextView tv_latestHumidity;
+    private TextView tv_latestTemp;
+    private TextView tv_latestTime;
 
     private Button btn_submitTime;
 
@@ -41,7 +43,7 @@ public class HealthInspectionFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-         viewModel= new ViewModelProvider(this).get(HealthInspectionViewModelImpl.class);
+        viewModel = new ViewModelProvider(this).get(HealthInspectionViewModelImpl.class);
 
         binding = FragmentHealthInspectionBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -56,71 +58,31 @@ public class HealthInspectionFragment extends Fragment {
     }
 
     private void observers() {
-        viewModel.getTestMeasurements().observe(getViewLifecycleOwner(), measurements -> {
-           // Log.d("Test!", "observers - HealthInspectionFragment: " + measurements);
-            if(measurements != null && measurements.size() > 0){
-                //FIXME: Ugly way to get average, max and min!
-                double co2Avg = 0;
-                double tempAvg = 0;
-                double humidityAvg = 0;
+        //Observering from data from ViewModel
+        viewModel.getAverageMeasurement().observe(getViewLifecycleOwner(), measurement -> {
+            DecimalFormat df = new DecimalFormat("#0.0");
+            tv_avgCO2.setText("" + df.format(measurement.getCo2()));
+            tv_avgHumidity.setText("" + df.format(measurement.getHumidity()));
+            tv_avgTemp.setText("" + df.format(measurement.getTemperature()));
+        });
 
-                double co2Max = measurements.get(0).getCo2();
-                double tempMax = measurements.get(0).getTemperature();
-                double humidityMax = measurements.get(0).getHumidity();
+        viewModel.getMaximumMeasurement().observe(getViewLifecycleOwner(), measurement -> {
+            tv_maxCO2.setText("" + measurement.getCo2());
+            tv_maxHumidity.setText("" + measurement.getHumidity());
+            tv_maxTemp.setText("" + measurement.getTemperature());
+        });
 
-                double co2Min = measurements.get(0).getCo2();
-                double tempMin = measurements.get(0).getTemperature();
-                double humidityMin = measurements.get(0).getHumidity();
+        viewModel.getMinimumMeasurement().observe(getViewLifecycleOwner(), measurement -> {
+            tv_minCO2.setText("" + measurement.getCo2());
+            tv_minHumidity.setText("" + measurement.getHumidity());
+            tv_minTemp.setText("" + measurement.getTemperature());
+        });
 
-                for (Measurement measurement: measurements) {
-                    //Find average
-                    co2Avg += measurement.getCo2();
-                    tempAvg += measurement.getTemperature();
-                    humidityAvg += measurement.getHumidity();
-
-                    //Find maximum
-                    if(measurement.getCo2()>co2Max)
-                        co2Max = measurement.getCo2();
-                    if(measurement.getTemperature()>tempMax)
-                        tempMax = measurement.getTemperature();
-                    if(measurement.getHumidity()>humidityMax)
-                        humidityMax = measurement.getHumidity();
-
-                    //Find minimum
-                    if(measurement.getCo2()<co2Min)
-                        co2Min = measurement.getCo2();
-                    if(measurement.getTemperature()<tempMin)
-                        tempMin = measurement.getTemperature();
-                    if(measurement.getHumidity()<humidityMin)
-                        humidityMin = measurement.getHumidity();
-                }
-                //Getting average!
-                co2Avg /= measurements.size();
-                tempAvg /= measurements.size();
-                humidityAvg /= measurements.size();
-
-                DecimalFormat df = new DecimalFormat("##.0");
-                tv_avgCO2.setText(""+df.format(co2Avg));
-                tv_avgHumidity.setText(""+df.format(humidityAvg));
-                tv_avgTemp.setText(""+df.format(tempAvg));
-
-                tv_minCO2.setText(""+co2Min);
-                tv_minHumidity.setText(""+humidityMin);
-                tv_minTemp.setText(""+tempMin);
-
-                tv_maxCO2.setText(""+co2Max);
-                tv_maxHumidity.setText(""+humidityMax);
-                tv_maxTemp.setText(""+tempMax);
-            }
-
-            //Average Temp
-            //Observe på dennne under i stedet!
-            //viewModel.getAverageMeasurement()
-            /* tv_co2.setText("" + measurement.getCo2());
-            tv_humidity.setText("" + measurement.getHumidity());
-            tv_temperature.setText("" + measurement.getTemperature());
-            textView.setText(measurement.getTimestampString());
-             */
+        viewModel.getLatestMeasurement().observe(getViewLifecycleOwner(), measurement -> {
+            tv_latestCO2.setText("" + measurement.getCo2());
+            tv_latestHumidity.setText("" + measurement.getHumidity());
+            tv_latestTemp.setText("" + measurement.getTemperature());
+            tv_latestTime.setText("" + measurement.getTimestampString());
         });
     }
 
@@ -143,6 +105,12 @@ public class HealthInspectionFragment extends Fragment {
         tv_minHumidity = binding.tvMinHumidity;
         tv_minCO2 = binding.tvMinCO2;
 
+        //
+        tv_latestCO2 = binding.tvLatestCO2;
+        tv_latestHumidity = binding.tvLatestHumidity;
+        tv_latestTemp = binding.tvLatestTemp;
+        tv_latestTime = binding.tvLatestTimeStamp;
+
         startTime = binding.tvStartTime;
         endTime = binding.tvEndTime;
 
@@ -164,7 +132,7 @@ public class HealthInspectionFragment extends Fragment {
         //When accepting chosen date, display in view!
         materialDatePickerStart.addOnPositiveButtonClickListener(selection -> {
             startDate = (Long) selection;
-            startTime.setText(DateHandler.fromLongToString((Long) selection));
+            startTime.setText(DateHandler.fromLongToStringDatePicker((Long) selection));
         });
     }
 
@@ -174,7 +142,7 @@ public class HealthInspectionFragment extends Fragment {
         //When accepting chosen date, display in view!
         materialDatePickerEnd.addOnPositiveButtonClickListener(selection -> {
             endDate = (Long) selection;
-            endTime.setText(DateHandler.fromLongToString((Long) selection));
+            endTime.setText(DateHandler.fromLongToStringDatePicker((Long) selection));
         });
     }
 

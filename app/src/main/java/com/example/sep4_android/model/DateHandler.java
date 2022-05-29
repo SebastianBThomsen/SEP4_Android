@@ -11,10 +11,17 @@ import java.util.Date;
 
 public class DateHandler {
 
-    public static String fromLongToString(long ms){
+    public static String fromLongToStringDatePicker(long ms){
         Date date = new Date(ms);
         //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy - hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy");
+        return dateFormat.format(date);
+    }
+
+    public static String fromLongToString(long ms){
+        Date date = new Date(ms*1000);
+        //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy hh:mm:ss");
         return dateFormat.format(date);
     }
 
@@ -40,8 +47,8 @@ public class DateHandler {
         CalendarConstraints.Builder calenderConstraint = new CalendarConstraints.Builder();
         calenderConstraint.setEnd(MaterialDatePicker.todayInUtcMilliseconds());
 
-        //Setting calenderConstraint validator, so a date beyond current date + 1 day cannot be chosen!
-        CalendarConstraints.DateValidator dateValidatorMax = DateValidatorPointBackward.before(MaterialDatePicker.todayInUtcMilliseconds()+86400000);
+        //Setting calenderConstraint validator, so a date beyond current date cannot be chosen!
+        CalendarConstraints.DateValidator dateValidatorMax = DateValidatorPointBackward.before(MaterialDatePicker.todayInUtcMilliseconds());
         calenderConstraint.setValidator(dateValidatorMax);
 
         MaterialDatePicker materialDatePicker =
