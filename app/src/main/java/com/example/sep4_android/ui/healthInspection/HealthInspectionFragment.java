@@ -22,17 +22,13 @@ public class HealthInspectionFragment extends Fragment {
     private HealthInspectionViewModel viewModel;
 
     private FragmentHealthInspectionBinding binding;
-    private TextView textView;
 
     //Display data between timestamps
     private TextView startTime, endTime;
     private TextView tv_avgTemp, tv_avgCO2, tv_avgHumidity;
     private TextView tv_maxTemp, tv_maxCO2, tv_maxHumidity;
     private TextView tv_minTemp, tv_minCO2, tv_minHumidity;
-    private TextView tv_latestCO2;
-    private TextView tv_latestHumidity;
-    private TextView tv_latestTemp;
-    private TextView tv_latestTime;
+    private TextView tv_latestCO2, tv_latestHumidity, tv_latestTemp, tv_latestTime;
 
     private Button btn_submitTime;
 
@@ -87,8 +83,6 @@ public class HealthInspectionFragment extends Fragment {
     }
 
     private void bindings() {
-        textView = binding.textHome;
-
         //Displaying data between timestamps
         //Average
         tv_avgTemp = binding.tvAvgTemp;
