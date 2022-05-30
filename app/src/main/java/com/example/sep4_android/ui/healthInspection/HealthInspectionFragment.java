@@ -1,6 +1,7 @@
 package com.example.sep4_android.ui.healthInspection;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,10 +48,21 @@ public class HealthInspectionFragment extends Fragment {
         materialDatePickerStart = DateHandler.getMaterialDatePicker();
         materialDatePickerEnd = DateHandler.getMaterialDatePicker();
 
+
         bindings();
         observers();
 
+        setStartTime(root);
+
         return root;
+    }
+
+    private void setStartTime(View view) {
+        startDate = MaterialDatePicker.todayInUtcMilliseconds();
+        endDate = MaterialDatePicker.todayInUtcMilliseconds();
+        startTime.setText(DateHandler.fromLongToStringDatePicker((Long) startDate));
+        endTime.setText(DateHandler.fromLongToStringDatePicker((Long) endDate));
+        submitTime(view);
     }
 
     private void observers() {
@@ -121,8 +133,7 @@ public class HealthInspectionFragment extends Fragment {
     }
 
     private void setStartDate(View view) {
-        materialDatePickerStart.show(getActivity().getSupportFragmentManager(), "test");
-
+        materialDatePickerStart.show(getActivity().getSupportFragmentManager(), "start");
         //When accepting chosen date, display in view!
         materialDatePickerStart.addOnPositiveButtonClickListener(selection -> {
             startDate = (Long) selection;
@@ -131,7 +142,7 @@ public class HealthInspectionFragment extends Fragment {
     }
 
     private void setEndDate(View view) {
-        materialDatePickerEnd.show(getActivity().getSupportFragmentManager(), "test");
+        materialDatePickerEnd.show(getActivity().getSupportFragmentManager(), "end");
 
         //When accepting chosen date, display in view!
         materialDatePickerEnd.addOnPositiveButtonClickListener(selection -> {
