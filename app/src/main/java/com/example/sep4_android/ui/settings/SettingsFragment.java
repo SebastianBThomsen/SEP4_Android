@@ -62,20 +62,22 @@ public class SettingsFragment extends Fragment {
     }
 
     private void submitSettings(View view) {
-        if (!(editHumidity.getText().toString().isEmpty() && editCO2.getText().toString().isEmpty()
-                && editTemp.getText().toString().isEmpty() && editTempMargin.getText().toString().isEmpty()))
+        if ((editHumidity.getHint().toString().isEmpty() && editCO2.getHint().toString().isEmpty()
+                && editTemp.getHint().toString().isEmpty() && editTempMargin.getHint().toString().isEmpty()))
         {
+Snackbar.make(getView(), " Invalid Data", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+            return;
+        }
             viewModel.sendSettings(
-                    Integer.parseInt(editCO2.getText().toString()),
-                    Integer.parseInt(editHumidity.getText().toString()),
-                    Integer.parseInt(editTemp.getText().toString()),
-                    Integer.parseInt(editTempMargin.getText().toString())
+                    Integer.parseInt(editCO2.getText().toString().equals("")?editCO2.getHint().toString():editCO2.getText().toString()),
+                    Integer.parseInt(editHumidity.getText().toString().equals("")?editHumidity.getHint().toString():editHumidity.getText().toString()),
+                    Integer.parseInt(editTemp.getText().toString().equals("")?editTemp.getHint().toString():editTemp.getText().toString()),
+                    Integer.parseInt(editTempMargin.getText().toString().equals("")?editTempMargin.getHint().toString():editTempMargin.getText().toString()),
                     );
             Snackbar.make(getView(), "Success", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-        }
-        else Snackbar.make(getView(), " Invalid Data", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+       
     }
 
     @Override
