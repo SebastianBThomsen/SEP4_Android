@@ -30,7 +30,7 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
     //Singleton
     private static HealthRepositoryWebImpl instance;
 
-    //
+    //API
     private HealthAPI healthAPI;
 
     //DAOs for saving data to Room!

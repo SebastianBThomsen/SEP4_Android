@@ -22,7 +22,7 @@ public class HealthInspectionViewModelImpl extends AndroidViewModel implements H
 
     //Change livedata on new timeStamps selected --> Transformations.switchMap constructor
     private LiveData<List<Measurement>> measurementsByTimestamp;
-    private MutableLiveData<List<Long>> filterTimestamp = new MutableLiveData<>();
+    private MutableLiveData<List<Long>> filterTimestamp;
 
     //Getting Avg, Min and Maxmimum measurements!
     private MutableLiveData<Measurement> minimumMeasurement;
@@ -35,13 +35,14 @@ public class HealthInspectionViewModelImpl extends AndroidViewModel implements H
         super(application);
         repository = RouteRepositoryImpl.getInstance(application);
 
+        filterTimestamp = new MutableLiveData<>();
+
         //For getting data in view
         minimumMeasurement = new MutableLiveData<>();
         maximumMeasurement = new MutableLiveData<>();
         averageMeasurement = new MutableLiveData<>();
         latestMeasurement = new MutableLiveData<>();
 
-        //RXJava --> mere kompliceret
         measurementsByTimestamp = Transformations.switchMap(
                 filterTimestamp,
                 timestamp -> repository.getMeasurementsBetweenTimestamps(timestamp.get(0), timestamp.get(1))
