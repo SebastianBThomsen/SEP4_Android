@@ -46,7 +46,7 @@ public class HealthRepositoryLocalImpl implements HealthRepositoryLocal {
 
     @Override
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(Device device, long start, long end) {
-        return measurementDAO.getHealthDataBetweenTimestamps(device.getClimateDeviceId(), start, end);
+        return measurementDAO.getMeasurementsBetweenTimestamps(device.getClimateDeviceId(), start, end);
     }
 
     @Override
