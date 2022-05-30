@@ -11,11 +11,18 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface HealthAPI {
 
     @GET("api/v1/Rooms/{roomNo}/Measurements")
     Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
+
+    //?validFrom=xxx&validTo=yyy
+    @GET("api/v1/Rooms/{roomNo}/Measurements")
+    Call<MeasurementsByRoomResponse[]> getMeasurementsBetweenTimestamps(@Path("roomNo") String roomNo,
+                                                                        @Query("validFrom") long validFrom,
+                                                                        @Query("validTo") long validTo);
 
     @GET("api/v1/Devices")
     Call<Device[]> getAllDevices();

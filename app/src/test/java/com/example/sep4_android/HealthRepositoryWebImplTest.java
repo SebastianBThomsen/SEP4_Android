@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
-public class HealthRepositoryWebTest {
+public class HealthRepositoryWebImplTest {
     //---------------------------------------------------------------------------------------------------------------------------//
     //           !!--Cant figure out how to test class, since i cant instantiate the HealthRepositoryWeb Class--!!               //
     //---------------------------------------------------------------------------------------------------------------------------//

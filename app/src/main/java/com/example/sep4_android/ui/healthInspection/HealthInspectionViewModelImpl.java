@@ -62,6 +62,7 @@ public class HealthInspectionViewModelImpl extends AndroidViewModel implements H
         });
     }
 
+    //Setting Mininimum, Maximum, Average and Latest measurement to MutableLiveData
     private void setMinMaxAvgLastMeasurement(List<Measurement> measurements) {
         double co2Avg = 0;
         double tempAvg = 0;
@@ -76,7 +77,6 @@ public class HealthInspectionViewModelImpl extends AndroidViewModel implements H
         double humidityMin = measurements.get(0).getHumidity();
 
         for (Measurement measurement : measurements) {
-            Log.d("TAG", "setMinMaxAvgMeasurement: " + measurement);
             //Find average
             co2Avg += measurement.getCo2();
             tempAvg += measurement.getTemperature();

@@ -19,10 +19,9 @@ import com.google.android.material.navigation.NavigationView;
 
 public class LinechartOverviewFragment extends Fragment {
 
-    //FIXME: Bruges ikke?
-    private LinechartOverviewViewModel viewModel;
     private FragmentLinechartOverviewBinding binding;
     private Button btn_Co2, btn_Temp, btn_Humidity;
+    //FIXME: Bruges ikke?
 private Toolbar mToolbar;
 private NavigationView navigationView;
 
@@ -31,13 +30,11 @@ private NavigationView navigationView;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        viewModel = new ViewModelProvider(this).get(LinechartOverviewViewModel.class);
         binding = FragmentLinechartOverviewBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
 
         bindings();
-        //observers();
         onClickListeners();
 
         return root;
@@ -64,6 +61,7 @@ private NavigationView navigationView;
 
 
 public void updateNavbar(){
+        //FIXME: Bruges ikke?
      navigationView = (NavigationView) navigationView.findViewById(R.id.nav_view);
      View headerView = navigationView.getChildAt(3);
 

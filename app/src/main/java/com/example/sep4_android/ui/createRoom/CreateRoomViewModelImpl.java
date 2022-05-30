@@ -14,7 +14,7 @@ import java.util.List;
 
 public class CreateRoomViewModelImpl extends AndroidViewModel implements CreateRoomViewModel {
 
-    RouteRepository repository;
+    private final RouteRepository repository;
 
     public CreateRoomViewModelImpl(@NonNull Application application) {
         super(application);

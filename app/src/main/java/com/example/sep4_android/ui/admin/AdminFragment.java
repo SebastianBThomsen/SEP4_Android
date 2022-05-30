@@ -17,7 +17,7 @@ import com.example.sep4_android.databinding.FragmentAdminBinding;
 
 public class AdminFragment extends Fragment {
 
-    private AdminViewModelImpl viewModel;
+    private AdminViewModel viewModel;
     private Button addUser, desire, room, device;
     private FragmentAdminBinding binding;
 
