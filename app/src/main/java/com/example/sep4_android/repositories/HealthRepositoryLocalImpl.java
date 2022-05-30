@@ -64,10 +64,9 @@ public class HealthRepositoryLocalImpl implements HealthRepositoryLocal {
 
 
     @Override
-    public void sendDeviceSettings(Device device, int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin) {
+    public void sendDeviceSettings(DeviceSettings deviceSettings) {
         executorService.execute(() -> {
-            deviceSettingsDAO.insert(new DeviceSettings(device.getClimateDeviceId(), desiredCO2,
-                    desiredHumidity, desiredTemp, desiredTempMargin));
+            deviceSettingsDAO.insert(deviceSettings);
         });
 
     }

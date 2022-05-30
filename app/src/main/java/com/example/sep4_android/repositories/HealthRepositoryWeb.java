@@ -1,6 +1,7 @@
 package com.example.sep4_android.repositories;
 
 import com.example.sep4_android.model.persistence.entities.Device;
+import com.example.sep4_android.model.persistence.entities.DeviceSettings;
 
 public interface HealthRepositoryWeb {
     //Get Devices
@@ -11,7 +12,7 @@ public interface HealthRepositoryWeb {
     void findAllMeasurementsByDevice(Device device);
 
     //Setting
-    void sendDeviceSettings(Device device, int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin);
+    void sendDeviceSettings(DeviceSettings deviceSettings, String deviceRoom);
     void findDeviceSettings(String deviceId);
 
     //Updating device room

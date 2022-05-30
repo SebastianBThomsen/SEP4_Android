@@ -18,7 +18,7 @@ public interface HealthRepositoryLocal {
     LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device);
 
     //Setting
-    void sendDeviceSettings(Device device, int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin);
+    void sendDeviceSettings(DeviceSettings deviceSettings);
     LiveData<DeviceSettings> getDeviceSettings(String deviceId);
     void updateClassroom(Device device);
 

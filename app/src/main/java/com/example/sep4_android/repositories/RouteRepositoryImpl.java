@@ -21,8 +21,8 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     private static RouteRepositoryImpl instance;
 
-    private HealthRepositoryWebImpl repositoryWeb;
-    private HealthRepositoryLocalImpl repositoryLocal;
+    private HealthRepositoryWeb repositoryWeb;
+    private HealthRepositoryLocal repositoryLocal;
     private Application application;
 
     private ExecutorService executorService;
@@ -106,18 +106,14 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public void sendDeviceSettings(int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin) {
-        //Vi burde bare sende device settings med over!
-        /*
         DeviceSettings deviceSettings = new DeviceSettings(selectedDevice.getClimateDeviceId(), desiredCO2,
                 desiredHumidity, desiredTemp, desiredTempMargin);
-
-         */
         if (isOnline()) {
             executorService.execute(() -> {
-                repositoryWeb.sendDeviceSettings(selectedDevice, desiredCO2, desiredHumidity, desiredTemp, desiredTempMargin);
+                repositoryWeb.sendDeviceSettings(deviceSettings, selectedDevice.getRoomName());
             });
         }
-        repositoryLocal.sendDeviceSettings(selectedDevice, desiredCO2, desiredHumidity, desiredTemp, desiredTempMargin);
+        repositoryLocal.sendDeviceSettings(deviceSettings);
     }
 
     @Override

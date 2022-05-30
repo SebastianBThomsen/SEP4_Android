@@ -60,7 +60,7 @@ public class SettingsFragment extends Fragment {
     }
 
     private void submitSettings(View view) {
-        //Ternary Statements, if no input, get hint else use input
+        //Ternary Statements, if no input get hint, else use input
         String co2 = editCO2.getText().toString().equals("") ?
                 editCO2.getHint().toString() : editCO2.getText().toString();
         String humidity = editHumidity.getText().toString().equals("") ?
