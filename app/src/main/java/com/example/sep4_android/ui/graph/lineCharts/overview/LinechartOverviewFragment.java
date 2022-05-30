@@ -21,11 +21,6 @@ public class LinechartOverviewFragment extends Fragment {
 
     private FragmentLinechartOverviewBinding binding;
     private Button btn_Co2, btn_Temp, btn_Humidity;
-    //FIXME: Bruges ikke?
-private Toolbar mToolbar;
-private NavigationView navigationView;
-
-
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -57,16 +52,6 @@ private NavigationView navigationView;
         btn_Humidity = binding.btnHumidity;
         btn_Temp = binding.btnTemp;
     }
-
-
-
-public void updateNavbar(){
-        //FIXME: Bruges ikke?
-     navigationView = (NavigationView) navigationView.findViewById(R.id.nav_view);
-     View headerView = navigationView.getChildAt(3);
-
-}
-
 
     @Override
     public void onDestroyView() {

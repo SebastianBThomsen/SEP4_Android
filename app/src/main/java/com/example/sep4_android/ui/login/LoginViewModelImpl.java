@@ -80,8 +80,6 @@ public class LoginViewModelImpl extends ViewModel implements LoginViewModel {
         }
     }
 
-
-
     @Override
     public void checkLoggedIn(Activity ac) {
         FirebaseUser u = mAuth.getCurrentUser();

@@ -36,7 +36,6 @@ public class SelectRoomFragment extends Fragment {
         binding = FragmentSelectRoomBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
-        bindings();
         setText();
 
         return root;
@@ -72,11 +71,6 @@ public class SelectRoomFragment extends Fragment {
 //                Navigation.findNavController(root).navigate(R.id.nav_healthInspection);
             });
         });
-    }
-
-    private void bindings() {
-        //FIXME: Denne bruges ikke?
-        //Select Room
     }
 
     @Override

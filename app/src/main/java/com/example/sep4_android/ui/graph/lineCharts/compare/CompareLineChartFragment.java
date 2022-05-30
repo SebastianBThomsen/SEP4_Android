@@ -112,11 +112,11 @@ public class CompareLineChartFragment extends Fragment {
 
 
 
-    private void inputDataToChart(ArrayList<Entry> test, ArrayList<Entry> test1, ArrayList<Entry> test2) {
+    private void inputDataToChart(ArrayList<Entry> input, ArrayList<Entry> input1, ArrayList<Entry> input2) {
         //Linedata sets are created with data and a label
-        LineDataSet lineDataCO2 = new LineDataSet(test, "CO2");
-        LineDataSet lineDataTemperature = new LineDataSet(test1, "Temperature");
-        LineDataSet lineDataHumidity = new LineDataSet(test2, "Humidity");
+        LineDataSet lineDataCO2 = new LineDataSet(input, "CO2");
+        LineDataSet lineDataTemperature = new LineDataSet(input1, "Temperature");
+        LineDataSet lineDataHumidity = new LineDataSet(input2, "Humidity");
 
         //Sætter CO2 til at have y-aske til højre
         lineDataCO2.setAxisDependency(YAxis.AxisDependency.RIGHT);

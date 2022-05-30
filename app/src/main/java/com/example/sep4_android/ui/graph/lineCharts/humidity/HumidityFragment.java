@@ -75,12 +75,6 @@ public class HumidityFragment extends Fragment {
         lineChart = binding.LineChartForHumidity;
     }
 
-    private double average(double b, int a) {
-        double avg = b / a;
-        System.out.println("Her får vi average fra metoden average fra humidity " + avg);
-        return avg;
-    }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

@@ -85,19 +85,6 @@ public class MainActivity extends AppCompatActivity {
         CustomizeNavigation();
     }
 
-    private void setNavHeader(NavigationView navigationView){
-        //Set navbar email
-        View headerView = navigationView.getHeaderView(0);
-        TextView navHeaderMail = headerView.findViewById(R.id.NavHeaderMail);
-        TextView navHeaderDevice = headerView.findViewById(R.id.NavHeaderDevice);
-
-        if(mAuth.getCurrentUser().getEmail() != null){
-            navHeaderMail.setText(mAuth.getCurrentUser().getEmail());
-        }
-    }
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -48,7 +48,7 @@ public class MainActivityViewModelImpl extends AndroidViewModel implements MainA
         this.application = application;
     }
 
-    public void hideDefaultNavItems(Menu menu){
+    private void hideDefaultNavItems(Menu menu){
         //Hide default graphing items - Kan ikke hide dem by default i xml, så er nød til det med kode
         menu.findItem(R.id.nav_compareLineChartFragment).setVisible(false);
         menu.findItem(R.id.nav_healthInspection).setVisible(false);

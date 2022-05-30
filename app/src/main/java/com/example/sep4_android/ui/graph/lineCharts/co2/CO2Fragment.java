@@ -64,22 +64,14 @@ public class CO2Fragment extends Fragment {
         lineChart = binding.LineChartForCo2;
     }
 
-    private void inputDataToChart(ArrayList<Entry> test) {
-        LineDataSet lineDataSet = new LineDataSet(test, "Co2");
+    private void inputDataToChart(ArrayList<Entry> input) {
+        LineDataSet lineDataSet = new LineDataSet(input, "Co2");
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         graphDesign.lineChartDesign(lineChart);
         graphDesign.lineData(lineData);
         graphDesign.lineDataSet(lineDataSet);
-    }
-
-    private double average(double b, int a) {
-        //FIXME: Denne bruges ikke?
-        double avg = b / a;
-        System.out.println("Her får vi average fra metoden average fra co2 " + avg);
-        lineChart.setAlpha((float) avg);
-        return avg;
     }
 
     @Override

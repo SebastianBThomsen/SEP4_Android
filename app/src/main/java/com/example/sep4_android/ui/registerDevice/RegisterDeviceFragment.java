@@ -65,7 +65,7 @@ public class RegisterDeviceFragment extends Fragment {
     }
 
 
-    public void bindings() {
+    private void bindings() {
         text_deviceName = binding.textDeviceName;
         btn_register = binding.btnRegister;
 
@@ -74,7 +74,7 @@ public class RegisterDeviceFragment extends Fragment {
         btn_register.setOnClickListener(this::register);
     }
 
-    public void setText() {
+    private void setText() {
         text_deviceName.setText(viewModel.getSelectedUnregisteredDevice().getClimateDeviceId());
     }
 

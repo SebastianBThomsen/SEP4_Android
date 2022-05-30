@@ -66,22 +66,14 @@ public class LineFragment extends Fragment {
     }
 
 
-    private void inputDataToChart(ArrayList<Entry> test) {
-        LineDataSet lineDataSet = new LineDataSet(test, "Temperature");
+    private void inputDataToChart(ArrayList<Entry> input) {
+        LineDataSet lineDataSet = new LineDataSet(input, "Temperature");
         lineDataSet.setValueTextSize(16f);
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         graphDesign.lineChartDesign(lineChart);
         graphDesign.lineData(lineData);
         graphDesign.lineDataSet(lineDataSet);
-    }
-
-    private double average(double b, int a) {
-        //FIXME: Bruges ikke?
-        double avg = b / a;
-        System.out.println("Her får vi average fra metoden average fra temp  " + avg);
-        lineChart.setAlpha((float) avg);
-        return avg;
     }
 
     @Override
