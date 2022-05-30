@@ -53,12 +53,23 @@ public class CreateUserFragment extends Fragment {
 
     private void onClickListeners() {
         registerBtn.setOnClickListener(view -> {
-            if(admin.isChecked() && !student.isChecked())
+            if(admin.isChecked() && !student.isChecked() && !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty())
                 viewModel.signUp(email.getText().toString(),password.getText().toString(), 1);
-            else if(student.isChecked() && !admin.isChecked())
+            else if(student.isChecked() && !admin.isChecked() && !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty())
                 viewModel.signUp(email.getText().toString(),password.getText().toString(), 0);
-            else
+            else if (!admin.isChecked() && !student.isChecked())
                 Toast.makeText(getContext().getApplicationContext(), "Please select only one of the two roles", Toast.LENGTH_SHORT).show();
+            else if (admin.isChecked() && !student.isChecked() && !email.getText().toString().isEmpty() && Integer.parseInt(password.getText().toString()) <6 && Integer.parseInt(password.getText().toString()) >14 )
+                Toast.makeText(getContext().getApplicationContext(), "Password must be between 6 and 14 ", Toast.LENGTH_SHORT).show();
+            else if (admin.isChecked() || student.isChecked() && email.getText().toString().isEmpty()&& !password.getText().toString().isEmpty())
+                Toast.makeText(getContext().getApplicationContext(), "Email cant be empty", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+
 //            Toast.makeText(getContext(), "Bla",Toast.LENGTH_SHORT).show();
         });
 
