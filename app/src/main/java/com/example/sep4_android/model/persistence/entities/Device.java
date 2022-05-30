@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 public class Device {
     @NonNull
     @PrimaryKey()
-    private String climateDeviceId;
+    private final String climateDeviceId;
     private String roomName;
 
     public Device(String climateDeviceId, String roomName) {
@@ -18,7 +18,7 @@ public class Device {
     }
 
     @Ignore
-    public Device(String climateDeviceId){
+    public Device(String climateDeviceId) {
         this.climateDeviceId = climateDeviceId;
     }
 

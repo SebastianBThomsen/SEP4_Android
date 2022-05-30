@@ -1,7 +1,5 @@
 package com.example.sep4_android.model.persistence;
 
-import static androidx.room.OnConflictStrategy.REPLACE;
-
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;

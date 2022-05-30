@@ -28,17 +28,14 @@ import retrofit2.Response;
 public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
     //Singleton
     private static HealthRepositoryWebImpl instance;
-
-    //API
-    private HealthAPI healthAPI;
-
     //DAOs for saving data to Room!
     private final MeasurementDAO measurementDAO;
     private final DeviceDAO deviceDAO;
     private final DeviceRoomDAO deviceRoomDAO;
     private final DeviceSettingsDAO deviceSettingsDAO;
-
     private final ExecutorService executorService;
+    //API
+    private final HealthAPI healthAPI;
 
     public HealthRepositoryWebImpl(Application application) {
         healthAPI = HealthServiceGenerator.getHealthAPI();
@@ -151,6 +148,7 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
                     });
                 }
             }
+
             @Override
             public void onFailure(Call<DeviceSettingsResponse> call, Throwable t) {
                 Log.i("Retrofit", "FAILURE (findMaxMeasurementValues)" + call

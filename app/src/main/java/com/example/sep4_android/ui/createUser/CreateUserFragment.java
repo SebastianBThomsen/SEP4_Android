@@ -1,12 +1,6 @@
 package com.example.sep4_android.ui.createUser;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +9,16 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.sep4_android.databinding.FragmentCreateUserBinding;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class CreateUserFragment extends Fragment {
-    EditText email,password;
+    EditText email, password;
     Button registerBtn;
     CheckBox student, admin;
 
@@ -53,21 +52,16 @@ public class CreateUserFragment extends Fragment {
 
     private void onClickListeners() {
         registerBtn.setOnClickListener(view -> {
-            if(admin.isChecked() && !student.isChecked() && !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty())
-                viewModel.signUp(email.getText().toString(),password.getText().toString(), 1);
-            else if(student.isChecked() && !admin.isChecked() && !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty())
-                viewModel.signUp(email.getText().toString(),password.getText().toString(), 0);
+            if (admin.isChecked() && !student.isChecked() && !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty())
+                viewModel.signUp(email.getText().toString(), password.getText().toString(), 1);
+            else if (student.isChecked() && !admin.isChecked() && !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty())
+                viewModel.signUp(email.getText().toString(), password.getText().toString(), 0);
             else if (!admin.isChecked() && !student.isChecked())
                 Toast.makeText(getContext().getApplicationContext(), "Please select only one of the two roles", Toast.LENGTH_SHORT).show();
-            else if (admin.isChecked() && !student.isChecked() && !email.getText().toString().isEmpty() && Integer.parseInt(password.getText().toString()) <6 && Integer.parseInt(password.getText().toString()) >14 )
+            else if (admin.isChecked() && !student.isChecked() && !email.getText().toString().isEmpty() && Integer.parseInt(password.getText().toString()) < 6 && Integer.parseInt(password.getText().toString()) > 14)
                 Toast.makeText(getContext().getApplicationContext(), "Password must be between 6 and 14 ", Toast.LENGTH_SHORT).show();
-            else if (admin.isChecked() || student.isChecked() && email.getText().toString().isEmpty()&& !password.getText().toString().isEmpty())
+            else if (admin.isChecked() || student.isChecked() && email.getText().toString().isEmpty() && !password.getText().toString().isEmpty())
                 Toast.makeText(getContext().getApplicationContext(), "Email cant be empty", Toast.LENGTH_SHORT).show();
-
-
-
-
-
 
 
 //            Toast.makeText(getContext(), "Bla",Toast.LENGTH_SHORT).show();

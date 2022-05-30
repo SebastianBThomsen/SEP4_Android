@@ -9,10 +9,12 @@ public interface HealthRepositoryWeb {
 
     //Get Measurements
     void findMeasurementsBetweenTimestamps(Device device, long start, long end);
+
     void findAllMeasurementsByDevice(Device device);
 
     //Setting
     void sendDeviceSettings(DeviceSettings deviceSettings, String deviceRoom);
+
     void findDeviceSettings(String deviceId);
 
     //Updating device room
@@ -20,5 +22,6 @@ public interface HealthRepositoryWeb {
 
     //add room
     void addRoom(String roomName);
+
     void findAllRooms();
 }

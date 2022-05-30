@@ -22,8 +22,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginViewModelImpl extends ViewModel implements LoginViewModel {
 
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
+    private final FirebaseAuth mAuth;
+    private final FirebaseDatabase database;
 
     public LoginViewModelImpl() {
         mAuth = FirebaseAuth.getInstance();

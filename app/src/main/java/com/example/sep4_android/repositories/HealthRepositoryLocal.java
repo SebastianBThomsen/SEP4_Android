@@ -15,15 +15,19 @@ public interface HealthRepositoryLocal {
 
     //Get Measurements
     LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(Device device, long start, long end);
+
     LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device);
 
     //Setting
     void sendDeviceSettings(DeviceSettings deviceSettings);
+
     LiveData<DeviceSettings> getDeviceSettings(String deviceId);
+
     void updateClassroom(Device device);
 
     //add room
     void addRoom(String roomName);
+
     LiveData<List<DeviceRoom>> getAllRooms();
 
 }

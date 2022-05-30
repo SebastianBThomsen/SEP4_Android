@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface UnregisteredDevicesViewModel {
     void setSelectedUnregisteredDevice(Device device);
+
     LiveData<List<Device>> getAllDevices();
 }

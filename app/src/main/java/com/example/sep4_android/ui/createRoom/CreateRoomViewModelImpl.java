@@ -24,8 +24,7 @@ public class CreateRoomViewModelImpl extends AndroidViewModel implements CreateR
     @Override
     public String addRoom(String blockName, String floor, String roomNumber, String roomLetter) {
         String validate = validateRoomInput(blockName, floor, roomNumber, roomLetter);
-        if (validate.equals("Valid"))
-        {
+        if (validate.equals("Valid")) {
             String roomName = blockName + floor + "_" + roomNumber + roomLetter;
             repository.addRoom(roomName);
         }
@@ -47,7 +46,7 @@ public class CreateRoomViewModelImpl extends AndroidViewModel implements CreateR
             message += "Room number invalid!\n";
         if (roomLetter.length() != 0 && roomLetter.length() != 1)
             message += "room letter invalid!";
-        if(message.equals(""))
+        if (message.equals(""))
             message = "Valid";
         //[A-Z][0-9][0-9]_[0-9][0-9][a-z]?$
         return message;

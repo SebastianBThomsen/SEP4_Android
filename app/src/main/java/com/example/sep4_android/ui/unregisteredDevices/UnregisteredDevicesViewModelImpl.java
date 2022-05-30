@@ -13,7 +13,7 @@ import com.example.sep4_android.repositories.RouteRepositoryImpl;
 import java.util.List;
 
 public class UnregisteredDevicesViewModelImpl extends AndroidViewModel implements UnregisteredDevicesViewModel {
-    private RouteRepository repository;
+    private final RouteRepository repository;
 
     public UnregisteredDevicesViewModelImpl(@NonNull Application application) {
         super(application);

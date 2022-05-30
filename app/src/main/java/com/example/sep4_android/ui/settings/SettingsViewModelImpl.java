@@ -12,7 +12,7 @@ import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
 public class SettingsViewModelImpl extends AndroidViewModel implements SettingsViewModel {
-    private RouteRepository repository;
+    private final RouteRepository repository;
 
     public SettingsViewModelImpl(@NonNull Application application) {
         super(application);

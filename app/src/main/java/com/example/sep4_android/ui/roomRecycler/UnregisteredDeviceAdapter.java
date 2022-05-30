@@ -15,22 +15,22 @@ import java.util.List;
 
 public class UnregisteredDeviceAdapter extends RecyclerView.Adapter<UnregisteredDeviceAdapter.ViewHolder> {
 
-    private List<Device> devices;
+    private final List<Device> devices;
     private OnClickListener listener;
 
-    public UnregisteredDeviceAdapter(List<Device> devices){
+    public UnregisteredDeviceAdapter(List<Device> devices) {
         this.devices = devices;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_unregistered, parent, false);;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_unregistered, parent, false);
         ViewHolder viewH = new ViewHolder(view);
         return viewH;
     }
 
-    public void setOnClickListener(OnClickListener listener){
+    public void setOnClickListener(OnClickListener listener) {
         this.listener = listener;
     }
 
@@ -44,13 +44,13 @@ public class UnregisteredDeviceAdapter extends RecyclerView.Adapter<Unregistered
         return devices.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView className;
 
-        ViewHolder(View itemView){
+        ViewHolder(View itemView) {
             super(itemView);
             className = itemView.findViewById(R.id.rvUnregisterd);
-            itemView.setOnClickListener(v ->{
+            itemView.setOnClickListener(v -> {
                 listener.onClick(devices.get(getBindingAdapterPosition()));
             });
         }

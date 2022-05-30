@@ -11,33 +11,32 @@ import java.util.Date;
 
 public class DateHandler {
 
-    public static String fromLongToStringDatePicker(long ms){
+    public static String fromLongToStringDatePicker(long ms) {
         Date date = new Date(ms);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy");
         return dateFormat.format(date);
     }
 
-    public static String fromLongToString(long ms){
-        Date date = new Date(ms*1000);
+    public static String fromLongToString(long ms) {
+        Date date = new Date(ms * 1000);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy HH:mm:ss");
         return dateFormat.format(date);
     }
 
-    public static long fromStringToLong(String date)
-    {
+    public static long fromStringToLong(String date) {
         SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
 
         long milliseconds = 0;
         try {
             Date d = f.parse(date);
-            milliseconds = d.getTime()/1000;
+            milliseconds = d.getTime() / 1000;
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return milliseconds;
     }
 
-    public static MaterialDatePicker getMaterialDatePicker(){
+    public static MaterialDatePicker getMaterialDatePicker() {
         //Material Design
         //https://material.io/components/date-pickers/android#using-date-pickers
 

@@ -21,13 +21,13 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     private static RouteRepositoryImpl instance;
 
-    private HealthRepositoryWeb repositoryWeb;
-    private HealthRepositoryLocal repositoryLocal;
-    private Application application;
+    private final HealthRepositoryWeb repositoryWeb;
+    private final HealthRepositoryLocal repositoryLocal;
+    private final Application application;
 
-    private ExecutorService executorService;
+    private final ExecutorService executorService;
 
-    private MutableLiveData<Device> selectedDeviceLive;
+    private final MutableLiveData<Device> selectedDeviceLive;
     private Device selectedDevice;
     private Device selectedUnregisteredDevice;
 
@@ -118,8 +118,8 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public LiveData<DeviceSettings> getDeviceSettings() {
-        if(isOnline())
-            executorService.execute(()->{
+        if (isOnline())
+            executorService.execute(() -> {
                 repositoryWeb.findDeviceSettings(selectedDevice.getClimateDeviceId());
             });
         return repositoryLocal.getDeviceSettings(selectedDevice.getClimateDeviceId());

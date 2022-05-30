@@ -15,7 +15,7 @@ public class Measurement {
 
     private double temperature, co2, humidity;
 
-    public Measurement(String deviceId, int measurementId , double temperature, double co2, double humidity, long timestamp) {
+    public Measurement(String deviceId, int measurementId, double temperature, double co2, double humidity, long timestamp) {
         this.deviceId = deviceId;
         this.measurementId = measurementId;
         this.temperature = temperature;
@@ -25,7 +25,7 @@ public class Measurement {
     }
 
     //Getting timestamp in string format
-    public String getTimestampString(){
+    public String getTimestampString() {
         return DateHandler.fromLongToString(timestamp);
     }
 

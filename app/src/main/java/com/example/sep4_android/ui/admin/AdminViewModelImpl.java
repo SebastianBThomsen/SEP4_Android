@@ -20,8 +20,8 @@ public class AdminViewModelImpl extends AndroidViewModel implements AdminViewMod
     }
 
     @Override
-    public void checkSelected(Button btn){
-        if(repository.getSelectedDevice() == null){
+    public void checkSelected(Button btn) {
+        if (repository.getSelectedDevice() == null) {
             btn.setVisibility(View.INVISIBLE);
         }
     }

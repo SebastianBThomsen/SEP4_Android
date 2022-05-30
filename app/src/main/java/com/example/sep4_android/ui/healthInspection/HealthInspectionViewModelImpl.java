@@ -1,7 +1,6 @@
 package com.example.sep4_android.ui.healthInspection;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -18,17 +17,17 @@ import java.util.List;
 
 public class HealthInspectionViewModelImpl extends AndroidViewModel implements HealthInspectionViewModel {
 
-    private RouteRepository repository;
+    private final RouteRepository repository;
 
     //Change livedata on new timeStamps selected --> Transformations.switchMap constructor
-    private LiveData<List<Measurement>> measurementsByTimestamp;
-    private MutableLiveData<List<Long>> filterTimestamp;
+    private final LiveData<List<Measurement>> measurementsByTimestamp;
+    private final MutableLiveData<List<Long>> filterTimestamp;
 
     //Getting Avg, Min and Maxmimum measurements!
-    private MutableLiveData<Measurement> minimumMeasurement;
-    private MutableLiveData<Measurement> maximumMeasurement;
-    private MutableLiveData<Measurement> averageMeasurement;
-    private MutableLiveData<Measurement> latestMeasurement;
+    private final MutableLiveData<Measurement> minimumMeasurement;
+    private final MutableLiveData<Measurement> maximumMeasurement;
+    private final MutableLiveData<Measurement> averageMeasurement;
+    private final MutableLiveData<Measurement> latestMeasurement;
 
 
     public HealthInspectionViewModelImpl(@NonNull Application application) {

@@ -14,7 +14,7 @@ import com.example.sep4_android.repositories.RouteRepositoryImpl;
 import java.util.List;
 
 public class RegisterDeviceViewModelImpl extends AndroidViewModel implements RegisterDeviceViewModel {
-    private RouteRepository repository;
+    private final RouteRepository repository;
 
     public RegisterDeviceViewModelImpl(@NonNull Application application) {
         super(application);

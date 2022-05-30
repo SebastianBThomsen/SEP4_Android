@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sep4_android.R;
 import com.example.sep4_android.databinding.FragmentUnregisteredDevicesFragmentBinding;
 import com.example.sep4_android.model.persistence.entities.Device;
-import com.example.sep4_android.repositories.RouteRepositoryImpl;
 import com.example.sep4_android.ui.roomRecycler.UnregisteredDeviceAdapter;
 
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class UnregisteredDevicesFragment extends Fragment {
         return root;
     }
 
-    private void setText(){
+    private void setText() {
         recyclerView = binding.rvUnregisteredList;
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -52,8 +51,8 @@ public class UnregisteredDevicesFragment extends Fragment {
 
         viewModel.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
             List tmp = new ArrayList();
-            for (Device i: devices) {
-                if(i.getRoomName() == null || i.getRoomName().equals("def")){
+            for (Device i : devices) {
+                if (i.getRoomName() == null || i.getRoomName().equals("def")) {
                     tmp.add(i);
                 }
             }
@@ -64,7 +63,7 @@ public class UnregisteredDevicesFragment extends Fragment {
             UnregisteredDeviceAdapter adapter = new UnregisteredDeviceAdapter(devices);
             recyclerView.setAdapter(adapter);
 
-            adapter.setOnClickListener(device ->{
+            adapter.setOnClickListener(device -> {
                 viewModel.setSelectedUnregisteredDevice(device);
                 Navigation.findNavController(root).navigate(R.id.nav_register_device);
             });

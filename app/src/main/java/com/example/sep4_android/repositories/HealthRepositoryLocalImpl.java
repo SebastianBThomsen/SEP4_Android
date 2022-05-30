@@ -22,13 +22,13 @@ public class HealthRepositoryLocalImpl implements HealthRepositoryLocal {
     private static HealthRepositoryLocalImpl instance;
 
     //DAOS
-    private MeasurementDAO measurementDAO;
-    private DeviceDAO deviceDAO;
-    private DeviceRoomDAO deviceRoomDAO;
-    private DeviceSettingsDAO deviceSettingsDAO;
+    private final MeasurementDAO measurementDAO;
+    private final DeviceDAO deviceDAO;
+    private final DeviceRoomDAO deviceRoomDAO;
+    private final DeviceSettingsDAO deviceSettingsDAO;
 
     //Multithread
-    private ExecutorService executorService;
+    private final ExecutorService executorService;
 
     private HealthRepositoryLocalImpl(Application application) {
         Database database = Database.getInstance(application);
