@@ -11,8 +11,10 @@ public interface HealthRepositoryWeb {
     void findAllMeasurementsByDevice(Device device);
 
     //Setting
-    void sendDeviceSettings(Device device, int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin);
+    void sendDeviceSettings(Device device, int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin);
     void findDeviceSettings(String deviceId);
+
+    //Updating device room
     void updateClassroom(Device device);
 
     //add room

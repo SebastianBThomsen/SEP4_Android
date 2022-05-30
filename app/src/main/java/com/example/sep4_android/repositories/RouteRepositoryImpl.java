@@ -105,8 +105,7 @@ public class RouteRepositoryImpl implements RouteRepository {
 
 
     @Override
-    public void sendDeviceSettings(int desiredTemp, int desiredCO2, int desiredHumidity,
-                                   int desiredTempMargin) {
+    public void sendDeviceSettings(int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin) {
         if (isOnline()) {
             executorService.execute(() -> {
                 repositoryWeb.sendDeviceSettings(selectedDevice, desiredTemp, desiredCO2, desiredHumidity, desiredTempMargin);

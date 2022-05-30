@@ -17,7 +17,7 @@ public interface RouteRepository {
     LiveData<List<Measurement>> getAllMeasurementsByDevice();
 
     //Device Settings (max temp, co2, humidity, tempMargin)
-    void sendDeviceSettings(int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin);
+    void sendDeviceSettings(int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin);
     LiveData<DeviceSettings> getDeviceSettings();
 
     //Sætter dem så vi kan fetche dem i andre views

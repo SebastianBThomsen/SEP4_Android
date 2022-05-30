@@ -64,8 +64,11 @@ public class HealthRepositoryLocalImpl implements HealthRepositoryLocal {
 
 
     @Override
-    public void sendDeviceSettings(Device device, int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin) {
-        //TODO: Skal der sendes maxhealthsettings Til Room?? --> Måske noget med hvis internet er gået, så sender den med det samme internet kommer tilbage?
+    public void sendDeviceSettings(Device device, int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin) {
+        executorService.execute(() -> {
+            deviceSettingsDAO.insert(new DeviceSettings(device.getClimateDeviceId(), desiredCO2,
+                    desiredHumidity, desiredTemp, desiredTempMargin));
+        });
 
     }
 

@@ -5,6 +5,6 @@ import androidx.lifecycle.LiveData;
 import com.example.sep4_android.model.persistence.entities.DeviceSettings;
 
 public interface SettingsViewModel {
-    void sendSettings(int desiredTemp, int desiredCO2, int desiredHumidity, int tempMargin);
+    void sendSettings(int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin);
     LiveData<DeviceSettings> getDeviceSettings();
 }

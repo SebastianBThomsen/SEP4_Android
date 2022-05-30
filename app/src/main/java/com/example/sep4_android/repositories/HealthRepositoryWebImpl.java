@@ -114,7 +114,7 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
     }
 
     @Override
-    public void sendDeviceSettings(Device device, int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin) {
+    public void sendDeviceSettings(Device device, int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin) {
         Call<ResponseBody> call = healthAPI.setDeviceSettings(new DeviceSettings(device.getClimateDeviceId(), desiredCO2, desiredHumidity, desiredTemp, desiredTempMargin), device.getRoomName());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -135,18 +135,15 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
     @Override
     public void findDeviceSettings(String deviceId) {
         Call<DeviceSettingsResponse> call = healthAPI.getDeviceSettings(deviceId);
-        Log.d("TAG - RESPONSE", "callBefore: " + call);
         call.enqueue(new Callback<DeviceSettingsResponse>() {
             @Override
             public void onResponse(Call<DeviceSettingsResponse> call, Response<DeviceSettingsResponse> response) {
                 if (response.isSuccessful()) {
-                    Log.d("TAG - RESPONSE", "onResponse: " + response);
-                    Log.d("TAG - RESPONSE", "callAfter: " + call);
+                    //Saving response
                     DeviceSettingsResponse responseB = response.body();
+                    //Converting to deviceSettings
                     DeviceSettings deviceSettings = new DeviceSettings(deviceId, responseB.getCo2Threshold(),
                             responseB.getHumidityThreshold(), responseB.getTargetTemperature(), responseB.getTemperatureMargin());
-                    Log.d("TAG - RESPONSE", "onResponse: " + responseB);
-                    Log.d("TAG - RESPONSE", "onResponse: " + deviceSettings);
                     //Add data to Room
                     executorService.execute(() -> {
                         deviceSettingsDAO.insert(deviceSettings);

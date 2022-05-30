@@ -66,9 +66,9 @@ public class SettingsFragment extends Fragment {
                 && editTemp.getText().toString().isEmpty() && editTempMargin.getText().toString().isEmpty()))
         {
             viewModel.sendSettings(
-                    Integer.parseInt(editTemp.getText().toString()),
                     Integer.parseInt(editCO2.getText().toString()),
                     Integer.parseInt(editHumidity.getText().toString()),
+                    Integer.parseInt(editTemp.getText().toString()),
                     Integer.parseInt(editTempMargin.getText().toString())
                     );
             Snackbar.make(getView(), "Success", Snackbar.LENGTH_LONG)
