@@ -27,10 +27,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
+    //Singleton
     private static HealthRepositoryWebImpl instance;
+
+    //
     private HealthAPI healthAPI;
 
-    //Skal disse være her? - DAO --> Data Persistance fra WEBAPI!
+    //DAOs for saving data to Room!
     private final MeasurementDAO measurementDAO;
     private final DeviceDAO deviceDAO;
     private final DeviceRoomDAO deviceRoomDAO;
@@ -58,15 +61,12 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
     @Override
     public void findAllDevices() {
         Call<Device[]> call = healthAPI.getAllDevices();
-        Log.i("Retrofit", "(getAllDevices) - Call: " + call);
         call.enqueue(new Callback<Device[]>() {
             @Override
             public void onResponse(Call<Device[]> call, Response<Device[]> response) {
-                Log.i("Retrofit", "(getAllDevices) Reponse: " + response);
                 if (response.isSuccessful()) {
                     Device[] devices = response.body();
-                    Log.i("Retrofit", "SUCCESS!\nAmount of devices" + devices.length + "\ngetAllDevices: " + devices + "\nFirst Device: " + devices[0]);
-
+                    //Saving data into Room on another thread!
                     executorService.execute(() -> {
                         for (Device device : devices) {
                             deviceDAO.insert(device);
@@ -90,7 +90,7 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
             @Override
             public void onResponse(Call<MeasurementsByRoomResponse[]> call, Response<MeasurementsByRoomResponse[]> response) {
                 if (response.isSuccessful()) {
-                    //Saving reponse into measurementByRoomResponseList
+                    //Saving response into measurementByRoomResponseList
                     MeasurementsByRoomResponse[] measurementsByRoomResponseList = response.body();
                     //Saving data into Room on another thread!
                     executorService.execute(() -> {
@@ -116,7 +116,6 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.i("Retrofit", "Response (addRoom): "+response);
                 if(response.isSuccessful()){
                     Log.i("Retrofit", "Success response (addRoom): "+response.body());
                 }
@@ -135,7 +134,6 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.i("Retrofit", "Response: "+response);
                 if(response.isSuccessful()){
                     Log.i("Retrofit", "Success response: "+response.body());
                 }
@@ -156,11 +154,10 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
         call.enqueue(new Callback<MeasurementsByRoomResponse[]>() {
             @Override
             public void onResponse(Call<MeasurementsByRoomResponse[]> call, Response<MeasurementsByRoomResponse[]> response) {
-                Log.i("Retrofit", "Reponse: " + response);
                 if (response.isSuccessful()) {
                     MeasurementsByRoomResponse[] measurementsByRoomResponseList = response.body();
-                    Log.i("Retrofit", "SUCCESS!\nMeasurements: " + measurementsByRoomResponseList);
 
+                    //Saving data to room
                     executorService.execute(() -> {
                         for (MeasurementsByRoomResponse measurementByRoom: measurementsByRoomResponseList) {
                             for (Measurement measurement : measurementByRoom.getMeasurements()) {
@@ -184,7 +181,6 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.i("Retrofit", "Response (addRoom): "+response);
                 if(response.isSuccessful()){
                     Log.i("Retrofit", "Success response (addRoom): "+response.body());
                 }
@@ -203,11 +199,9 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
         call.enqueue(new Callback<DeviceRoom[]>() {
             @Override
             public void onResponse(Call<DeviceRoom[]> call, Response<DeviceRoom[]> response) {
-                Log.i("Retrofit", "(getAllRooms) Reponse: " + response);
                 if (response.isSuccessful()) {
                     DeviceRoom[] deviceRooms = response.body();
-
-                    //Gemmer data til room!
+                    //Saving data to room
                     executorService.execute(() -> {
                         for (DeviceRoom deviceRoom : deviceRooms) {
                             deviceRoomDAO.insert(deviceRoom);
