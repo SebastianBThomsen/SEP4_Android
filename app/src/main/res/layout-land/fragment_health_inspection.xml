@@ -7,27 +7,20 @@
     tools:context=".ui.healthInspection.HealthInspectionFragment">
 
     <TextView
-        android:id="@+id/text_home"
+        android:id="@+id/tv_latestTimeStamp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_submit" />
 
     <!-- Button Submit-->
 
     <!-- Start Time-->
-
-    <!-- End Time-->
-
-
-    <!-- Health Data header-->
 
     <Button
         android:id="@+id/btn_submit"
@@ -35,17 +28,25 @@
         android:layout_height="wrap_content"
         android:text="submit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.898" />
+        app:layout_constraintVertical_bias="0.79" />
+
+    <!-- End Time-->
+
+    <!-- Health Data header-->
+
+
+    <!-- Temperature -->
 
     <TextView
         android:id="@+id/tv_startTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="275dp"
-        android:text="Start Time:"
-        android:textSize="24sp"
+        android:layout_marginStart="396dp"
+        android:layout_marginTop="8dp"
+        android:text="startTime"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
         app:layout_constraintTop_toTopOf="@+id/guideline11" />
 
@@ -53,101 +54,236 @@
         android:id="@+id/tv_endTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:width="275dp"
-        android:text="End Time:"
-        android:textSize="24sp"
+        android:layout_marginStart="404dp"
+        android:layout_marginTop="36dp"
+        android:text="endTime"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
         app:layout_constraintTop_toBottomOf="@+id/tv_startTime" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="HealthData values: "
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/firstHorizontalTop"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft" />
 
+    <!-- CO2 -->
 
-    <!-- Temperature -->
     <TextView
         android:id="@+id/textTemperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="40dp"
         android:text="Temperatures: "
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
         app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
 
     <TextView
-        android:id="@+id/tv_temperatures"
+        android:id="@+id/textAverage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="temp values: "
-        app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft"
-        app:layout_constraintTop_toTopOf="@+id/textTemperature" />
+        android:layout_marginTop="20dp"
+        android:text="Average:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/firstVerticalLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textCurrent" />
 
-    <!-- CO2 -->
+    <TextView
+        android:id="@+id/textCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Latest:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/firstVerticalLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textTemperature" />
+
+    <TextView
+        android:id="@+id/tv_avgTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="avg:"
+        app:layout_constraintEnd_toEndOf="@+id/textTemperature"
+        app:layout_constraintStart_toStartOf="@+id/textTemperature"
+        app:layout_constraintTop_toTopOf="@+id/textAverage" />
+
+    <TextView
+        android:id="@+id/tv_latestTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="latest:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textCurrent"
+        app:layout_constraintEnd_toEndOf="@+id/textTemperature"
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toStartOf="@+id/textTemperature" />
+
+    <TextView
+        android:id="@+id/tv_avgCO2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="avg:"
+        app:layout_constraintEnd_toEndOf="@+id/textCO2"
+        app:layout_constraintStart_toStartOf="@+id/textCO2"
+        app:layout_constraintTop_toTopOf="@+id/textAverage" />
+
+    <TextView
+        android:id="@+id/tv_latestCO2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="latest:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textCurrent"
+        app:layout_constraintEnd_toEndOf="@+id/textCO2"
+        app:layout_constraintStart_toStartOf="@+id/textCO2" />
+
+    <TextView
+        android:id="@+id/tv_avgHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="avg:"
+        app:layout_constraintEnd_toEndOf="@+id/textHumidity"
+        app:layout_constraintStart_toStartOf="@+id/textHumidity"
+        app:layout_constraintTop_toTopOf="@+id/textAverage" />
+
+    <TextView
+        android:id="@+id/tv_latestHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="latest:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textCurrent"
+        app:layout_constraintEnd_toEndOf="@+id/textHumidity"
+        app:layout_constraintStart_toStartOf="@+id/textHumidity" />
+
+    <TextView
+        android:id="@+id/tv_maxHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="max:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textMax"
+        app:layout_constraintEnd_toEndOf="@+id/textHumidity"
+        app:layout_constraintStart_toStartOf="@+id/textHumidity" />
+
+    <TextView
+        android:id="@+id/tv_minHumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="min:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textMinimum"
+        app:layout_constraintEnd_toEndOf="@+id/textHumidity"
+        app:layout_constraintStart_toStartOf="@+id/textHumidity" />
+
+    <TextView
+        android:id="@+id/tv_maxCO2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="max:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textMax"
+        app:layout_constraintEnd_toEndOf="@+id/textCO2"
+        app:layout_constraintStart_toStartOf="@+id/textCO2" />
+
+    <TextView
+        android:id="@+id/tv_minCO2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="min:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textMinimum"
+        app:layout_constraintEnd_toEndOf="@+id/textCO2"
+        app:layout_constraintStart_toStartOf="@+id/textCO2" />
+
+    <TextView
+        android:id="@+id/tv_maxTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="max:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textMax"
+        app:layout_constraintEnd_toEndOf="@+id/textTemperature"
+        app:layout_constraintStart_toStartOf="@+id/textTemperature" />
+
+    <TextView
+        android:id="@+id/tv_minTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="min:"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textMinimum"
+        app:layout_constraintEnd_toEndOf="@+id/textTemperature"
+        app:layout_constraintStart_toStartOf="@+id/textTemperature" />
+
+
+    <TextView
+        android:id="@+id/textMax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Maximum:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/firstVerticalLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textAverage" />
+
+    <TextView
+        android:id="@+id/textMinimum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Minimum:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/firstVerticalLeft"
+        app:layout_constraintTop_toBottomOf="@+id/textMax" />
+
+
+    <!-- Humiditiy -->
+
+
+    <!-- Guidelines -->
     <TextView
         android:id="@+id/textCO2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:text="CO2: "
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/textTemperature" />
-
-    <TextView
-        android:id="@+id/tv_co2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="co2 values:"
+        app:layout_constraintEnd_toStartOf="@+id/secondVerticalLeft"
+        app:layout_constraintHorizontal_bias="0.352"
         app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft"
-        app:layout_constraintTop_toTopOf="@+id/textCO2" />
+        app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
 
-
-    <!-- Humiditiy -->
     <TextView
-        android:id="@+id/textHumidities"
+        android:id="@+id/textHumidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Humidities: "
+        android:layout_marginTop="40dp"
+        android:text="Humidity: "
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/firstVerticalLeft"
-        app:layout_constraintTop_toBottomOf="@+id/textCO2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toEndOf="@+id/textCO2"
+        app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
 
-    <TextView
-        android:id="@+id/tv_humidity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hum values: "
-        app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft"
-        app:layout_constraintTop_toTopOf="@+id/textHumidities" />
-
-
-    <!-- Guidelines -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/firstVerticalLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.10462287" />
+        app:layout_constraintGuide_percent="0.17" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/secondVerticalLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="391dp" />
+        app:layout_constraintGuide_percent="0.50121653" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/firstHorizontalTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.21" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
@@ -158,24 +294,25 @@
 
     <Button
         android:id="@+id/btn_endDate"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="SET"
-        android:textSize="14sp"
+        android:layout_width="82dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="32dp"
+        android:text="Set"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_endTime"
-        app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_endTime"
-        app:layout_constraintVertical_bias="0.444"
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btn_startDate"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="SET"
-        android:textSize="14sp"
+        android:layout_width="82dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="32dp"
+        android:text="Set"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_startTime"
-        app:layout_constraintStart_toStartOf="@+id/secondVerticalLeft"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_startTime"
         tools:ignore="TouchTargetSizeCheck" />
 
