@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentSettingsBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 public class SettingsFragment extends Fragment {
 
@@ -47,11 +49,20 @@ public class SettingsFragment extends Fragment {
     }
 
     private void submitSettings(View view) {
-        viewModel.sendSettings(
-                Integer.parseInt(editTemp.getText().toString()),
-                Integer.parseInt(editCO2.getText().toString()),
-                Integer.parseInt(editHumidity.getText().toString()),
-                Integer.parseInt(editTempMargin.getText().toString()));
+        if (!(editHumidity.getText().toString().isEmpty() && editCO2.getText().toString().isEmpty() && editTemp.getText().toString().isEmpty() && editTempMargin.getText().toString().isEmpty()))
+        {
+            viewModel.sendSettings(
+                    Integer.parseInt(editTemp.getText().toString()),
+                    Integer.parseInt(editCO2.getText().toString()),
+                    Integer.parseInt(editHumidity.getText().toString()),
+                    Integer.parseInt(editTempMargin.getText().toString())
+                    );
+            Snackbar.make(getView(), "Succes", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+        else Snackbar.make(getView(), " Invalid Data", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+        System.out.println("Kommer vi her ned");
     }
 
     @Override

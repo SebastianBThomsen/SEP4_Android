@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
         TextView navHeaderMail = headerView.findViewById(R.id.NavHeaderMail);
         TextView navHeaderDevice = headerView.findViewById(R.id.NavHeaderDevice);
 
-        if(mAuth.getCurrentUser().getEmail() != null){
+        if(mAuth.getCurrentUser() != null && mAuth.getCurrentUser().getEmail() != null){
             navHeaderMail.setText(mAuth.getCurrentUser().getEmail());
         }
 
