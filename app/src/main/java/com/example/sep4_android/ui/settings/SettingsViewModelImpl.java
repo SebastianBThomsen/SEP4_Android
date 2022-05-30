@@ -20,7 +20,7 @@ public class SettingsViewModelImpl extends AndroidViewModel implements SettingsV
     }
 
     @Override
-    public void sendSettings(int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin) {
+    public void sendDeviceSettings(int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin) {
         repository.sendDeviceSettings(desiredCO2, desiredHumidity, desiredTemp, desiredTempMargin);
     }
 

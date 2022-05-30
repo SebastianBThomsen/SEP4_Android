@@ -75,7 +75,7 @@ public class SettingsFragment extends Fragment {
                     .setAction("Action", null).show();
             return;
         }
-        viewModel.sendSettings(
+        viewModel.sendDeviceSettings(
                 Integer.parseInt(co2),
                 Integer.parseInt(humidity),
                 Integer.parseInt(temp),

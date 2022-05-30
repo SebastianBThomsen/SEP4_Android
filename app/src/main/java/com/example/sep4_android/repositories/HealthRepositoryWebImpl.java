@@ -115,7 +115,7 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
 
     @Override
     public void sendDeviceSettings(Device device, int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin) {
-        Call<ResponseBody> call = healthAPI.setDeviceSettings(new DeviceSettings(device.getClimateDeviceId(), desiredCO2, desiredHumidity, desiredTemp, desiredTempMargin), device.getRoomName());
+        Call<ResponseBody> call = healthAPI.sendDeviceSettings(new DeviceSettings(device.getClimateDeviceId(), desiredCO2, desiredHumidity, desiredTemp, desiredTempMargin), device.getRoomName());
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

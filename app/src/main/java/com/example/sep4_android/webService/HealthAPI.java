@@ -37,7 +37,7 @@ public interface HealthAPI {
     Call<ResponseBody> addRoom(@Body DeviceRoom deviceRoom);
 
     @PUT("api/v1/Rooms/{roomName}/settings")
-    Call<ResponseBody> setDeviceSettings(@Body DeviceSettings deviceSettings, @Path("roomName") String roomName);
+    Call<ResponseBody> sendDeviceSettings(@Body DeviceSettings deviceSettings, @Path("roomName") String roomName);
 
     @GET("api/v1/Devices/{deviceId}/settings")
     Call<DeviceSettingsResponse> getDeviceSettings(@Path("deviceId") String deviceId);
