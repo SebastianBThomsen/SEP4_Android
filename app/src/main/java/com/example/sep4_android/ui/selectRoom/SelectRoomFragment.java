@@ -1,6 +1,7 @@
 package com.example.sep4_android.ui.selectRoom;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class SelectRoomFragment extends Fragment {
         binding = FragmentSelectRoomBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
+        Log.d("Virker dette HMMM", "setText: TEST");
         setText();
 
         return root;
@@ -50,8 +52,10 @@ public class SelectRoomFragment extends Fragment {
         MutableLiveData<List<Device>> liste = new MutableLiveData();
 
         viewModel.getAllDevices().observe(getViewLifecycleOwner(), devices -> {
+            Log.d("Virker dette HMMM", "setText: TEST" + devices);
             List tmp = new ArrayList();
             for (Device i : devices) {
+
                 if (i.getRoomName() != null && !(i.getRoomName().equals("")) && !(i.getRoomName().equals("def"))) {
                     tmp.add(i);
                 }

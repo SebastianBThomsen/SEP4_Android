@@ -21,8 +21,8 @@ public interface HealthAPI {
     //?validFrom=xxx&validTo=yyy
     @GET("api/v1/Rooms/{roomNo}/Measurements")
     Call<MeasurementsByRoomResponse[]> getMeasurementsBetweenTimestamps(@Path("roomNo") String roomNo,
-                                                                        @Query("validFrom") long validFrom,
-                                                                        @Query("validTo") long validTo);
+                                                                        @Query("validFrom") long validFromSeconds,
+                                                                        @Query("validTo") long validToSeconds);
 
     @GET("api/v1/Devices")
     Call<Device[]> getAllDevices();
@@ -38,4 +38,7 @@ public interface HealthAPI {
 
     @PUT("api/v1/Rooms/{roomName}/settings")
     Call<ResponseBody> setDeviceSettings(@Body DeviceSettings deviceSettings, @Path("roomName") String roomName);
+
+    @GET("api/v1/Devices/{deviceId}/settings")
+    Call<DeviceSettingsResponse> getDeviceSettings(@Path("deviceId") String deviceId);
 }

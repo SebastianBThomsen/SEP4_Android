@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
+import com.example.sep4_android.model.persistence.entities.DeviceSettings;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
@@ -104,14 +105,23 @@ public class RouteRepositoryImpl implements RouteRepository {
 
 
     @Override
-    public void sendMaxMeasurementValues(int desiredTemp, int desiredCO2, int desiredHumidity,
-                                         int desiredTempMargin) {
+    public void sendDeviceSettings(int desiredTemp, int desiredCO2, int desiredHumidity,
+                                   int desiredTempMargin) {
         if (isOnline()) {
             executorService.execute(() -> {
-                repositoryWeb.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity, desiredTempMargin);
+                repositoryWeb.sendDeviceSettings(selectedDevice, desiredTemp, desiredCO2, desiredHumidity, desiredTempMargin);
             });
         }
-        repositoryLocal.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity, desiredTempMargin);
+        repositoryLocal.sendDeviceSettings(selectedDevice, desiredTemp, desiredCO2, desiredHumidity, desiredTempMargin);
+    }
+
+    @Override
+    public LiveData<DeviceSettings> getDeviceSettings() {
+        if(isOnline())
+            executorService.execute(()->{
+                repositoryWeb.findDeviceSettings(selectedDevice.getClimateDeviceId());
+            });
+        return repositoryLocal.getDeviceSettings(selectedDevice.getClimateDeviceId());
     }
 
     public void updateClassroom(String classroom) {

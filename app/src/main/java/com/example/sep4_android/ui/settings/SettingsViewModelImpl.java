@@ -5,7 +5,9 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
+import com.example.sep4_android.model.persistence.entities.DeviceSettings;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
@@ -19,6 +21,11 @@ public class SettingsViewModelImpl extends AndroidViewModel implements SettingsV
 
     @Override
     public void sendSettings(int desiredTemp, int desiredCO2, int desiredHumidity, int tempMargin) {
-        repository.sendMaxMeasurementValues(desiredTemp, desiredCO2, desiredHumidity, tempMargin);
+        repository.sendDeviceSettings(desiredTemp, desiredCO2, desiredHumidity, tempMargin);
+    }
+
+    @Override
+    public LiveData<DeviceSettings> getDeviceSettings() {
+        return repository.getDeviceSettings();
     }
 }

@@ -11,7 +11,8 @@ public interface HealthRepositoryWeb {
     void findAllMeasurementsByDevice(Device device);
 
     //Setting
-    void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin);
+    void sendDeviceSettings(Device device, int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin);
+    void findDeviceSettings(String deviceId);
     void updateClassroom(Device device);
 
     //add room

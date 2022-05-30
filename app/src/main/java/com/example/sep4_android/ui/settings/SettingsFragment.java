@@ -32,8 +32,21 @@ public class SettingsFragment extends Fragment {
         View root = binding.getRoot();
 
         bindings();
+        observers();
 
         return root;
+    }
+
+    private void observers() {
+        viewModel.getDeviceSettings().observe(getViewLifecycleOwner(), deviceSettings -> {
+            if(deviceSettings!=null)
+            {
+                editCO2.setText(""+deviceSettings.getCo2Threshold());
+                editHumidity.setText(""+deviceSettings.getHumidityThreshold());
+                editTemp.setText(""+deviceSettings.getTargetTemperature());
+                editTempMargin.setText(""+deviceSettings.getTemperatureMargin());
+            }
+        });
     }
 
     private void bindings() {
@@ -49,7 +62,8 @@ public class SettingsFragment extends Fragment {
     }
 
     private void submitSettings(View view) {
-        if (!(editHumidity.getText().toString().isEmpty() && editCO2.getText().toString().isEmpty() && editTemp.getText().toString().isEmpty() && editTempMargin.getText().toString().isEmpty()))
+        if (!(editHumidity.getText().toString().isEmpty() && editCO2.getText().toString().isEmpty()
+                && editTemp.getText().toString().isEmpty() && editTempMargin.getText().toString().isEmpty()))
         {
             viewModel.sendSettings(
                     Integer.parseInt(editTemp.getText().toString()),
@@ -57,12 +71,11 @@ public class SettingsFragment extends Fragment {
                     Integer.parseInt(editHumidity.getText().toString()),
                     Integer.parseInt(editTempMargin.getText().toString())
                     );
-            Snackbar.make(getView(), "Succes", Snackbar.LENGTH_LONG)
+            Snackbar.make(getView(), "Success", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
         else Snackbar.make(getView(), " Invalid Data", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-        System.out.println("Kommer vi her ned");
     }
 
     @Override

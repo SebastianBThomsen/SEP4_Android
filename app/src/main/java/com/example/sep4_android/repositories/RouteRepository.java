@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
+import com.example.sep4_android.model.persistence.entities.DeviceSettings;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
@@ -14,7 +15,10 @@ public interface RouteRepository {
 
     LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end);
     LiveData<List<Measurement>> getAllMeasurementsByDevice();
-    void sendMaxMeasurementValues(int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin);
+
+    //Device Settings (max temp, co2, humidity, tempMargin)
+    void sendDeviceSettings(int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin);
+    LiveData<DeviceSettings> getDeviceSettings();
 
     //Sætter dem så vi kan fetche dem i andre views
     void setSelectedDevice(Device device);
