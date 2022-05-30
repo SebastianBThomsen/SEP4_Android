@@ -13,14 +13,12 @@ public class DateHandler {
 
     public static String fromLongToStringDatePicker(long ms){
         Date date = new Date(ms);
-        //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy");
         return dateFormat.format(date);
     }
 
     public static String fromLongToString(long ms){
         Date date = new Date(ms*1000);
-        //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy HH:mm:ss");
         return dateFormat.format(date);
     }

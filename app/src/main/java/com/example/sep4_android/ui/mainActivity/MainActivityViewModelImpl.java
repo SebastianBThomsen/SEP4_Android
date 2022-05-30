@@ -36,16 +36,13 @@ public class MainActivityViewModelImpl extends AndroidViewModel implements MainA
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-    private RouteRepository repo; //FIXME: Bruges aldrig?
-    private Application application; //Gem for observer
-
+    private RouteRepository repo;
 
     public MainActivityViewModelImpl(Application application) {
         super(application);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance("https://sep4-26d6b-default-rtdb.europe-west1.firebasedatabase.app/");
         repo = RouteRepositoryImpl.getInstance(application);
-        this.application = application;
     }
 
     private void hideDefaultNavItems(Menu menu){
