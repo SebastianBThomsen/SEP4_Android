@@ -76,7 +76,6 @@ public class RouteRepositoryImpl implements RouteRepository {
                 repositoryWeb.getMeasurementsBetweenTimestamps(selectedDevice, start, end);
             //Stores data in Room
         });
-
         //Gets data from Room
         return repositoryLocal.getMeasurementsBetweenTimestamps(selectedDevice, start, end);
     }

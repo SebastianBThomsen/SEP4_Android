@@ -29,7 +29,6 @@ import retrofit2.Response;
 
 public class HealthRepositoryWeb implements HealthRepository {
     private static HealthRepositoryWeb instance;
-    private final MutableLiveData<List<Measurement>> randomHealthData;
     private HealthAPI healthAPI;
 
     //Skal disse være her? - DAO --> Data Persistance fra WEBAPI!
@@ -40,7 +39,6 @@ public class HealthRepositoryWeb implements HealthRepository {
     private final ExecutorService executorService;
 
     public HealthRepositoryWeb(Application application) {
-        randomHealthData = new MutableLiveData<>();
         healthAPI = HealthServiceGenerator.getHealthAPI();
 
         Database database = Database.getInstance(application);
@@ -92,7 +90,35 @@ public class HealthRepositoryWeb implements HealthRepository {
 
     @Override
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(Device device, long start, long end) {
-        //TODO: http://sep4webapi-env.eba-2fmcgiei.eu-west-1.elasticbeanstalk.com/api/v1/Rooms/def/measurements?validFrom=0&validTo=1351351351
+        Call<MeasurementsByRoomResponse[]> call = healthAPI.getMeasurementsBetweenTimestamps(device.getRoomName(), start, end);
+
+        Log.i("Retrofit", "(getMeasurementsBetweenTimestamps) - Call: " + call);
+        call.enqueue(new Callback<MeasurementsByRoomResponse[]>() {
+            @Override
+            public void onResponse(Call<MeasurementsByRoomResponse[]> call, Response<MeasurementsByRoomResponse[]> response) {
+                Log.i("Retrofit", "Reponse: " + response);
+                if (response.isSuccessful()) {
+                    //Tager første data i array om healthData
+                    MeasurementsByRoomResponse[] measurementsByRoomResponseList = response.body();
+                    Log.i("Retrofit", "SUCCESS!\nMeasurements: " + measurementsByRoomResponseList);
+
+                    //Saving data into Room on another thread!
+                    executorService.execute(() -> {
+                        for (MeasurementsByRoomResponse measurementByRoom: measurementsByRoomResponseList) {
+                            for (Measurement measurement : measurementByRoom.getMeasurements()) {
+                                measurementDAO.insert(measurement);
+                            }
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MeasurementsByRoomResponse[]> call, Throwable t) {
+                Log.i("Retrofit", "FAILURE (getAllMeasurementsByDevice)" + call
+                        + "\nError Message: " + t.getMessage());
+            }
+        });
         return null;
     }
 

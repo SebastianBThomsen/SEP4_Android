@@ -29,11 +29,6 @@ public class HealthRepositoryLocal implements HealthRepository {
     //Multithread
     private ExecutorService executorService;
 
-    //FIXME: disse 2 skal lige tjekkes om de bruges, og så cleanes up!
-    private MutableLiveData<List<Measurement>> allMeasurementsByDevice;
-    private MutableLiveData<Measurement> averageMeasurement;
-
-
     private HealthRepositoryLocal(Application application) {
         Database database = Database.getInstance(application);
 
@@ -43,13 +38,6 @@ public class HealthRepositoryLocal implements HealthRepository {
         deviceRoomDAO = database.deviceRoomDAO();
 
         executorService = Executors.newFixedThreadPool(2);
-
-        //Skal disse bruges?
-        averageMeasurement = new MutableLiveData<>();
-        allMeasurementsByDevice = new MutableLiveData<>();
-
-        //Observe average temps //FIXME: skal dette gøres her? Eller måske ViewModel i stedet?
-        //setAverageMeasurement();
     }
 
     public static synchronized HealthRepositoryLocal getInstance(Application application) {
@@ -58,45 +46,13 @@ public class HealthRepositoryLocal implements HealthRepository {
         return instance;
     }
 
-    public MutableLiveData<Measurement> getAverageMeasurement() {
-        return averageMeasurement;
-    }
-
-    private void setAverageMeasurement() {
-        allMeasurementsByDevice.observeForever(measurements -> {
-            double co2 = 0, temp = 0, humidity = 0;
-            if (measurements.size() > 0) {
-                for (Measurement measurement : measurements) {
-                    co2 += measurement.getCo2();
-                    temp += measurement.getTemperature();
-                    humidity += measurement.getHumidity();
-                }
-                co2 = co2 / measurements.size();
-                temp = temp / measurements.size();
-                humidity = humidity / measurements.size();
-            }
-            averageMeasurement.setValue(new Measurement("averageReturn", 1, temp, co2, humidity, System.currentTimeMillis()));
-        });
-    }
-
     @Override
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(Device device, long start, long end) {
-        //Tilføj en getter til measurementList uden parametre! --> Så den kan observes i fragment!
-        // --> HomeViewModel
-        /*
-         measurementsByTimestamp = Transformations.switchMap(
-                filterTimestamp,
-                timestamp -> repository.getMeasurementsBetweenTimestamps(timestamp.get(0), timestamp.get(1))
-        );
-         */
-        Log.i("HealthRepositoryLocal", "getHealthDataBetweenTimestamps" + measurementDAO.getHealthDataBetweenTimestamps(device.getClimateDeviceId(), start, end));
         return measurementDAO.getHealthDataBetweenTimestamps(device.getClimateDeviceId(), start, end);
     }
 
     @Override
     public LiveData<List<Measurement>> getAllMeasurementsByDevice(Device device) {
-        //Returner her en liste af alle Measurements, da den førhen bare returnet null
-        //FIXME: Device kan være null, og så crasher app!!!!
         return measurementDAO.getAllMeasurementsByDevice(device.getClimateDeviceId());
     }
 

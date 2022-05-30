@@ -77,7 +77,6 @@ public class HealthInspectionViewModelImpl extends AndroidViewModel implements H
         double humidityMin = measurements.get(0).getHumidity();
 
         for (Measurement measurement : measurements) {
-            Log.d("TAG", "setMinMaxAvgMeasurement: " + measurement);
             //Find average
             co2Avg += measurement.getCo2();
             tempAvg += measurement.getTemperature();

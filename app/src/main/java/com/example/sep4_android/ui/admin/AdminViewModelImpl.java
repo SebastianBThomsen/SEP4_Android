@@ -10,7 +10,7 @@ import androidx.lifecycle.AndroidViewModel;
 import com.example.sep4_android.repositories.RouteRepository;
 import com.example.sep4_android.repositories.RouteRepositoryImpl;
 
-public class AdminViewModelImpl extends AndroidViewModel {
+public class AdminViewModelImpl extends AndroidViewModel implements AdminViewModel {
 
     RouteRepository repository;
 
@@ -19,7 +19,7 @@ public class AdminViewModelImpl extends AndroidViewModel {
         repository = RouteRepositoryImpl.getInstance(application);
     }
 
-    // TODO: Implement the ViewModel
+    @Override
     public void checkSelected(Button btn){
         if(repository.getSelectedDevice() == null){
             btn.setVisibility(View.INVISIBLE);
