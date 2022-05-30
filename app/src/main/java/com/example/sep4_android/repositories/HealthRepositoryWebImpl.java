@@ -161,8 +161,6 @@ public class HealthRepositoryWebImpl implements HealthRepositoryWeb {
                     MeasurementsByRoomResponse[] measurementsByRoomResponseList = response.body();
                     Log.i("Retrofit", "SUCCESS!\nMeasurements: " + measurementsByRoomResponseList);
 
-                    //randomHealthData.setValue(device);
-
                     executorService.execute(() -> {
                         for (MeasurementsByRoomResponse measurementByRoom: measurementsByRoomResponseList) {
                             for (Measurement measurement : measurementByRoom.getMeasurements()) {
