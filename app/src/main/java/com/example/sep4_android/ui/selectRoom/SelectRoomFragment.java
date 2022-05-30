@@ -37,7 +37,6 @@ public class SelectRoomFragment extends Fragment {
         binding = FragmentSelectRoomBinding.inflate(inflater, container, false);
         root = binding.getRoot();
 
-        Log.d("Virker dette HMMM", "setText: TEST");
         setText();
 
         return root;
