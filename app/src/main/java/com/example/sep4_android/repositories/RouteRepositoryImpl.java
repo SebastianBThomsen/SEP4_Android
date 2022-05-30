@@ -20,8 +20,8 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     private static RouteRepositoryImpl instance;
 
-    private HealthRepositoryWeb repositoryWeb;
-    private HealthRepositoryLocal repositoryLocal;
+    private HealthRepositoryWebImpl repositoryWeb;
+    private HealthRepositoryLocalImpl repositoryLocal;
     private Application application;
 
     private ExecutorService executorService;
@@ -32,8 +32,8 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     public RouteRepositoryImpl(Application application) {
         this.application = application;
-        repositoryWeb = HealthRepositoryWeb.getInstance(application);
-        repositoryLocal = HealthRepositoryLocal.getInstance(application);
+        repositoryWeb = HealthRepositoryWebImpl.getInstance(application);
+        repositoryLocal = HealthRepositoryLocalImpl.getInstance(application);
 
         selectedDeviceLive = new MutableLiveData<>();
 
@@ -73,7 +73,7 @@ public class RouteRepositoryImpl implements RouteRepository {
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
         executorService.execute(() -> {
             if (isOnline())
-                repositoryWeb.getMeasurementsBetweenTimestamps(selectedDevice, start, end);
+                repositoryWeb.findMeasurementsBetweenTimestamps(selectedDevice, start, end);
             //Stores data in Room
         });
         //Gets data from Room
@@ -85,7 +85,7 @@ public class RouteRepositoryImpl implements RouteRepository {
         executorService.execute(() -> {
             if (isOnline()) {
                 //stores data in room from WebAPI
-                repositoryWeb.getAllMeasurementsByDevice(selectedDevice);
+                repositoryWeb.findAllMeasurementsByDevice(selectedDevice);
             }
         });
         //returns Room Data
@@ -95,10 +95,9 @@ public class RouteRepositoryImpl implements RouteRepository {
     public LiveData<List<Device>> getAllDevices() {
         executorService.execute(() -> {
             if (isOnline()) {
-                repositoryWeb.getAllDevices();
+                repositoryWeb.findAllDevices();
             }
         });
-
         return repositoryLocal.getAllDevices();
     }
 
@@ -133,7 +132,7 @@ public class RouteRepositoryImpl implements RouteRepository {
     @Override
     public LiveData<List<DeviceRoom>> getAllRooms() {
         if (isOnline())
-            repositoryWeb.getAllRooms();
+            repositoryWeb.findAllRooms();
         return repositoryLocal.getAllRooms();
     }
 

@@ -2,13 +2,10 @@ package com.example.sep4_android;
 
 
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.repositories.HealthRepositoryLocal;
-import com.example.sep4_android.repositories.RouteRepository;
+import com.example.sep4_android.repositories.HealthRepositoryLocalImpl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-
-import android.app.Application;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,13 +15,13 @@ import org.junit.runners.JUnit4;
 import java.util.ArrayList;
 
 @RunWith(JUnit4.class)
-public class HealthRepositoryLocalTest {
+public class HealthRepositoryLocalImplTest {
     //---------------------------------------------------------------------------------------------------------------------------//
     //           !!--Cant figure out how to test class, since i cant instantiate the HealthRepositoryLocal Class--!!             //
     //---------------------------------------------------------------------------------------------------------------------------//
     //FIXME: Make test (Problem: Figure out how to instantiate the class
 
-    private HealthRepositoryLocal healthRepositoryLocal;
+    private HealthRepositoryLocalImpl healthRepositoryLocalImpl;
     private Measurement measurement;
     ArrayList<Measurement> measurementArrayList = new ArrayList<>();
 

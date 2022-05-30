@@ -49,7 +49,8 @@ public class MeasurementsByRoomResponse {
         private final double co2;
         private final double humidity;
 
-        public MeasurementResponse(int measurementId , double temperature, double co2, double humidity, String timestamp) {
+        public MeasurementResponse(int measurementId , double temperature, double co2,
+                                   double humidity, String timestamp) {
             this.measurementId = measurementId;
             this.temperature = temperature;
             this.co2 = co2;
