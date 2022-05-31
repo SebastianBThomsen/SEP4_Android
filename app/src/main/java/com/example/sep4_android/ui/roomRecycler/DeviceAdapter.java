@@ -37,7 +37,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.className.setText(devices.get(position).getRoomName());
-        holder.classAvg.setText("" + 32 + " \u2103");
+        holder.classAvg.setText(""); //Fjernet last minute - burde ikke være her nu / fremtidig udvikling
     }
 
     @Override
