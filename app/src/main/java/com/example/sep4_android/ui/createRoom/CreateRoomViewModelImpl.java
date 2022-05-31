@@ -24,6 +24,7 @@ public class CreateRoomViewModelImpl extends AndroidViewModel implements CreateR
     @Override
     public String addRoom(String blockName, String floor, String roomNumber, String roomLetter) {
         String validate = validateRoomInput(blockName, floor, roomNumber, roomLetter);
+        System.out.println(validate);
         if (validate.equals("Valid")) {
             String roomName = blockName + floor + "_" + roomNumber + roomLetter;
             repository.addRoom(roomName);
@@ -38,16 +39,26 @@ public class CreateRoomViewModelImpl extends AndroidViewModel implements CreateR
 
     private String validateRoomInput(String blockName, String floor, String roomNumber, String roomLetter) {
         String message = "";
+        //Blockname stort, roomletter lille chcek
+
         if (blockName.length() != 1)
             message += "Block name invalid!\n";
         if (floor.length() != 2)
             message += "Floor invalid!\n";
         if (roomNumber.length() != 2)
             message += "Room number invalid!\n";
-        if (roomLetter.length() != 0 && roomLetter.length() != 1)
+        if (roomLetter.length() != 1)
             message += "room letter invalid!";
-        if (message.equals(""))
-            message = "Valid";
+        if (message.equals("")){
+            //Forig kode virker basicly some et null check (anderledes tilgang maybe)(skal bruge nullcheck for næste check)
+            if(Character.isLowerCase(blockName.charAt(0)))
+                message = ("Block name is not uppercase letter");
+            else if(Character.isUpperCase(roomLetter.charAt(0)))
+                message = ("Room letter is not lowercase letter");
+            else{
+                message = "Valid";
+            }
+        }
         //[A-Z][0-9][0-9]_[0-9][0-9][a-z]?$
         return message;
     }
