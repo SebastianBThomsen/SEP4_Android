@@ -50,6 +50,7 @@ public class AllDevicesFragment extends Fragment {
             recyclerView.setAdapter(adapter);
 
             adapter.setOnClickListener(device -> {
+                viewModel.setSelectedUnregisteredDevice(device);
                 Navigation.findNavController(root).navigate(R.id.nav_register_device);
             });
         });

@@ -26,4 +26,9 @@ public class AllDevicesViewModelImpl extends AndroidViewModel implements AllDevi
     public LiveData<List<Device>> getAllDevices() {
         return repository.getAllDevices();
     }
+
+    @Override
+    public void setSelectedUnregisteredDevice(Device device) {
+        repository.setSelectedUnregisteredDevice(device);
+    }
 }
