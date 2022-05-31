@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnRegDevice" />
 
     <Button
-        android:id="@+id/btnDesire"
+        android:id="@+id/btn_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -64,10 +64,24 @@
         android:drawableBottom="@drawable/ic_baseline_health_and_safety_24"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="Desire"
+        android:text="@string/settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRegRoom" />
+
+    <Button
+        android:id="@+id/btn_allDevices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:drawableBottom="@drawable/ic_baseline_health_and_safety_24"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/all_devices"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_settings" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

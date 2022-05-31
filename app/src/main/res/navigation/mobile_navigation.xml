@@ -79,4 +79,9 @@
         android:name="com.example.sep4_android.ui.createUser.CreateUserFragment"
         android:label="@string/menu_createUser"
         tools:layout="@layout/fragment_create_user" />
+    <fragment
+        android:id="@+id/allDevices"
+        android:name="com.example.sep4_android.ui.allDevices.AllDevicesFragment"
+        android:label="fragment_all_devices"
+        tools:layout="@layout/fragment_all_devices" />
 </navigation>
