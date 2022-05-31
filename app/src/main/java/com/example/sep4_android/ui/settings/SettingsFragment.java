@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +30,7 @@ public class SettingsFragment extends Fragment {
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        observers();
         bindings();
 
         return root;
@@ -70,71 +70,43 @@ public class SettingsFragment extends Fragment {
         String stempMargin = editTempMargin.getText().toString().equals("") ?
                 editTempMargin.getHint().toString() : editTempMargin.getText().toString();
 
+        //Rq null check
+        if (sco2.equals("") && shumidity.equals("") && stemp.equals("") && stempMargin.equals("")) {
+            Snackbar.make(getView(), "Invalid Data, some fields empty", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            return;
+        }
+        //Rq grænse check
         int co2 = Integer.parseInt(sco2);
         int humidity = Integer.parseInt(shumidity);
         int temp = Integer.parseInt(stemp);
         int tempMargin = Integer.parseInt(stempMargin);
 
-        //Rq null check
-        if (!(editHumidity.getText().toString().isEmpty() && editCO2.getText().toString().isEmpty() && editTemp.getText().toString().isEmpty() && editTempMargin.getText().toString().isEmpty()))
-        {
-            //Rq grænse check
-            if(temp <= 25 && co2 <= 1000 && humidity <= 80 && tempMargin <= 5){
-                viewModel.sendDeviceSettings(
-                        temp,
-                        co2,
-                        humidity,
-                        tempMargin
-                );
-                Snackbar.make(getView(), "Succes", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            } else if(temp > 25){
-                Snackbar.make(getView(), "Invalid desired temperature input. Cant be over 25 degrees", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            } else if(co2 > 1000){
-                Snackbar.make(getView(), "Invalid co2 input. Cant be over 1000 ppm", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            } else if(humidity > 80){
-                Snackbar.make(getView(), "Invalid humidity input. Cant be over 80%", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            } else if(tempMargin > 5){
-                Snackbar.make(getView(), "Invalid temperature margin input. Cant be over deviate more than 5", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            } else {
-                Snackbar.make(getView(), "Invalid input. Something wasent right. Make sure temperature <= 25, co2 <= 1000, humidity <= 80 & margin <= 5", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-
-        }
-        else Snackbar.make(getView(), " Invalid Data", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-        System.out.println("Kommer vi her ned");
-    }
-
-    private void submitSettings2(View view) {
-        //Ternary Statements, if no input get hint, else use input
-        String co2 = editCO2.getText().toString().equals("") ?
-                editCO2.getHint().toString() : editCO2.getText().toString();
-        String humidity = editHumidity.getText().toString().equals("") ?
-                editHumidity.getHint().toString() : editHumidity.getText().toString();
-        String temp = editTemp.getText().toString().equals("") ?
-                editTemp.getHint().toString() : editTemp.getText().toString();
-        String tempMargin = editTempMargin.getText().toString().equals("") ?
-                editTempMargin.getHint().toString() : editTempMargin.getText().toString();
-
-        if (co2.equals("") || humidity.equals("") || temp.equals("") || tempMargin.equals("")) {
-            Snackbar.make(getView(), " Invalid Data", Snackbar.LENGTH_LONG)
+        if (temp <= 25 && co2 <= 1000 && humidity <= 80 && tempMargin <= 5) {
+            viewModel.sendDeviceSettings(
+                    co2,
+                    humidity,
+                    temp,
+                    tempMargin
+            );
+            Snackbar.make(getView(), "Success", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-            return;
+        } else if (temp > 25 || temp < 10) {
+            Snackbar.make(getView(), "Invalid temperature input. Can't be outside 10-25 degrees", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else if (co2 > 1000 || co2 < 0) {
+            Snackbar.make(getView(), "Invalid CO2 input. Can't be outside 0-1000 ppm", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else if (humidity > 80 || humidity < 0) {
+            Snackbar.make(getView(), "Invalid humidity input. Can't be outside 0-80%", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else if (tempMargin < 0) {
+            Snackbar.make(getView(), "Invalid temperature margin input. Can't be below 0", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else {
+            Snackbar.make(getView(), "Invalid input. Something wasent right. Make sure temperature <= 25, co2 <= 1000, humidity <= 80 & margin <= 5", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
-        viewModel.sendDeviceSettings(
-                Integer.parseInt(co2),
-                Integer.parseInt(humidity),
-                Integer.parseInt(temp),
-                Integer.parseInt(tempMargin));
-
-        Snackbar.make(getView(), "Success", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
     }
 
     @Override
