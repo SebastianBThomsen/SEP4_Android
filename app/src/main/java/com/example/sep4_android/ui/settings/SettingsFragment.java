@@ -82,7 +82,7 @@ public class SettingsFragment extends Fragment {
         int temp = Integer.parseInt(stemp);
         int tempMargin = Integer.parseInt(stempMargin);
 
-        if (temp <= 25 && co2 <= 1000 && humidity <= 80 && tempMargin <= 5) {
+        if (temp <= 25 && temp >= 10 && co2 <= 1000 && humidity <= 80 && tempMargin <= 5) {
             viewModel.sendDeviceSettings(
                     co2,
                     humidity,
@@ -94,14 +94,11 @@ public class SettingsFragment extends Fragment {
         } else if (temp > 25 || temp < 10) {
             Snackbar.make(getView(), "Invalid temperature input. Can't be outside 10-25 degrees", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-        } else if (co2 > 1000 || co2 < 0) {
+        } else if (co2 > 1000) {
             Snackbar.make(getView(), "Invalid CO2 input. Can't be outside 0-1000 ppm", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-        } else if (humidity > 80 || humidity < 0) {
+        } else if (humidity > 80) {
             Snackbar.make(getView(), "Invalid humidity input. Can't be outside 0-80%", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        } else if (tempMargin < 0) {
-            Snackbar.make(getView(), "Invalid temperature margin input. Can't be below 0", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         } else {
             Snackbar.make(getView(), "Invalid input. Something wasent right. Make sure temperature <= 25, co2 <= 1000, humidity <= 80 & margin <= 5", Snackbar.LENGTH_LONG)
