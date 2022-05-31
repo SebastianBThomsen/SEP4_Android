@@ -23,8 +23,8 @@ https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 
 
-Github navne:
-  falken123321 & "Kasper Falk" ---> Kasper Falk Mikkelsen
-  Neaxic                       ---> Andreas Østergaard
-  BuilderMARK                  ---> Mark Hjuler Pedersen
-  SebastianBThomsen            ---> Sebastian Baltzer Thomsen
+## Github navne:
+  - falken123321 & "Kasper Falk" ---> Kasper Falk Mikkelsen
+  - Neaxic                       ---> Andreas Østergaard
+  - BuilderMARK                  ---> Mark Hjuler Pedersen
+  - SebastianBThomsen            ---> Sebastian Baltzer Thomsen
