@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface DeviceDAO {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Device device);
 
     @Query("Select * FROM device_table ORDER BY roomName DESC")
