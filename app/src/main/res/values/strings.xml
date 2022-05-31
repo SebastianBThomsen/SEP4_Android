@@ -35,4 +35,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="welcome_to_the_airdata_app">Welcome to the Airdata app</string>
     <string name="select_one_of_the_following">Select one of the following</string>
+    <string name="settings">Device Settings</string>
+    <string name="all_devices">All devices</string>
 </resources>

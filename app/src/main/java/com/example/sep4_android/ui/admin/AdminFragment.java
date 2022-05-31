@@ -18,7 +18,7 @@ import com.example.sep4_android.databinding.FragmentAdminBinding;
 public class AdminFragment extends Fragment {
 
     private AdminViewModel viewModel;
-    private Button addUser, desire, room, device;
+    private Button addUser, settings, room, device, allDevices;
     private FragmentAdminBinding binding;
 
 
@@ -39,7 +39,7 @@ public class AdminFragment extends Fragment {
         addUser.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.nav_createUserFragment);
         });
-        desire.setOnClickListener(view -> {
+        settings.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.nav_settings);
         });
         room.setOnClickListener(view -> {
@@ -48,17 +48,21 @@ public class AdminFragment extends Fragment {
         device.setOnClickListener(view -> {
             Navigation.findNavController(view).navigate(R.id.nav_unregistered_devices);
         });
+        allDevices.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.allDevices);
+        });
     }
 
     private void bindings() {
         addUser = binding.btnAddUser;
-        desire = binding.btnDesire;
+        settings = binding.btnSettings;
         room = binding.btnRegRoom;
         device = binding.btnRegDevice;
+        allDevices = binding.btnAllDevices;
     }
 
     private void checkSelected() {
-        viewModel.checkSelected(desire);
+        viewModel.checkSelected(settings);
     }
 
     @Override
