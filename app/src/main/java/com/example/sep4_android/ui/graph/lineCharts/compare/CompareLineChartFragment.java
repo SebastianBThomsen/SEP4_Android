@@ -14,9 +14,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentLineChartcompareBinding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.ui.graph.lineCharts.design.GraphDesign;
 import com.example.sep4_android.ui.graph.GraphViewModel;
 import com.example.sep4_android.ui.graph.GraphViewModelImpl;
+import com.example.sep4_android.ui.graph.lineCharts.design.GraphDesign;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -47,8 +47,6 @@ public class CompareLineChartFragment extends Fragment {
 
         return root;
     }
-
-
 
 
     private void observers() {
@@ -86,11 +84,11 @@ public class CompareLineChartFragment extends Fragment {
 
     private void onClickListeners() {
         co2CheckBox.setOnClickListener(view ->
-        {
-         observers();
-         humidityCheckBox.setChecked(true);
-         tempCheckBox.setChecked(true);
-           }
+                {
+                    observers();
+                    humidityCheckBox.setChecked(true);
+                    tempCheckBox.setChecked(true);
+                }
         );
         humidityCheckBox.setOnClickListener(view ->
                 {
@@ -109,7 +107,6 @@ public class CompareLineChartFragment extends Fragment {
 
 
     }
-
 
 
     private void inputDataToChart(ArrayList<Entry> input, ArrayList<Entry> input1, ArrayList<Entry> input2) {
@@ -142,23 +139,17 @@ public class CompareLineChartFragment extends Fragment {
         design.compareLineDataSet(lineDataHumidity);
 
 
-
         //Sætter linjernes farve
         lineDataTemperature.setColor(Color.rgb(25, 30, 255));
         lineDataCO2.setColor(Color.rgb(255, 30, 0));
         lineDataHumidity.setColor(Color.rgb(25, 255, 25));
 
-        if (!tempCheckBox.isChecked() ){
+        if (!tempCheckBox.isChecked()) {
 
             lineDataTemperature.setVisible(false);
-        }
-
-        else if (!co2CheckBox.isChecked())
-        {
+        } else if (!co2CheckBox.isChecked()) {
             lineDataCO2.setVisible(false);
-        }
-        else if (!humidityCheckBox.isChecked())
-        {
+        } else if (!humidityCheckBox.isChecked()) {
             lineDataHumidity.setVisible(false);
         }
 

@@ -14,14 +14,14 @@ import com.example.sep4_android.repositories.RouteRepositoryImpl;
 import java.util.List;
 
 public class SelectRoomViewModelImpl extends AndroidViewModel implements SelectRoomViewModel {
-    private RouteRepository repository;
+    private final RouteRepository repository;
 
     public SelectRoomViewModelImpl(@NonNull Application application) {
         super(application);
         repository = RouteRepositoryImpl.getInstance(application);
     }
 
-    public void setSelectedDevice(Device device){
+    public void setSelectedDevice(Device device) {
         repository.setSelectedDevice(device);
     }
 

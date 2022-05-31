@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface CreateRoomViewModel {
     String addRoom(String blockName, String floor, String roomNumber, String roomLetter);
+
     LiveData<List<DeviceRoom>> getAllRooms();
 }

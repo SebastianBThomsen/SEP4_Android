@@ -11,12 +11,12 @@ import com.github.mikephil.charting.data.LineDataSet;
 public class GraphDesign {
 
     public void setAvg(LineChart lineChart, Float sum1) {
-        LimitLine llXAxis = new LimitLine(sum1,"Average");
+        LimitLine llXAxis = new LimitLine(sum1, "Average");
         llXAxis.setLineWidth(4f);
         llXAxis.enableDashedLine(10f, 10f, 0f);
         llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
         llXAxis.setTextSize(15f);
-        llXAxis.setTextColor(Color.rgb(255,255,255));
+        llXAxis.setTextColor(Color.rgb(255, 255, 255));
         YAxis xAxis = lineChart.getAxisLeft();
         xAxis.addLimitLine(llXAxis); // add x-axis limit line
         xAxis.enableGridDashedLine(10f, 10f, 0f);

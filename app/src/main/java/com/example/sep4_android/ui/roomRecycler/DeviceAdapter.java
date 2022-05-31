@@ -15,29 +15,29 @@ import java.util.List;
 
 public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder> {
 
-    private List<Device> devices;
+    private final List<Device> devices;
     private OnClickListener listener;
 
-    public DeviceAdapter(List<Device> devices){
+    public DeviceAdapter(List<Device> devices) {
         this.devices = devices;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         ViewHolder viewH = new ViewHolder(view);
         return viewH;
     }
 
-    public void setOnClickListener(OnClickListener listener){
+    public void setOnClickListener(OnClickListener listener) {
         this.listener = listener;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.className.setText(devices.get(position).getRoomName());
-        holder.classAvg.setText(""+32+" \u2103");
+        holder.classAvg.setText("" + 32 + " \u2103");
     }
 
     @Override
@@ -45,15 +45,15 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         return devices.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView className;
         private final TextView classAvg;
 
-        ViewHolder(View itemView){
+        ViewHolder(View itemView) {
             super(itemView);
             className = itemView.findViewById(R.id.rvRoom_text);
             classAvg = itemView.findViewById(R.id.rvRoom_avg);
-            itemView.setOnClickListener(v ->{
+            itemView.setOnClickListener(v -> {
                 listener.onClick(devices.get(getBindingAdapterPosition()));
             });
 

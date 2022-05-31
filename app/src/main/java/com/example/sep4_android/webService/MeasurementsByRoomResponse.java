@@ -6,20 +6,19 @@ import com.example.sep4_android.model.persistence.entities.Measurement;
 import java.util.ArrayList;
 
 public class MeasurementsByRoomResponse {
-    private String deviceId;
-    private ArrayList<MeasurementResponse> measurements;
+    private final String deviceId;
+    private final ArrayList<MeasurementResponse> measurements;
 
     public MeasurementsByRoomResponse(String deviceId, ArrayList<MeasurementResponse> measurements) {
         this.deviceId = deviceId;
         this.measurements = measurements;
     }
 
-    public ArrayList<Measurement> getMeasurements()
-    {
+    public ArrayList<Measurement> getMeasurements() {
         ArrayList<Measurement> measures = new ArrayList<>();
 
         //Converting WebAPI measurements to right format
-        for (MeasurementResponse measurement: measurements) {
+        for (MeasurementResponse measurement : measurements) {
 
             Measurement measurementReturn = new Measurement(deviceId,
                     measurement.getMeasurementId(),
@@ -27,7 +26,7 @@ public class MeasurementsByRoomResponse {
                     measurement.getCo2(),
                     measurement.getHumidity(),
                     DateHandler.fromStringToLong(measurement.getTimestamp())
-                    );
+            );
 
             measures.add(measurementReturn);
         }
@@ -49,7 +48,7 @@ public class MeasurementsByRoomResponse {
         private final double co2;
         private final double humidity;
 
-        public MeasurementResponse(int measurementId , double temperature, double co2,
+        public MeasurementResponse(int measurementId, double temperature, double co2,
                                    double humidity, String timestamp) {
             this.measurementId = measurementId;
             this.temperature = temperature;

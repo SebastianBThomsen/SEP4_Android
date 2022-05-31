@@ -13,7 +13,7 @@ import com.example.sep4_android.repositories.RouteRepositoryImpl;
 import java.util.List;
 
 public class GraphViewModelImpl extends AndroidViewModel implements GraphViewModel {
-    private RouteRepository repository;
+    private final RouteRepository repository;
 
     public GraphViewModelImpl(@NonNull Application application) {
         super(application);

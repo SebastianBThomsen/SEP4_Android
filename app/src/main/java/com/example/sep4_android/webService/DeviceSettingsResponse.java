@@ -1,20 +1,9 @@
-package com.example.sep4_android.model.persistence.entities;
+package com.example.sep4_android.webService;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-@Entity(tableName = "deviceSettings_table")
-public class DeviceSettings {
-
-    @NonNull
-    @PrimaryKey
-    private String deviceId;
-
+public class DeviceSettingsResponse {
     private int co2Threshold, humidityThreshold, targetTemperature, temperatureMargin;
 
-    public DeviceSettings(@NonNull String deviceId, int co2Threshold, int humidityThreshold, int targetTemperature, int temperatureMargin) {
-        this.deviceId = deviceId;
+    public DeviceSettingsResponse(int co2Threshold, int humidityThreshold, int targetTemperature, int temperatureMargin) {
         this.co2Threshold = co2Threshold;
         this.humidityThreshold = humidityThreshold;
         this.targetTemperature = targetTemperature;
@@ -23,22 +12,12 @@ public class DeviceSettings {
 
     @Override
     public String toString() {
-        return "DeviceSettings{" +
-                "deviceId='" + deviceId + '\'' +
-                ", co2Threshold=" + co2Threshold +
+        return "DeviceSettingsResponse{" +
+                "co2Threshold=" + co2Threshold +
                 ", humidityThreshold=" + humidityThreshold +
                 ", targetTemperature=" + targetTemperature +
                 ", temperatureMargin=" + temperatureMargin +
                 '}';
-    }
-
-    @NonNull
-    public String getDeviceId() {
-        return deviceId;
-    }
-
-    public void setDeviceId(@NonNull String deviceId) {
-        this.deviceId = deviceId;
     }
 
     public int getCo2Threshold() {

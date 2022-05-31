@@ -6,31 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".ui.selectRoom.SelectRoomFragment">
 
-    <!-- Button Submit-->
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="298dp"
+        android:layout_height="504dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
 
-    <!-- Start Time-->
-
-    <!-- End Time-->
-
-    <!-- Health Data header-->
-
-
-    <!-- Temperature -->
-
-    <!-- CO2 -->
-
-
-    <!-- Humiditiy -->
-
-
-    <!-- Guidelines -->
-
+    <!-- TextViews -->
     <TextView
         android:layout_width="296dp"
         android:layout_height="33dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="32dp"
-        android:text="Welcome to the Airdata app"
+        android:text="@string/welcome_to_the_airdata_app"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/firstHorizontalTop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,11 +33,12 @@
         android:layout_width="297dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Select one of the following"
+        android:text="@string/select_one_of_the_following"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@+id/rv"
         app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
 
+    <!-- Guidelines -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/firstVerticalLeft"
         android:layout_width="wrap_content"
@@ -66,14 +59,5 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
-        android:layout_width="298dp"
-        android:layout_height="504dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/firstHorizontalTop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

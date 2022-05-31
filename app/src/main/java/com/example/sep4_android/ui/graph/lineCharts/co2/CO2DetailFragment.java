@@ -12,9 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.databinding.FragmentCo2DetailBinding;
 import com.example.sep4_android.model.persistence.entities.Measurement;
-import com.example.sep4_android.ui.graph.lineCharts.design.GraphDesign;
 import com.example.sep4_android.ui.graph.GraphViewModel;
 import com.example.sep4_android.ui.graph.GraphViewModelImpl;
+import com.example.sep4_android.ui.graph.lineCharts.design.GraphDesign;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -65,8 +65,8 @@ public class CO2DetailFragment extends Fragment {
         lineChart = binding.lcDetailCo2;
     }
 
-    private void inputDataToChart(ArrayList<Entry> test) {
-        LineDataSet lineDataSet = new LineDataSet(test, "Co2");
+    private void inputDataToChart(ArrayList<Entry> entries) {
+        LineDataSet lineDataSet = new LineDataSet(entries, "Co2");
         LineData lineData = new LineData(lineDataSet);
         lineChart.setData(lineData);
         graphDesign.lineChartDesign(lineChart);
@@ -74,8 +74,8 @@ public class CO2DetailFragment extends Fragment {
         lineDataSet.setDrawCircles(true);
     }
 
-    private double average(double b, int a) {
-        double avg = b / a;
+    private double average(double sum, int amountOfData) {
+        double avg = sum / amountOfData;
         System.out.println("Her får vi average fra metoden average fra temp  " + avg);
         lineChart.setAlpha((float) avg);
         return avg;

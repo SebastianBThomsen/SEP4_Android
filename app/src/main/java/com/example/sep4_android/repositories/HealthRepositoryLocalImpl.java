@@ -7,9 +7,11 @@ import androidx.lifecycle.LiveData;
 import com.example.sep4_android.model.persistence.Database;
 import com.example.sep4_android.model.persistence.DeviceDAO;
 import com.example.sep4_android.model.persistence.DeviceRoomDAO;
+import com.example.sep4_android.model.persistence.DeviceSettingsDAO;
 import com.example.sep4_android.model.persistence.MeasurementDAO;
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
+import com.example.sep4_android.model.persistence.entities.DeviceSettings;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
@@ -20,12 +22,13 @@ public class HealthRepositoryLocalImpl implements HealthRepositoryLocal {
     private static HealthRepositoryLocalImpl instance;
 
     //DAOS
-    private MeasurementDAO measurementDAO;
-    private DeviceDAO deviceDAO;
-    private DeviceRoomDAO deviceRoomDAO;
+    private final MeasurementDAO measurementDAO;
+    private final DeviceDAO deviceDAO;
+    private final DeviceRoomDAO deviceRoomDAO;
+    private final DeviceSettingsDAO deviceSettingsDAO;
 
     //Multithread
-    private ExecutorService executorService;
+    private final ExecutorService executorService;
 
     private HealthRepositoryLocalImpl(Application application) {
         Database database = Database.getInstance(application);
@@ -34,6 +37,7 @@ public class HealthRepositoryLocalImpl implements HealthRepositoryLocal {
         measurementDAO = database.measurementDAO();
         deviceDAO = database.deviceDAO();
         deviceRoomDAO = database.deviceRoomDAO();
+        deviceSettingsDAO = database.deviceSettingsDAO();
 
         executorService = Executors.newFixedThreadPool(2);
     }
@@ -60,9 +64,16 @@ public class HealthRepositoryLocalImpl implements HealthRepositoryLocal {
 
 
     @Override
-    public void sendMaxMeasurementValues(Device device, int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin) {
-        //TODO: Skal der sendes maxhealthsettings Til Room?? --> Måske noget med hvis internet er gået, så sender den med det samme internet kommer tilbage?
+    public void sendDeviceSettings(DeviceSettings deviceSettings) {
+        executorService.execute(() -> {
+            deviceSettingsDAO.insert(deviceSettings);
+        });
 
+    }
+
+    @Override
+    public LiveData<DeviceSettings> getDeviceSettings(String deviceId) {
+        return deviceSettingsDAO.getDeviceSettings(deviceId);
     }
 
     @Override

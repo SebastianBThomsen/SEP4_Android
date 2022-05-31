@@ -1,16 +1,11 @@
 package com.example.sep4_android.ui.createUser;
 
-import android.app.Activity;
 import android.app.Application;
-import android.content.Intent;
-import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.ViewModel;
 
-import com.example.sep4_android.ui.createRoom.CreateRoomViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -19,8 +14,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateUserViewModelImlp extends AndroidViewModel implements CreateUserViewModel {
-    private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
+    private final FirebaseAuth mAuth;
+    private final FirebaseDatabase database;
 
     public CreateUserViewModelImlp(@NonNull Application application) {
         super(application);
@@ -34,27 +29,25 @@ public class CreateUserViewModelImlp extends AndroidViewModel implements CreateU
         mAuth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     addRank(task.getResult().getUser().getUid(), rank);
-                }
-                else {
-                    Toast.makeText(getApplication().getApplicationContext(), "Account creation failed: "+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplication().getApplicationContext(), "Account creation failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
-    private void addRank(String UID, int rank){
+    private void addRank(String UID, int rank) {
         DatabaseReference userRank = database.getReference("users").child(UID).child("rank");
 
-        if(rank == 1){
+        if (rank == 1) {
             userRank.setValue("admin").addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Toast.makeText(getApplication().getApplicationContext(), "Account creation successful!", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
+                    } else {
                         Toast.makeText(getApplication().getApplicationContext(), "Account creation failed! Couldn't add rank! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -63,10 +56,9 @@ public class CreateUserViewModelImlp extends AndroidViewModel implements CreateU
             userRank.setValue("user").addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Toast.makeText(getApplication().getApplicationContext(), "Account creation successful!", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
+                    } else {
                         Toast.makeText(getApplication().getApplicationContext(), "Account creation failed! Couldn't add rank! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }

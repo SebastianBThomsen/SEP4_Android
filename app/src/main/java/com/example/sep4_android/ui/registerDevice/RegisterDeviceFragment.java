@@ -55,8 +55,8 @@ public class RegisterDeviceFragment extends Fragment {
 
         viewModel.getAllRooms().observe(getViewLifecycleOwner(), deviceRooms -> {
             roomList.clear();
-            for (DeviceRoom room: deviceRooms) {
-                if(!room.getRoomName().equals("def"))
+            for (DeviceRoom room : deviceRooms) {
+                if (!room.getRoomName().equals("def"))
                     roomList.add(room.getRoomName());
             }
             //notifyDataSetChanged after update roomList variable here

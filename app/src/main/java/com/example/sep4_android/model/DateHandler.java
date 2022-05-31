@@ -18,8 +18,8 @@ public class DateHandler {
         return dateFormat.format(date);
     }
 
-    public static String fromLongToString(long ms){
-        Date date = new Date(ms*1000);
+    public static String fromLongToString(long s){
+        Date date = new Date(s*1000);
         //DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         DateFormat dateFormat = new SimpleDateFormat("dd/MM-yyyy HH:mm:ss");
         return dateFormat.format(date);
@@ -27,7 +27,7 @@ public class DateHandler {
 
     public static long fromStringToLong(String date)
     {
-        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
         long milliseconds = 0;
         try {

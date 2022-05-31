@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.sep4_android.model.persistence.entities.Device;
 import com.example.sep4_android.model.persistence.entities.DeviceRoom;
+import com.example.sep4_android.model.persistence.entities.DeviceSettings;
 import com.example.sep4_android.model.persistence.entities.Measurement;
 
 import java.util.List;
@@ -20,13 +21,13 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     private static RouteRepositoryImpl instance;
 
-    private HealthRepositoryWebImpl repositoryWeb;
-    private HealthRepositoryLocalImpl repositoryLocal;
-    private Application application;
+    private final HealthRepositoryWeb repositoryWeb;
+    private final HealthRepositoryLocal repositoryLocal;
+    private final Application application;
 
-    private ExecutorService executorService;
+    private final ExecutorService executorService;
 
-    private MutableLiveData<Device> selectedDeviceLive;
+    private final MutableLiveData<Device> selectedDeviceLive;
     private Device selectedDevice;
     private Device selectedUnregisteredDevice;
 
@@ -71,52 +72,63 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public LiveData<List<Measurement>> getMeasurementsBetweenTimestamps(long start, long end) {
-        executorService.execute(() -> {
-            if (isOnline())
+        if (isOnline()) {
+            executorService.execute(() -> {
                 repositoryWeb.findMeasurementsBetweenTimestamps(selectedDevice, start, end);
-            //Stores data in Room
-        });
+                //Stores data in Room
+            });
+        }
         //Gets data from Room
         return repositoryLocal.getMeasurementsBetweenTimestamps(selectedDevice, start, end);
     }
 
     @Override
     public LiveData<List<Measurement>> getAllMeasurementsByDevice() {
-        executorService.execute(() -> {
-            if (isOnline()) {
+        if (isOnline()) {
+            executorService.execute(() -> {
                 //stores data in room from WebAPI
                 repositoryWeb.findAllMeasurementsByDevice(selectedDevice);
-            }
-        });
+            });
+        }
         //returns Room Data
         return repositoryLocal.getAllMeasurementsByDevice(selectedDevice);
     }
 
     public LiveData<List<Device>> getAllDevices() {
-        executorService.execute(() -> {
-            if (isOnline()) {
+        if (isOnline()) {
+            executorService.execute(() -> {
                 repositoryWeb.findAllDevices();
-            }
-        });
+            });
+        }
         return repositoryLocal.getAllDevices();
     }
 
+
     @Override
-    public void sendMaxMeasurementValues(int desiredTemp, int desiredCO2, int desiredHumidity, int desiredTempMargin) {
-        executorService.execute(() -> {
-            if (isOnline())
-                repositoryWeb.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity, desiredTempMargin);
-        });
-        //FIXME: Måske tilføj noget logik, der venter til device er online i en sekundær thread og så sender når dette er tilfældet?
-        repositoryLocal.sendMaxMeasurementValues(selectedDevice, desiredTemp, desiredCO2, desiredHumidity, desiredTempMargin);
+    public void sendDeviceSettings(int desiredCO2, int desiredHumidity, int desiredTemp, int desiredTempMargin) {
+        DeviceSettings deviceSettings = new DeviceSettings(selectedDevice.getClimateDeviceId(), desiredCO2,
+                desiredHumidity, desiredTemp, desiredTempMargin);
+        if (isOnline()) {
+            executorService.execute(() -> {
+                repositoryWeb.sendDeviceSettings(deviceSettings, selectedDevice.getRoomName());
+            });
+        }
+        repositoryLocal.sendDeviceSettings(deviceSettings);
+    }
+
+    @Override
+    public LiveData<DeviceSettings> getDeviceSettings() {
+        if (isOnline())
+            executorService.execute(() -> {
+                repositoryWeb.findDeviceSettings(selectedDevice.getClimateDeviceId());
+            });
+        return repositoryLocal.getDeviceSettings(selectedDevice.getClimateDeviceId());
     }
 
     public void updateClassroom(String classroom) {
         selectedUnregisteredDevice.setRoomName(classroom);
-
-        if (isOnline()) {
+        if (isOnline())
             repositoryWeb.updateClassroom(selectedUnregisteredDevice);
-        }
         repositoryLocal.updateClassroom(selectedUnregisteredDevice);
 
         selectedUnregisteredDevice = null;
@@ -131,11 +143,13 @@ public class RouteRepositoryImpl implements RouteRepository {
 
     @Override
     public LiveData<List<DeviceRoom>> getAllRooms() {
-        if (isOnline())
-            repositoryWeb.findAllRooms();
+        if (isOnline()) {
+            executorService.execute(() -> {
+                repositoryWeb.findAllRooms();
+            });
+        }
         return repositoryLocal.getAllRooms();
     }
-
 
 
     private boolean isOnline() {

@@ -57,7 +57,7 @@ public class AdminFragment extends Fragment {
         device = binding.btnRegDevice;
     }
 
-    private void checkSelected(){
+    private void checkSelected() {
         viewModel.checkSelected(desire);
     }
 

@@ -46,7 +46,9 @@ public class MeasurementUnitTest {
         m.setTimestamp(94);
         assertEquals(94, m.getTimestamp());
 
-        assertEquals("01/01-1970 - 01:00:00",m.getTimestampString());
+        m.setCo2(-10);
+        assertEquals(-10,m.getCo2(),0);
+
   }
 
 }

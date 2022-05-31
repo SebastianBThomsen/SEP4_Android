@@ -5,23 +5,16 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sep4_android.R;
-import com.example.sep4_android.databinding.ActivityLoginBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener  {
-    private FirebaseAuth mAuth;
-
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     LoginViewModel viewModel;
-
+    private FirebaseAuth mAuth;
     private EditText username;
     private EditText password;
 
@@ -48,26 +41,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.loginBtn:
                 viewModel.login(LoginActivity.this, username.getText().toString(), password.getText().toString());
-                checks(username,password);
+                checks(username, password);
                 break;
         }
     }
 
-    public void checks(EditText user,EditText pass)
-    {
-        String Email,Password;
+    public void checks(EditText user, EditText pass) {
+        String Email, Password;
         Email = username.getText().toString();
         Password = password.getText().toString();
 
-        if (TextUtils.isEmpty(Email)){
+        if (TextUtils.isEmpty(Email)) {
             username.setError("Email cant be empty");
             username.requestFocus();
-        }
-        else if (TextUtils.isEmpty(Password))
-        {
+        } else if (TextUtils.isEmpty(Password)) {
             password.setError("Password cant be empty");
             password.requestFocus();
         }

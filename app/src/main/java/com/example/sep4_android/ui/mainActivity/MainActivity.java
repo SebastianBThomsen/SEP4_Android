@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.AuthStateListener authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth mAuth) {
-                if(mAuth.getCurrentUser() == null){
+                if (mAuth.getCurrentUser() == null) {
                     Intent mainAc = new Intent(getApplication(), LoginActivity.class);
                     startActivity(mainAc);
                 }
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void CustomizeNavigation(){
+    private void CustomizeNavigation() {
         //Depending on your role some items will be hidden from the navbar
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         Menu navMenu = navigationView.getMenu();
@@ -120,16 +120,15 @@ public class MainActivity extends AppCompatActivity {
         TextView navHeaderMail = headerView.findViewById(R.id.NavHeaderMail);
         TextView navHeaderDevice = headerView.findViewById(R.id.NavHeaderDevice);
 
-        if(mAuth.getCurrentUser() != null && mAuth.getCurrentUser().getEmail() != null){
+        if (mAuth.getCurrentUser() != null && mAuth.getCurrentUser().getEmail() != null) {
             navHeaderMail.setText(mAuth.getCurrentUser().getEmail());
         }
 
         viewModel.getSelectedDeviceLive().observe(this, device -> {
             viewModel.updateGraphNav(device, navMenu);
-            navHeaderDevice.setText("Selected: "+device.getRoomName());
+            navHeaderDevice.setText("Selected: " + device.getRoomName());
         });
     }
-
 
 
     //Stolen from: https://stackoverflow.com/questions/15412943/hide-soft-keyboard-on-losing-focus
@@ -143,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
              */
 
             View v = getCurrentFocus();
-            if ( v instanceof EditText) {
+            if (v instanceof EditText) {
 
                 /**
                  * Now, it gets into the above IF-BLOCK if an EditText is already in focus, and you tap somewhere else
@@ -154,14 +153,14 @@ public class MainActivity extends AppCompatActivity {
 
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
-                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         }
-        return super.dispatchTouchEvent( event );
+        return super.dispatchTouchEvent(event);
     }
 
 
