@@ -47,13 +47,13 @@ public class CreateRoomViewModelImpl extends AndroidViewModel implements CreateR
             message += "Floor invalid!\n";
         if (roomNumber.length() != 2)
             message += "Room number invalid!\n";
-        if (roomLetter.length() != 1)
+        if (roomLetter.length() != 0 && roomLetter.length() != 1)
             message += "room letter invalid!";
         if (message.equals("")){
             //Forig kode virker basicly some et null check (anderledes tilgang maybe)(skal bruge nullcheck for næste check)
             if(Character.isLowerCase(blockName.charAt(0)))
                 message = ("Block name is not uppercase letter");
-            else if(Character.isUpperCase(roomLetter.charAt(0)))
+            else if(roomLetter.length() == 1 && Character.isUpperCase(roomLetter.charAt(0)))
                 message = ("Room letter is not lowercase letter");
             else{
                 message = "Valid";
