@@ -3,10 +3,13 @@
 Et dynamisk system, som kommunikere med et netværks lag, som vidre kommunikere med en arduino enhed.
 Appen giver et overblik over data målt fra arduino enheden, samt giver mulighed for at konfigure diverse settings på enheden. 
 
-Logins;
-bruger: user@user.com - 123456
+### Logins:
+<details>
+ Bruger: user@user.com, password: 123456
+ 
+ Admin: admin@admin.com, password: 123456
+</details>
 
-admin: admin@admin.com - 123456
 
 ## Features
 - Api kommunikation
