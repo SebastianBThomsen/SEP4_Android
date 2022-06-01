@@ -3,8 +3,9 @@
 Et dynamisk system, som kommunikere med et netværks lag, som vidre kommunikere med en arduino enhed.
 Appen giver et overblik over data målt fra arduino enheden, samt giver mulighed for at konfigure diverse settings på enheden. 
 
-Quick rundown video:
-https://www.youtube.com/watch?v=dQw4w9WgXcQ
+Logins;
+bruger: user@user.com - 123456
+admin: admin@admin.com - 123456
 
 ## Features
 - Api kommunikation
