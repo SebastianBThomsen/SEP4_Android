@@ -5,6 +5,7 @@ Appen giver et overblik over data målt fra arduino enheden, samt giver mulighed
 
 Logins;
 bruger: user@user.com - 123456
+
 admin: admin@admin.com - 123456
 
 ## Features
