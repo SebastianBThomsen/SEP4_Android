@@ -18,7 +18,6 @@ public interface HealthAPI {
     @GET("api/v1/Rooms/{roomNo}/Measurements")
     Call<MeasurementsByRoomResponse[]> getAllMeasurementsByRoom(@Path("roomNo") String roomNo);
 
-    //?validFrom=xxx&validTo=yyy
     @GET("api/v1/Rooms/{roomNo}/Measurements")
     Call<MeasurementsByRoomResponse[]> getMeasurementsBetweenTimestamps(@Path("roomNo") String roomNo,
                                                                         @Query("validFrom") long validFromSeconds,

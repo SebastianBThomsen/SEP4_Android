@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="234dp"
-        android:layout_height="76dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="LOGIN SCREEN"
         android:textSize="34sp"
